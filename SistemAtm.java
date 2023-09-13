@@ -20,6 +20,8 @@ public class SistemAtm {
             System.out.println("Masukkan pin anda :");
             String input_pin = scanner.nextLine();
 
+            System.out.println("**************************");
+
             if (input_no_rek.equals(no_rek) && input_pin.equals(pin)) {
                 System.out.println("Berhasil");
             } else {

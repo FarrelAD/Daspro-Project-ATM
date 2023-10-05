@@ -32,7 +32,7 @@ public class SistemAtm {
 
             if (input_no_rek.equals(no_rek) && input_pin.equals(pin) && status.equals("aman")) {
                 String no_rek_tujuan;
-                int nom_transfer, saldo_awal = 5000000, sisa_saldo;
+                int nom_transfer, nom_tarik, nom_setor, saldo_awal = 5000000, sisa_saldo;
                 System.out.println("Anda berhasil login, silahkan memilih menu dibawah ini :");
                 System.out.println("1. Transfer");
                 System.out.println("2. Tarik tunai");
@@ -62,9 +62,24 @@ public class SistemAtm {
                         break;
                     case 2:
                         System.out.println("Anda memilih menu tarik tunai");
+                        System.out.println("**************************");
+                        System.out.println("Masukkan nominal tarik tunai : ");
+                        nom_tarik = scanner.nextInt();
+                        if (nom_tarik > saldo_awal) {
+                            System.out.println("Transaksi gagal, periksa kembali saldo anda");
+                        } else {
+                            sisa_saldo = saldo_awal - nom_tarik;
+                            System.out.println("Tarik tunai berhasil dilakukan");
+                            System.out.println("Sisa saldo anda : " + sisa_saldo);
+                        }
                         break;
                     case 3:
                         System.out.println("Anda memilih menu setor tunai");
+                        System.out.println("Masukkan nominal setor tunai : ");
+                        nom_setor = scanner.nextInt();
+                        sisa_saldo = saldo_awal + nom_setor;
+                        System.out.println("Setor tunai berhasil dilakukan");
+                        System.out.println("Sisa saldo anda : " + sisa_saldo);
                         break;
                     case 4:
                         System.out.println("Anda memilih menu pembayaran lain lain");

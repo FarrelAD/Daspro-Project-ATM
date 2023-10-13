@@ -17,10 +17,10 @@ public class SistemAtm {
         Scanner scanner = new Scanner(System.in);
 
         while (loginAttempts <= maxLoginAttempts) {
-            System.out.println("Masukkan nomor rekening :");
+            System.out.print("Masukkan nomor rekening :");
             String input_no_rek = scanner.nextLine();
 
-            System.out.println("Masukkan pin anda :");
+            System.out.print("Masukkan pin anda :");
             String input_pin = scanner.nextLine();
 
             System.out.println("**************************");
@@ -38,7 +38,7 @@ public class SistemAtm {
                 System.out.println("2. Tarik tunai");
                 System.out.println("3. Setor tunai");
                 System.out.println("4. Pembayaran lain-lain");
-                System.out.println("Menu yang dipilih :");
+                System.out.print("Menu yang dipilih :");
                 int menu = scanner.nextInt();
 
                 System.out.println("**************************");
@@ -49,9 +49,9 @@ public class SistemAtm {
                             Scanner scanner2 = new Scanner(System.in);
                             System.out.println("Anda memilih menu transfer");
                             System.out.println("**************************");
-                            System.out.println("Masukkan nomor rekening tujuan :");
+                            System.out.print("Masukkan nomor rekening tujuan : ");
                             no_rek_tujuan = scanner2.nextLine();
-                            System.out.println("Masukkan nominal transfer : ");
+                            System.out.print("Masukkan nominal transfer : ");
                             nom_transfer = scanner.nextInt();
                             if (nom_transfer > saldo_awal) {
                                 System.out.println("Transaksi gagal, periksa kembali saldo anda");
@@ -60,7 +60,7 @@ public class SistemAtm {
                                 System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
                                 System.out.println("Sisa saldo anda : " + sisa_saldo);
                             }
-                            System.out.println("Apakah anda ingin mengulangi transaksi?");
+                            System.out.print("Apakah anda ingin mengulangi transaksi?  ");
                             konfirmasi = scanner2.nextLine();
                             if (konfirmasi.equalsIgnoreCase("t")) {
                                 System.out.println("Terimakasih telah bertransaksi");
@@ -71,7 +71,7 @@ public class SistemAtm {
                     case 2:
                         System.out.println("Anda memilih menu tarik tunai");
                         System.out.println("**************************");
-                        System.out.println("Masukkan nominal tarik tunai : ");
+                        System.out.print("Masukkan nominal tarik tunai : ");
                         nom_tarik = scanner.nextInt();
                         if (nom_tarik > saldo_awal) {
                             System.out.println("Transaksi gagal, periksa kembali saldo anda");
@@ -83,7 +83,7 @@ public class SistemAtm {
                         break;
                     case 3:
                         System.out.println("Anda memilih menu setor tunai");
-                        System.out.println("Masukkan nominal setor tunai : ");
+                        System.out.print("Masukkan nominal setor tunai : ");
                         nom_setor = scanner.nextInt();
                         sisa_saldo = saldo_awal + nom_setor;
                         System.out.println("Setor tunai berhasil dilakukan");

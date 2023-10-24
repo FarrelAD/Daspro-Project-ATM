@@ -4,6 +4,8 @@ public class SistemAtm {
     public static void main(String[] args) {
         String[] no_rek = { "1234567", "7654321", "1357924" };
         String[] pin = { "1234", "5678", "2468" };
+        int riw = 10, count = 10;
+        String[] riwayat = new String[riw];
         String status = "aman";
         boolean isBoleh = false;
         int loginAttempts = 0;
@@ -19,10 +21,10 @@ public class SistemAtm {
         Scanner scannerInt = new Scanner(System.in);
 
         while (loginAttempts <= maxLoginAttempts) {
-            System.out.print("Masukkan nomor rekening :");
+            System.out.print("Masukkan nomor rekening : ");
             String input_no_rek = scanner.nextLine();
 
-            System.out.print("Masukkan pin anda :");
+            System.out.print("Masukkan pin anda : ");
             String input_pin = scanner.nextLine();
 
             System.out.println("**************************");
@@ -41,11 +43,12 @@ public class SistemAtm {
                 String no_rek_tujuan, konfirmasi;
                 int nom_transfer, nom_tarik, nom_setor, saldo = 5000000;
                 do {
-                    System.out.println("Silahkan memilih menu dibawah ini :");
+                    System.out.println("Silahkan memilih menu dibawah ini : ");
                     System.out.println("1. Transfer");
                     System.out.println("2. Tarik tunai");
                     System.out.println("3. Setor tunai");
                     System.out.println("4. Pembayaran lain-lain");
+                    System.out.println("5. Riwayat transaksi");
                     System.out.print("Menu yang dipilih :");
                     int menu = scannerInt.nextInt();
 
@@ -65,6 +68,9 @@ public class SistemAtm {
                                 saldo -= nom_transfer;
                                 System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
                                 System.out.println("Sisa saldo anda : " + saldo);
+                                riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan
+                                        + " sebesar " + nom_transfer;
+                                count--;
                             }
                             break;
                         case 2:
@@ -75,21 +81,30 @@ public class SistemAtm {
                             if (nom_tarik > saldo) {
                                 System.out.println("Transaksi gagal, periksa kembali saldo anda");
                             } else {
-                                saldo = -nom_tarik;
+                                saldo -= nom_tarik;
                                 System.out.println("Tarik tunai berhasil dilakukan");
                                 System.out.println("Sisa saldo anda : " + saldo);
+                                riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nom_tarik;
+                                count--;
                             }
                             break;
                         case 3:
                             System.out.println("Anda memilih menu setor tunai");
                             System.out.print("Masukkan nominal setor tunai : ");
                             nom_setor = scannerInt.nextInt();
-                            saldo = +nom_setor;
+                            saldo += nom_setor;
                             System.out.println("Setor tunai berhasil dilakukan");
                             System.out.println("Sisa saldo anda : " + saldo);
+                            riwayat[riw - count] = "Telah melakukan setor tunai sebesar " + nom_setor;
+                            count--;
                             break;
                         case 4:
                             System.out.println("Anda memilih menu pembayaran lain lain");
+                            break;
+                        case 5:
+                            for (String i : riwayat) {
+                                System.out.println(i);
+                            }
                             break;
                         default:
                             System.out.println("Periksa kembali inputan anda");

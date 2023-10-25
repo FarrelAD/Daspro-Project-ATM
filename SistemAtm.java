@@ -1,3 +1,5 @@
+// Ini adalah suatu program sistem ATM
+// Fitur yang tersedia: transfer, tarik tunai, setor tunai, pembayaran lain-lain, dan riwayat transaksi
 import java.util.Scanner;
 
 public class SistemAtm {
@@ -21,24 +23,28 @@ public class SistemAtm {
         Scanner scannerInt = new Scanner(System.in);
 
         while (loginAttempts <= maxLoginAttempts) {
-            System.out.print("Masukkan nomor rekening : ");
+            System.out.print("Masukkan nomor rekening : "); //Input nomor rekening
             String input_no_rek = scanner.nextLine();
 
-            System.out.print("Masukkan pin anda : ");
+            System.out.print("Masukkan PIN anda : "); //Input PIN pengguna
             String input_pin = scanner.nextLine();
 
             System.out.println("**************************");
 
+            // Pengecekan apakah status akunnya diblokir atau tidak
             if (status.equals("diblokir")) {
                 System.out.println("Akun anda berstatus " + status);
                 System.out.println("**************************");
             }
 
+            
             for (int i = 0; i < no_rek.length; i++) {
                 if (input_no_rek.equals(no_rek[i]) && input_pin.equals(pin[i])) {
                     isBoleh = true;
                 }
             }
+
+            // Bagian di bawah ini adalah bagian menuju bagian menu
             if (isBoleh) {
                 String no_rek_tujuan, konfirmasi;
                 int nom_transfer, nom_tarik, nom_setor, saldo = 5000000;
@@ -54,6 +60,7 @@ public class SistemAtm {
 
                     System.out.println("**************************");
 
+                    // Pilihan opsi menu
                     switch (menu) {
                         case 1:
                             System.out.println("Anda memilih menu transfer");
@@ -68,8 +75,7 @@ public class SistemAtm {
                                 saldo -= nom_transfer;
                                 System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
                                 System.out.println("Sisa saldo anda : " + saldo);
-                                riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan
-                                        + " sebesar " + nom_transfer;
+                                riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan + " sebesar " + nom_transfer;
                                 count--;
                             }
                             break;
@@ -127,7 +133,7 @@ public class SistemAtm {
                     status = "diblokir";
                     break; // Account is blocked, exit the loop
                 }
-            }
+            } //Bagian akhir program menu
             System.out.println("**************************");
         }
 

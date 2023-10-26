@@ -1,3 +1,4 @@
+
 // Ini adalah suatu program sistem ATM
 // Fitur yang tersedia: transfer, tarik tunai, setor tunai, pembayaran lain-lain, dan riwayat transaksi
 import java.util.Scanner;
@@ -8,7 +9,7 @@ public class SistemAtm {
         String[] pin = { "1234", "5678", "2468" };
         int riw = 10, count = 10, hasil = 0;
         String[] riwayat = new String[riw];
-        String status = "aman";
+        String status[] = { "aman", "aman", "aman" };
         boolean isBoleh = false;
         int loginAttempts = 0;
         final int maxLoginAttempts = 3;
@@ -23,23 +24,22 @@ public class SistemAtm {
         Scanner scannerInt = new Scanner(System.in);
 
         while (loginAttempts <= maxLoginAttempts) {
-            System.out.print("Masukkan nomor rekening : "); //Input nomor rekening
+            System.out.print("Masukkan nomor rekening : "); // Input nomor rekening
             String input_no_rek = scanner.nextLine();
 
-            System.out.print("Masukkan PIN anda : "); //Input PIN pengguna
+            System.out.print("Masukkan PIN anda : "); // Input PIN pengguna
             String input_pin = scanner.nextLine();
 
             System.out.println("**************************");
 
             // Pengecekan apakah status akunnya diblokir atau tidak
-            if (status.equals("diblokir")) {
+            if (status[hasil].equals("diblokir")) {
                 System.out.println("Akun anda berstatus " + status);
                 System.out.println("**************************");
             }
 
-            
             for (int i = 0; i < no_rek.length; i++) {
-                if (input_no_rek.equals(no_rek[i]) && input_pin.equals(pin[i])) {
+                if (input_no_rek.equals(no_rek[i]) && input_pin.equals(pin[i]) && status[i].equals("aman")) {
                     isBoleh = true;
                     hasil = i;
                 }
@@ -57,6 +57,7 @@ public class SistemAtm {
                     System.out.println("3. Setor tunai");
                     System.out.println("4. Pembayaran lain-lain");
                     System.out.println("5. Riwayat transaksi");
+                    System.out.println("6. Cek Saldo");
                     System.out.print("Menu yang dipilih :");
                     int menu = scannerInt.nextInt();
 
@@ -76,8 +77,9 @@ public class SistemAtm {
                             } else {
                                 saldo[hasil] -= nom_transfer;
                                 System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
-                                System.out.println("Sisa saldo anda : " + saldo);
-                                riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan + " sebesar " + nom_transfer;
+                                System.out.println("Sisa saldo anda : " + saldo[hasil]);
+                                riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan
+                                        + " sebesar " + nom_transfer;
                                 count--;
                             }
                             break;
@@ -91,7 +93,7 @@ public class SistemAtm {
                             } else {
                                 saldo[hasil] -= nom_tarik;
                                 System.out.println("Tarik tunai berhasil dilakukan");
-                                System.out.println("Sisa saldo anda : " + saldo);
+                                System.out.println("Sisa saldo anda : " + saldo[hasil]);
                                 riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nom_tarik;
                                 count--;
                             }
@@ -102,7 +104,7 @@ public class SistemAtm {
                             nom_setor = scannerInt.nextInt();
                             saldo[hasil] += nom_setor;
                             System.out.println("Setor tunai berhasil dilakukan");
-                            System.out.println("Sisa saldo anda : " + saldo);
+                            System.out.println("Sisa saldo anda : " + saldo[hasil]);
                             riwayat[riw - count] = "Telah melakukan setor tunai sebesar " + nom_setor;
                             count--;
                             break;
@@ -113,6 +115,9 @@ public class SistemAtm {
                             for (String i : riwayat) {
                                 System.out.println(i);
                             }
+                            break;
+                        case 6:
+                            System.out.println("Saldo anda sebesar Rp. " + saldo[hasil]);
                             break;
                         default:
                             System.out.println("Periksa kembali inputan anda");
@@ -132,10 +137,10 @@ public class SistemAtm {
 
                 if (loginAttempts >= maxLoginAttempts) {
                     System.out.println("Anda telah gagal lebih dari 3 kali. Akun anda diblokir.");
-                    status = "diblokir";
+                    status[hasil] = "diblokir";
                     break; // Account is blocked, exit the loop
                 }
-            } //Bagian akhir program menu
+            } // Bagian akhir program menu
             System.out.println("**************************");
         }
 

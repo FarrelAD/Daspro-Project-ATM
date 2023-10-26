@@ -4,7 +4,7 @@ public class SistemAtm {
     public static void main(String[] args) {
         String[] no_rek = { "1234567", "7654321", "1357924" };
         String[] pin = { "1234", "5678", "2468" };
-        int riw = 10, count = 10;
+        int riw = 10, count = 10, hasil = 0;
         String[] riwayat = new String[riw];
         String status = "aman";
         boolean isBoleh = false;
@@ -37,11 +37,13 @@ public class SistemAtm {
             for (int i = 0; i < no_rek.length; i++) {
                 if (input_no_rek.equals(no_rek[i]) && input_pin.equals(pin[i])) {
                     isBoleh = true;
+                    hasil = i;
                 }
             }
             if (isBoleh) {
                 String no_rek_tujuan, konfirmasi;
-                int nom_transfer, nom_tarik, nom_setor, saldo = 5000000;
+                int nom_transfer, nom_tarik, nom_setor;
+                int[] saldo = { 5000000, 4000000, 1000000 };
                 do {
                     System.out.println("Silahkan memilih menu dibawah ini : ");
                     System.out.println("1. Transfer");
@@ -62,10 +64,10 @@ public class SistemAtm {
                             no_rek_tujuan = scanner.nextLine();
                             System.out.print("Masukkan nominal transfer : ");
                             nom_transfer = scannerInt.nextInt();
-                            if (nom_transfer > saldo) {
+                            if (nom_transfer > saldo[hasil]) {
                                 System.out.println("Transaksi gagal, periksa kembali saldo anda");
                             } else {
-                                saldo -= nom_transfer;
+                                saldo[hasil] -= nom_transfer;
                                 System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
                                 System.out.println("Sisa saldo anda : " + saldo);
                                 riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan
@@ -78,10 +80,10 @@ public class SistemAtm {
                             System.out.println("**************************");
                             System.out.print("Masukkan nominal tarik tunai : ");
                             nom_tarik = scannerInt.nextInt();
-                            if (nom_tarik > saldo) {
+                            if (nom_tarik > saldo[hasil]) {
                                 System.out.println("Transaksi gagal, periksa kembali saldo anda");
                             } else {
-                                saldo -= nom_tarik;
+                                saldo[hasil] -= nom_tarik;
                                 System.out.println("Tarik tunai berhasil dilakukan");
                                 System.out.println("Sisa saldo anda : " + saldo);
                                 riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nom_tarik;
@@ -92,7 +94,7 @@ public class SistemAtm {
                             System.out.println("Anda memilih menu setor tunai");
                             System.out.print("Masukkan nominal setor tunai : ");
                             nom_setor = scannerInt.nextInt();
-                            saldo += nom_setor;
+                            saldo[hasil] += nom_setor;
                             System.out.println("Setor tunai berhasil dilakukan");
                             System.out.println("Sisa saldo anda : " + saldo);
                             riwayat[riw - count] = "Telah melakukan setor tunai sebesar " + nom_setor;

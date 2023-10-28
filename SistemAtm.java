@@ -7,10 +7,10 @@ public class SistemAtm {
     public static void main(String[] args) {
         String[] no_rek = { "1234567", "7654321", "1357924" };
         String[] pin = { "1234", "5678", "2468" };
-        int riw = 10, count = 10, hasil = 0;
+        int riw = 10, count = 10, hasil = 0, tujuan = 0;
         String[] riwayat = new String[riw];
         String status[] = { "aman", "aman", "aman" };
-        boolean isBoleh = false;
+        boolean isBoleh = false, isvalid = false;
         int loginAttempts = 0;
         final int maxLoginAttempts = 3;
 
@@ -70,12 +70,22 @@ public class SistemAtm {
                             System.out.println("**************************");
                             System.out.print("Masukkan nomor rekening tujuan :");
                             no_rek_tujuan = scanner.nextLine();
+                            for (int i = 0; i < no_rek.length; i++) {
+                                if (no_rek_tujuan.equals(no_rek[i])) {
+                                    tujuan = i;
+                                    isvalid = true;
+                                } else {
+                                    System.out.println("Nomor rekening invalid");
+                                    break;
+                                }
+                            }
                             System.out.print("Masukkan nominal transfer : ");
                             nom_transfer = scannerInt.nextInt();
-                            if (nom_transfer > saldo[hasil]) {
-                                System.out.println("Transaksi gagal, periksa kembali saldo anda");
+                            if (isvalid == false && nom_transfer > saldo[hasil]) {
+                                System.out.println("Transaksi gagal, periksa kembali saldo atau nomor tujuan anda");
                             } else {
                                 saldo[hasil] -= nom_transfer;
+                                saldo[tujuan] += nom_transfer;
                                 System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
                                 System.out.println("Sisa saldo anda : " + saldo[hasil]);
                                 riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan

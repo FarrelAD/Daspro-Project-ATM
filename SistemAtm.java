@@ -4,16 +4,18 @@
 import java.util.Scanner;
 
 public class SistemAtm {
+    //inisialisasi dan deklarasi variabel yang dibutuhkan
     public static void main(String[] args) {
-        String[] no_rek = { "1234567", "7654321", "1357924" };
-        String[] pin = { "1234", "5678", "2468" };
-        int riw = 10, count = 10, hasil = 0, tujuan = 0;
-        String[] riwayat = new String[riw];
-        String status[] = { "aman", "aman", "aman" };
-        boolean isBoleh = false, isvalid = false;
+        String[] no_rek = { "1234567", "7654321", "1357924" }; // array nomor rekeninh
+        String[] pin = { "1234", "5678", "2468" }; // array pin yang sesuai dengan indeks array nomor rekening
+        int riw = 10, count = 10, hasil = 0, tujuan = 0; //variabel untuk cetak riwayat dan semacam session manipulasi saldo
+        String[] riwayat = new String[riw]; // array riwayat
+        String status[] = { "aman", "aman", "aman" }; // array status akun
+        boolean isBoleh = false, isvalid = false; // variabel autentikasi login dan validasi nomor rekening
         int loginAttempts = 0;
-        final int maxLoginAttempts = 3;
+        final int maxLoginAttempts = 3; // maksimal login
 
+        // halaman utama sistem atm
         System.out.println("**************************");
         System.out.println("*                        *");
         System.out.println("*    Sistem mesin ATM    *");
@@ -23,6 +25,7 @@ public class SistemAtm {
         Scanner scanner = new Scanner(System.in);
         Scanner scannerInt = new Scanner(System.in);
 
+        //pengecekan batas login
         while (loginAttempts <= maxLoginAttempts) {
             System.out.print("Masukkan nomor rekening : "); // Input nomor rekening
             String input_no_rek = scanner.nextLine();
@@ -38,18 +41,21 @@ public class SistemAtm {
                 System.out.println("**************************");
             }
 
+            //pengecekan kesesuaian indeks no rek dan pin untuk login
             for (int i = 0; i < no_rek.length; i++) {
                 if (input_no_rek.equals(no_rek[i]) && input_pin.equals(pin[i]) && status[i].equals("aman")) {
-                    isBoleh = true;
-                    hasil = i;
+                    isBoleh = true; //autentukasi
+                    hasil = i; //session
                 }
             }
 
             // Bagian di bawah ini adalah bagian menuju bagian menu
             if (isBoleh) {
-                String no_rek_tujuan, konfirmasi;
+                // inisialisasi variabel untuk transaksi
+                String no_rek_tujuan, konfirmasi; 
                 int nom_transfer, nom_tarik, nom_setor;
                 int[] saldo = { 5000000, 4000000, 1000000 };
+                // perulangan menu berdasarkan konfirmasi user
                 do {
                     System.out.println("Silahkan memilih menu dibawah ini : ");
                     System.out.println("1. Transfer");

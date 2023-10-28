@@ -68,29 +68,31 @@ public class SistemAtm {
                         case 1:
                             System.out.println("Anda memilih menu transfer");
                             System.out.println("**************************");
-                            System.out.print("Masukkan nomor rekening tujuan :");
+                            System.out.print("Masukkan nomor rekening tujuan : ");
                             no_rek_tujuan = scanner.nextLine();
                             for (int i = 0; i < no_rek.length; i++) {
                                 if (no_rek_tujuan.equals(no_rek[i])) {
                                     tujuan = i;
                                     isvalid = true;
-                                } else {
-                                    System.out.println("Nomor rekening invalid");
                                     break;
                                 }
                             }
-                            System.out.print("Masukkan nominal transfer : ");
-                            nom_transfer = scannerInt.nextInt();
-                            if (isvalid == false && nom_transfer > saldo[hasil]) {
-                                System.out.println("Transaksi gagal, periksa kembali saldo atau nomor tujuan anda");
+                            if (isvalid == true) {
+                                System.out.print("Masukkan nominal transfer : ");
+                                nom_transfer = scannerInt.nextInt();
+                                if (nom_transfer <= saldo[hasil]) {
+                                    saldo[hasil] -= nom_transfer;
+                                    saldo[tujuan] += nom_transfer;
+                                    System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
+                                    System.out.println("Sisa saldo anda : " + saldo[hasil]);
+                                    riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan
+                                            + " sebesar " + nom_transfer;
+                                    count--;
+                                } else {
+                                    System.out.println("Transaksi gagal, saldo anda tidak mencukupi");
+                                }
                             } else {
-                                saldo[hasil] -= nom_transfer;
-                                saldo[tujuan] += nom_transfer;
-                                System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
-                                System.out.println("Sisa saldo anda : " + saldo[hasil]);
-                                riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan
-                                        + " sebesar " + nom_transfer;
-                                count--;
+                                System.out.println("Transaksi gagal, nomor rekening tujuan invalid");
                             }
                             break;
                         case 2:

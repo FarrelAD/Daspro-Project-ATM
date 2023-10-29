@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class SistemAtm {
     //inisialisasi dan deklarasi variabel yang dibutuhkan
     public static void main(String[] args) {
-        String[] no_rek = { "1234567", "7654321", "1357924" }; // array nomor rekeninh
+        String[] no_rek = { "1234567", "7654321", "1357924" }; // array nomor rekening
         String[] pin = { "1234", "5678", "2468" }; // array pin yang sesuai dengan indeks array nomor rekening
         int riw = 10, count = 10, hasil = 0, tujuan = 0; //variabel untuk cetak riwayat dan semacam session manipulasi saldo
         String[] riwayat = new String[riw]; // array riwayat
@@ -16,11 +16,20 @@ public class SistemAtm {
         final int maxLoginAttempts = 3; // maksimal login
 
         // halaman utama sistem atm
-        System.out.println("**************************");
-        System.out.println("*                        *");
-        System.out.println("*    Sistem mesin ATM    *");
-        System.out.println("*                        *");
-        System.out.println("**************************");
+        System.out.println("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
+        System.out.println("II| II| II|  IIIIII|  II|      IIIIII|   IIIIIII|  IIIIIIIIII|  IIIIII|");
+        System.out.println("II| II| II|  II|      II|      II|       II|  II|  II| II| II|  II|    ");
+        System.out.println("II| II| II|  IIIIII|  II|      II|       II|  II|  II| II| II|  IIIIII|");
+        System.out.println("II| II| II|  II|      II|      II|       II|  II|  II| II| II|  II|    ");
+        System.out.println("IIIIIIIIII|  IIIIII|  IIIIII|  IIIIII|   IIIIIII|  II| II| II|  IIIIII|");
+        System.out.println("-----------------------------------------------------------------------");
+        System.out.println("         ___ ___ _____   ___ ___ _    _ _   _ ____ _____ ___      ");
+        System.out.println("         ||| ||| |||||   ||| ||| |    | |_  | |||| ||||| |||      ");
+        System.out.println("         | |  |  | | |   | | | | |    | ||_ | |    | | | | |      ");
+        System.out.println("         |||  |  | | |   ||| | | |    | | |_| |||| | | | |||      ");
+        System.out.println("         | |  |  | | |   |   | | |___ | |  || |    | | | | |      ");
+        System.out.println("         | |  |  | | |   |   ||| |||| | |   | |||| | | | | |      ");
+        System.out.println("=======================================================================");
 
         Scanner scanner = new Scanner(System.in);
         Scanner scannerInt = new Scanner(System.in);
@@ -44,7 +53,7 @@ public class SistemAtm {
             //pengecekan kesesuaian indeks no rek dan pin untuk login
             for (int i = 0; i < no_rek.length; i++) {
                 if (input_no_rek.equals(no_rek[i]) && input_pin.equals(pin[i]) && status[i].equals("aman")) {
-                    isBoleh = true; //autentukasi
+                    isBoleh = true; //autentifikasi
                     hasil = i; //session
                 }
             }

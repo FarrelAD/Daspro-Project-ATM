@@ -1,4 +1,3 @@
-
 // Ini adalah suatu program sistem ATM
 // Fitur yang tersedia: transfer, tarik tunai, setor tunai, pembayaran lain-lain, dan riwayat transaksi
 import java.util.Scanner;
@@ -13,9 +12,10 @@ public class SistemAtm {
         String status[] = { "aman", "aman", "aman" }; // array status akun
         boolean isBoleh = false, isvalid = false; // variabel autentikasi login dan validasi nomor rekening
         int loginAttempts = 0;
-        final int maxLoginAttempts = 3; // maksimal login
+        final int maxLoginAttempts = 3; // maksimal login yang bisa dilakukan pengguna
 
         // halaman utama sistem atm
+        System.out.println("=======================================================================");
         System.out.println("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
         System.out.println("II| II| II|  IIIIII|  II|      IIIIII|   IIIIIII|  IIIIIIIIII|  IIIIII|");
         System.out.println("II| II| II|  II|      II|      II|       II|  II|  II| II| II|  II|    ");
@@ -34,7 +34,7 @@ public class SistemAtm {
         Scanner scanner = new Scanner(System.in);
         Scanner scannerInt = new Scanner(System.in);
 
-        //pengecekan batas login
+        // Pengecekan batas login
         while (loginAttempts <= maxLoginAttempts) {
             System.out.print("Masukkan nomor rekening : "); // Input nomor rekening
             String input_no_rek = scanner.nextLine();

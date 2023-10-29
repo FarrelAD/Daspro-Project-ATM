@@ -1,5 +1,5 @@
 # Daspro-Project-ATM
-<img src="https://i.gifer.com/7OMg.gif" align="center" alt="ATM gif" width="300">
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3pkb251cGpoYnplajZxazQ3bDlyM2Z3ZXA4ZXJoeHptaHoxeHNiOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6UBl6P4Ey0zkqbnO/giphy.gif" alt="ATM gif" align="center" width="25%">
 <p>Proyek sederhana sistem mesin ATM yang berbasis <b>CLI (Command Line Interface)</b>
 <h3>Dibuat oleh kelompok 4 | Kelas 1B TI</h3>
   <ol>

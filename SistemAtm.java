@@ -63,10 +63,10 @@ public class SistemAtm {
                 // inisialisasi variabel untuk transaksi
                 String no_rek_tujuan, konfirmasi; 
                 int nom_transfer, nom_tarik, nom_setor;
-                int[] saldo = { 5000000, 4000000, 1000000 };
+                int[] saldo = { 7000000, 4000000, 1000000 };
                 // perulangan menu berdasarkan konfirmasi user
                 do {
-                    System.out.println("Silahkan memilih menu dibawah ini : ");
+                    System.out.println("Silakan memilih menu dibawah ini : ");
                     System.out.println("1. Transfer");
                     System.out.println("2. Tarik tunai");
                     System.out.println("3. Setor tunai");
@@ -115,14 +115,20 @@ public class SistemAtm {
                             System.out.println("**************************");
                             System.out.print("Masukkan nominal tarik tunai : ");
                             nom_tarik = scannerInt.nextInt();
-                            if (nom_tarik > saldo[hasil]) {
-                                System.out.println("Transaksi gagal, periksa kembali saldo anda");
+                            // Pengecekan apakah nominal tarik kurang dari nilai saldo
+                            if (nom_tarik < saldo[hasil]) {
+                                // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
+                                if (nom_tarik <= 5000000) {
+                                    saldo[hasil] -= nom_tarik;
+                                    System.out.println("Tarik tunai berhasil dilakukan");
+                                    System.out.println("Sisa saldo anda : " + saldo[hasil]);
+                                    riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nom_tarik;
+                                    count--;
+                                } else {
+                                    System.out.println("Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
+                                }
                             } else {
-                                saldo[hasil] -= nom_tarik;
-                                System.out.println("Tarik tunai berhasil dilakukan");
-                                System.out.println("Sisa saldo anda : " + saldo[hasil]);
-                                riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nom_tarik;
-                                count--;
+                                    System.out.println("Transaksi gagal, periksa kembali saldo anda");
                             }
                             break;
                         case 3:

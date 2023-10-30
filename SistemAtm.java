@@ -190,7 +190,7 @@ public class SistemAtm {
                             System.out.println("*******************************");
                             break;
                     }
-                    System.out.print("Apakah anda ingin mengulang transaksi? (Y/T) : ");
+                    System.out.print("Apakah anda ingin melakukan transaksi lagi? (Y/T) : ");
                     konfirmasi = scanner.next().charAt(0);
                     if (konfirmasi == 't' || konfirmasi == 'T') {
                         System.out.println("Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :)");

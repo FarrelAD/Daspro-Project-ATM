@@ -8,12 +8,14 @@ import java.util.Scanner;
 public class SistemAtm {
     public static void main(String[] args) {
         // inisialisasi dan deklarasi variabel yang dibutuhkan
-        String[] no_rek = { "1234567", "7654321", "1357924" }; // array nomor rekening
-        String[] pin = { "1234", "5678", "2468" }; // array pin yang sesuai dengan indeks array nomor rekening
+        String[][] akunData = {
+                { "1234567", "1234", "7000000", "aman" },
+                { "7654321", "5678", "4000000", "aman" },
+                { "1357924", "2468", "10000000", "aman" }
+        };
         int riw = 10, count = 10, hasil = 0, tujuan = 0; // variabel untuk cetak riwayat dan semacam session manipulasi
                                                          // saldo
         String[] riwayat = new String[riw]; // array riwayat
-        String status[] = { "aman", "aman", "aman" }; // array status akun
         boolean isBoleh = false, isValid = false; // variabel autentikasi login dan validasi nomor rekening
         int loginAttempts = 0;
         final int maxLoginAttempts = 3; // maksimal login yang bisa dilakukan pengguna
@@ -50,14 +52,15 @@ public class SistemAtm {
             System.out.println("**********************************************");
 
             // Pengecekan apakah status akunnya diblokir atau tidak
-            if (status[hasil].equals("diblokir")) {
-                System.out.println("Akun anda berstatus " + status);
+            if (hasil != -1 && akunData[hasil][3].equals("diblokir")) {
+                System.out.println("Akun anda berstatus " + akunData[hasil][3]);
                 System.out.println("**********************************************");
             }
 
-            // Pengecekan kesesuaian indeks no rek dan PIN untuk login
-            for (int i = 0; i < no_rek.length; i++) {
-                if (input_no_rek.equals(no_rek[i]) && input_pin.equals(pin[i]) && status[i].equals("aman")) {
+            // Pengecekan kesesuaian nomor rekening dan PIN untuk login
+            for (int i = 0; i < akunData.length; i++) {
+                if (input_no_rek.equals(akunData[i][0]) && input_pin.equals(akunData[i][1])
+                        && akunData[i][3].equals("aman")) {
                     isBoleh = true; // autentifikasi
                     hasil = i; // session
                 }
@@ -69,7 +72,7 @@ public class SistemAtm {
                 String no_rek_tujuan;
                 char konfirmasi;
                 int nom_transfer, nom_tarik, nom_setor;
-                int[] saldo = { 7000000, 4000000, 10000000 };
+                int saldoPengguna = Integer.parseInt(akunData[hasil][2]);
 
                 // Format nilai uang Indonesia Rupiah (IDR)
                 NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
@@ -96,8 +99,8 @@ public class SistemAtm {
                             System.out.print("Masukkan nomor rekening tujuan : ");
                             no_rek_tujuan = scanner3.nextLine();
                             // Pengecekan apakah nomor rekening tujuan ada di database
-                            for (int i = 0; i < no_rek.length; i++) {
-                                if (no_rek_tujuan.equals(no_rek[i])) {
+                            for (int i = 0; i < akunData.length; i++) {
+                                if (no_rek_tujuan.equals(akunData[i][0])) {
                                     tujuan = i;
                                     isValid = true;
                                     break;
@@ -109,12 +112,13 @@ public class SistemAtm {
                                 System.out.print("Masukkan nominal transfer : Rp "); // User input nominal transfer
                                 nom_transfer = scanner2.nextInt();
                                 // Pengecekan nilai nominal transfer dibandingkan dengan jumlah saldo
-                                if (nom_transfer <= saldo[hasil]) {
-                                    saldo[hasil] -= nom_transfer; // Pengurangan saldo pada rekening yang dimiliki
-                                    saldo[tujuan] += nom_transfer; // Penambahan nilai saldo pada rekening yang dituju
+                                if (nom_transfer <= saldoPengguna) {
+                                    saldoPengguna -= nom_transfer; // Pengurangan saldo pada rekening yang dimiliki
+                                    // saldo[tujuan] += nom_transfer; // Penambahan nilai saldo pada rekening yang
+                                    // dituju
                                     System.out.println("Transfer ke nomor " + no_rek_tujuan + " berhasil dilakukan");
                                     // Format penulisan rupiah pada nilai saldo yang dimiliki
-                                    String saldoRupiah = currencyFormat.format(saldo[hasil]);
+                                    String saldoRupiah = currencyFormat.format(saldoPengguna);
                                     System.out.println("Sisa saldo anda : " + saldoRupiah);
                                     // Pencatatan riwayat transaksi
                                     riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + no_rek_tujuan
@@ -135,14 +139,14 @@ public class SistemAtm {
                             System.out.print("Masukkan nominal tarik tunai : Rp "); // User input nominal tarik tunai
                             nom_tarik = scanner2.nextInt();
                             // Pengecekan apakah nominal tarik kurang dari nilai saldo
-                            if (nom_tarik < saldo[hasil]) {
+                            if (nom_tarik < saldoPengguna) {
                                 // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
                                 if (nom_tarik <= 5000000) {
                                     // Kondisi jika nom_tarik < saldo[hasil] dan nom_tarik <= 5000000
-                                    saldo[hasil] -= nom_tarik;
+                                    saldoPengguna -= nom_tarik;
                                     System.out.println("Tarik tunai berhasil dilakukan");
                                     // Format penulisan rupiah pada nilai saldo yang dimiliki
-                                    String saldoRupiah = currencyFormat.format(saldo[hasil]);
+                                    String saldoRupiah = currencyFormat.format(saldoPengguna);
                                     System.out.println("Sisa saldo anda : " + saldoRupiah);
                                     // Pencatatan riwayat transaksi
                                     riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nom_tarik;
@@ -162,10 +166,10 @@ public class SistemAtm {
                             System.out.println("**********************************************");
                             System.out.print("Masukkan nominal setor tunai : Rp "); // User input nominal setor tunai
                             nom_setor = scanner2.nextInt();
-                            saldo[hasil] += nom_setor; // Penjumlahan saldo dengan nominal setor yang telah dilakukan
+                            saldoPengguna += nom_setor; // Penjumlahan saldo dengan nominal setor yang telah dilakukan
                             System.out.println("Setor tunai berhasil dilakukan");
                             // Format penulisan rupiah pada nilai saldo yang dimiliki
-                            String saldoRupiah = currencyFormat.format(saldo[hasil]);
+                            String saldoRupiah = currencyFormat.format(saldoPengguna);
                             System.out.println("Sisa saldo anda : " + saldoRupiah);
 
                             // Pencatatan riwayat transaksi
@@ -211,8 +215,8 @@ public class SistemAtm {
                                         System.out.print("Input nominal pulsa: Rp "); // User input nominal pulsa
                                         int nomPulsa = scanner2.nextInt();
                                         // Pengecekan kondisi apakah nominal pulsa yang diinput lebih kecil dari saldo
-                                        if (nomPulsa < saldo[hasil]) {
-                                            saldo[hasil] -= nomPulsa;
+                                        if (nomPulsa < saldoPengguna) {
+                                            saldoPengguna -= nomPulsa;
                                             // Menampilkan output transaksi berhasil
                                             System.out.println("**********************************************");
                                             System.out.println("TRANSAKSI BERHASIL");
@@ -220,7 +224,7 @@ public class SistemAtm {
                                             System.out.println("Operator seluler: " + operatorPulsa);
                                             System.out.println("Nomor telepon Anda: " + nomorTelepon);
                                             System.out.println("Pulsa senilai: " + nomPulsa);
-                                            System.out.println("Sisa saldo anda " + saldo[hasil]);
+                                            System.out.println("Sisa saldo anda " + saldoPengguna);
                                             System.out.println("**********************************************");
                                             // Pencatatan riwayat transaksi
                                             riwayat[riw - count] = "Telah melakukan pembayaran pulsa ke nomor "
@@ -253,7 +257,7 @@ public class SistemAtm {
                         case 6: // OPSI FITUR CEK SALDO
                             System.out.println("ANDA MEMILIH MENU CEK SALDO");
                             System.out.println("**********************************************");
-                            System.out.println("Saldo anda sebesar Rp " + saldo[hasil]);
+                            System.out.println("Saldo anda sebesar Rp " + saldoPengguna);
                             break;
                         default:
                             System.out.println("Input tidak sesuai. Periksa kembali inputan anda");
@@ -274,7 +278,7 @@ public class SistemAtm {
 
                 if (loginAttempts >= maxLoginAttempts) {
                     System.out.println("Anda telah gagal lebih dari 3 kali. Akun anda diblokir.");
-                    status[hasil] = "diblokir";
+                    akunData[hasil][3] = "diblokir";
                     break; // Account diblokir, mengakhiri looping
                 }
             } // Bagian akhir program menu

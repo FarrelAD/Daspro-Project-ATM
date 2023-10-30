@@ -254,7 +254,7 @@ public class SistemAtm {
                             break; // Break switch-case opsi menu
                     }
                     System.out.print("Apakah anda ingin mengulang transaksi? (Y/T) : ");
-                    konfirmasi = scanner.next().charAt(0);
+                    konfirmasi = scanner1.next().charAt(0);
                     if (konfirmasi == 't' || konfirmasi == 'T') {
                         System.out.println("Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :)");
                         break;

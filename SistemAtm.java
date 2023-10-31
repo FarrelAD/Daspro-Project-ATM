@@ -1,4 +1,3 @@
-
 // Ini adalah suatu program sistem ATM - Kelompok 4 - TI-1B
 // Fitur yang tersedia: transfer, tarik tunai, setor tunai, pembayaran lain-lain, dan riwayat transaksi
 import java.text.NumberFormat;

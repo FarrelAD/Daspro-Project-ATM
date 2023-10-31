@@ -1,4 +1,3 @@
-
 // Ini adalah suatu program sistem ATM - Kelompok 4 - TI-1B
 // Fitur yang tersedia: transfer, tarik tunai, setor tunai, pembayaran lain-lain, dan riwayat transaksi
 import java.text.NumberFormat;
@@ -170,7 +169,6 @@ public class SistemAtm {
 
                                     System.out.println("Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
                                     System.out.println("**********************************************");
-
                                 }
                             } else {
                                 // Kondisi jika nom_tarik > saldo[hasil]
@@ -182,7 +180,6 @@ public class SistemAtm {
                             System.out.println("ANDA MEMILIH MENU SETOR TUNAI");
                             System.out.println("**********************************************");
                             System.out.print("Masukkan nominal setor tunai : Rp "); // User input nominal setor tunai
-
                             nom_setor = scanner3.nextInt();
                             System.out.println("**********************************************");
                             saldoPengguna += nom_setor; // Penjumlahan saldo dengan nominal setor yang telah dilakukan
@@ -199,7 +196,6 @@ public class SistemAtm {
                             System.out.println("**********************************************");
                             break;
                         case 4: // OPSI FITUR PEMBAYARAN LAIN-LAIN
-
                             char konfirmasiPulsa = 'y'; 
                             System.out.println("ANDA MEMILIH MENU PEMBAYARAN LAIN-LAIN");
                             System.out.println("**********************************************");
@@ -222,17 +218,19 @@ public class SistemAtm {
                                         System.out.println("3. Telkomsel");
                                         System.out.print("Operator yang anda pilih: "); // User input jenis operator
                                         String operatorPulsa = scanner2.next();
+                                        System.out.println("**********************************************");
                                         if (operatorPulsa.equals("1")) {
                                             operatorPulsa = "Indosat"; // Perubahan nilai variabel dari "1" menjadi
                                                                        // "Indosat"
                                         } else if (operatorPulsa.equals("2")) {
                                             operatorPulsa = "XL"; // Perubahan nilai variabel dari "2" menjadi "XL"
-                                        } else  if (operatotPulsa.equals("3") {
+                                        } else  if (operatorPulsa.equals("3")) {
                                             operatorPulsa = "Telkomsel"; // Perubahan nilai variabel dari "3" menjadi
                                                                          // "Telkomsel"
                                         } else {
-                                            System.out.printn("Operator invalid");
+                                            System.out.println("Operator invalid");
                                             konfirmasiPulsa = 't';
+                                        }
                                         System.out.print("Input nomor telepon anda: "); // User input nomor telepon
                                         int nomorTelepon = scanner4.nextInt();
                                         System.out.println("**********************************************");
@@ -240,45 +238,44 @@ public class SistemAtm {
                                         int nomPulsa = scanner4.nextInt();
                                         System.out.println("**********************************************");
                                         // Pengecekan kondisi apakah nominal pulsa yang diinput lebih kecil dari saldo
-                                        if (nomPulsa < saldo[hasil]) {
-                                        saldo[hasil] -= nomPulsa;
-                                        String nomPulsaRupiah = currencyFormat.format(nomPulsa);
-                                        String saldoRupiah2 = currencyFormat.format(saldo[hasil]);
-                                      
-                                        // Menampilkan output transaksi berhasil
-                                        System.out.println("**********************************************");
-                                        System.out.println("Operator seluler: "+operatorPulsa);
-                                        System.out.println("Nomor telepon Anda: "+nomorTelepon);
-                                        System.out.println("Pulsa senilai: "+nomPulsaRupiah);
-                                        System.out.println("Sisa saldo anda "+saldoRupiah2);
-                                        System.out.println("**********************************************");
-                                        // Pencatatan riwayat transaksi
-                                        riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai " + nomPulsaRupiah;
-                                        count--;
+                                        if (nomPulsa < saldoPengguna) {
+                                            saldoPengguna -= nomPulsa;
+                                            String nomPulsaRupiah = currencyFormat.format(nomPulsa);
+                                            String saldoRupiah2 = currencyFormat.format(saldoPengguna);
                                         
-                                        konfirmasiPulsa = 't'; // Perubahan nilai konfirmasiBayar menjadi 't' agar proses looping bisa berhenti
-                                    } else {
-                                        System.out.println("TRANSAKSI GAGAL. ");
-                                        System.out.println("Ingin mengulangi input pembayaran? (Y/T) ");
-                                        konfirmasiPulsa = scanner4.next().charAt(0);
-                                        System.out.println("**********************************************");
-                                    }
-
-                                } while (konfirmasiPulsa == 'y' || konfirmasiPulsa == 'Y');
-                                    break;
+                                            // Menampilkan output transaksi berhasil
+                                            System.out.println("**********************************************");
+                                            System.out.println("Operator seluler: "+operatorPulsa);
+                                            System.out.println("Nomor telepon Anda: "+nomorTelepon);
+                                            System.out.println("Pulsa senilai: "+nomPulsaRupiah);
+                                            System.out.println("Sisa saldo anda "+saldoRupiah2);
+                                            System.out.println("**********************************************");
+                                            // Pencatatan riwayat transaksi
+                                            riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai " + nomPulsaRupiah;
+                                            count--;
+                                            
+                                            konfirmasiPulsa = 't'; // Perubahan nilai konfirmasiBayar menjadi 't' agar proses looping bisa berhenti
+                                        } else {
+                                            System.out.println("TRANSAKSI GAGAL. ");
+                                            System.out.println("Ingin mengulangi input pembayaran? (Y/T) ");
+                                            konfirmasiPulsa = scanner4.next().charAt(0);
+                                            System.out.println("**********************************************");
+                                        }
+                                    } while (konfirmasiPulsa == 'y' || konfirmasiPulsa == 'Y');
+                                    break; // Break switch case pada menu pembayaran pulsa
                                 default:
                                     System.out.println("Input tidak sesuai. Periksa kembali inputan anda");
                                     System.out.println("**********************************************");
-                                    break; // Break switch-case menu pembayaran lain-lain
+                                    break; // Break switch-case pada menu pulsa pembayaran pulsa
                             }
-                            break; // Break switch case pada menu pembayaran
+                            break; // Break switch-case pada case 4
                         case 5: // OPSI FITUR RIWAYAT TRANSAKSI
                             System.out.println("ANDA MEMILIH MENU RIWAYAT TRANSAKSI");
                             System.out.println("**********************************************");
                             for (String i : riwayat) {
                                 System.out.println(i);
                             }
-                            break;
+                            break; // Break case 5
                         case 6: // OPSI FITUR CEK SALDO
                             System.out.println("ANDA MEMILIH MENU CEK SALDO");
                             System.out.println("**********************************************");
@@ -286,8 +283,7 @@ public class SistemAtm {
                             // Formatting penulisan rupiah pada output
                             String saldoRupiah3 = currencyFormat.format(saldoPengguna);
                             System.out.println("Saldo anda sebesar "+ saldoRupiah3);
-
-                            break;
+                            break; // Break case 6
                         default:
                             System.out.println("Input tidak sesuai. Periksa kembali inputan anda");
                             System.out.println("**********************************************");

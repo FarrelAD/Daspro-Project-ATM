@@ -205,9 +205,15 @@ public class SistemAtm {
                                 {123456789, 70000},
                                 {333444555, 80000},
                             };
+                            int [][] pendidikan = { // array listrikData menampung ID PLN & tagihan
+                                {232323, 1000000},
+                                {454545, 2500000},
+                                {909090, 5000000},
+                            };
 
                             int listrikPilihan = 0; // variabel untuk menampung posisi data listrik ID PLN
                             boolean listrikGate = false; //  Sebagai gerbang untuk melakukan proses transaksi listrik
+                            
 
                             System.out.println("ANDA MEMILIH MENU PEMBAYARAN LAIN-LAIN");
                             System.out.println("**********************************************");
@@ -324,8 +330,8 @@ public class SistemAtm {
                                         int inputPLN = scanner4.nextInt();
                                         System.out.println("**********************************************");
                                         //pengecekan nim
-                                         for  (int i = 0; i < listrikData.length; i++) {
-                                            if (inputPLN == listrikData[i][0]) {
+                                         for  (int i = 0; i < pendidikan.length; i++) {
+                                            if (inputPLN == pendidikan[i][0]) {
                                                 listrikPilihan = i;
                                                 listrikGate = true;
                                                 break;
@@ -333,10 +339,10 @@ public class SistemAtm {
                                         }
                                         // Proses perhitungan tagihan listrik PLN
                                         if (listrikGate) {
-                                            if (listrikData[listrikPilihan][1] < saldoPengguna) {
-                                            saldoPengguna -= listrikData[listrikPilihan][1];
+                                            if (pendidikan[listrikPilihan][1] < saldoPengguna) {
+                                            saldoPengguna -= pendidikan[listrikPilihan][1];
                                             // Formatting output ke Rupiah
-                                            String tagihanRupiah = currencyFormat.format(listrikData[listrikPilihan][1]);
+                                            String tagihanRupiah = currencyFormat.format(pendidikan[listrikPilihan][1]);
                                             String saldoRupiah3 = currencyFormat.format(saldoPengguna);
                                             System.out.println("--- Jumlah tagihan pendidikan anda: " + tagihanRupiah);
                                             System.out.println("--- Sisa saldo anda: " + saldoRupiah3);

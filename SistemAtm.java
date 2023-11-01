@@ -316,6 +316,46 @@ public class SistemAtm {
                                         }
                                     } while (konfirmasiListrik == 'y' || konfirmasiListrik == 'Y');
                                     break; //Break case 2 opsi LISTRIK
+                                case 3 :
+                                    do {
+                                        System.out.println("ANDA MEMILIH OPSI PEMBAYARAN Pendidikan");
+                                        System.out.println("**********************************************");
+                                        System.out.print("Masukkan NIM : ");
+                                        int inputPLN = scanner4.nextInt();
+                                        System.out.println("**********************************************");
+                                        //pengecekan nim
+                                         for  (int i = 0; i < listrikData.length; i++) {
+                                            if (inputPLN == listrikData[i][0]) {
+                                                listrikPilihan = i;
+                                                listrikGate = true;
+                                                break;
+                                            }
+                                        }
+                                        // Proses perhitungan tagihan listrik PLN
+                                        if (listrikGate) {
+                                            if (listrikData[listrikPilihan][1] < saldoPengguna) {
+                                            saldoPengguna -= listrikData[listrikPilihan][1];
+                                            // Formatting output ke Rupiah
+                                            String tagihanRupiah = currencyFormat.format(listrikData[listrikPilihan][1]);
+                                            String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                            System.out.println("--- Jumlah tagihan pendidikan anda: " + tagihanRupiah);
+                                            System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
+                                            System.out.println("**********************************************");
+
+                                            // Pencatatan riwayat transaksi
+                                            riwayat[riw - count] = "Telah melakukan pembayaran tagihan pendidikan senilai " + tagihanRupiah;
+                                            count--;
+                                            konfirmasiListrik = 't';
+                                            }
+                                        } else {
+                                            System.out.println("NIM invalid. Silakan input ulang NIM anda!");
+                                            System.out.println("**********************************************");
+                                            konfirmasiListrik = 'y';
+                                        }
+                                    
+                                    
+                                    } while (konfirmasiListrik == 'y' || konfirmasiListrik == 'Y');
+                                    break;
                                     default:
                                     System.out.println("Input tidak sesuai. Periksa kembali inputan anda");
                                     System.out.println("**********************************************");

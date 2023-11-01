@@ -10,7 +10,7 @@ public class SistemAtm {
         String[][] akunData = {
                 { "1234567", "1234", "7000000", "aman" },
                 { "7654321", "5678", "4000000", "aman" },
-                { "1357924", "2468", "10000000", "aman" }
+                { "7777777", "7777", "10000000", "aman" }
         };
         int riw = 10, count = 10, hasil = 0, tujuan = 0; // variabel untuk cetak riwayat dan semacam session manipulasi
                                                          // saldo
@@ -36,10 +36,12 @@ public class SistemAtm {
         System.out.println("         | |  |  | | |   |   ||| |||| | |   | |||| | | | | |      ");
         System.out.println("=======================================================================");
 
-        Scanner scanner1 = new Scanner(System.in);
-        Scanner scanner2 = new Scanner(System.in);
+        Scanner scanner1 = new Scanner(System.in); // scanner 1
+        Scanner scanner2 = new Scanner(System.in); // scanner 2
         Scanner scanner3 = new Scanner(System.in);
         Scanner scanner4 = new Scanner(System.in);
+        Scanner scannerTF = new Scanner(System.in);
+        
 
 
         // Pengecekan batas login
@@ -97,7 +99,7 @@ public class SistemAtm {
                             System.out.println("ANDA MEMILIH MENU TRANSFER");
                             System.out.println("**********************************************");
                             System.out.print("Masukkan nomor rekening tujuan : ");
-                            no_rek_tujuan = scanner4.nextLine();
+                            no_rek_tujuan = scannerTF.nextLine();
                             // Pengecekan apakah nomor rekening tujuan ada di database
                             for (int i = 0; i < akunData.length; i++) {
                                 if (no_rek_tujuan.equals(akunData[i][0])) {

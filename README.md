@@ -33,3 +33,6 @@
 ## System flow
 <p><i>BEWARE!!!</i></p>
 <p><i>This part is under construction</i></p>
+
+## Our Leader who always lead us
+<p><i>our beloved  = FARREL AUGUSTA DINATA </i></p>

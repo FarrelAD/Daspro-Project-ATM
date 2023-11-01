@@ -89,7 +89,6 @@ public class SistemAtm {
                     System.out.println("6. Cek Saldo");
                     System.out.print("Menu yang dipilih (angka) : "); // User input pilihan menu berupa angka
                     int menu = scanner2.nextInt();
-
                     System.out.println("**********************************************");
 
                     // Pilihan opsi menu
@@ -131,7 +130,7 @@ public class SistemAtm {
                                     count--;
                                     System.out.println("**********************************************");
                                 } else {
-                                    // Kondisi jika nom_transfer <= saldo[hasil]
+                                    // Kondisi jika nom_transfer <= saldoPengguna
                                     System.out.println("Transaksi gagal, saldo anda tidak mencukupi");
                                     System.out.println("**********************************************");
                                 }
@@ -151,7 +150,7 @@ public class SistemAtm {
                             if (nom_tarik < saldoPengguna) {
                                 // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
                                 if (nom_tarik <= 5000000) {
-                                    // Kondisi jika nom_tarik < saldo[hasil] dan nom_tarik <= 5000000
+                                    // Kondisi jika nom_tarik < saldoPengguna dan nom_tarik <= 5000000
                                     saldoPengguna -= nom_tarik;
                                     System.out.println("Tarik tunai berhasil dilakukan");
 
@@ -166,12 +165,11 @@ public class SistemAtm {
                                     System.out.println("**********************************************");
                                 } else {
                                     // Kondisi jika nom_tarik < saldo[hasil] dan nom_tarik > 5000000
-
                                     System.out.println("Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
                                     System.out.println("**********************************************");
                                 }
                             } else {
-                                // Kondisi jika nom_tarik > saldo[hasil]
+                                // Kondisi jika nom_tarik > saldoPengguna
                                 System.out.println("Transaksi gagal, periksa kembali saldo anda");
                                 System.out.println("**********************************************");
                             }
@@ -188,6 +186,7 @@ public class SistemAtm {
                             String nom_setorRupiah = currencyFormat.format(nom_setor);
                             String saldoRupiah = currencyFormat.format(saldoPengguna); 
 
+                            // Menampilkan output sisa saldo
                             System.out.println("Sisa saldo anda : " + saldoRupiah);
 
                             // Pencatatan riwayat transaksi
@@ -245,10 +244,10 @@ public class SistemAtm {
                                         
                                             // Menampilkan output transaksi berhasil
                                             System.out.println("**********************************************");
-                                            System.out.println("Operator seluler: "+operatorPulsa);
-                                            System.out.println("Nomor telepon Anda: "+nomorTelepon);
-                                            System.out.println("Pulsa senilai: "+nomPulsaRupiah);
-                                            System.out.println("Sisa saldo anda "+saldoRupiah2);
+                                            System.out.println("---Operator seluler: "+operatorPulsa+"\t\t\t");
+                                            System.out.println("---Nomor telepon Anda: "+nomorTelepon);
+                                            System.out.println("---Pulsa senilai: "+nomPulsaRupiah);
+                                            System.out.println("---Sisa saldo anda "+saldoRupiah2);
                                             System.out.println("**********************************************");
                                             // Pencatatan riwayat transaksi
                                             riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai " + nomPulsaRupiah;
@@ -272,9 +271,22 @@ public class SistemAtm {
                         case 5: // OPSI FITUR RIWAYAT TRANSAKSI
                             System.out.println("ANDA MEMILIH MENU RIWAYAT TRANSAKSI");
                             System.out.println("**********************************************");
+                            System.out.println("Ini adalah riwayat transaksi terbaru anda:");
+                            System.out.println("----------------------------------------------");
+                            
+                            // Menampilkan output riwayat transaksi
+                            int j = 0;
                             for (String i : riwayat) {
-                                System.out.println(i);
+                                if (i != null) {
+                                    j++;
+                                    // Formatting tampilan output
+                                    String formattedString = String.format("%d. %s", j, i);
+                                    // Menampilka output
+                                    System.out.println(formattedString);
+                                }
                             }
+                            System.out.println("Anda telah melakukan " + j +" transaksi");
+                            System.out.println("**********************************************");
                             break; // Break case 5
                         case 6: // OPSI FITUR CEK SALDO
                             System.out.println("ANDA MEMILIH MENU CEK SALDO");
@@ -310,9 +322,8 @@ public class SistemAtm {
                     break; // Account diblokir, mengakhiri looping
                 }
             } // Bagian akhir program menu
-            System.out.println("================================================================");
+            System.out.println("======================================================================");
         }
-
         scanner1.close();
         scanner2.close();
         scanner3.close();

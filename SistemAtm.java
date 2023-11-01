@@ -97,7 +97,7 @@ public class SistemAtm {
                             System.out.println("ANDA MEMILIH MENU TRANSFER");
                             System.out.println("**********************************************");
                             System.out.print("Masukkan nomor rekening tujuan : ");
-                            no_rek_tujuan = scanner3.nextLine();
+                            no_rek_tujuan = scanner4.nextLine();
                             // Pengecekan apakah nomor rekening tujuan ada di database
                             for (int i = 0; i < akunData.length; i++) {
                                 if (no_rek_tujuan.equals(akunData[i][0])) {
@@ -108,7 +108,7 @@ public class SistemAtm {
                             }
 
                             // Kondisi jika isValid true
-                            if (isValid == true) {
+                            if (isValid) {
                                 System.out.print("Masukkan nominal transfer : Rp "); // User input nominal transfer
                                 nom_transfer = scanner4.nextInt();
                                 System.out.println("**********************************************");
@@ -203,6 +203,10 @@ public class SistemAtm {
                                 {123456789, 70000},
                                 {333444555, 80000},
                             };
+
+                            int listrikPilihan = 0; // variabel untuk menampung posisi data listrik ID PLN
+                            boolean listrikGate = false; //  Sebagai gerbang untuk melakukan proses transaksi listrik
+
                             System.out.println("ANDA MEMILIH MENU PEMBAYARAN LAIN-LAIN");
                             System.out.println("**********************************************");
                             System.out.println("Pilih opsi pembayaran: ");
@@ -229,7 +233,8 @@ public class SistemAtm {
                                             operatorPulsa = "Indosat"; // Perubahan nilai variabel dari "1" menjadi
                                                                        // "Indosat"
                                         } else if (operatorPulsa.equals("2")) {
-                                            operatorPulsa = "XL"; // Perubahan nilai variabel dari "2" menjadi "XL"
+                                            operatorPulsa = "XL"; // Perubahan nilai variabel dari "2" menjadi 
+                                                                  // "XL"
                                         } else  if (operatorPulsa.equals("3")) {
                                             operatorPulsa = "Telkomsel"; // Perubahan nilai variabel dari "3" menjadi
                                                                          // "Telkomsel"
@@ -275,29 +280,37 @@ public class SistemAtm {
                                         System.out.println("**********************************************");
                                         System.out.print("Masukkan ID pelanggan PLN/Nomor meter: ");
                                         int inputPLN = scanner4.nextInt();
-                                        
+                                        System.out.println("**********************************************");
+
                                         // Pengecekan data ID pelanggan
                                         for  (int i = 0; i < listrikData.length; i++) {
                                             if (inputPLN == listrikData[i][0]) {
-                                                if (listrikData[i][1] < saldoPengguna) {
-                                                    saldoPengguna -= listrikData[i][1];
-                                                    // Formatting output ke Rupiah
-                                                    String tagihanRupiah = currencyFormat.format(listrikData[i][1]);
-                                                    String saldoRupiah3 = currencyFormat.format(saldoPengguna);
-                                                    System.out.println("--- Jumlah tagihan listrik anda: " + tagihanRupiah);
-                                                    System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
-                                                    System.out.println("**********************************************");
-
-                                                    // Pencatatan riwayat transaksi
-                                                    riwayat[riw - count] = "Telah melakukan pembayaran tagihan listrik senilai " + tagihanRupiah;
-                                                    count--;
-                                                    konfirmasiListrik = 't';
-                                                } else {
-                                                    System.out.println("Saldo anda tidak mencukupi");
-                                                    konfirmasiListrik = 't';
-                                                }
+                                                listrikPilihan = i;
+                                                listrikGate = true;
                                                 break;
                                             }
+                                        }
+
+                                        // Proses perhitungan tagihan listrik PLN
+                                        if (listrikGate) {
+                                            if (listrikData[listrikPilihan][1] < saldoPengguna) {
+                                            saldoPengguna -= listrikData[listrikPilihan][1];
+                                            // Formatting output ke Rupiah
+                                            String tagihanRupiah = currencyFormat.format(listrikData[listrikPilihan][1]);
+                                            String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                            System.out.println("--- Jumlah tagihan listrik anda: " + tagihanRupiah);
+                                            System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
+                                            System.out.println("**********************************************");
+
+                                            // Pencatatan riwayat transaksi
+                                            riwayat[riw - count] = "Telah melakukan pembayaran tagihan listrik senilai " + tagihanRupiah;
+                                            count--;
+                                            konfirmasiListrik = 't';
+                                            }
+                                        } else {
+                                            System.out.println("ID PLN invalid. Silakan input ulang ID PLN anda!");
+                                            System.out.println("**********************************************");
+                                            konfirmasiListrik = 'y';
                                         }
                                     } while (konfirmasiListrik == 'y' || konfirmasiListrik == 'Y');
                                     break; //Break case 2 opsi LISTRIK

@@ -196,6 +196,13 @@ public class SistemAtm {
                             break;
                         case 4: // OPSI FITUR PEMBAYARAN LAIN-LAIN
                             char konfirmasiPulsa = 'y'; 
+                            char konfirmasiListrik = 'y'; 
+
+                            int [][] listrikData = { // array listrikData menampung ID PLN & tagihan
+                                {123123123, 100000},
+                                {123456789, 70000},
+                                {333444555, 80000},
+                            };
                             System.out.println("ANDA MEMILIH MENU PEMBAYARAN LAIN-LAIN");
                             System.out.println("**********************************************");
                             System.out.println("Pilih opsi pembayaran: ");
@@ -244,10 +251,10 @@ public class SistemAtm {
                                         
                                             // Menampilkan output transaksi berhasil
                                             System.out.println("**********************************************");
-                                            System.out.println("---Operator seluler: "+operatorPulsa+"\t\t\t");
-                                            System.out.println("---Nomor telepon Anda: "+nomorTelepon);
-                                            System.out.println("---Pulsa senilai: "+nomPulsaRupiah);
-                                            System.out.println("---Sisa saldo anda "+saldoRupiah2);
+                                            System.out.println("--- Operator seluler: "+operatorPulsa+"\t\t\t");
+                                            System.out.println("--- Nomor telepon Anda: "+nomorTelepon);
+                                            System.out.println("--- Pulsa senilai: "+nomPulsaRupiah);
+                                            System.out.println("--- Sisa saldo anda "+saldoRupiah2);
                                             System.out.println("**********************************************");
                                             // Pencatatan riwayat transaksi
                                             riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai " + nomPulsaRupiah;
@@ -255,14 +262,46 @@ public class SistemAtm {
                                             
                                             konfirmasiPulsa = 't'; // Perubahan nilai konfirmasiBayar menjadi 't' agar proses looping bisa berhenti
                                         } else {
-                                            System.out.println("TRANSAKSI GAGAL. ");
+                                            System.out.println("TRANSAKSI GAGAL! ");
                                             System.out.println("Ingin mengulangi input pembayaran? (Y/T) ");
                                             konfirmasiPulsa = scanner4.next().charAt(0);
                                             System.out.println("**********************************************");
                                         }
                                     } while (konfirmasiPulsa == 'y' || konfirmasiPulsa == 'Y');
                                     break; // Break switch case pada menu pembayaran pulsa
-                                default:
+                                case 2: // OPSI BAYAR LISTRIK
+                                    do {
+                                        System.out.println("ANDA MEMILIH OPSI PEMBAYARAN TAGIHAN LISTRIK");
+                                        System.out.println("**********************************************");
+                                        System.out.print("Masukkan ID pelanggan PLN/Nomor meter: ");
+                                        int inputPLN = scanner4.nextInt();
+                                        
+                                        // Pengecekan data ID pelanggan
+                                        for  (int i = 0; i < listrikData.length; i++) {
+                                            if (inputPLN == listrikData[i][0]) {
+                                                if (listrikData[i][1] < saldoPengguna) {
+                                                    saldoPengguna -= listrikData[i][1];
+                                                    // Formatting output ke Rupiah
+                                                    String tagihanRupiah = currencyFormat.format(listrikData[i][1]);
+                                                    String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                    System.out.println("--- Jumlah tagihan listrik anda: " + tagihanRupiah);
+                                                    System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
+                                                    System.out.println("**********************************************");
+
+                                                    // Pencatatan riwayat transaksi
+                                                    riwayat[riw - count] = "Telah melakukan pembayaran tagihan listrik senilai " + tagihanRupiah;
+                                                    count--;
+                                                    konfirmasiListrik = 't';
+                                                } else {
+                                                    System.out.println("Saldo anda tidak mencukupi");
+                                                    konfirmasiListrik = 't';
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    } while (konfirmasiListrik == 'y' || konfirmasiListrik == 'Y');
+                                    break; //Break case 2 opsi LISTRIK
+                                    default:
                                     System.out.println("Input tidak sesuai. Periksa kembali inputan anda");
                                     System.out.println("**********************************************");
                                     break; // Break switch-case pada menu pulsa pembayaran pulsa
@@ -273,7 +312,6 @@ public class SistemAtm {
                             System.out.println("**********************************************");
                             System.out.println("Ini adalah riwayat transaksi terbaru anda:");
                             System.out.println("----------------------------------------------");
-                            
                             // Menampilkan output riwayat transaksi
                             int j = 0;
                             for (String i : riwayat) {

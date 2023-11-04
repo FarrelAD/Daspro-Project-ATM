@@ -121,7 +121,7 @@ public class SistemAtm {
                                     System.out.println("Rekening tujuan: " + no_rek_tujuan);
                                     System.out.println("Nominal transfer: " + nom_transfer);
                                     System.out.println("**********************************************");
-                                    System.out.print("Apakah anda yakin untuk transfer? (Y/T) ");
+                                    System.out.print("Konfirmasi Transfer ke rekening "+ no_rek_tujuan + " dengan nominal "+ nom_transfer + " ? (y/t)");
                                     char konfirmasiTF = scanner4.next().charAt(0);
 
                                     // Konfirmasi transaksi
@@ -170,9 +170,61 @@ public class SistemAtm {
                             System.out.print("Masukkan nominal tarik tunai : Rp "); // User input nominal tarik tunai
                             nom_tarik = scanner3.nextInt();
                             System.out.println("**********************************************");
+                            System.out.print("Konfirmasi Tarik tunai dengan nominal "+ nom_tarik + " ? (y/t)");
+                            char konfirmasiTarik = scanner4.next().charAt(0);
 
-                            System.out.print("Masukkan PIN anda : "); // Input PIN pengguna
-                            String pin = scanner1.nextLine();
+                            if (konfirmasiTarik == 'y' || konfirmasiTarik == 'Y') {
+                                System.out.print("Masukkan PIN anda: ");
+                                        String inputPIN = scanner5.nextLine();
+                                        System.out.println("**********************************************");
+
+                                        // Pengecekan apakah input PIN sesuai dengan database
+                                        if (inputPIN.equals(akunData[hasil][1])) {
+                                            saldoPengguna -= nom_tarik; // Pengurangan saldo pengguna dengan nominal transfer
+                                            // Formatting penulisan rupiah pada output
+                                            if (nom_tarik < saldoPengguna) {
+                                              // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
+                                            } else {
+                                            // Kondisi jika nom_tarik > saldoPengguna
+                                              System.out.println("Transaksi gagal, periksa kembali saldo anda");
+                                              System.out.println("**********************************************");
+                                              
+                                           if (nom_tarik <= 5000000) {
+                                         // Kondisi jika nom_tarik < saldoPengguna dan nom_tarik <= 5000000
+                                            saldoPengguna -= nom_tarik;
+                                              System.out.println("Tarik tunai berhasil dilakukan");
+
+                                            // Formating penulisan rupiah pada output
+                                             String nom_tarikRupiah = currencyFormat.format(nom_tarik);
+                                             String saldoRupiah = currencyFormat.format(saldoPengguna);
+
+                                               System.out.println("Sisa saldo anda : " + saldoRupiah);
+                                               // Pencatatan riwayat transaksi
+                                             riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nom_tarikRupiah;
+                                            count--;
+                                             System.out.println("**********************************************");
+                                              } else {
+                                           // Kondisi jika nom_tarik < saldo[hasil] dan nom_tarik > 5000000
+                                             System.out.println("Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
+                                              System.out.println("**********************************************");
+                                            }
+                                        }}else{
+                                            System.out.println("PIN SALAH!");
+                                            System.out.println("**********************************************");
+                                        }break;
+                            
+                            
+                            
+                            
+                                            
+                                            
+                                        
+                                    } else {
+                                    // Kondisi jika pengguna input 't' atau 'T'
+                                    System.out.println("TRANSAKSI DIBATALKAN");
+                                    System.out.println("**********************************************");
+                                    }
+                            
                             
                             // Pengecekan apakah nominal tarik kurang dari nilai saldo
                             if (nom_tarik < saldoPengguna) {

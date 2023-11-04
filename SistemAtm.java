@@ -278,7 +278,7 @@ public class SistemAtm {
                                 System.out.println("**********************************************");
                                 }break;
                             
-                        case 4: // OPSI FITUR PEMBAYARAN LAIN-LAIN
+                        case 4: // OPSI FITUR PEMBAYARAN LAIN-LAIN next progres besok
                             char konfirmasiPulsa = 'y', konfirmasiListrik = 'y', konfirmasiPendidikan = 'y'; 
 
                             int [][] listrikData = { // array listrikData menampung ID PLN & tagihan

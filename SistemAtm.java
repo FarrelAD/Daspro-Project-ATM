@@ -170,7 +170,7 @@ public class SistemAtm {
                             System.out.print("Masukkan nominal tarik tunai : Rp "); // User input nominal tarik tunai
                             nom_tarik = scanner3.nextInt();
                             System.out.println("**********************************************");
-                            System.out.print("Konfirmasi Tarik tunai dengan nominal "+ nom_tarik + " ? (y/t)");
+                            System.out.print("Konfirmasi Tarik tunai dengan nominal "+ nom_tarik + " ? (y/t) ");
                             char konfirmasiTarik = scanner4.next().charAt(0);
 
                             if (konfirmasiTarik == 'y' || konfirmasiTarik == 'Y'){
@@ -503,7 +503,7 @@ public class SistemAtm {
                             break; // Break switch-case opsi menu
                     //System.out.println("**********************************************");
                     }
-                    System.out.print("Apakah anda ingin mengulang transaksi? (Y/T) : ");
+                    System.out.print("Lakukan transaksi lagi? (Y/T) : ");
                     konfirmasi = scanner2.next().charAt(0);
                     System.out.println("**********************************************");
                     if (konfirmasi == 't' || konfirmasi == 'T') {

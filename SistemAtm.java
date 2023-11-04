@@ -28,12 +28,12 @@ public class SistemAtm {
         System.out.println("II| II| II|  II|      II|      II|       II|  II|  II| II| II|  II|    ");
         System.out.println("IIIIIIIIII|  IIIIII|  IIIIII|  IIIIII|   IIIIIII|  II| II| II|  IIIIII|");
         System.out.println("-----------------------------------------------------------------------");
-        System.out.println("         ___ ___ _____   ___ ___ _    _ _   _ ____ _____ ___      ");
-        System.out.println("         ||| ||| |||||   ||| ||| |    | |_  | |||| ||||| |||      ");
-        System.out.println("         | |  |  | | |   | | | | |    | ||_ | |    | | | | |      ");
-        System.out.println("         |||  |  | | |   ||| | | |    | | |_| |||| | | | |||      ");
-        System.out.println("         | |  |  | | |   |   | | |___ | |  || |    | | | | |      ");
-        System.out.println("         | |  |  | | |   |   ||| |||| | |   | |||| | | | | |      ");
+        System.out.println("         _________ __________  ____________      ____________          ");
+        System.out.println("         II|II|II| III|II|III |IIIIIIIIIIII      IIIIIIIIIIII|         ");
+        System.out.println("         II|  |II|    |II|    |II| |II| |II          III|              ");
+        System.out.println("         II|II|II|    |II|    |II| |II| |II          III|              ");
+        System.out.println("         II|  |II|    |II|    |II| |II| |II          III|              ");
+        System.out.println("         II|  |II|    |II|    |II| |II| |II      IIIIIIIIIIII|         ");
         System.out.println("=======================================================================");
 
         Scanner scanner1 = new Scanner(System.in); // scanner 1

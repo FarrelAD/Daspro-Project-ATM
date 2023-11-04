@@ -253,22 +253,31 @@ public class SistemAtm {
                             System.out.print("Masukkan nominal setor tunai : Rp "); // User input nominal setor tunai
                             nom_setor = scanner3.nextInt();
                             System.out.println("**********************************************");
-                            System.out.print("Masukkan PIN anda : "); // Input PIN pengguna
-                            String pin1 = scanner1.nextLine();
-                            saldoPengguna += nom_setor; // Penjumlahan saldo dengan nominal setor yang telah dilakukan
-                            System.out.println("Setor tunai berhasil dilakukan");
-                            // Formatting penulisan rupiah pada output
-                            String nom_setorRupiah = currencyFormat.format(nom_setor);
-                            String saldoRupiah = currencyFormat.format(saldoPengguna); 
+                            System.out.print("Masukkan PIN anda: ");
+                            String inputPIN = scanner5.nextLine();
+                            System.out.println("**********************************************");
 
-                            // Menampilkan output sisa saldo
-                            System.out.println("Sisa saldo anda : " + saldoRupiah);
+                            // Pengecekan apakah input PIN sesuai dengan database
+                            if (inputPIN.equals(akunData[hasil][1])) {
+                                saldoPengguna += nom_setor; // Penjumlahan saldo dengan nominal setor yang telah dilakukan
+                                System.out.println("Setor tunai berhasil dilakukan");
+                                // Formatting penulisan rupiah pada output
+                                String nom_setorRupiah = currencyFormat.format(nom_setor);
+                                String saldoRupiah = currencyFormat.format(saldoPengguna); 
+                                riwayat[riw - count] = "Telah melakukan setor tunai sebesar " + nom_setorRupiah;
+                                count++;
+                                System.out.println("Sisa saldo anda : " + saldoRupiah);
+                                System.out.println("**********************************************");
+                                break;
+
+                                // Menampilkan output sisa saldo
 
                             // Pencatatan riwayat transaksi
-                            riwayat[riw - count] = "Telah melakukan setor tunai sebesar " + nom_setorRupiah;
-                            count--;
-                            System.out.println("**********************************************");
-                            break;
+                            }else{
+                                System.out.println("PIN SALAH!");
+                                System.out.println("**********************************************");
+                                }break;
+                            
                         case 4: // OPSI FITUR PEMBAYARAN LAIN-LAIN
                             char konfirmasiPulsa = 'y', konfirmasiListrik = 'y', konfirmasiPendidikan = 'y'; 
 

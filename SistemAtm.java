@@ -19,7 +19,7 @@ public class SistemAtm {
         int loginAttempts = 0;
         final int maxLoginAttempts = 3; // maksimal login yang bisa dilakukan pengguna
 
-        // halaman utama sistem atm
+        // Halaman utama sistem atm
         System.out.println("=======================================================================");
         System.out.println("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
         System.out.println("II| II| II|  IIIIII|  II|      IIIIII|   IIIIIII|  IIIIIIIIII|  IIIIII|");
@@ -96,7 +96,7 @@ public class SistemAtm {
                     // Pilihan opsi menu
                     switch (menu) {
                         case 1: // OPSI FITUR TRANSFER
-                            System.out.println("ANDA MEMILIH MENU TRANSFER");
+                            System.out.println("          ANDA MEMILIH MENU TRANSFER");
                             System.out.println("**********************************************");
                             System.out.print("Masukkan nomor rekening tujuan : ");
                             no_rek_tujuan = scannerTF.nextLine();
@@ -136,7 +136,8 @@ public class SistemAtm {
                                             // Formatting penulisan rupiah pada output
                                             String nom_transferRupiah = currencyFormat.format(nom_transfer);
                                             String saldoRupiah = currencyFormat.format(saldoPengguna);
-                                            System.out.println("TRANSAKSI BERHASIL");
+                                            System.out.println("              TRANSAKSI BERHASIL");
+                                            System.out.println("**********************************************");
                                             System.out.println("Sisa saldo anda : " + saldoRupiah);
                                             System.out.println("**********************************************");
                                             // Pencatatan riwayat transaksi
@@ -145,12 +146,12 @@ public class SistemAtm {
                                             count--;
                                             System.out.println("**********************************************");
                                         } else {
-                                            System.out.println("PIN SALAH!");
+                                            System.out.println("                  PIN SALAH!");
                                             System.out.println("**********************************************");
                                         }
                                     } else {
                                     // Kondisi jika pengguna input 't' atau 'T'
-                                    System.out.println("TRANSAKSI DIBATALKAN");
+                                    System.out.println("             TRANSAKSI DIBATALKAN");
                                     System.out.println("**********************************************");
                                     }
                                 } else {
@@ -165,7 +166,7 @@ public class SistemAtm {
                             }
                             break; // break case 1 menu transfer
                         case 2: // OPSI FITUR TARIK TUNAI
-                            System.out.println("ANDA MEMILIH MENU TARIK TUNAI");
+                            System.out.println("         ANDA MEMILIH MENU TARIK TUNAI");
                             System.out.println("**********************************************");
                             System.out.print("Masukkan nominal tarik tunai : Rp "); // User input nominal tarik tunai
                             nom_tarik = scanner3.nextInt();

@@ -1,3 +1,4 @@
+
 // Ini adalah suatu program sistem ATM - Kelompok 4 - TI-1B
 // Fitur yang tersedia: transfer, tarik tunai, setor tunai, pembayaran lain-lain, riwayat transaksi, cek saldo, dan ubah PIN
 import java.text.NumberFormat;
@@ -13,7 +14,7 @@ public class SistemAtm {
                 { "7777777", "7777", "10000000", "aman" }
         };
         int riw = 10, count = 10, hasil = 0; // variabel untuk cetak riwayat dan semacam session manipulasi
-                                                         // saldo
+                                             // saldo
         String[] riwayat = new String[riw]; // array riwayat
         boolean isBoleh = false, isValid = false; // variabel autentikasi login dan validasi nomor rekening
         int loginAttempts = 0;
@@ -36,13 +37,13 @@ public class SistemAtm {
         System.out.println("         | |  |  | | |   |   ||| |||| | |   | |||| | | | | |      ");
         System.out.println("=======================================================================");
 
-        Scanner scanner1 = new Scanner(System.in); // 
+        Scanner scanner1 = new Scanner(System.in); //
         Scanner scanner2 = new Scanner(System.in);
         Scanner scanner3 = new Scanner(System.in);
         Scanner scanner4 = new Scanner(System.in);
         Scanner scanner5 = new Scanner(System.in);
         Scanner scannerTF = new Scanner(System.in);
-        
+
         // Pengecekan batas login
         while (loginAttempts <= maxLoginAttempts) {
             System.out.print("Masukkan nomor rekening : "); // Input nomor rekening
@@ -122,8 +123,9 @@ public class SistemAtm {
                                     System.out.println("Nominal transfer: " + nomTransferRP);
                                     System.out.println("**********************************************");
                                     // Konfirmasi persetujuan transaksi
-                                    System.out.println("Konfirmasi transfer ke rekening "+ noRekTujuan + " dengan nominal "+ nomTransferRP + " ?");
-                                    System.out.print("Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  " );
+                                    System.out.println("Konfirmasi transfer ke rekening " + noRekTujuan
+                                            + " dengan nominal " + nomTransferRP + " ?");
+                                    System.out.print("Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                                     char konfirmasiTF = scanner4.next().charAt(0);
                                     System.out.println("**********************************************");
 
@@ -135,7 +137,8 @@ public class SistemAtm {
 
                                         // Pengecekan apakah input PIN sesuai dengan database
                                         if (inputPIN.equals(akunData[hasil][1])) {
-                                            saldoPengguna -= nomTransfer; // Pengurangan saldo pengguna dengan nominal transfer
+                                            saldoPengguna -= nomTransfer; // Pengurangan saldo pengguna dengan nominal
+                                                                          // transfer
 
                                             // Formatting penulisan rupiah pada output
                                             String nomTransferRupiah = currencyFormat.format(nomTransfer);
@@ -146,7 +149,8 @@ public class SistemAtm {
                                             System.out.println("Sisa saldo anda : " + saldoRupiah);
                                             System.out.println("**********************************************");
                                             // Pencatatan riwayat transaksi
-                                            riwayat[riw - count] = "Telah melakukan transaksi ke rekening " + noRekTujuan
+                                            riwayat[riw - count] = "Telah melakukan transaksi ke rekening "
+                                                    + noRekTujuan
                                                     + " sebesar " + nomTransferRupiah;
                                             count--;
                                             System.out.println("**********************************************");
@@ -156,9 +160,9 @@ public class SistemAtm {
                                             System.out.println("**********************************************");
                                         }
                                     } else {
-                                    // Kondisi jika pengguna input 't' atau 'T'
-                                    System.out.println("             TRANSAKSI DIBATALKAN");
-                                    System.out.println("**********************************************");
+                                        // Kondisi jika pengguna input 't' atau 'T'
+                                        System.out.println("             TRANSAKSI DIBATALKAN");
+                                        System.out.println("**********************************************");
                                     }
                                 } else {
                                     // Kondisi jika nominal transfer melebihi jumlah saldo
@@ -180,8 +184,8 @@ public class SistemAtm {
                             // Konversi nilai output ke Rupiah
                             String nomTarikRP = currencyFormat.format(nomTarik);
                             // Persetujuan konfirmasi transaksi
-                            System.out.println("Konfirmasi Tarik tunai dengan nominal "+ nomTarikRP + " ? ");
-                            System.out.print("Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  " );
+                            System.out.print("Konfirmasi Tarik tunai dengan nominal " + nomTarikRP + " ? ");
+                            System.out.print("Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             char konfirmasiTarik = scanner4.next().charAt(0);
 
                             if (konfirmasiTarik == 'y' || konfirmasiTarik == 'Y') {
@@ -194,6 +198,7 @@ public class SistemAtm {
                                     if (nomTarik < saldoPengguna) {
                                         // Pengecekan apakah nominal tarik kurang dari saldo pengguna
                                         saldoPengguna -= nomTarik; // Pengurangan saldo pengguna dengan nominal tarik tunai  
+                                        // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
                                         if (nomTarik <= 5000000) {
                                             // Kondisi jika nomTarik < saldoPengguna dan nomTarik <= 5000000
                                             saldoPengguna -= nomTarik;
@@ -215,66 +220,106 @@ public class SistemAtm {
                                     } else {
                                         // Kondisi jika nomTarik > saldoPengguna
                                         System.out.println("Transaksi gagal, periksa kembali saldo anda");
-                                        System.out.println("**********************************************");                 
+                                        System.out.println("**********************************************");
                                     }
                                 } else {
                                     System.out.println(" PIN SALAH. Transaksi tidak dapat dilanjutkan");
                                     System.out.println("**********************************************");
-                                } 
+                                }
+                                break;
                             } else {
-                            // Kondisi jika pengguna input 't' atau 'T'
-                            System.out.println("             TRANSAKSI DIBATALKAN");
-                            System.out.println("**********************************************");
+                                // Kondisi jika pengguna input 't' atau 'T'
+                                System.out.println("TRANSAKSI DIBATALKAN");
+                                System.out.println("**********************************************");
                             }
-                            break; // Break case 2 - menu tarik tunai
+
+                            // Pengecekan apakah nominal tarik kurang dari nilai saldo
+                            if (nomTarik < saldoPengguna) {
+                                // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
+                                if (nomTarik <= 5000000) {
+                                    // Kondisi jika nomTarik < saldoPengguna dan nomTarik <= 5000000
+                                    saldoPengguna -= nomTarik;
+                                    System.out.println("Tarik tunai berhasil dilakukan");
+
+                                    // Formating penulisan rupiah pada output
+                                    String nomTarikRupiah = currencyFormat.format(nomTarik);
+                                    String saldoRupiah = currencyFormat.format(saldoPengguna);
+
+                                    System.out.println("Sisa saldo anda : " + saldoRupiah);
+                                    // Pencatatan riwayat transaksi
+                                    riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nomTarikRupiah;
+                                    count--;
+                                    System.out.println("**********************************************");
+                                } else {
+                                    // Kondisi jika nomTarik < saldo[hasil] dan nomTarik > 5000000
+                                    System.out.println(
+                                            "Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
+                                    System.out.println("**********************************************");
+                                }
+                            } else {
+                                // Kondisi jika nomTarik > saldoPengguna
+                                System.out.println("Transaksi gagal, periksa kembali saldo anda");
+                                System.out.println("**********************************************");
+                            }
+                            break;
                         case 3: // OPSI FITUR SETOR TUNAI
                             System.out.println("        ANDA MEMILIH MENU SETOR TUNAI");
                             System.out.println("**********************************************");
                             System.out.print("Masukkan nominal setor tunai : Rp "); // User input nominal setor tunai
                             nomSetor = scanner3.nextInt();
                             System.out.println("**********************************************");
-                            System.out.print("Masukkan PIN anda: ");
-                            inputPIN = scanner5.nextLine();
-                            System.out.println("**********************************************");
+                            String nomSetorRupiah = currencyFormat.format(nomSetor);
+                            System.out.print("Konfirmasi setor tunai dengan nominal " + nomSetorRupiah + " ? ");
+                            System.out.print("Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+                            char konfirmasiSetor = scanner4.next().charAt(0);
 
-                            // Pengecekan apakah input PIN sesuai dengan database
-                            if (inputPIN.equals(akunData[hasil][1])) {
-                                saldoPengguna += nomSetor; // Penjumlahan saldo dengan nominal setor yang telah dilakukan
-                                System.out.println("Setor tunai berhasil dilakukan");
-                                // Formatting penulisan rupiah pada output
-                                String nomSetorRupiah = currencyFormat.format(nomSetor);
-                                String saldoRupiah = currencyFormat.format(saldoPengguna); 
-                                riwayat[riw - count] = "Telah melakukan setor tunai sebesar " + nomSetorRupiah;
-                                count++;
-                                System.out.println("Sisa saldo anda : " + saldoRupiah);
+                            if (konfirmasiSetor == 'y' || konfirmasiSetor == 'Y') {
+                                System.out.print("Masukkan PIN anda: ");
+                                inputPIN = scanner5.nextLine();
                                 System.out.println("**********************************************");
-                                break;
+                                if (inputPIN.equals(akunData[hasil][1])) {
+                                    saldoPengguna += nomSetor; // Penjumlahan saldo dengan nominal setor yang telah
+                                                               // dilakukan
+                                    System.out.println("Setor tunai berhasil dilakukan");
+                                    // Formatting penulisan rupiah pada output
+                                    String saldoRupiah = currencyFormat.format(saldoPengguna);
+                                    riwayat[riw - count] = "Telah melakukan setor tunai sebesar " + nomSetorRupiah;
+                                    count--;
+                                    System.out.println("Sisa saldo anda : " + saldoRupiah);
+                                    System.out.println("****************");
+                                    break;
 
-                                // Menampilkan output sisa saldo
+                                    // Menampilkan output sisa saldo
 
-                            // Pencatatan riwayat transaksi
+                                    // Pencatatan riwayat transaksi
+                                } else {
+                                    System.out.println("PIN SALAH!");
+                                    System.out.println("****************");
+                                }
                             } else {
-                                System.out.println("                  PIN SALAH!");
+                                System.out.println("PIN SALAH!");
+                                // Kondisi jika pengguna input 't' atau 'T'
+                                System.out.println("TRANSAKSI DIBATALKAN");
                                 System.out.println("**********************************************");
-                            } 
+                            }
                             break;
-                            
-                        case 4: // OPSI FITUR PEMBAYARAN LAIN-LAIN next progres besok
-                            char konfirmasiPulsa = 'y', konfirmasiListrik = 'y', konfirmasiPendidikan = 'y'; 
 
-                            int [][] listrikData = { // array listrikData menampung ID PLN & tagihan
-                                {123123123, 100000},
-                                {123456789, 70000},
-                                {333444555, 80000},
+                        case 4: // OPSI FITUR PEMBAYARAN LAIN-LAIN next progres besok
+                            char konfirmasiPulsa = 'y', konfirmasiListrik = 'y', konfirmasiPendidikan = 'y';
+
+                            int[][] listrikData = { // array listrikData menampung ID PLN & tagihan
+                                    { 123123123, 100000 },
+                                    { 123456789, 70000 },
+                                    { 333444555, 80000 },
                             };
-                            int [][] pendidikanData = { // array pendidikanData menampung vritual account (VA) & tagihan
-                                {232323, 1000000},
-                                {454545, 2500000},
-                                {909090, 5000000},
+                            int[][] pendidikanData = { // array pendidikanData menampung vritual account (VA) & tagihan
+                                    { 232323, 1000000 },
+                                    { 454545, 2500000 },
+                                    { 909090, 5000000 },
                             };
 
                             int listrikPilihan = 0; // variabel untuk menampung posisi data listrik ID PLN
-                            boolean listrikGate = false; //  Sebagai gerbang untuk melakukan proses transaksi listrik
+                            boolean listrikGate = false; // Sebagai gerbang untuk melakukan proses transaksi listrik
                             int pendidikanPilihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
                             boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi pendidikan
                             
@@ -304,9 +349,9 @@ public class SistemAtm {
                                             operatorPulsa = "Indosat"; // Perubahan nilai variabel dari "1" menjadi
                                                                        // "Indosat"
                                         } else if (operatorPulsa.equals("2")) {
-                                            operatorPulsa = "XL"; // Perubahan nilai variabel dari "2" menjadi 
+                                            operatorPulsa = "XL"; // Perubahan nilai variabel dari "2" menjadi
                                                                   // "XL"
-                                        } else  if (operatorPulsa.equals("3")) {
+                                        } else if (operatorPulsa.equals("3")) {
                                             operatorPulsa = "Telkomsel"; // Perubahan nilai variabel dari "3" menjadi
                                                                          // "Telkomsel"
                                         } else {
@@ -326,19 +371,21 @@ public class SistemAtm {
                                             saldoPengguna -= nomPulsa;
                                             String nomPulsaRupiah = currencyFormat.format(nomPulsa);
                                             String saldoRupiah2 = currencyFormat.format(saldoPengguna);
-                                        
+
                                             // Menampilkan output transaksi berhasil
                                             System.out.println("**********************************************");
-                                            System.out.println("--- Operator seluler: "+operatorPulsa+"\t\t\t");
-                                            System.out.println("--- Nomor telepon Anda: "+nomorTelepon);
-                                            System.out.println("--- Pulsa senilai: "+nomPulsaRupiah);
-                                            System.out.println("--- Sisa saldo anda "+saldoRupiah2);
+                                            System.out.println("--- Operator seluler: " + operatorPulsa + "\t\t\t");
+                                            System.out.println("--- Nomor telepon Anda: " + nomorTelepon);
+                                            System.out.println("--- Pulsa senilai: " + nomPulsaRupiah);
+                                            System.out.println("--- Sisa saldo anda " + saldoRupiah2);
                                             System.out.println("**********************************************");
                                             // Pencatatan riwayat transaksi
-                                            riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai " + nomPulsaRupiah;
+                                            riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai "
+                                                    + nomPulsaRupiah;
                                             count--;
-                                            
-                                            konfirmasiPulsa = 't'; // Perubahan nilai konfirmasiBayar menjadi 't' agar proses looping bisa berhenti
+
+                                            konfirmasiPulsa = 't'; // Perubahan nilai konfirmasiBayar menjadi 't' agar
+                                                                   // proses looping bisa berhenti
                                         } else {
                                             System.out.println("               TRANSAKSI GAGAL! ");
                                             System.out.println("Ingin mengulangi input pembayaran? (Y/T) ");
@@ -356,7 +403,7 @@ public class SistemAtm {
                                         System.out.println("**********************************************");
 
                                         // Pengecekan data ID pelanggan
-                                        for  (int i = 0; i < listrikData.length; i++) {
+                                        for (int i = 0; i < listrikData.length; i++) {
                                             if (inputPLN == listrikData[i][0]) {
                                                 listrikPilihan = i;
                                                 listrikGate = true;
@@ -367,18 +414,21 @@ public class SistemAtm {
                                         // Proses perhitungan tagihan listrik PLN
                                         if (listrikGate) {
                                             if (listrikData[listrikPilihan][1] < saldoPengguna) {
-                                            saldoPengguna -= listrikData[listrikPilihan][1];
-                                            // Formatting output ke Rupiah
-                                            String tagihanRupiah = currencyFormat.format(listrikData[listrikPilihan][1]);
-                                            String saldoRupiah3 = currencyFormat.format(saldoPengguna);
-                                            System.out.println("--- Jumlah tagihan listrik anda: " + tagihanRupiah);
-                                            System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
-                                            System.out.println("**********************************************");
+                                                saldoPengguna -= listrikData[listrikPilihan][1];
+                                                // Formatting output ke Rupiah
+                                                String tagihanRupiah = currencyFormat
+                                                        .format(listrikData[listrikPilihan][1]);
+                                                String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                System.out.println("--- Jumlah tagihan listrik anda: " + tagihanRupiah);
+                                                System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
+                                                System.out.println("**********************************************");
 
-                                            // Pencatatan riwayat transaksi
-                                            riwayat[riw - count] = "Telah melakukan pembayaran tagihan listrik senilai " + tagihanRupiah;
-                                            count--;
-                                            konfirmasiListrik = 't';
+                                                // Pencatatan riwayat transaksi
+                                                riwayat[riw
+                                                        - count] = "Telah melakukan pembayaran tagihan listrik senilai "
+                                                                + tagihanRupiah;
+                                                count--;
+                                                konfirmasiListrik = 't';
                                             }
                                         } else {
                                             System.out.println("ID PLN invalid. Silakan input ulang ID PLN anda!");
@@ -386,16 +436,16 @@ public class SistemAtm {
                                             konfirmasiListrik = 'y';
                                         }
                                     } while (konfirmasiListrik == 'y' || konfirmasiListrik == 'Y');
-                                    break; //Break case 2 opsi LISTRIK
-                                case 3 : // OPSI BAYAR TAGIHAN PENDIDIKAN
+                                    break; // Break case 2 opsi LISTRIK
+                                case 3: // OPSI BAYAR TAGIHAN PENDIDIKAN
                                     do {
                                         System.out.println("   ANDA MEMILIH OPSI PEMBAYARAN PENDIDIKAN");
                                         System.out.println("**********************************************");
                                         System.out.print("Masukkan nomor virtual account : ");
                                         int inputVA = scanner4.nextInt();
                                         System.out.println("**********************************************");
-                                        //pengecekan data VA
-                                        for  (int i = 0; i < pendidikanData.length; i++) {
+                                        // pengecekan data VA
+                                        for (int i = 0; i < pendidikanData.length; i++) {
                                             if (inputVA == pendidikanData[i][0]) {
                                                 pendidikanPilihan = i;
                                                 pendidikanGate = true;
@@ -404,7 +454,8 @@ public class SistemAtm {
                                         }
 
                                         // Menampilkan nominal dan konfirmasi pembayaran
-                                        System.out.println("Nominal yang perlu anda bayar: " + pendidikanData[pendidikanPilihan][1]);
+                                        System.out.println("Nominal yang perlu anda bayar: "
+                                                + pendidikanData[pendidikanPilihan][1]);
                                         System.out.println("Apakah anda yakin untuk membayarnya? (Y/T)");
                                         System.out.println("**********************************************");
                                         char konfrimasiBayar;
@@ -412,29 +463,32 @@ public class SistemAtm {
                                         // Proses perhitungan tagihan biaya pendidikan
                                         if (pendidikanGate) {
                                             if (pendidikanData[pendidikanPilihan][1] < saldoPengguna) {
-                                            saldoPengguna -= pendidikanData[pendidikanPilihan][1];
-                                            // Formatting output ke Rupiah
-                                            String tagihanRupiah = currencyFormat.format(pendidikanData[listrikPilihan][1]);
-                                            String saldoRupiah3 = currencyFormat.format(saldoPengguna);
-                                            System.out.println("--- Jumlah tagihan pendidikan anda: " + tagihanRupiah);
-                                            System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
-                                            System.out.println("**********************************************");
+                                                saldoPengguna -= pendidikanData[pendidikanPilihan][1];
+                                                // Formatting output ke Rupiah
+                                                String tagihanRupiah = currencyFormat
+                                                        .format(pendidikanData[listrikPilihan][1]);
+                                                String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                System.out.println(
+                                                        "--- Jumlah tagihan pendidikan anda: " + tagihanRupiah);
+                                                System.out.println("--- Sisa saldo anda: " + saldoRupiah3);
+                                                System.out.println("**********************************************");
 
-                                            // Pencatatan riwayat transaksi
-                                            riwayat[riw - count] = "Telah melakukan pembayaran tagihan pendidikan senilai " + tagihanRupiah;
-                                            count--;
-                                            konfirmasiListrik = 't';
+                                                // Pencatatan riwayat transaksi
+                                                riwayat[riw
+                                                        - count] = "Telah melakukan pembayaran tagihan pendidikan senilai "
+                                                                + tagihanRupiah;
+                                                count--;
+                                                konfirmasiListrik = 't';
                                             }
                                         } else {
                                             System.out.println("  NIM invalid. Silakan input ulang NIM anda!");
                                             System.out.println("**********************************************");
                                             konfirmasiListrik = 'y';
                                         }
-                                    
-                                    
+
                                     } while (konfirmasiListrik == 'y' || konfirmasiListrik == 'Y');
                                     break; // Break case 3 pembayaran pendidikan
-                                    default:
+                                default:
                                     System.out.println("Input tidak sesuai. Periksa kembali inputan anda");
                                     System.out.println("**********************************************");
                                     break; // Break switch-case pada menu pembayaran lain-lain
@@ -456,7 +510,7 @@ public class SistemAtm {
                                     System.out.println(formattedString);
                                 }
                             }
-                            System.out.println("Anda telah melakukan " + j +" transaksi");
+                            System.out.println("Anda telah melakukan " + j + " transaksi");
                             System.out.println("**********************************************");
                             break; // Break case 5
                         case 6: // OPSI FITUR CEK SALDO
@@ -465,7 +519,7 @@ public class SistemAtm {
 
                             // Formatting penulisan rupiah pada output
                             String saldoRupiah3 = currencyFormat.format(saldoPengguna);
-                            System.out.println("Saldo anda sebesar "+ saldoRupiah3);
+                            System.out.println("Saldo anda sebesar " + saldoRupiah3);
                             break; // Break case 6
                         case 7: // OPSI UBAH PIN
                             System.out.println("          ANDA MEMILIH OPSI UBAH PIN");
@@ -492,14 +546,14 @@ public class SistemAtm {
                             break; // Break switch-case opsi menu
                     }
                     System.out.print("Lakukan transaksi lagi? (Y/T) : ");
-                    konfirmasiTransaksi= scanner2.next().charAt(0);
+                    konfirmasiTransaksi = scanner2.next().charAt(0);
                     System.out.println("**********************************************");
-                    if (konfirmasiTransaksi== 't' || konfirmasiTransaksi== 'T') {
+                    if (konfirmasiTransaksi == 't' || konfirmasiTransaksi == 'T') {
                         System.out.println("Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :)");
                         System.out.println("================================================================");
                         break;
                     }
-                } while (konfirmasiTransaksi== 'y' || konfirmasiTransaksi== 'Y');
+                } while (konfirmasiTransaksi == 'y' || konfirmasiTransaksi == 'Y');
                 break; // Break do-while opsi menu
             } else {
                 System.out.println("Gagal login, periksa kembali nomor rekening dan PIN anda");

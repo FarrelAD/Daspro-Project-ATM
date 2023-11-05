@@ -140,9 +140,9 @@ public class SistemAtm {
                                 // Konversi nilai output ke rupiah
                                 String nomTransferRP = currencyFormat.format(nomTransfer);
                                 System.out.println("    [  _______________________________________________  ]");
-                                System.out.println("    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t\t|  ]");
-                                System.out.printf("    [ |  Rekening tujuan: %s\t\t\t|  ]\n", noRekTujuan);
-                                System.out.printf("    [ |  Nominal transfer: %s\t\t|  ]\n", nomTransferRP);
+                                System.out.println("    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]");
+                                System.out.printf("    [ |  Rekening tujuan: %s\t\t      | ]\n", noRekTujuan);
+                                System.out.printf("    [ |  Nominal transfer: %s\t\t\t| ]\n", nomTransferRP);
                                 System.out.println("    [ ------------------------------------------------- ]");
                                 System.out.println("    ============================================================================================");
                                 // Konfirmasi persetujuan transaksi
@@ -296,6 +296,7 @@ public class SistemAtm {
                             System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + nomSetorRupiah + " ? ");
                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             char konfirmasiSetor = scanner4.next().charAt(0);
+                            System.out.println("    ============================================================================================");
 
                             if (konfirmasiSetor == 'y' || konfirmasiSetor == 'Y') {
                                 System.out.print("\t-- Masukkan PIN anda: ");
@@ -355,9 +356,6 @@ public class SistemAtm {
                             int pendidikanPilihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
                             boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi
                                                             // pendidikan
-
-                            System.out.println("    ANDA MEMILIH MENU PEMBAYARAN LAIN-LAIN");
-                            System.out.println("**********************************************");
                             System.out.println("Pilih opsi pembayaran: ");
                             System.out.println("1. Pulsa");
                             System.out.println("2. Listrik");
@@ -485,7 +483,6 @@ public class SistemAtm {
                                                 break;
                                             }
                                         }
-
                                         // Menampilkan nominal dan konfirmasi pembayaran
                                         System.out.println("Nominal yang perlu anda bayar: "
                                                 + pendidikanData[pendidikanPilihan][1]);
@@ -533,20 +530,21 @@ public class SistemAtm {
                             System.out.println("    [- - - - - - - - - - -╠╦╝║║║║╠═╣╚╦╝╠═╣ ║    ║ ╠╦╝╠═╣║║║╚═╗╠═╣╠╩╗╚═╗║- - - - - - - - - - - -]");
                             System.out.println("    [- - - - - - - - - - -╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩    ╩ ╩╚═╩ ╩╝╚╝╚═╝╩ ╩╩ ╩╚═╝╩- - - - - - - - - - - -]");
                             System.out.println("    ============================================================================================");
-                            System.out.println("Ini adalah riwayat transaksi terbaru anda:");
-                            System.out.println("----------------------------------------------");
+                            System.out.println("    ============================================================================================");
+                            System.out.println("\t|                         ________________________________                        |");
+                            System.out.println("\t|                         \\RIWAYAT TRANSAKSI TERBARU ANDA/                        |");
+                            System.out.println("\t|                          ------------------------------                         |");
                             // Menampilkan output riwayat transaksi
                             int j = 0;
                             for (String i : riwayat) {
                                 if (i != null) {
                                     j++;
-                                    // Formatting tampilan output
-                                    String formattedString = String.format("%d. %s", j, i);
                                     // Menampilkan output
-                                    System.out.println(formattedString);
+                                    System.out.printf("\t| %d. %s\n", j, i);
                                 }
                             }
-                            System.out.println("Anda telah melakukan " + j + " transaksi");
+                            System.out.println("         ---------------------------------------------------------------------------------");
+                            System.out.printf("        | Anda telah melakukan %d transaksi\t\t\t\t\t\t  |\n", j);
                             System.out.println("    ============================================================================================");
                             break; // Break case 5
                         case 6: // OPSI FITUR CEK SALDO

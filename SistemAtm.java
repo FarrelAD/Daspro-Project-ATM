@@ -196,8 +196,6 @@ public class SistemAtm {
                                 // Pengecekan apakah input PIN sesuai dengan database
                                 if (inputPIN.equals(akunData[hasil][1])) {
                                     if (nomTarik < saldoPengguna) {
-                                        // Pengecekan apakah nominal tarik kurang dari saldo pengguna
-                                        saldoPengguna -= nomTarik; // Pengurangan saldo pengguna dengan nominal tarik tunai  
                                         // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
                                         if (nomTarik <= 5000000) {
                                             // Kondisi jika nomTarik < saldoPengguna dan nomTarik <= 5000000
@@ -208,15 +206,18 @@ public class SistemAtm {
 
                                             System.out.println("Tarik tunai berhasil dilakukan");
                                             System.out.println("Sisa saldo anda : " + saldoRupiah);
-                                            System.out.println("**********************************************");                              
-                                            
+                                            System.out.println("**********************************************");
+
                                             // Pencatatan riwayat transaksi
-                                            riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nomTarikRupiah;
+                                            riwayat[riw - count] = "Telah melakukan tarik tunai sebesar "
+                                                    + nomTarikRupiah;
                                             count--;
                                         } else {
-                                           // Kondisi jika nomTarik > 5.000.000
-                                            System.out.println("Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
-                                            System.out.println("**********************************************");}
+                                            // Kondisi jika nomTarik > 5.000.000
+                                            System.out.println(
+                                                    "Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
+                                            System.out.println("**********************************************");
+                                        }
                                     } else {
                                         // Kondisi jika nomTarik > saldoPengguna
                                         System.out.println("Transaksi gagal, periksa kembali saldo anda");
@@ -233,34 +234,6 @@ public class SistemAtm {
                                 System.out.println("**********************************************");
                             }
 
-                            // Pengecekan apakah nominal tarik kurang dari nilai saldo
-                            if (nomTarik < saldoPengguna) {
-                                // Pengecekan apakah nominal tarik kurang dari atau sama dengan 5 juta
-                                if (nomTarik <= 5000000) {
-                                    // Kondisi jika nomTarik < saldoPengguna dan nomTarik <= 5000000
-                                    saldoPengguna -= nomTarik;
-                                    System.out.println("Tarik tunai berhasil dilakukan");
-
-                                    // Formating penulisan rupiah pada output
-                                    String nomTarikRupiah = currencyFormat.format(nomTarik);
-                                    String saldoRupiah = currencyFormat.format(saldoPengguna);
-
-                                    System.out.println("Sisa saldo anda : " + saldoRupiah);
-                                    // Pencatatan riwayat transaksi
-                                    riwayat[riw - count] = "Telah melakukan tarik tunai sebesar " + nomTarikRupiah;
-                                    count--;
-                                    System.out.println("**********************************************");
-                                } else {
-                                    // Kondisi jika nomTarik < saldo[hasil] dan nomTarik > 5000000
-                                    System.out.println(
-                                            "Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai");
-                                    System.out.println("**********************************************");
-                                }
-                            } else {
-                                // Kondisi jika nomTarik > saldoPengguna
-                                System.out.println("Transaksi gagal, periksa kembali saldo anda");
-                                System.out.println("**********************************************");
-                            }
                             break;
                         case 3: // OPSI FITUR SETOR TUNAI
                             System.out.println("        ANDA MEMILIH MENU SETOR TUNAI");
@@ -321,8 +294,9 @@ public class SistemAtm {
                             int listrikPilihan = 0; // variabel untuk menampung posisi data listrik ID PLN
                             boolean listrikGate = false; // Sebagai gerbang untuk melakukan proses transaksi listrik
                             int pendidikanPilihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
-                            boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi pendidikan
-                            
+                            boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi
+                                                            // pendidikan
+
                             System.out.println("    ANDA MEMILIH MENU PEMBAYARAN LAIN-LAIN");
                             System.out.println("**********************************************");
                             System.out.println("Pilih opsi pembayaran: ");
@@ -359,7 +333,7 @@ public class SistemAtm {
                                             konfirmasiPulsa = 't';
                                         }
                                         System.out.print("Input nomor telepon anda: "); // User input nomor telepon
-                                        int nomorTelepon = scanner4.nextInt();
+                                        String nomorTelepon = scanner1.nextLine();
                                         System.out.println("**********************************************");
                                         System.out.print("Input nominal pulsa: Rp "); // User input nominal pulsa
                                         int nomPulsa = scanner4.nextInt();

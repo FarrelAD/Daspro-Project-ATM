@@ -20,22 +20,22 @@ public class SistemAtm {
         int loginAttempts = 0;
         final int maxLoginAttempts = 3; // maksimal login yang bisa dilakukan pengguna
 
-        // Halaman utama sistem atm
-        System.out.println("=======================================================================");
-        System.out.println("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
-        System.out.println("II| II| II|  IIIIII|  II|      IIIIII|   IIIIIII|  IIIIIIIIII|  IIIIII|");
-        System.out.println("II| II| II|  II|      II|      II|       II|  II|  II| II| II|  II|    ");
-        System.out.println("II| II| II|  IIIIII|  II|      II|       II|  II|  II| II| II|  IIIIII|");
-        System.out.println("II| II| II|  II|      II|      II|       II|  II|  II| II| II|  II|    ");
-        System.out.println("IIIIIIIIII|  IIIIII|  IIIIII|  IIIIII|   IIIIIII|  II| II| II|  IIIIII|");
-        System.out.println("-----------------------------------------------------------------------");
-        System.out.println("         ___ ___ _____   ___ ___ _    _ _   _ ____ _____ ___      ");
-        System.out.println("         ||| ||| |||||   ||| ||| |    | |_  | |||| ||||| |||      ");
-        System.out.println("         | |  |  | | |   | | | | |    | ||_ | |    | | | | |      ");
-        System.out.println("         |||  |  | | |   ||| | | |    | | |_| |||| | | | |||      ");
-        System.out.println("         | |  |  | | |   |   | | |___ | |  || |    | | | | |      ");
-        System.out.println("         | |  |  | | |   |   ||| |||| | |   | |||| | | | | |      ");
-        System.out.println("=======================================================================");
+        // Halaman utama sistem ATM
+        System.out.println("=====================================================================================================");
+        System.out.println("[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]");
+        System.out.println("[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]");
+        System.out.println("[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]");
+        System.out.println("[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]");
+        System.out.println("[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]");
+        System.out.println("[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]");
+        System.out.println("[ ================================================================================================= ]");
+        System.out.println("[                         _    _ _____ _     _____ ________  ___ _____                              ]");
+        System.out.println("[                        | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|                             ]");
+        System.out.println("[                        | |  | | |__ | |   | /  \\/ | | | .  . || |__                               ]");
+        System.out.println("[                        | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|                              ]");
+        System.out.println("[                        \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___                              ]");
+        System.out.println("[                         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/                              ]");
+        System.out.println("=====================================================================================================");
 
         Scanner scanner1 = new Scanner(System.in); //
         Scanner scanner2 = new Scanner(System.in);

@@ -338,7 +338,7 @@ public class SistemAtm {
                             System.out.println("    [- - - - - - - - - -╠═╝║╣ ║║║╠╩╗╠═╣╚╦╝╠═╣╠╦╝╠═╣║║║  ║  ╠═╣║║║║║║║╚╦╝╠═╣- - - - - - - - - - ]");
                             System.out.println("    [- - - - - - - - - -╩  ╚═╝╩ ╩╚═╝╩ ╩ ╩ ╩ ╩╩╚═╩ ╩╝╚╝  ╩═╝╩ ╩╩╝╚╝╝╚╝ ╩ ╩ ╩- - - - - - - - - - ]");
                             System.out.println("    ============================================================================================");
-                            char konfirmasiPulsa = 'y', konfirmasiListrik = 'y', konfirmasiPendidikan = 'y';
+                            char konfirmasiPulsaUlang = 'y', konfirmasiListrik = 'y', konfirmasiPendidikan = 'y';
 
                             int[][] listrikData = { // array listrikData menampung ID PLN & tagihan
                                     { 123123123, 100000 },
@@ -356,26 +356,38 @@ public class SistemAtm {
                             int pendidikanPilihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
                             boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi
                                                             // pendidikan
-                            System.out.println("Pilih opsi pembayaran: ");
-                            System.out.println("1. Pulsa");
-                            System.out.println("2. Listrik");
-                            System.out.println("3. Pendidikan");
-                            System.out.print("Menu yang anda pilih (angka): "); // User input pilihan menu
+                            System.out.println("    ============================================================================================");
+                            System.out.println("    [  Silakan Pilih transaksi pembayaran berikut:                                             ]");
+                            System.out.println("    [   _____________                                                                          ]");
+                            System.out.println("    [  |_1._Pulsa____|                                                                         ]");
+                            System.out.println("    [   _____________                                                                          ]");
+                            System.out.println("    [  |_2._Listrik__|                                                                         ]");
+                            System.out.println("    [   ______________                                                                         ]");
+                            System.out.println("    [  |3._Pendidikan_|                                                                        ]");
+                            System.out.println("    ============================================================================================");
+                            System.out.print("\t-- Menu yang anda pilih (angka): "); // User input pilihan menu
                             int menuBayar = scanner3.nextInt();
-                            System.out.println("**********************************************");
+                            System.out.println("    ============================================================================================");
                             // Opsi menu pembayaran
                             switch (menuBayar) {
                                 case 1: // OPSI BAYAR PULSA
                                     do {
-                                        System.out.println("      ANDA MEMILIH OPSI PEMBAYARAN PULSA");
-                                        System.out.println("**********************************************");
-                                        System.out.println("Pilih operator seluler");
-                                        System.out.println("1. Indosat");
-                                        System.out.println("2. XL");
-                                        System.out.println("3. Telkomsel");
-                                        System.out.print("Operator yang anda pilih: "); // User input jenis operator
+                                        System.out.println("    ============================================================================================");
+                                        System.out.println("    [- - - - - - - - - - - - - - - - - - -╔═╗╦ ╦╦  ╔═╗╔═╗ - - - - - - - - - - - - - - - - - - -]");
+                                        System.out.println("    [- - - - - - - - - - - - - - - - - - -╠═╝║ ║║  ╚═╗╠═╣ - - - - - - - - - - - - - - - - - - -]");
+                                        System.out.println("    [- - - - - - - - - - - - - - - - - - -╩  ╚═╝╩═╝╚═╝╩ ╩ - - - - - - - - - - - - - - - - - - -]");
+                                        System.out.println("    ============================================================================================");
+                                        System.out.println("    ============================================================================================");
+                                        System.out.println("    [ Pilih operator seluler:                                                                  ]");
+                                        System.out.println("    [  ____________                                                                            ]");
+                                        System.out.println("    [ |1._Indosat__|                                                                           ]");
+                                        System.out.println("    [  ____________                                                                            ]");
+                                        System.out.println("    [ |2._XL_______|                                                                           ]");
+                                        System.out.println("    [  _____________                                                                           ]");
+                                        System.out.println("    [ |3._Telkomsel_|                                                                          ]");
+                                        System.out.println("    ============================================================================================");
+                                        System.out.print("\t-- Operator yang anda pilih: "); // User input jenis operator
                                         String operatorPulsa = scanner2.next();
-                                        System.out.println("**********************************************");
                                         if (operatorPulsa.equals("1")) {
                                             operatorPulsa = "Indosat"; // Perubahan nilai variabel dari "1" menjadi
                                                                        // "Indosat"
@@ -387,51 +399,96 @@ public class SistemAtm {
                                                                          // "Telkomsel"
                                         } else {
                                             System.out.println("Operator invalid");
-                                            konfirmasiPulsa = 't';
+                                            konfirmasiPulsaUlang = 't';
                                         }
-                                        System.out.print("Input nomor telepon anda: "); // User input nomor telepon
+                                        System.out.print("\t-- Input nomor telepon anda: "); // User input nomor telepon
                                         String nomorTelepon = scanner1.nextLine();
-                                        System.out.println("**********************************************");
-                                        System.out.print("Input nominal pulsa: Rp "); // User input nominal pulsa
+                                        System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal pulsa
                                         int nomPulsa = scanner4.nextInt();
-                                        System.out.println("**********************************************");
-                                        // Pengecekan kondisi apakah nominal pulsa yang diinput lebih kecil dari saldo
-                                        System.out.print("Masukkan PIN anda : "); // Input PIN pengguna
-                                        inputPIN = scanner1.nextLine();
-                                        if (nomPulsa < saldoPengguna) {
-                                            saldoPengguna -= nomPulsa;
-                                            String nomPulsaRupiah = currencyFormat.format(nomPulsa);
-                                            String saldoRupiah2 = currencyFormat.format(saldoPengguna);
+                                        System.out.println("    ============================================================================================");
+                                        // Menampilkan informasi transaksi sementara
+                                        System.out.println("    [  _________________________________________ \t]");
+                                        System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$             |\t]");
+                                        System.out.printf("    [ |  Operator seluler\t: %s\t|\t]\n", operatorPulsa);
+                                        System.out.printf("    [ |  Nomor telepon\t\t: %s\t|\t]\n", nomorTelepon);
+                                        System.out.printf("    [ |  Nominal pulsa\t\t: %d\t|\t]\n", nomPulsa);
+                                        System.out.println("    [  ----------------------------------------- \t]");
+                                        System.out.println("    ============================================================================================");
+                                        // Konversi nilai nomPulsa ke rupiah
+                                        String nomPulsaRP = currencyFormat.format(nomPulsa);
+                                        System.out.printf("\t-- Konfirmasi transaksi ke nomor telepon %s dengan nominal %s\n", nomorTelepon, nomPulsaRP);
+                                        System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+                                        char konfirmasiPulsa = scanner4.next().charAt(0);
+                                        if (konfirmasiPulsa == 'Y' || konfirmasiPulsa == 'y') {
+                                            System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
+                                            inputPIN = scanner5.nextLine();
+                                            System.out.println("    ============================================================================================");
+                                            if (inputPIN.equals(akunData[hasil][1])) {
+                                                if (nomPulsa < saldoPengguna) {
+                                                    saldoPengguna -= nomPulsa;
+                                                    // Formatting nilai ke Rupiah
+                                                    String saldoRupiah2 = currencyFormat.format(saldoPengguna);
 
-                                            // Menampilkan output transaksi berhasil
-                                            System.out.println("**********************************************");
-                                            System.out.println("--- Operator seluler: " + operatorPulsa + "\t\t\t");
-                                            System.out.println("--- Nomor telepon Anda: " + nomorTelepon);
-                                            System.out.println("--- Pulsa senilai: " + nomPulsaRupiah);
-                                            System.out.println("--- Sisa saldo anda " + saldoRupiah2);
-                                            System.out.println("**********************************************");
-                                            // Pencatatan riwayat transaksi
-                                            riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai "
-                                                    + nomPulsaRupiah;
-                                            count--;
+                                                    System.out.println("    --------------------------------------------------------------------------------------------");
+                                                    System.out.println("     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+                                                    System.out.println("    --------------------------------------------------------------------------------------------");
+                                                    System.out.println("    ============================================================================================");
+                                                    // Menampilkan output transaksi berhasil
+                                                    System.out.println("    [  _________________________________________ \t]");
+                                                    System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$             |\t]");
+                                                    System.out.printf("    [ |  Operator seluler\t: %s\t|\t]\n", operatorPulsa);
+                                                    System.out.printf("    [ |  Nomor telepon\t\t: %s\t|\t]\n", nomorTelepon);
+                                                    System.out.printf("    [ |  Nominal pulsa\t\t: %d\t|\t]\n", nomPulsa);
+                                                    System.out.println("    [  ----------------------------------------- \t]");
+                                                    System.out.println("    ============================================================================================");
+                                                    // Pencatatan riwayat transaksi
+                                                    riwayat[riw - count] = "Telah melakukan pembayaran pulsa senilai "
+                                                            + nomPulsaRP;
+                                                    count--;
 
-                                            konfirmasiPulsa = 't'; // Perubahan nilai konfirmasiBayar menjadi 't' agar
-                                                                   // proses looping bisa berhenti
-                                        } else {
-                                            System.out.println("               TRANSAKSI GAGAL! ");
-                                            System.out.println("Ingin mengulangi input pembayaran? (Y/T) ");
-                                            konfirmasiPulsa = scanner4.next().charAt(0);
-                                            System.out.println("**********************************************");
+                                                    konfirmasiPulsaUlang = 't'; // Perubahan nilai konfirmasiBayar menjadi 't' agar
+                                                                        // proses looping bisa berhenti
+                                                } else {
+                                                    // Kondisi jika nominal transaksi > saldo pengguna
+                                                    System.out.println("    --------------------------------------------------------------------------------------------");
+                                                    System.out.println("                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
+                                                    System.out.println("    --------------------------------------------------------------------------------------------");
+                                                    System.out.println("    ============================================================================================");
+                                                    System.out.println("\t-- Ingin mengulangi pembayaran pulsa? ");
+                                                    System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+                                                    konfirmasiPulsaUlang = scanner4.next().charAt(0);
+                                                    System.out.println("    ============================================================================================");
+                                                }
+                                            } else {
+                                                // Kondisi jika PIN tidak sesuai dengan database
+                                                System.out.println("    --------------------------------------------------------------------------------------------");
+                                                System.out.println("                                      [  (!) PIN SALAH! (!)  ]");
+                                                System.out.println("    --------------------------------------------------------------------------------------------");
+                                                System.out.println("    ============================================================================================");
+                                                System.out.println("\t-- Ingin mengulangi pembayaran pulsa? ");
+                                                System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+                                                konfirmasiPulsaUlang = scanner4.next().charAt(0);
+                                                System.out.println("    ============================================================================================");
                                         }
-                                    } while (konfirmasiPulsa == 'y' || konfirmasiPulsa == 'Y');
-                                    break; // Break switch case pada menu pembayaran pulsa
+                                    } else {
+                                        // Kondisi jika pengguna input 'T' atau 't'
+                                        System.out.println("    --------------------------------------------------------------------------------------------");
+                                        System.out.println("                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+                                        System.out.println("    --------------------------------------------------------------------------------------------");
+                                        System.out.println("    ============================================================================================");
+                                    }
+                                    } while (konfirmasiPulsaUlang == 'y' || konfirmasiPulsaUlang == 'Y');
+                                    break; // Break case 1 - menu pembayaran pulsa
                                 case 2: // OPSI BAYAR LISTRIK
                                     do {
-                                        System.out.println(" ANDA MEMILIH OPSI PEMBAYARAN TAGIHAN LISTRIK");
-                                        System.out.println("**********************************************");
-                                        System.out.print("Masukkan ID pelanggan PLN/Nomor meter: ");
+                                        System.out.println("    ============================================================================================");
+                                        System.out.println("    [- - - - - - - - - - - - - - - - - - -╦  ╦╔═╗╔╦╗╦═╗╦╦╔═ - - - - - - - - - - - - - - - - - -]");
+                                        System.out.println("    [- - - - - - - - - - - - - - - - - - -║  ║╚═╗ ║ ╠╦╝║╠╩╗ - - - - - - - - - - - - - - - - - -]");
+                                        System.out.println("    [- - - - - - - - - - - - - - - - - - -╩═╝╩╚═╝ ╩ ╩╚═╩╩ ╩ - - - - - - - - - - - - - - - - - -]");
+                                        System.out.println("    ============================================================================================");
+                                        System.out.print("\t-- Masukkan ID pelanggan PLN/Nomor meter: ");
                                         int inputPLN = scanner4.nextInt();
-                                        System.out.println("**********************************************");
+                                        System.out.println("    ============================================================================================");
 
                                         // Pengecekan data ID pelanggan
                                         for (int i = 0; i < listrikData.length; i++) {

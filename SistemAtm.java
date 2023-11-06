@@ -576,6 +576,8 @@ public class SistemAtm {
                                                 nomorTelepon, nomPulsaRP);
                                         System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                                         char konfirmasiPulsa = scanner4.next().charAt(0);
+                                        System.out.println(
+                                                "    ============================================================================================");
                                         if (konfirmasiPulsa == 'Y' || konfirmasiPulsa == 'y') {
                                             System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
                                             inputPIN = scanner5.nextLine();
@@ -712,6 +714,8 @@ public class SistemAtm {
                                                     inputPLN, tagihanListrikRP);
                                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                                             char konfirmasiListrik = scanner4.next().charAt(0);
+                                            System.out.println(
+                                                    "    ============================================================================================");
                                             if (konfirmasiListrik == 'Y' || konfirmasiListrik == 'y') {
                                                 System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
                                                 inputPIN = scanner5.nextLine();
@@ -841,6 +845,8 @@ public class SistemAtm {
                                                     tagihanPendidikanRP);
                                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                                             char konfirmasiPendidikan = scanner4.next().charAt(0);
+                                            System.out.println(
+                                                    "    ============================================================================================");
                                             if (konfirmasiPendidikan == 'Y' || konfirmasiPendidikan == 'y') {
                                                 System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
                                                 inputPIN = scanner5.nextLine();
@@ -1026,14 +1032,20 @@ public class SistemAtm {
                                             akunData[ganti][1] = inputPIN3;
                                             System.out.println(
                                                     "    ============================================================================================");
-                                            System.out.println("    PIN BERHASIL DIRUBAH");
+                                            System.out.println(
+                                                    "    --------------------------------------------------------------------------------------------");
+                                            System.out.println(
+                                                    "    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+                                            System.out.println(
+                                                    "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
                                                     "    ============================================================================================");
                                             break;
                                         } else {
                                             System.out.println(
                                                     "    ============================================================================================");
-                                            System.out.println("    PIN BARU DAN KONFIRMASI TIDAK SAMA");
+                                            System.out.println(
+                                                    "                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]");
                                             System.out.println(
                                                     "    ============================================================================================");
                                             break;
@@ -1041,7 +1053,8 @@ public class SistemAtm {
                                     } else {
                                         System.out.println(
                                                 "    ============================================================================================");
-                                        System.out.println("    PIN TIDAK SESUAI");
+                                        System.out.println(
+                                                "                                    [  (!) PIN TIDAK SESUAI (!)  ]");
                                         System.out.println(
                                                 "    ============================================================================================");
                                         break;
@@ -1049,7 +1062,8 @@ public class SistemAtm {
                                 } else {
                                     System.out.println(
                                             "    ============================================================================================");
-                                    System.out.println("    NOMOR REKENING TIDAK VALID");
+                                    System.out.println(
+                                            "                               [  (!) NOMOR REKENING TIDAK VALID (!)  ]");
                                     System.out.println(
                                             "    ============================================================================================");
                                     break;

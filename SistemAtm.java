@@ -19,7 +19,8 @@ public class SistemAtm {
         String[][] akunData = {
                 { "1234567", "1234", "7000000", "aman" },
                 { "7654321", "5678", "4000000", "aman" },
-                { "7777777", "7777", "10000000", "aman" }
+                { "7777777", "7777", "10000000", "aman" }, 
+                { "0000000", "0000", "900000000", "aman"}
         };
         int riw = 10, count = 10, hasil = 0; // variabel untuk cetak riwayat dan semacam session manipulasi
                                              // saldo

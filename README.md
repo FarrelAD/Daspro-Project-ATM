@@ -9,9 +9,9 @@
 <p>Hey, let's get to know about us! We are students from <b>State Polytechnic of Malang (POLINEMA)</b></p>
 <p>Class TI-1B | Group 4</p>
 <ol>
-    <li><a href="https://github.com/AtabikM1">Atabik Mutawakilalallah - 06 - 2341720090</li>
-    <li><a href="https://github.com/FarrelAD">Farrel Augusta Dinata   - 12 - 2341720081</li>
-    <li><a href="https://github.com/sukinnamz">Innama Maesa Putri      - 15 - 2341720235</li>
+    <li><a href="https://github.com/AtabikM1">Atabik Mutawakilalallah</li>
+    <li><a href="https://github.com/FarrelAD">Farrel Augusta Dinata</li>
+    <li><a href="https://github.com/sukinnamz">Innama Maesa Putri</li>
 </ol>
       
 ## About our project

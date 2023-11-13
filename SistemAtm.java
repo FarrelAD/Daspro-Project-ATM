@@ -498,7 +498,11 @@ public class SistemAtm {
                             System.out.println(
                                     "    [   ______________                                                                         ]");
                             System.out.println(
-                                    "    [  |3._Pendidikan_|                                                                        ]");
+                                    "    [  |_3._Pendidikan                                                                         ]");
+                            System.out.println(
+                                    "    [   ______________                                                                         ]");
+                            System.out.println(
+                                    "    [  |_4._PDAM__|                                                                         ]");
                             System.out.println(
                                     "    ============================================================================================");
                             System.out.print("\t-- Menu yang anda pilih (angka): "); // User input pilihan menu

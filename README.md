@@ -34,5 +34,11 @@
 <p><i>BEWARE!!!</i></p>
 <p><i>This part is under construction</i></p>
 
+## Inside of code
+We've implemented some of the things we've learned about the basics of Java. There are
+- Decision making statements
+- Loop statements
+- Multidimensional arrays
+
 ## Our Leader who always lead us
-<p><i>our beloved  = FARREL AUGUSTA DINATA </i></p>
+_NO LEADER JUST TOGETHER_

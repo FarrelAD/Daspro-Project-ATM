@@ -472,16 +472,23 @@ public class SistemAtm {
                                     { 123456789, 70000 },
                                     { 333444555, 80000 },
                             };
-                            int[][] pendidikanData = { // array pendidikanData menampung vritual account (VA) & tagihan
+                            int[][] pendidikanData = { // array pendidikanData menampung virtual account (VA) & tagihan
                                     { 232323, 1000000 },
                                     { 454545, 2500000 },
                                     { 909090, 5000000 },
+                            };
+                            int[][] tagihanairdata = { // array tagihan pada pdam menampung virtual account (VA) & tagihan
+                                    { 232323, 100000 },
+                                    { 454545, 250000 },
+                                    { 909090, 500000 },
                             };
 
                             int listrikPilihan = 0; // variabel untuk menampung posisi data listrik ID PLN
                             boolean listrikGate = false; // Sebagai gerbang untuk melakukan proses transaksi listrik
                             int pendidikanPilihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
                             boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi
+                            int pdampillihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
+                            boolean pdamgate = false; // sebagai gerbang untuk melakukan proses transaksi
                                                             // pendidikan
                             System.out.println(
                                     "    ============================================================================================");
@@ -938,7 +945,7 @@ public class SistemAtm {
                                         }
                                     } while (konfirmasiPendidikanUlang == 'y' || konfirmasiPendidikanUlang == 'Y');
                                     break; // Break case 3 - menu pembayaran pendidikan
-                                case 4:
+                                case 4: //pembayaran pdam 
                                    do {
                                         System.out.println(
                                                 "PDAM");
@@ -947,17 +954,17 @@ public class SistemAtm {
                                         System.out.println(
                                                 "    ============================================================================================");
                                         // pengecekan data VA
-                                        for (int i = 0; i < pendidikanData.length; i++) {
-                                            if (inputVA == pendidikanData[i][0]) {
-                                                pendidikanPilihan = i;
-                                                pendidikanGate = true;
+                                        for (int i = 0; i < tagihanairdata.length; i++) {
+                                            if (inputVA == tagihanairdata[i][0]) {
+                                                pdampillihan= i;
+                                                pdamgate = true;
                                                 break;
                                             }
                                         }
                                         // Proses perhitungan tagihan biaya pendidikan
-                                        if (pendidikanGate) {
+                                        if (pdamgate) {
                                             String tagihanPendidikanRP = currencyFormat
-                                                    .format(pendidikanData[pendidikanPilihan][1]);
+                                                    .format(tagihanairdata[pdampillihan][1]);
                                             System.out.println(
                                                     "    [  _________________________________________________________\t]");
                                             System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
@@ -981,8 +988,8 @@ public class SistemAtm {
                                                 System.out.println(
                                                         "    ============================================================================================");
                                                 if (inputPIN.equals(akunData[hasil][1])) {
-                                                    if (pendidikanData[pendidikanPilihan][1] < saldoPengguna) {
-                                                        saldoPengguna -= pendidikanData[pendidikanPilihan][1];
+                                                    if (tagihanairdata[pdampillihan][1] < saldoPengguna) {
+                                                        saldoPengguna -= tagihanairdata[pdampillihan][1];
                                                         // Formatting output ke Rupiah
                                                         String saldoRupiah3 = currencyFormat.format(saldoPengguna);
                                                         System.out.println(

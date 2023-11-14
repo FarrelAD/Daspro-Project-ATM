@@ -938,6 +938,129 @@ public class SistemAtm {
                                         }
                                     } while (konfirmasiPendidikanUlang == 'y' || konfirmasiPendidikanUlang == 'Y');
                                     break; // Break case 3 - menu pembayaran pendidikan
+                                case 4:
+                                   do {
+                                        System.out.println(
+                                                "PDAM");
+                                        System.out.print("\t-- Masukkan nomor tagihan : ");
+                                        int inputVA = scanner4.nextInt();
+                                        System.out.println(
+                                                "    ============================================================================================");
+                                        // pengecekan data VA
+                                        for (int i = 0; i < pendidikanData.length; i++) {
+                                            if (inputVA == pendidikanData[i][0]) {
+                                                pendidikanPilihan = i;
+                                                pendidikanGate = true;
+                                                break;
+                                            }
+                                        }
+                                        // Proses perhitungan tagihan biaya pendidikan
+                                        if (pendidikanGate) {
+                                            String tagihanPendidikanRP = currencyFormat
+                                                    .format(pendidikanData[pendidikanPilihan][1]);
+                                            System.out.println(
+                                                    "    [  _________________________________________________________\t]");
+                                            System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+                                            System.out.printf("    [ |  Nomor tagihan\t\t: %d\t\t\t|\t]\n", inputVA);
+                                            System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
+                                                    tagihanPendidikanRP);
+                                            System.out.println(
+                                                    "    [  ---------------------------------------------------------\t]");
+                                            System.out.println(
+                                                    "    ============================================================================================");
+                                            System.out.printf(
+                                                    "\t-- Konfirmasi transaksi tagihan biaya PDAM sebesar %s\n",
+                                                    tagihanPendidikanRP);
+                                            System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+                                            char konfirmasiPendidikan = scanner4.next().charAt(0);
+                                            System.out.println(
+                                                    "    ============================================================================================");
+                                            if (konfirmasiPendidikan == 'Y' || konfirmasiPendidikan == 'y') {
+                                                System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
+                                                inputPIN = scanner5.nextLine();
+                                                System.out.println(
+                                                        "    ============================================================================================");
+                                                if (inputPIN.equals(akunData[hasil][1])) {
+                                                    if (pendidikanData[pendidikanPilihan][1] < saldoPengguna) {
+                                                        saldoPengguna -= pendidikanData[pendidikanPilihan][1];
+                                                        // Formatting output ke Rupiah
+                                                        String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                        System.out.println(
+                                                                "    --------------------------------------------------------------------------------------------");
+                                                        System.out.println(
+                                                                "     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+                                                        System.out.println(
+                                                                "    --------------------------------------------------------------------------------------------");
+                                                        System.out.println(
+                                                                "    ============================================================================================");
+                                                        System.out.println(
+                                                                "    [  _________________________________________________________\t]");
+                                                        System.out.println(
+                                                                "    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+                                                        System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n",
+                                                                inputVA);
+                                                        System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
+                                                                tagihanPendidikanRP);
+                                                        System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
+                                                                saldoRupiah3);
+                                                        System.out.println(
+                                                                "    [  ---------------------------------------------------------\t]");
+                                                        System.out.println(
+                                                                "    ============================================================================================");
+
+                                                        // Pencatatan riwayat transaksi
+                                                        riwayat[riw
+                                                                - count] = "Telah melakukan pembayaran tagihan pendidikan senilai "
+                                                                        + tagihanPendidikanRP;
+                                                        count--;
+                                                        konfirmasiPendidikanUlang = 't';
+                                                    } else {
+                                                        // Kondisi jika tagihan pendidikan > saldo pengguna
+                                                        System.out.println(
+                                                                "    --------------------------------------------------------------------------------------------");
+                                                        System.out.println(
+                                                                "                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
+                                                        System.out.println(
+                                                                "    --------------------------------------------------------------------------------------------");
+                                                        System.out.println(
+                                                                "    ============================================================================================");
+                                                    }
+                                                } else {
+                                                    // Kondisi jika PIN tidak sesuai dengan database
+                                                    System.out.println(
+                                                            "    --------------------------------------------------------------------------------------------");
+                                                    System.out.println(
+                                                            "                                      [  (!) PIN SALAH! (!)  ]");
+                                                    System.out.println(
+                                                            "    --------------------------------------------------------------------------------------------");
+                                                    System.out.println(
+                                                            "    ============================================================================================");
+                                                }
+                                            } else {
+                                                // Kondisi jika pengguna input 't' atau 'T'
+                                                System.out.println(
+                                                        "    --------------------------------------------------------------------------------------------");
+                                                System.out.println(
+                                                        "                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+                                                System.out.println(
+                                                        "    --------------------------------------------------------------------------------------------");
+                                                System.out.println(
+                                                        "    ============================================================================================");
+                                            }
+                                        } else {
+                                            // Kondisi jika nomor VA tidak ditemukan di database
+                                            System.out.println(
+                                                    "    --------------------------------------------------------------------------------------------");
+                                            System.out.println(
+                                                    "                     [  (!) VA invalid. Silakan input ulang nomor VA anda! (!)  ]");
+                                            System.out.println(
+                                                    "    --------------------------------------------------------------------------------------------");
+                                            System.out.println(
+                                                    "    ============================================================================================");
+                                            konfirmasiPendidikanUlang = 'y';
+                                        }
+                                    } while (konfirmasiPendidikanUlang == 'y' || konfirmasiPendidikanUlang == 'Y');
+                                    break;
                                 default:
                                     System.out.println(
                                             "    --------------------------------------------------------------------------------------------");

@@ -337,7 +337,7 @@ public class SistemAtm {
                                                     + nomTarikRupiah;
                                             count--;
                                         } else {
-                                            // Kondisi jika nomTarik > 5.000.000
+                                            // Kondisi jika nominal Tarik > 5.000.000
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(

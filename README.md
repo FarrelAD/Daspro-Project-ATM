@@ -13,10 +13,14 @@
     <li><a href="https://github.com/FarrelAD">Farrel Augusta Dinata</li>
     <li><a href="https://github.com/sukinnamz">Innama Maesa Putri</li>
 </ol>
+
+Leader?? _NO LEADER JUST TOGETHER_
       
 ## About our project
-<h4>START: 4 September 2023</h4>
-<h4>STATUS: ON PROGRESS...</h4>
+
+#### START: 4 September 2023 ####
+
+#### STATUS: ON PROGRESS... (85%) ####
 
 <img src="https://media.giphy.com/media/hTZXf0F5qZXUaFTfyY/giphy.gif" width="100" alt="ON PROGRESS GIF" align="left">
 <br><br><br><br>
@@ -40,5 +44,11 @@ We've implemented some of the things we've learned about the basics of Java. The
 - Loop statements
 - Multidimensional arrays
 
-## Our Leader who always lead us
-_NO LEADER JUST TOGETHER_
+## Tools ##
+Not many tools that we use for the project. We only use Java as a language of the program and Microsoft Visual Studio Code as an IDE to making the whole program. 
+Thanks Java! Thanks VSCode! Without you we can't finish the project.
+<p align="center">
+   <img src="https://skillicons.dev/icons?i=java,vscode">
+</p>
+
+

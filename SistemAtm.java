@@ -509,7 +509,11 @@ public class SistemAtm {
                             System.out.println(
                                     "    [   ______________                                                                         ]");
                             System.out.println(
-                                    "    [  |_4._PDAM__|                                                                         ]");
+                                    "    [  |_4._PDAM                                                                               ]");
+                            System.out.println(
+                                    "    [   ______________                                                                         ]");
+                            System.out.println(
+                                    "    [  |_5._BPJS|                                                                              ]");
                             System.out.println(
                                     "    ============================================================================================");
                             System.out.print("\t-- Menu yang anda pilih (angka): "); // User input pilihan menu

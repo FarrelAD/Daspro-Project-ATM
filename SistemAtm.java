@@ -1082,23 +1082,23 @@ public class SistemAtm {
                                 case 5: //pembayaran BPJS
                                    do {
                                         System.out.println(
-                                                "PDAM");
+                                                "BPJS");
                                         System.out.print("\t-- Masukkan nomor tagihan : ");
                                         int inputVA = scanner4.nextInt();
                                         System.out.println(
                                                 "    ============================================================================================");
                                         // pengecekan data VA
-                                        for (int i = 0; i < tagihanairdata.length; i++) {
-                                            if (inputVA == tagihanairdata[i][0]) {
-                                                pdampillihan= i;
-                                                pdamgate = true;
+                                        for (int i = 0; i < BPJSdata.length; i++) {
+                                            if (inputVA == BPJSdata[i][0]) {
+                                                bpjspillihan= i;
+                                                bpjsgate = true;
                                                 break;
                                             }
                                         }
                                         // Proses perhitungan tagihan biaya pendidikan
-                                        if (pdamgate) {
+                                        if (bpjsgate) {
                                             String tagihanPendidikanRP = currencyFormat
-                                                    .format(tagihanairdata[pdampillihan][1]);
+                                                    .format(BPJSdata[bpjspillihan][1]);
                                             System.out.println(
                                                     "    [  _________________________________________________________\t]");
                                             System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
@@ -1110,7 +1110,7 @@ public class SistemAtm {
                                             System.out.println(
                                                     "    ============================================================================================");
                                             System.out.printf(
-                                                    "\t-- Konfirmasi transaksi tagihan biaya PDAM sebesar %s\n",
+                                                    "\t-- Konfirmasi transaksi tagihan biaya BPJS sebesar %s\n",
                                                     tagihanPendidikanRP);
                                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                                             char konfirmasiPendidikan = scanner4.next().charAt(0);
@@ -1122,8 +1122,8 @@ public class SistemAtm {
                                                 System.out.println(
                                                         "    ============================================================================================");
                                                 if (inputPIN.equals(akunData[hasil][1])) {
-                                                    if (tagihanairdata[pdampillihan][1] < saldoPengguna) {
-                                                        saldoPengguna -= tagihanairdata[pdampillihan][1];
+                                                    if (BPJSdata[bpjspillihan][1] < saldoPengguna) {
+                                                        saldoPengguna -= BPJSdata[bpjspillihan][1];
                                                         // Formatting output ke Rupiah
                                                         String saldoRupiah3 = currencyFormat.format(saldoPengguna);
                                                         System.out.println(

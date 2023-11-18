@@ -28,6 +28,7 @@ public class SistemAtm {
         boolean isBoleh = false, isValid = false; // variabel autentikasi login dan validasi nomor rekening
         int loginAttempts = 0;
         final int maxLoginAttempts = 3; // maksimal login yang bisa dilakukan pengguna
+		char konfirmasiKeluar = 'y';
 
         // ASCII-UNICODE CHARACTER
         System.setProperty("file.encoding", "UTF-8");
@@ -104,7 +105,7 @@ public class SistemAtm {
             if (isBoleh) {
                 // inisialisasi dan deklarasi variabel untuk transaksi
                 String noRekTujuan;
-                char konfirmasiTransaksi;
+                char konfirmasiTransaksi = 'y';
                 int nomTransfer, nomTarik, nomSetor;
                 int saldoPengguna = Integer.parseInt(akunData[hasil][2]);
 
@@ -145,6 +146,10 @@ public class SistemAtm {
                             "    [   ________________                                                                       ]");
                     System.out.println(
                             "    [  |_7._Ubah PIN____|                                                                      ]");
+                    System.out.println(
+                            "    [   ______________                                                                         ]");
+                    System.out.println(
+                            "    [  |_8. Keluar____|                                                                        ]");
                     System.out.println(
                             "    ============================================================================================");
                     System.out.print("\tMenu yang dipilih (angka) : "); // User input pilihan menu berupa angka
@@ -1339,6 +1344,9 @@ public class SistemAtm {
                                 }
                             }
                             break; // Break switch-case 7
+						case 8:
+							konfirmasiKeluar = 't';
+							break;
                         default:
                             System.out.println(
                                     "    ============================================================================================");
@@ -1348,18 +1356,28 @@ public class SistemAtm {
                                     "    ============================================================================================");
                             break; // Break switch-case opsi menu
                     }
-                    System.out.println("\t-- Lakukan transaksi lagi?");
-                    System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
-                    konfirmasiTransaksi = scanner2.next().charAt(0);
-                    if (konfirmasiTransaksi == 't' || konfirmasiTransaksi == 'T') {
-                        System.out.println(
-                                "    ============================================================================================");
-                        System.out.println(
-                                "     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
-                        System.out.println(
-                                "    ============================================================================================");
-                        break;
-                    }
+					if (konfirmasiKeluar == 't') {
+							konfirmasiTransaksi = 't';
+							System.out.println(
+									"    ============================================================================================");
+							System.out.println(
+									"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
+							System.out.println(
+									"    ============================================================================================");
+					} else {
+						System.out.println("\t-- Lakukan transaksi lagi?");
+						System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+						konfirmasiTransaksi = scanner2.next().charAt(0);
+						if (konfirmasiTransaksi == 't' || konfirmasiTransaksi == 'T') {
+							System.out.println(
+									"    ============================================================================================");
+							System.out.println(
+									"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
+							System.out.println(
+									"    ============================================================================================");
+						}
+					}
+                    
                 } while (konfirmasiTransaksi == 'y' || konfirmasiTransaksi == 'Y');
                 break; // Break do-while opsi menu
             } else {

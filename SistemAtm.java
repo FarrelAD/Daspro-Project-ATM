@@ -1,4 +1,3 @@
-
 // Ini adalah suatu program sistem ATM - Kelompok 4 - TI-1B
 // Fitur yang tersedia: transfer, tarik tunai, setor tunai, pembayaran lain-lain, riwayat transaksi, cek saldo, dan ubah PIN
 import java.text.NumberFormat;
@@ -1289,61 +1288,61 @@ public class SistemAtm {
                             System.out.println(
                                     "    ============================================================================================");
                             System.out.print("    Masukkan nomor rekening : "); // Input nomor rekening
-                            inputNoRek = scanner1.nextLine();
-                            for (int i = 0; i < akunData.length; i++) {
-                                if (inputNoRek.equals(akunData[i][0])) {
-                                    int ganti = i;
-                                    System.out.print("    Masukkan PIN anda : "); // Input PIN pengguna
-                                    String inputPIN2 = scanner1.nextLine();
-                                    if (inputPIN2.equals(akunData[ganti][1])) {
-                                        System.out.println(
-                                                "    ============================================================================================");
-                                        System.out.print("    Masukkan PIN baru: ");
-                                        String inputPIN3 = scanner1.nextLine();
-                                        System.out.print("    Konfirmasi PIN baru: ");
-                                        String inputPIN4 = scanner1.nextLine();
-                                        if (inputPIN3.equals(inputPIN4)) {
-                                            akunData[ganti][1] = inputPIN3;
-                                            System.out.println(
-                                                    "    ============================================================================================");
-                                            System.out.println(
-                                                    "    --------------------------------------------------------------------------------------------");
-                                            System.out.println(
-                                                    "    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
-                                            System.out.println(
-                                                    "    --------------------------------------------------------------------------------------------");
-                                            System.out.println(
-                                                    "    ============================================================================================");
-                                            break;
-                                        } else {
-                                            System.out.println(
-                                                    "    ============================================================================================");
-                                            System.out.println(
-                                                    "                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]");
-                                            System.out.println(
-                                                    "    ============================================================================================");
-                                            break;
-                                        }
-                                    } else {
-                                        System.out.println(
-                                                "    ============================================================================================");
-                                        System.out.println(
-                                                "                                    [  (!) PIN TIDAK SESUAI (!)  ]");
-                                        System.out.println(
-                                                "    ============================================================================================");
-                                        break;
-                                    }
-                                } else {
-                                    System.out.println(
-                                            "    ============================================================================================");
-                                    System.out.println(
-                                            "                               [  (!) NOMOR REKENING TIDAK VALID (!)  ]");
-                                    System.out.println(
-                                            "    ============================================================================================");
-                                    break;
-                                }
-                            }
-                            break; // Break switch-case 7
+                            String inputNoRekOpsi7 = scanner1.nextLine();
+							if (inputNoRekOpsi7.equals(inputNoRek)) {
+								System.out.print("    Masukkan PIN anda : "); // Input PIN pengguna
+								String inputPINOpsi7 = scanner1.nextLine();
+								if (inputPINOpsi7.equals(inputPIN)){
+									System.out.println(
+											"    ============================================================================================");
+									System.out.print("    Masukkan PIN baru: ");
+									String inputPINBaru = scanner1.nextLine();
+									System.out.print("    Konfirmasi PIN baru: ");
+									String konfirmasiPINBaru = scanner1.nextLine();
+									if (inputPINBaru.equals(konfirmasiPINBaru)) {
+										int indeksNoRek = 0;
+										for (int i = 0; i < akunData.length; i++) {
+											if (inputNoRekOpsi7.equals(akunData[i][0])) {
+												indeksNoRek = i;
+											}
+										}
+										akunData[indeksNoRek][1] = konfirmasiPINBaru;
+										System.out.println(
+												"    ============================================================================================");
+										System.out.println(
+												"    --------------------------------------------------------------------------------------------");
+										System.out.println(
+												"    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+										System.out.println(
+												"    --------------------------------------------------------------------------------------------");
+										System.out.println(
+												"    ============================================================================================");
+									} else {
+										System.out.println(
+												"    ============================================================================================");
+										System.out.println(
+												"                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]");
+										System.out.println(
+												"    ============================================================================================");
+									}
+								} else {
+									System.out.println(
+											"    ============================================================================================");
+									System.out.println(
+											"                                    [  (!) PIN TIDAK SESUAI (!)  ]");
+									System.out.println(
+											"    ============================================================================================");
+								}
+							} else {
+								System.out.println(
+										"    ============================================================================================");
+								System.out.println(
+										"                               [  (!) NOMOR REKENING TIDAK VALID (!)  ]");
+								System.out.println(
+										"    ============================================================================================");
+
+							}
+                            break; // Break switch-case opsi menu 7
 						case 8:
 							konfirmasiKeluar = 't';
 							break;
@@ -1357,13 +1356,13 @@ public class SistemAtm {
                             break; // Break switch-case opsi menu
                     }
 					if (konfirmasiKeluar == 't') {
-							konfirmasiTransaksi = 't';
-							System.out.println(
-									"    ============================================================================================");
-							System.out.println(
-									"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
-							System.out.println(
-									"    ============================================================================================");
+						konfirmasiTransaksi = 't';
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
+						System.out.println(
+								"    ============================================================================================");
 					} else {
 						System.out.println("\t-- Lakukan transaksi lagi?");
 						System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
@@ -1377,9 +1376,8 @@ public class SistemAtm {
 									"    ============================================================================================");
 						}
 					}
-                    
                 } while (konfirmasiTransaksi == 'y' || konfirmasiTransaksi == 'Y');
-                break; // Break do-while opsi menu
+				break; // Break do-while 
             } else {
                 System.out.println(
                         "    ============================================================================================");
@@ -1405,7 +1403,6 @@ public class SistemAtm {
                     System.out.println(
                             "    ============================================================================================");
                     akunData[hasil][3] = "diblokir";
-                    break; // Account diblokir, mengakhiri looping
                 }
             } // Bagian akhir program menu
         }

@@ -189,17 +189,17 @@ public class SistemAtm {
                                         "    ============================================================================================");
 
                                 // Konversi nilai output ke rupiah
-                                String nomTransferRP = currencyFormat.format(transferAmount);
+                                String transferAmountRupiah = currencyFormat.format(transferAmount);
                                 System.out.println("    [  _______________________________________________  ]");
                                 System.out.println("    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]");
                                 System.out.printf("    [ |  Rekening tujuan: %s\t\t      | ]\n", inputTarget_AccountNumber);
-                                System.out.printf("    [ |  Nominal transfer: %s\t\t\t| ]\n", nomTransferRP);
+                                System.out.printf("    [ |  Nominal transfer: %s\t\t\t| ]\n", transferAmountRupiah);
                                 System.out.println("    [ ------------------------------------------------- ]");
                                 System.out.println(
                                         "    ============================================================================================");
                                 // Konfirmasi persetujuan transaksi
                                 System.out.println("\t-- Konfirmasi transfer ke rekening " + inputTarget_AccountNumber
-                                        + " dengan nominal " + nomTransferRP + " ?");
+                                        + " dengan nominal " + transferAmountRupiah + " ?");
                                 System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             	userChoice = scanner4.next().charAt(0);
                                 System.out.println(
@@ -219,8 +219,7 @@ public class SistemAtm {
                                                                           // transfer
 
                                             // Formatting penulisan rupiah pada output
-                                            String nomTransferRupiah = currencyFormat.format(transferAmount);
-                                            String saldoRupiah = currencyFormat.format(userBalance);
+                                            String userBalanceRupiah = currencyFormat.format(userBalance);
 
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
@@ -230,13 +229,12 @@ public class SistemAtm {
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
                                                     "    ============================================================================================");
-                                            System.out.println("\t-- Sisa saldo anda : " + saldoRupiah);
+                                            System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
                                             System.out.println(
                                                     "    ============================================================================================");
                                             // Pencatatan riwayat transaksi
                                             transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan transaksi ke rekening "
-                                                    + inputTarget_AccountNumber
-                                                    + " sebesar " + nomTransferRupiah;
+                                                    + inputTarget_AccountNumber + " sebesar " + transferAmountRupiah;
                                             transactionCount--;
                                         } else {
                                             // Kondisi jika nominal transfer melebihi jumlah saldo
@@ -303,9 +301,9 @@ public class SistemAtm {
                             System.out.println(
                                     "    ============================================================================================");
                             // Konversi nilai output ke Rupiah
-                            String nomTarikRP = currencyFormat.format(cashWithdrawalAmount);
+                            String cashWitdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
                             // Persetujuan konfirmasi transaksi
-                            System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + nomTarikRP + " ? ");
+                            System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + cashWitdrawalRupiah + " ? ");
                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             userChoice = scanner4.next().charAt(0);
                             System.out.println(
@@ -325,8 +323,7 @@ public class SistemAtm {
                                             // Kondisi jika cashWithdrawalAmount < userBalance dan cashWithdrawalAmount <= 5000000
                                             userBalance -= cashWithdrawalAmount;
                                             // Formating penulisan rupiah pada output
-                                            String nomTarikRupiah = currencyFormat.format(cashWithdrawalAmount);
-                                            String saldoRupiah = currencyFormat.format(userBalance);
+                                            String userBalanceRupiah = currencyFormat.format(userBalance);
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
@@ -335,13 +332,13 @@ public class SistemAtm {
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
                                                     "    ============================================================================================");
-                                            System.out.println("\t-- Sisa saldo anda : " + saldoRupiah);
+                                            System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
                                             System.out.println(
                                                     "    ============================================================================================");
 
                                             // Pencatatan riwayat transaksi
                                             transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan tarik tunai sebesar "
-                                                    + nomTarikRupiah;
+                                                    + cashWitdrawalRupiah;
                                             transactionCount--;
                                         } else {
                                             // Kondisi jika nominal Tarik > 5.000.000
@@ -404,8 +401,8 @@ public class SistemAtm {
                             cashDepositAmount = scanner3.nextInt();
                             System.out.println(
                                     "    ============================================================================================");
-                            String nomSetorRupiah = currencyFormat.format(cashDepositAmount);
-                            System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + nomSetorRupiah + " ? ");
+                            String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
+                            System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + cashDepositRupiah + " ? ");
                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             userChoice = scanner4.next().charAt(0);
                             System.out.println(
@@ -428,13 +425,13 @@ public class SistemAtm {
                                     System.out.println(
                                             "    ============================================================================================");
                                     // Formatting penulisan rupiah pada output
-                                    String saldoRupiah = currencyFormat.format(userBalance);
+                                    String userBalanceRupiah = currencyFormat.format(userBalance);
 
-                                    System.out.println("\t-- Sisa saldo anda : " + saldoRupiah);
+                                    System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
                                     System.out.println(
                                             "    ============================================================================================");
                                     // Pencatatan riwayat transaksi
-                                    transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan setor tunai sebesar " + nomSetorRupiah;
+                                    transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan setor tunai sebesar " + cashDepositRupiah;
                                     transactionCount--;
                                 } else {
                                     // Kondisi jika pengguna input PIN tidak sesuai dengan array accountData

@@ -26,9 +26,9 @@ public class SistemAtm {
                                   					 // counter percobaan login
         String[] transactionHistory = new String[maxTransactionHistory]; // array riwayat transaksi
         boolean isAccountValid = false, 
-			    isDestinationAccountValid = false; // variabel autentikasi login dan validasi nomor rekening
+			    isTargetAccountValid = false; // variabel autentikasi login dan validasi nomor rekening
         final int MAX_LOGIN_ATTEMPTS = 3; // maksimal login yang bisa dilakukan pengguna
-		char konfirmasiKeluar = 'y';
+		boolean isTransactionExit = true;
 
         // ASCII-UNICODE CHARACTER
         System.setProperty("file.encoding", "UTF-8");
@@ -77,10 +77,10 @@ public class SistemAtm {
             System.out.println(
                     "    ============================================================================================");
             System.out.print("    [  Masukkan nomor rekening : "); // Input nomor rekening
-            String inputNoRek = scanner1.nextLine();
+            String inputUser_AccountNumber = scanner1.nextLine();
 
             System.out.print("    [  Masukkan PIN anda : "); // Input PIN pengguna
-            String inputPIN = scanner1.nextLine();
+            String inputPin = scanner1.nextLine();
             System.out.println(
                     "    ============================================================================================");
             System.out.println("");
@@ -94,7 +94,7 @@ public class SistemAtm {
 
             // Pengecekan kesesuaian nomor rekening dan PIN untuk login
             for (int i = 0; i < accountData.length; i++) {
-                if (inputNoRek.equals(accountData[i][0]) && inputPIN.equals(accountData[i][1])
+                if (inputUser_AccountNumber.equals(accountData[i][0]) && inputPin.equals(accountData[i][1])
                         && accountData[i][3].equals("aman")) {
                     isAccountValid = true; // autentifikasi
                     accountLineIndex = i; // session
@@ -104,10 +104,10 @@ public class SistemAtm {
             // Bagian di bawah ini adalah bagian menuju menu
             if (isAccountValid) {
                 // inisialisasi dan deklarasi variabel untuk transaksi
-                String noRekTujuan;
+                String inputTarget_AccountNumber;
                 char continueTransaction = 'y', userChoice = 't';
-                int nomTransfer, nomTarik, nomSetor;
-                int saldoPengguna = Integer.parseInt(accountData[accountLineIndex][2]);
+                int transferAmount, cashWithdrawalAmount, cashDepositAmount;
+                int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
 
                 // Format nilai uang Indonesia Rupiah (IDR)
                 NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
@@ -171,33 +171,34 @@ public class SistemAtm {
                             System.out.println(
                                     "    ============================================================================================");
                             System.out.print("\t-- Masukkan nomor rekening tujuan : ");
-                            noRekTujuan = scannerTF.nextLine();
+                            inputTarget_AccountNumber = scannerTF.nextLine();
                             // Pengecekan apakah nomor rekening tujuan ada di database
                             for (int i = 0; i < accountData.length; i++) {
-                                if (noRekTujuan.equals(accountData[i][0])) {
-                                    isDestinationAccountValid = true;
+                                if ((inputTarget_AccountNumber.equals(accountData[i][0])) 
+                                    && (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
+                                    isTargetAccountValid = true;
                                     break;
                                 }
                             }
 
-                            // Kondisi jika isDestinationAccountValid true
-                            if (isDestinationAccountValid) {
+                            // Kondisi jika isTargetAccountValid true
+                            if (isTargetAccountValid) {
                                 System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input nominal transfer
-                                nomTransfer = scanner4.nextInt();
+                                transferAmount = scanner4.nextInt();
                                 System.out.println(
                                         "    ============================================================================================");
 
                                 // Konversi nilai output ke rupiah
-                                String nomTransferRP = currencyFormat.format(nomTransfer);
+                                String nomTransferRP = currencyFormat.format(transferAmount);
                                 System.out.println("    [  _______________________________________________  ]");
                                 System.out.println("    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]");
-                                System.out.printf("    [ |  Rekening tujuan: %s\t\t      | ]\n", noRekTujuan);
+                                System.out.printf("    [ |  Rekening tujuan: %s\t\t      | ]\n", inputTarget_AccountNumber);
                                 System.out.printf("    [ |  Nominal transfer: %s\t\t\t| ]\n", nomTransferRP);
                                 System.out.println("    [ ------------------------------------------------- ]");
                                 System.out.println(
                                         "    ============================================================================================");
                                 // Konfirmasi persetujuan transaksi
-                                System.out.println("\t-- Konfirmasi transfer ke rekening " + noRekTujuan
+                                System.out.println("\t-- Konfirmasi transfer ke rekening " + inputTarget_AccountNumber
                                         + " dengan nominal " + nomTransferRP + " ?");
                                 System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             	userChoice = scanner4.next().charAt(0);
@@ -207,19 +208,19 @@ public class SistemAtm {
                                 // Konfirmasi transaksi
                                 if (userChoice == 'y' || userChoice == 'Y') {
                                     System.out.print("\t-- Masukkan PIN anda: ");
-                                    inputPIN = scanner5.nextLine();
+                                    inputPin = scanner5.nextLine();
                                     System.out.println(
                                             "    ============================================================================================");
 
                                     // Pengecekan apakah input PIN sesuai dengan database
-                                    if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                        if (nomTransfer < saldoPengguna) {
-                                            saldoPengguna -= nomTransfer; // Pengurangan saldo pengguna dengan nominal
+                                    if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                        if (transferAmount < userBalance) {
+                                            userBalance -= transferAmount; // Pengurangan saldo pengguna dengan nominal
                                                                           // transfer
 
                                             // Formatting penulisan rupiah pada output
-                                            String nomTransferRupiah = currencyFormat.format(nomTransfer);
-                                            String saldoRupiah = currencyFormat.format(saldoPengguna);
+                                            String nomTransferRupiah = currencyFormat.format(transferAmount);
+                                            String saldoRupiah = currencyFormat.format(userBalance);
 
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
@@ -234,12 +235,12 @@ public class SistemAtm {
                                                     "    ============================================================================================");
                                             // Pencatatan riwayat transaksi
                                             transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan transaksi ke rekening "
-                                                    + noRekTujuan
+                                                    + inputTarget_AccountNumber
                                                     + " sebesar " + nomTransferRupiah;
                                             transactionCount--;
                                         } else {
                                             // Kondisi jika nominal transfer melebihi jumlah saldo
-                                            isDestinationAccountValid = false; // Reset nilai isDestinationAccountValid
+                                            isTargetAccountValid = false; // Reset nilai isTargetAccountValid
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
@@ -251,7 +252,7 @@ public class SistemAtm {
                                         }
                                     } else {
                                         // Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
-                                        isDestinationAccountValid = false; // Reset nilai isDestinationAccountValid
+                                        isTargetAccountValid = false; // Reset nilai isTargetAccountValid
                                         System.out.println(
                                                 "    --------------------------------------------------------------------------------------------");
                                         System.out.println(
@@ -263,7 +264,7 @@ public class SistemAtm {
                                     }
                                 } else {
                                     // Kondisi jika pengguna input 't' atau 'T'
-                                    isDestinationAccountValid = false; // Reset nilai isDestinationAccountValid
+                                    isTargetAccountValid = false; // Reset nilai isTargetAccountValid
                                     System.out.println(
                                             "    --------------------------------------------------------------------------------------------");
                                     System.out.println(
@@ -274,7 +275,7 @@ public class SistemAtm {
                                             "    ============================================================================================");
                                 }
                             } else {
-                                // Kondisi jika isDestinationAccountValid bernilai FALSE
+                                // Kondisi jika isTargetAccountValid bernilai FALSE
                                 System.out.println(
                                         "    --------------------------------------------------------------------------------------------");
                                 System.out.println(
@@ -298,11 +299,11 @@ public class SistemAtm {
                                     "    ============================================================================================");
                             System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input nominal tarik
                                                                                          // tunai
-                            nomTarik = scanner3.nextInt();
+                            cashWithdrawalAmount = scanner3.nextInt();
                             System.out.println(
                                     "    ============================================================================================");
                             // Konversi nilai output ke Rupiah
-                            String nomTarikRP = currencyFormat.format(nomTarik);
+                            String nomTarikRP = currencyFormat.format(cashWithdrawalAmount);
                             // Persetujuan konfirmasi transaksi
                             System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + nomTarikRP + " ? ");
                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
@@ -312,20 +313,20 @@ public class SistemAtm {
 
                             if (userChoice == 'y' || userChoice == 'Y') {
                                 System.out.print("\t-- Masukkan PIN anda: ");
-                                inputPIN = scanner5.nextLine();
+                                inputPin = scanner5.nextLine();
                                 System.out.println(
                                         "    ============================================================================================");
 
                                 // Pengecekan apakah input PIN sesuai dengan database
-                                if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                    if (nomTarik < saldoPengguna) {
+                                if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                    if (cashWithdrawalAmount < userBalance) {
                                         // Pengecekan apakah nominal tarik kurang dari saldo pengguna
-                                        if (nomTarik <= 5000000) {
-                                            // Kondisi jika nomTarik < saldoPengguna dan nomTarik <= 5000000
-                                            saldoPengguna -= nomTarik;
+                                        if (cashWithdrawalAmount <= 5000000) {
+                                            // Kondisi jika cashWithdrawalAmount < userBalance dan cashWithdrawalAmount <= 5000000
+                                            userBalance -= cashWithdrawalAmount;
                                             // Formating penulisan rupiah pada output
-                                            String nomTarikRupiah = currencyFormat.format(nomTarik);
-                                            String saldoRupiah = currencyFormat.format(saldoPengguna);
+                                            String nomTarikRupiah = currencyFormat.format(cashWithdrawalAmount);
+                                            String saldoRupiah = currencyFormat.format(userBalance);
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
@@ -354,7 +355,7 @@ public class SistemAtm {
                                                     "    ============================================================================================");
                                         }
                                     } else {
-                                        // Kondisi jika nomTarik > saldoPengguna
+                                        // Kondisi jika cashWithdrawalAmount > userBalance
                                         System.out.println(
                                                 "    --------------------------------------------------------------------------------------------");
                                         System.out.println(
@@ -400,10 +401,10 @@ public class SistemAtm {
                                     "    ============================================================================================");
                             System.out.print("\t-- Masukkan nominal setor tunai : Rp "); // User input nominal setor
                                                                                          // tunai
-                            nomSetor = scanner3.nextInt();
+                            cashDepositAmount = scanner3.nextInt();
                             System.out.println(
                                     "    ============================================================================================");
-                            String nomSetorRupiah = currencyFormat.format(nomSetor);
+                            String nomSetorRupiah = currencyFormat.format(cashDepositAmount);
                             System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + nomSetorRupiah + " ? ");
                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             userChoice = scanner4.next().charAt(0);
@@ -412,11 +413,11 @@ public class SistemAtm {
 
                             if (userChoice == 'y' || userChoice == 'Y') {
                                 System.out.print("\t-- Masukkan PIN anda: ");
-                                inputPIN = scanner5.nextLine();
+                                inputPin = scanner5.nextLine();
                                 System.out.println(
                                         "    ============================================================================================");
-                                if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                    saldoPengguna += nomSetor; // Penjumlahan saldo dengan nominal setor yang telah
+                                if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                    userBalance += cashDepositAmount; // Penjumlahan saldo dengan nominal setor yang telah
                                                                // dilakukan
                                     System.out.println(
                                             "    --------------------------------------------------------------------------------------------");
@@ -427,7 +428,7 @@ public class SistemAtm {
                                     System.out.println(
                                             "    ============================================================================================");
                                     // Formatting penulisan rupiah pada output
-                                    String saldoRupiah = currencyFormat.format(saldoPengguna);
+                                    String saldoRupiah = currencyFormat.format(userBalance);
 
                                     System.out.println("\t-- Sisa saldo anda : " + saldoRupiah);
                                     System.out.println(
@@ -608,14 +609,14 @@ public class SistemAtm {
                                                 "    ============================================================================================");
                                         if (konfirmasiPulsa == 'Y' || konfirmasiPulsa == 'y') {
                                             System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
-                                            inputPIN = scanner5.nextLine();
+                                            inputPin = scanner5.nextLine();
                                             System.out.println(
                                                     "    ============================================================================================");
-                                            if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                                if (nomPulsa < saldoPengguna) {
-                                                    saldoPengguna -= nomPulsa;
+                                            if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                                if (nomPulsa < userBalance) {
+                                                    userBalance -= nomPulsa;
                                                     // Formatting nilai ke Rupiah
-                                                    String saldoRupiah2 = currencyFormat.format(saldoPengguna);
+                                                    String saldoRupiah2 = currencyFormat.format(userBalance);
 
                                                     System.out.println(
                                                             "    --------------------------------------------------------------------------------------------");
@@ -746,14 +747,14 @@ public class SistemAtm {
                                                     "    ============================================================================================");
                                             if (konfirmasiListrik == 'Y' || konfirmasiListrik == 'y') {
                                                 System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
-                                                inputPIN = scanner5.nextLine();
+                                                inputPin = scanner5.nextLine();
                                                 System.out.println(
                                                         "    ============================================================================================");
-                                                if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                                    if (listrikData[listrikPilihan][1] < saldoPengguna) {
-                                                        saldoPengguna -= listrikData[listrikPilihan][1];
+                                                if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                                    if (listrikData[listrikPilihan][1] < userBalance) {
+                                                        userBalance -= listrikData[listrikPilihan][1];
                                                         // Formatting saldo pengguna ke Rupiah
-                                                        String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                        String saldoRupiah3 = currencyFormat.format(userBalance);
                                                         System.out.println(
                                                                 "    --------------------------------------------------------------------------------------------");
                                                         System.out.println(
@@ -877,14 +878,14 @@ public class SistemAtm {
                                                     "    ============================================================================================");
                                             if (konfirmasiPendidikan == 'Y' || konfirmasiPendidikan == 'y') {
                                                 System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
-                                                inputPIN = scanner5.nextLine();
+                                                inputPin = scanner5.nextLine();
                                                 System.out.println(
                                                         "    ============================================================================================");
-                                                if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                                    if (pendidikanData[pendidikanPilihan][1] < saldoPengguna) {
-                                                        saldoPengguna -= pendidikanData[pendidikanPilihan][1];
+                                                if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                                    if (pendidikanData[pendidikanPilihan][1] < userBalance) {
+                                                        userBalance -= pendidikanData[pendidikanPilihan][1];
                                                         // Formatting output ke Rupiah
-                                                        String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                        String saldoRupiah3 = currencyFormat.format(userBalance);
                                                         System.out.println(
                                                                 "    --------------------------------------------------------------------------------------------");
                                                         System.out.println(
@@ -1000,14 +1001,14 @@ public class SistemAtm {
                                                     "    ============================================================================================");
                                             if (konfirmasiPendidikan == 'Y' || konfirmasiPendidikan == 'y') {
                                                 System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
-                                                inputPIN = scanner5.nextLine();
+                                                inputPin = scanner5.nextLine();
                                                 System.out.println(
                                                         "    ============================================================================================");
-                                                if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                                    if (tagihanairdata[pdampillihan][1] < saldoPengguna) {
-                                                        saldoPengguna -= tagihanairdata[pdampillihan][1];
+                                                if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                                    if (tagihanairdata[pdampillihan][1] < userBalance) {
+                                                        userBalance -= tagihanairdata[pdampillihan][1];
                                                         // Formatting output ke Rupiah
-                                                        String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                        String saldoRupiah3 = currencyFormat.format(userBalance);
                                                         System.out.println(
                                                                 "    --------------------------------------------------------------------------------------------");
                                                         System.out.println(
@@ -1123,14 +1124,14 @@ public class SistemAtm {
                                                     "    ============================================================================================");
                                             if (konfirmasiPendidikan == 'Y' || konfirmasiPendidikan == 'y') {
                                                 System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
-                                                inputPIN = scanner5.nextLine();
+                                                inputPin = scanner5.nextLine();
                                                 System.out.println(
                                                         "    ============================================================================================");
-                                                if (inputPIN.equals(accountData[accountLineIndex][1])) {
-                                                    if (BPJSdata[bpjspillihan][1] < saldoPengguna) {
-                                                        saldoPengguna -= BPJSdata[bpjspillihan][1];
+                                                if (inputPin.equals(accountData[accountLineIndex][1])) {
+                                                    if (BPJSdata[bpjspillihan][1] < userBalance) {
+                                                        userBalance -= BPJSdata[bpjspillihan][1];
                                                         // Formatting output ke Rupiah
-                                                        String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                                                        String saldoRupiah3 = currencyFormat.format(userBalance);
                                                         System.out.println(
                                                                 "    --------------------------------------------------------------------------------------------");
                                                         System.out.println(
@@ -1265,7 +1266,7 @@ public class SistemAtm {
                             System.out.println(
                                     "    ============================================================================================");
                             // Formatting penulisan rupiah pada output
-                            String saldoRupiah3 = currencyFormat.format(saldoPengguna);
+                            String saldoRupiah3 = currencyFormat.format(userBalance);
                             System.out.println(
                                     "    ============================================================================================");
                             System.out.println(
@@ -1289,25 +1290,25 @@ public class SistemAtm {
                             System.out.println(
                                     "    ============================================================================================");
                             System.out.print("    Masukkan nomor rekening : "); // Input nomor rekening
-                            String inputNoRekOpsi7 = scanner1.nextLine();
-							if (inputNoRekOpsi7.equals(inputNoRek)) {
+                            String inputUser_AccountNumber7 = scanner1.nextLine();
+							if (inputUser_AccountNumber7.equals(inputUser_AccountNumber)) {
 								System.out.print("    Masukkan PIN anda : "); // Input PIN pengguna
-								String inputPINOpsi7 = scanner1.nextLine();
-								if (inputPINOpsi7.equals(inputPIN)){
+								String inputPin7 = scanner1.nextLine();
+								if (inputPin7.equals(inputPin)){
 									System.out.println(
 											"    ============================================================================================");
 									System.out.print("    Masukkan PIN baru: ");
-									String inputPINBaru = scanner1.nextLine();
+									String inputNewPin = scanner1.nextLine();
 									System.out.print("    Konfirmasi PIN baru: ");
-									String konfirmasiPINBaru = scanner1.nextLine();
-									if (inputPINBaru.equals(konfirmasiPINBaru)) {
+									String confirmedNewPin = scanner1.nextLine();
+									if (inputNewPin.equals(confirmedNewPin)) {
 										int indeksNoRek = 0;
 										for (int i = 0; i < accountData.length; i++) {
-											if (inputNoRekOpsi7.equals(accountData[i][0])) {
+											if (inputUser_AccountNumber7.equals(accountData[i][0])) {
 												indeksNoRek = i;
 											}
 										}
-										accountData[indeksNoRek][1] = konfirmasiPINBaru;
+										accountData[indeksNoRek][1] = confirmedNewPin;
 										System.out.println(
 												"    ============================================================================================");
 										System.out.println(
@@ -1344,7 +1345,7 @@ public class SistemAtm {
 							}
                             break; // Break switch-case opsi menu 7
 						case 8:
-							konfirmasiKeluar = 't';
+							isTransactionExit = false ;
 							break;
                         default:
                             System.out.println(
@@ -1355,7 +1356,7 @@ public class SistemAtm {
                                     "    ============================================================================================");
                             break; // Break switch-case opsi menu
                     }
-					if (konfirmasiKeluar == 't') {
+					if (isTransactionExit == false) {
 						continueTransaction = 't';
 						System.out.println(
 								"    ============================================================================================");

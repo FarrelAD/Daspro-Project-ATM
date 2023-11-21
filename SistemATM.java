@@ -84,13 +84,10 @@ public class SistemATM {
             System.out.println(
                     "    ============================================================================================");
             System.out.println("");
-
-            // Pengecekan apakah status akunnya diblokir atau tidak
-            if (accountLineIndex != -1 && accountData[accountLineIndex][3].equals("diblokir")) {
-                System.out.println("Akun anda berstatus " + accountData[accountLineIndex][3]);
-                System.out.println(
-                        "    ============================================================================================");
-            }
+            
+            // Menghapus output yang telah ditampilkan
+            System.out.println("\033[H\033[2J");
+            System.out.flush();
 
             // Pengecekan kesesuaian nomor rekening dan PIN untuk login
             for (int i = 0; i < accountData.length; i++) {
@@ -1378,7 +1375,7 @@ public class SistemATM {
                 } while (continueTransaction == 'y' || continueTransaction == 'Y');
 				break; // Break do-while 
             } else {
-				if (loginAttempts <= MAX_LOGIN_ATTEMPTS) {
+				if (loginAttempts < MAX_LOGIN_ATTEMPTS) {
 					System.out.println(
 							"    ============================================================================================");
 					System.out.println(
@@ -1390,6 +1387,12 @@ public class SistemATM {
 					System.out.println(
 							"    ============================================================================================");
 					loginAttempts++;
+                    System.out.print("Enter untuk melanjutkan -->  ");
+                    String pressEnter = scanner1.nextLine();
+                    
+                    // Menghapus output yang telah ditampilkan
+                    System.out.println("\033[H\033[2J");
+                    System.out.flush();
 				} else {
                     System.out.println(
                             "    ============================================================================================");
@@ -1402,6 +1405,7 @@ public class SistemATM {
                     System.out.println(
                             "    ============================================================================================");
                     accountData[accountLineIndex][3] = "diblokir";
+                    loginAttempts++;
                 }
             } // Bagian akhir program menu
         }

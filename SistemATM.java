@@ -29,6 +29,7 @@ public class SistemATM {
 			    isTargetAccountValid = false; // variabel autentikasi login dan validasi nomor rekening
         final int MAX_LOGIN_ATTEMPTS = 3; // maksimal login yang bisa dilakukan pengguna
 		boolean isTransactionExit = true;
+        String pressEnter;
 
         // ASCII-UNICODE CHARACTER
         System.setProperty("file.encoding", "UTF-8");
@@ -151,8 +152,10 @@ public class SistemATM {
                             "    ============================================================================================");
                     System.out.print("\tMenu yang dipilih (angka) : "); // User input pilihan menu berupa angka
                     int menu = scanner2.nextInt();
-                    System.out.println(
-                            "    ============================================================================================");
+
+                    // Menghapus output yang telah ditampilkan
+                    System.out.println("\033[H\033[2J");
+                    System.out.flush();
 
                     // Pilihan opsi menu
                     switch (menu) {
@@ -182,11 +185,15 @@ public class SistemATM {
                             if (isTargetAccountValid) {
                                 System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input nominal transfer
                                 transferAmount = scanner4.nextInt();
-                                System.out.println(
-                                        "    ============================================================================================");
+                                
+                                // Menghapus output yang telah ditampilkan
+                                System.out.println("\033[H\033[2J");
+                                System.out.flush();
 
                                 // Konversi nilai output ke rupiah
                                 String transferAmountRupiah = currencyFormat.format(transferAmount);
+                                System.out.println(
+                                        "    ============================================================================================");
                                 System.out.println("    [  _______________________________________________  ]");
                                 System.out.println("    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]");
                                 System.out.printf("    [ |  Rekening tujuan: %s\t\t      | ]\n", inputTarget_AccountNumber);
@@ -199,6 +206,11 @@ public class SistemATM {
                                         + " dengan nominal " + transferAmountRupiah + " ?");
                                 System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             	userChoice = scanner4.next().charAt(0);
+                                
+                                        // Menghapus output yang telah ditampilkan
+                                System.out.println("\033[H\033[2J");
+                                System.out.flush();
+
                                 System.out.println(
                                         "    ============================================================================================");
 
@@ -206,8 +218,10 @@ public class SistemATM {
                                 if (userChoice == 'y' || userChoice == 'Y') {
                                     System.out.print("\t-- Masukkan PIN anda: ");
                                     inputPin = scanner5.nextLine();
-                                    System.out.println(
-                                            "    ============================================================================================");
+                                    
+                                    // Menghapus output yang telah ditampilkan
+                                    System.out.println("\033[H\033[2J");
+                                    System.out.flush();
 
                                     // Pengecekan apakah input PIN sesuai dengan database
                                     if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -217,7 +231,8 @@ public class SistemATM {
 
                                             // Formatting penulisan rupiah pada output
                                             String userBalanceRupiah = currencyFormat.format(userBalance);
-
+                                            System.out.println(
+                                                    "    ============================================================================================");
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
@@ -229,6 +244,14 @@ public class SistemATM {
                                             System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
                                             System.out.println(
                                                     "    ============================================================================================");
+
+                                            System.out.print("Enter untuk melanjutkan -->  ");
+                                            pressEnter = scanner1.nextLine();
+                                            
+                                            // Menghapus output yang telah ditampilkan
+                                            System.out.println("\033[H\033[2J");
+                                            System.out.flush();
+        
                                             // Pencatatan riwayat transaksi
                                             transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan transaksi ke rekening "
                                                     + inputTarget_AccountNumber + " sebesar " + transferAmountRupiah;
@@ -236,6 +259,8 @@ public class SistemATM {
                                         } else {
                                             // Kondisi jika nominal transfer melebihi jumlah saldo
                                             isTargetAccountValid = false; // Reset nilai isTargetAccountValid
+                                            System.out.println(
+                                                    "    ============================================================================================");
                                             System.out.println(
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
@@ -249,6 +274,8 @@ public class SistemATM {
                                         // Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
                                         isTargetAccountValid = false; // Reset nilai isTargetAccountValid
                                         System.out.println(
+                                                "    ============================================================================================");
+                                        System.out.println(
                                                 "    --------------------------------------------------------------------------------------------");
                                         System.out.println(
                                                 "                                      [  (!) PIN SALAH! (!)  ]");
@@ -261,6 +288,8 @@ public class SistemATM {
                                     // Kondisi jika pengguna input 't' atau 'T'
                                     isTargetAccountValid = false; // Reset nilai isTargetAccountValid
                                     System.out.println(
+                                            "    ============================================================================================");
+                                    System.out.println(
                                             "    --------------------------------------------------------------------------------------------");
                                     System.out.println(
                                             "                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
@@ -271,6 +300,8 @@ public class SistemATM {
                                 }
                             } else {
                                 // Kondisi jika isTargetAccountValid bernilai FALSE
+                                System.out.println(
+                                        "    ============================================================================================");
                                 System.out.println(
                                         "    --------------------------------------------------------------------------------------------");
                                 System.out.println(
@@ -1360,6 +1391,8 @@ public class SistemATM {
 						System.out.println(
 								"    ============================================================================================");
 					} else {
+                        System.out.println(
+                                    "    ============================================================================================");
 						System.out.println("\t-- Lakukan transaksi lagi?");
 						System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 						continueTransaction = scanner2.next().charAt(0);
@@ -1388,7 +1421,7 @@ public class SistemATM {
 							"    ============================================================================================");
 					loginAttempts++;
                     System.out.print("Enter untuk melanjutkan -->  ");
-                    String pressEnter = scanner1.nextLine();
+                    pressEnter = scanner1.nextLine();
                     
                     // Menghapus output yang telah ditampilkan
                     System.out.println("\033[H\033[2J");

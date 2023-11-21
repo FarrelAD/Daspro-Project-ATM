@@ -43,7 +43,7 @@ public class SistemATM {
         // Menghapus output yang telah ditampilkan
         System.out.println("\033[H\033[2J");
         System.out.flush();
-        
+
         // Halaman utama sistem ATM
         System.out.println(
                 "=====================================================================================================");
@@ -1353,6 +1353,13 @@ public class SistemATM {
                             System.out.printf("        | Anda telah melakukan %d transaksi\t\t\t\t\t\t  |\n", j);
                             System.out.println(
                                     "    ============================================================================================");
+                            
+                            System.out.print("Enter untuk melanjutkan -->  ");
+                            pressEnter = scanner1.nextLine();
+                            
+                            // Menghapus output yang telah ditampilkan
+                            System.out.println("\033[H\033[2J");
+                            System.out.flush();
                             break; // Break case 5
                         case 6: // OPSI FITUR CEK SALDO
                             System.out.println(

@@ -600,6 +600,11 @@ public class SistemATM {
                                     "    ============================================================================================");
                             System.out.print("\t-- Menu yang anda pilih (angka): "); // User input pilihan menu
                             int menuBayar = scanner3.nextInt();
+                            
+                            // Menghapus output yang telah ditampilkan
+                            System.out.println("\033[H\033[2J");
+                            System.out.flush();
+
                             System.out.println(
                                     "    ============================================================================================");
                             // Opsi menu pembayaran
@@ -654,6 +659,11 @@ public class SistemATM {
                                         String nomorTelepon = scanner1.nextLine();
                                         System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal pulsa
                                         int nomPulsa = scanner4.nextInt();
+
+                                        // Menghapus output yang telah ditampilkan
+                                        System.out.println("\033[H\033[2J");
+                                        System.out.flush();
+
                                         System.out.println(
                                                 "    ============================================================================================");
                                         // Konversi nilai nomPulsa ke rupiah
@@ -674,11 +684,21 @@ public class SistemATM {
                                                 nomorTelepon, nomPulsaRP);
                                         System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                                         char konfirmasiPulsa = scanner4.next().charAt(0);
+
+                                        // Menghapus output yang telah ditampilkan
+                                        System.out.println("\033[H\033[2J");
+                                        System.out.flush();
+
                                         System.out.println(
                                                 "    ============================================================================================");
                                         if (konfirmasiPulsa == 'Y' || konfirmasiPulsa == 'y') {
                                             System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
                                             inputPin = scanner5.nextLine();
+
+                                            // Menghapus output yang telah ditampilkan
+                                            System.out.println("\033[H\033[2J");
+                                            System.out.flush();
+
                                             System.out.println(
                                                     "    ============================================================================================");
                                             if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -717,8 +737,14 @@ public class SistemATM {
                                                     transactionCount--;
 
                                                     konfirmasiPulsaUlang = 't'; // Perubahan nilai konfirmasiBayar
-                                                                                // menjadi 't' agar
-                                                    // proses looping bisa berhenti
+                                                                                // menjadi 't' agar proses looping bisa berhenti
+
+                                                    System.out.print("Enter untuk melanjutkan -->  ");
+                                                    pressEnter = scanner1.nextLine();
+
+                                                    // Menghapus output yang telah ditampilkan
+                                                    System.out.println("\033[H\033[2J");
+                                                    System.out.flush();
                                                 } else {
                                                     // Kondisi jika nominal transaksi > saldo pengguna
                                                     System.out.println(
@@ -763,6 +789,7 @@ public class SistemATM {
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
                                                     "    ============================================================================================");
+                                            konfirmasiPulsaUlang = 't';
                                         }
                                     } while (konfirmasiPulsaUlang == 'y' || konfirmasiPulsaUlang == 'Y');
                                     break; // Break case 1 - menu pembayaran pulsa

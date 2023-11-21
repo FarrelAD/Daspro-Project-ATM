@@ -1099,7 +1099,7 @@ public class SistemATM {
                                                 break;
                                             }
                                         }
-                                        // Proses perhitungan tagihan biaya pendidikan
+                                        // Proses perhitungan tagihan biaya BPJS
                                         if (bpjsgate) {
                                             String tagihanBpjsRp = currencyFormat
                                                     .format(BPJSdata[bpjspillihan][1]);
@@ -1160,7 +1160,7 @@ public class SistemATM {
                                                         transactionCount--;
                                                         konfirmasiBpjsUlang = 't';
                                                     } else {
-                                                        // Kondisi jika tagihan pendidikan > saldo pengguna
+                                                        // Kondisi jika tagihan BPJS > saldo pengguna
                                                         System.out.println(
                                                                 "    --------------------------------------------------------------------------------------------");
                                                         System.out.println(

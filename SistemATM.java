@@ -811,6 +811,11 @@ public class SistemATM {
 												"    ============================================================================================");
 										System.out.print("\t-- Masukkan ID pelanggan PLN/Nomor meter: ");
 										int inputPLN = scanner4.nextInt();
+
+										// Menghapus output yang telah ditampilkan
+										System.out.println("\033[H\033[2J");
+										System.out.flush();
+										
 										System.out.println(
 												"    ============================================================================================");
 
@@ -843,11 +848,21 @@ public class SistemATM {
 													inputPLN, tagihanListrikRP);
 											System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 											char konfirmasiListrik = scanner4.next().charAt(0);
+
+											// Menghapus output yang telah ditampilkan
+											System.out.println("\033[H\033[2J");
+											System.out.flush();
+
 											System.out.println(
 													"    ============================================================================================");
 											if (konfirmasiListrik == 'Y' || konfirmasiListrik == 'y') {
 												System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
 												inputPin = scanner5.nextLine();
+
+												// Menghapus output yang telah ditampilkan
+												System.out.println("\033[H\033[2J");
+												System.out.flush();
+
 												System.out.println(
 														"    ============================================================================================");
 												if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -884,6 +899,13 @@ public class SistemATM {
 																		+ tagihanListrikRP;
 														transactionCount--;
 														konfirmasiListrikUlang = 't';
+
+														System.out.print("Enter untuk melanjutkan -->  ");
+														pressEnter = scanner1.nextLine();
+
+														// Menghapus output yang telah ditampilkan
+														System.out.println("\033[H\033[2J");
+														System.out.flush();
 													} else {
 														// Kondisi jika tagihan listrik > saldo pengguna
 														System.out.println(
@@ -1063,7 +1085,7 @@ public class SistemATM {
 									} while (konfirmasiPendidikanUlang == 'y' || konfirmasiPendidikanUlang == 'Y');
 									break; // Break case 3 - menu pembayaran pendidikan
 								case 4: //pembayaran PDAM 
-								   do {
+									do {
 										System.out.println(
 												"PDAM");
 										System.out.print("\t-- Masukkan nomor tagihan : ");
@@ -1186,7 +1208,7 @@ public class SistemATM {
 									} while (konfirmasiPdamUlang == 'y' || konfirmasiPdamUlang == 'Y');
 									break;
 								case 5: //pembayaran BPJS
-								   do {
+									do {
 										System.out.println(
 												"BPJS");
 										System.out.print("\t-- Masukkan nomor tagihan : ");

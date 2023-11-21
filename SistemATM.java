@@ -1396,6 +1396,11 @@ public class SistemATM {
 						System.out.println("\t-- Lakukan transaksi lagi?");
 						System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 						continueTransaction = scanner2.next().charAt(0);
+
+                        // Menghapus output yang telah ditampilkan
+                        System.out.println("\033[H\033[2J");
+                        System.out.flush();
+                        
 						if (continueTransaction == 't' || continueTransaction == 'T') {
 							System.out.println(
 									"    ============================================================================================");

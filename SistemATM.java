@@ -1101,26 +1101,26 @@ public class SistemATM {
                                         }
                                         // Proses perhitungan tagihan biaya pendidikan
                                         if (bpjsgate) {
-                                            String tagihanPendidikanRP = currencyFormat
+                                            String tagihanBpjsRp = currencyFormat
                                                     .format(BPJSdata[bpjspillihan][1]);
                                             System.out.println(
                                                     "    [  _________________________________________________________\t]");
                                             System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
                                             System.out.printf("    [ |  Nomor tagihan\t\t: %d\t\t\t|\t]\n", inputVA);
                                             System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
-                                                    tagihanPendidikanRP);
+                                                    tagihanBpjsRp);
                                             System.out.println(
                                                     "    [  ---------------------------------------------------------\t]");
                                             System.out.println(
                                                     "    ============================================================================================");
                                             System.out.printf(
                                                     "\t-- Konfirmasi transaksi tagihan biaya BPJS sebesar %s\n",
-                                                    tagihanPendidikanRP);
+                                                    tagihanBpjsRp);
                                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
-                                            char konfirmasiPendidikan = scanner4.next().charAt(0);
+                                            char konfirmasiBpjs = scanner4.next().charAt(0);
                                             System.out.println(
                                                     "    ============================================================================================");
-                                            if (konfirmasiPendidikan == 'Y' || konfirmasiPendidikan == 'y') {
+                                            if (konfirmasiBpjs == 'Y' || konfirmasiBpjs == 'y') {
                                                 System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
                                                 inputPin = scanner5.nextLine();
                                                 System.out.println(
@@ -1145,7 +1145,7 @@ public class SistemATM {
                                                         System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n",
                                                                 inputVA);
                                                         System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
-                                                                tagihanPendidikanRP);
+                                                                tagihanBpjsRp);
                                                         System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
                                                                 saldoRupiah3);
                                                         System.out.println(
@@ -1155,10 +1155,10 @@ public class SistemATM {
 
                                                         // Pencatatan riwayat transaksi
                                                         transactionHistory[maxTransactionHistory
-                                                                - transactionCount] = "Telah melakukan pembayaran tagihan pendidikan senilai "
-                                                                        + tagihanPendidikanRP;
+                                                                - transactionCount] = "Telah melakukan pembayaran tagihan BPJS senilai "
+                                                                        + tagihanBpjsRp;
                                                         transactionCount--;
-                                                        konfirmasiPendidikanUlang = 't';
+                                                        konfirmasiBpjsUlang = 't';
                                                     } else {
                                                         // Kondisi jika tagihan pendidikan > saldo pengguna
                                                         System.out.println(
@@ -1202,9 +1202,9 @@ public class SistemATM {
                                                     "    --------------------------------------------------------------------------------------------");
                                             System.out.println(
                                                     "    ============================================================================================");
-                                            konfirmasiPendidikanUlang = 'y';
+                                            konfirmasiBpjsUlang = 'y';
                                         }
-                                    } while (konfirmasiPendidikanUlang == 'y' || konfirmasiPendidikanUlang == 'Y');
+                                    } while (konfirmasiBpjsUlang == 'y' || konfirmasiBpjsUlang == 'Y');
                                     break;
                                 default:
                                     System.out.println(

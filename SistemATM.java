@@ -40,6 +40,10 @@ public class SistemATM {
          */
         // String [] charASCII = {"\u26A0", "\u2714"};
 
+        // Menghapus output yang telah ditampilkan
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
+        
         // Halaman utama sistem ATM
         System.out.println(
                 "=====================================================================================================");
@@ -1373,6 +1377,13 @@ public class SistemATM {
                                     "    [            ----------------------------------------------------------------              ]");
                             System.out.println(
                                     "    ============================================================================================");
+
+                            System.out.print("Enter untuk melanjutkan -->  ");
+                            pressEnter = scanner1.nextLine();
+                            
+                            // Menghapus output yang telah ditampilkan
+                            System.out.println("\033[H\033[2J");
+                            System.out.flush();
                             break; // Break case 6
                         case 7: // OPSI UBAH PIN
                             System.out.println(

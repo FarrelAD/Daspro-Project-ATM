@@ -326,6 +326,11 @@ public class SistemATM {
                             System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input nominal tarik
                                                                                          // tunai
                             cashWithdrawalAmount = scanner3.nextInt();
+                            
+                            // Menghapus output yang telah ditampilkan
+                            System.out.println("\033[H\033[2J");
+                            System.out.flush();
+
                             System.out.println(
                                     "    ============================================================================================");
                             // Konversi nilai output ke Rupiah
@@ -334,12 +339,21 @@ public class SistemATM {
                             System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + cashWitdrawalRupiah + " ? ");
                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             userChoice = scanner4.next().charAt(0);
+                        
+                            // Menghapus output yang telah ditampilkan
+                            System.out.println("\033[H\033[2J");
+                            System.out.flush();
                             System.out.println(
                                     "    ============================================================================================");
 
                             if (userChoice == 'y' || userChoice == 'Y') {
                                 System.out.print("\t-- Masukkan PIN anda: ");
                                 inputPin = scanner5.nextLine();
+                                
+                                // Menghapus output yang telah ditampilkan
+                                System.out.println("\033[H\033[2J");
+                                System.out.flush();
+
                                 System.out.println(
                                         "    ============================================================================================");
 
@@ -368,6 +382,13 @@ public class SistemATM {
                                             transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan tarik tunai sebesar "
                                                     + cashWitdrawalRupiah;
                                             transactionCount--;
+
+                                            System.out.print("Enter untuk melanjutkan -->  ");
+                                            pressEnter = scanner1.nextLine();
+                                            
+                                            // Menghapus output yang telah ditampilkan
+                                            System.out.println("\033[H\033[2J");
+                                            System.out.flush();
                                         } else {
                                             // Kondisi jika nominal Tarik > 5.000.000
                                             System.out.println(
@@ -1400,7 +1421,7 @@ public class SistemATM {
                         // Menghapus output yang telah ditampilkan
                         System.out.println("\033[H\033[2J");
                         System.out.flush();
-                        
+
 						if (continueTransaction == 't' || continueTransaction == 'T') {
 							System.out.println(
 									"    ============================================================================================");

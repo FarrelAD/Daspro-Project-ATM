@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class SistemAtm {
+public class SistemATM {
     public static void main(String[] args) {
 
         Scanner scanner1 = new Scanner(System.in);

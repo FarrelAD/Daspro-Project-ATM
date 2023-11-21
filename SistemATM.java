@@ -448,18 +448,33 @@ public class SistemATM {
                             System.out.print("\t-- Masukkan nominal setor tunai : Rp "); // User input nominal setor
                                                                                          // tunai
                             cashDepositAmount = scanner3.nextInt();
+
+                            // Menghapus output yang telah ditampilkan
+                            System.out.println("\033[H\033[2J");
+                            System.out.flush();
+
                             System.out.println(
                                     "    ============================================================================================");
                             String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
                             System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + cashDepositRupiah + " ? ");
                             System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
                             userChoice = scanner4.next().charAt(0);
+
+                            // Menghapus output yang telah ditampilkan
+                            System.out.println("\033[H\033[2J");
+                            System.out.flush();
+
                             System.out.println(
                                     "    ============================================================================================");
 
                             if (userChoice == 'y' || userChoice == 'Y') {
                                 System.out.print("\t-- Masukkan PIN anda: ");
                                 inputPin = scanner5.nextLine();
+
+                                // Menghapus output yang telah ditampilkan
+                                System.out.println("\033[H\033[2J");
+                                System.out.flush();
+
                                 System.out.println(
                                         "    ============================================================================================");
                                 if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -482,6 +497,13 @@ public class SistemATM {
                                     // Pencatatan riwayat transaksi
                                     transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan setor tunai sebesar " + cashDepositRupiah;
                                     transactionCount--;
+
+                                    System.out.print("Enter untuk melanjutkan -->  ");
+                                    pressEnter = scanner1.nextLine();
+
+                                    // Menghapus output yang telah ditampilkan
+                                    System.out.println("\033[H\033[2J");
+                                    System.out.flush();
                                 } else {
                                     // Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
                                     System.out.println(

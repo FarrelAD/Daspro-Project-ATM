@@ -495,12 +495,12 @@ public class SistemATM {
                             int listrikPilihan = 0; // variabel untuk menampung posisi data listrik ID PLN
                             boolean listrikGate = false; // Sebagai gerbang untuk melakukan proses transaksi listrik
                             int pendidikanPilihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
-                            boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi
-                            int pdampillihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
-                            boolean pdamgate = false; // sebagai gerbang untuk melakukan proses transaksi
-                            int bpjspillihan = 0; // variabel untuk menampung posisi data VA (pendidikan)
-                            boolean bpjsgate = false; // sebagai gerbang untuk melakukan proses transaksi
-                                                            // pendidikan
+                            boolean pendidikanGate = false; // sebagai gerbang untuk melakukan proses transaksi pendidikan
+                            int pdampillihan = 0; // variabel untuk menampung posisi data VA (PDAM)
+                            boolean pdamgate = false; // sebagai gerbang untuk melakukan proses transaksi PDAM
+                            int bpjspillihan = 0; // variabel untuk menampung posisi data VA (BPJS)
+                            boolean bpjsgate = false; // sebagai gerbang untuk melakukan proses transaksi BPJS
+
                             System.out.println(
                                     "    ============================================================================================");
                             System.out.println(

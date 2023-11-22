@@ -967,6 +967,11 @@ public class SistemATM {
 												"    ============================================================================================");
 										System.out.print("\t-- Masukkan nomor virtual account : ");
 										int inputVA = scanner4.nextInt();
+
+										// Menghapus output yang telah ditampilkan
+										System.out.println("\033[H\033[2J");
+										System.out.flush();
+
 										System.out.println(
 												"    ============================================================================================");
 										// pengecekan data VA
@@ -996,11 +1001,21 @@ public class SistemATM {
 													tagihanPendidikanRP);
 											System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 											char konfirmasiPendidikan = scanner4.next().charAt(0);
+
+											// Menghapus output yang telah ditampilkan
+											System.out.println("\033[H\033[2J");
+											System.out.flush();
+
 											System.out.println(
 													"    ============================================================================================");
 											if (konfirmasiPendidikan == 'Y' || konfirmasiPendidikan == 'y') {
 												System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
 												inputPin = scanner5.nextLine();
+
+												// Menghapus output yang telah ditampilkan
+												System.out.println("\033[H\033[2J");
+												System.out.flush();
+
 												System.out.println(
 														"    ============================================================================================");
 												if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -1037,6 +1052,13 @@ public class SistemATM {
 																		+ tagihanPendidikanRP;
 														transactionCount--;
 														konfirmasiPendidikanUlang = 't';
+
+														System.out.print("Enter untuk melanjutkan -->  ");
+														pressEnter = scanner1.nextLine();
+
+														// Menghapus output yang telah ditampilkan
+														System.out.println("\033[H\033[2J");
+														System.out.flush();
 													} else {
 														// Kondisi jika tagihan pendidikan > saldo pengguna
 														System.out.println(

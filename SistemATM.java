@@ -1258,6 +1258,11 @@ public class SistemATM {
 												"BPJS");
 										System.out.print("\t-- Masukkan nomor tagihan : ");
 										int inputVA = scanner4.nextInt();
+
+										// Menghapus output yang telah ditampilkan
+										System.out.println("\033[H\033[2J");
+										System.out.flush();
+
 										System.out.println(
 												"    ============================================================================================");
 										// pengecekan data VA
@@ -1287,11 +1292,21 @@ public class SistemATM {
 													tagihanBpjsRp);
 											System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 											char konfirmasiBpjs = scanner4.next().charAt(0);
+
+											// Menghapus output yang telah ditampilkan
+											System.out.println("\033[H\033[2J");
+											System.out.flush();
+
 											System.out.println(
 													"    ============================================================================================");
 											if (konfirmasiBpjs == 'Y' || konfirmasiBpjs == 'y') {
 												System.out.print("\t-- Masukkan PIN anda : "); // Input PIN pengguna
 												inputPin = scanner5.nextLine();
+
+												// Menghapus output yang telah ditampilkan
+												System.out.println("\033[H\033[2J");
+												System.out.flush();
+												
 												System.out.println(
 														"    ============================================================================================");
 												if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -1328,6 +1343,13 @@ public class SistemATM {
 																		+ tagihanBpjsRp;
 														transactionCount--;
 														konfirmasiBpjsUlang = 't';
+
+														System.out.print("Enter untuk melanjutkan -->  ");
+														pressEnter = scanner1.nextLine();
+
+														// Menghapus output yang telah ditampilkan
+														System.out.println("\033[H\033[2J");
+														System.out.flush();
 													} else {
 														// Kondisi jika tagihan BPJS > saldo pengguna
 														System.out.println(

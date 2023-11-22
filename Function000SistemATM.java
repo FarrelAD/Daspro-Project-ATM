@@ -31,7 +31,59 @@ public class Function000SistemATM {
     static String pressEnter;
 
     public static void main(String[] args) {
-        TryToLogin();
+        // ASCII-UNICODE CHARACTER
+        System.setProperty("file.encoding", "UTF-8");
+        /*
+         * char[] charASCII = {'\u26A0', '\u2714'};
+         * String charWarning = new String(new char[] {charASCII[0]});
+         * String charChecklist = new String(new char[] {charASCII[1]});
+         */
+        // String [] charASCII = {"\u26A0", "\u2714"};
+
+        // Menghapus output yang telah ditampilkan
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
+
+        // Halaman utama sistem ATM
+        System.out.println(
+                "=====================================================================================================");
+        System.out.println(
+                "[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]");
+        System.out.println(
+                "[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]");
+        System.out.println(
+                "[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]");
+        System.out.println(
+                "[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]");
+        System.out.println(
+                "[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]");
+        System.out.println(
+                "[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]");
+        System.out.println(
+                "[ ================================================================================================= ]");
+        System.out.println(
+                "[                         _    _ _____ _     _____ ________  ___ _____                              ]");
+        System.out.println(
+                "[                        | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|                             ]");
+        System.out.println(
+                "[                        | |  | | |__ | |   | /  \\/ | | | .  . || |__                               ]");
+        System.out.println(
+                "[                        | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|                              ]");
+        System.out.println(
+                "[                        \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___                              ]");
+        System.out.println(
+                "[                         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/                              ]");
+        System.out.println(
+                "=====================================================================================================");
+        System.out.println("");
+        // Proses logi
+        while (loginAttempts <= MAX_LOGIN_ATTEMPTS) {
+            if (TryToLogin()) {
+                System.out.println("Berhasil login");
+            } else {
+                LoginGoesWrong();
+            }
+        }
         Menu();
         Transfer();
         TarikTunai();
@@ -42,8 +94,66 @@ public class Function000SistemATM {
         Exit();
     }
 
-    public static void TryToLogin() {
+    public static boolean TryToLogin() {
+        System.out.println(
+                "    ============================================================================================");
+        System.out.print("    [  Masukkan nomor rekening : "); // Input nomor rekening
+        String inputUser_AccountNumber = scanner1.nextLine();
 
+        System.out.print("    [  Masukkan PIN anda : "); // Input PIN pengguna
+        String inputPin = scanner1.nextLine();
+        System.out.println(
+                "    ============================================================================================");
+        System.out.println("");
+
+        // Menghapus output yang telah ditampilkan
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
+
+        // Pengecekan kesesuaian nomor rekening dan PIN untuk login
+        for (int i = 0; i < accountData.length; i++) {
+            if (inputUser_AccountNumber.equals(accountData[i][0]) && inputPin.equals(accountData[i][1])
+                    && accountData[i][3].equals("aman")) {
+                isAccountValid = true; // autentifikasi
+                accountLineIndex = i; // session
+            }
+        }
+        return isAccountValid;
+    }
+
+    public static void LoginGoesWrong() {
+        if (loginAttempts < MAX_LOGIN_ATTEMPTS) {
+            System.out.println(
+                    "    ============================================================================================");
+            System.out.println(
+                    "    --------------------------------------------------------------------------------------------");
+            System.out.println(
+                    "               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]");
+            System.out.println(
+                    "    --------------------------------------------------------------------------------------------");
+            System.out.println(
+                    "    ============================================================================================");
+            loginAttempts++;
+            System.out.print("Enter untuk melanjutkan -->  ");
+            pressEnter = scanner1.nextLine();
+
+            // Menghapus output yang telah ditampilkan
+            System.out.println("\033[H\033[2J");
+            System.out.flush();
+        } else {
+            System.out.println(
+                    "    ============================================================================================");
+            System.out.println(
+                    "    --------------------------------------------------------------------------------------------");
+            System.out.println(
+                    "               [  (!) Anda telah gagal lebih dari 3 kali. Akun anda diblokir. (!)  ]");
+            System.out.println(
+                    "    --------------------------------------------------------------------------------------------");
+            System.out.println(
+                    "    ============================================================================================");
+            accountData[accountLineIndex][3] = "diblokir";
+            loginAttempts++;
+        }
     }
 
     public static void Menu() {

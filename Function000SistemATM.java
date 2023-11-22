@@ -210,8 +210,25 @@ public class Function000SistemATM {
             System.out.flush();
             switch (menu) {
                 case 1:
-                    Transfer();
-                    break;
+                        Transfer();
+                        break;
+                case 2:
+                        TarikTunai();
+                        break;
+                case 3:
+                        SetorTunai();
+                        break;
+                case 4:
+                        PembayaranLainnya();
+                        break;
+                case 5:
+                        CekSaldo();
+                        break;
+                case 6:
+                        UbahPin();
+                        break;
+                case 7:
+                        Exit();
                 default:
                     break;
             }

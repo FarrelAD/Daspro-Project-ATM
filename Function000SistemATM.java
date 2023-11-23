@@ -428,17 +428,17 @@ public class Function000SistemATM {
 		System.out.println(
 				"    [  |_2._Listrik__|                                                                         ]");
 		System.out.println(
-				"    [   ______________                                                                         ]");
+				"    [   _______________                                                                        ]");
 		System.out.println(
-				"    [  |_3._Pendidikan                                                                         ]");
+				"    [  |_3._Pendidikan_|                                                                       ]");
 		System.out.println(
-				"    [   ______________                                                                         ]");
+				"    [   _______________                                                                        ]");
 		System.out.println(
-				"    [  |_4._PDAM                                                                               ]");
+				"    [  |_4._PDAM_______|                                                                       ]");
 		System.out.println(
-				"    [   ______________                                                                         ]");
+				"    [   _______________                                                                        ]");
 		System.out.println(
-				"    [  |_5._BPJS|                                                                              ]");
+				"    [  |_5._BPJS_______|                                                                       ]");
 		System.out.println(
 				"    ============================================================================================");
 		System.out.print("\t-- Menu yang anda pilih (angka): "); 

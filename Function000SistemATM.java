@@ -428,21 +428,154 @@ public class Function000SistemATM {
 		System.out.println(
 				"    [  |_2._Listrik__|                                                                         ]");
 		System.out.println(
-				"    [   ______________                                                                         ]");
+				"    [   _______________                                                                        ]");
 		System.out.println(
-				"    [  |_3._Pendidikan                                                                         ]");
+				"    [  |_3._Pendidikan_|                                                                       ]");
 		System.out.println(
-				"    [   ______________                                                                         ]");
+				"    [   _______________                                                                        ]");
 		System.out.println(
-				"    [  |_4._PDAM                                                                               ]");
+				"    [  |_4._PDAM_______|                                                                       ]");
 		System.out.println(
-				"    [   ______________                                                                         ]");
+				"    [   _______________                                                                        ]");
 		System.out.println(
-				"    [  |_5._BPJS|                                                                              ]");
+				"    [  |_5._BPJS_______|                                                                       ]");
 		System.out.println(
 				"    ============================================================================================");
 		System.out.print("\t-- Menu yang anda pilih (angka): "); 
 		int menuBayar = scanner3.nextInt();
+		ClearScreen();
+		switch(menuBayar) {
+			case 1: 
+				Pulsa();
+				break;
+			case 2:
+				Listrik();
+				break;
+			case 3:
+				Pendidikan();
+				break;
+			case 4:
+				Pdam();
+				break;
+			case 5:
+				Bpjs();
+				break;
+			default:
+				break;
+		}
+	}
+
+	public static void PulsaView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╔═╗╦ ╦╦  ╔═╗╔═╗ - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╠═╝║ ║║  ╚═╗╠═╣ - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╩  ╚═╝╩═╝╚═╝╩ ╩ - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
+
+	public static void Pulsa() {
+		PulsaView();
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [ Pilih operator seluler:                                                                  ]");
+		System.out.println(
+				"    [  ____________                                                                            ]");
+		System.out.println(
+				"    [ |1._Indosat__|                                                                           ]");
+		System.out.println(
+				"    [  ____________                                                                            ]");
+		System.out.println(
+				"    [ |2._XL_______|                                                                           ]");
+		System.out.println(
+				"    [  _____________                                                                           ]");
+		System.out.println(
+				"    [ |3._Telkomsel_|                                                                          ]");
+		System.out.println(
+				"    ============================================================================================");
+		System.out.print("\t-- Operator yang anda pilih: ");
+		String operatorPulsa = scanner2.next();
+	}
+
+	public static void ListrikView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╦  ╦╔═╗╔╦╗╦═╗╦╦╔═ - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -║  ║╚═╗ ║ ╠╦╝║╠╩╗ - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╩═╝╩╚═╝ ╩ ╩╚═╩╩ ╩ - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
+
+	public static void Listrik() {
+		ListrikView();
+		System.out.print("\t-- Masukkan ID pelanggan PLN/Nomor meter: ");
+		int inputPLN = scanner4.nextInt();
+	}
+
+	public static void PendidikanView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╔═╗╔═╗╔╗╔╔╦╗╦╔╦╗╦╦╔═╔═╗╔╗╔ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╠═╝║╣ ║║║ ║║║ ║║║╠╩╗╠═╣║║║ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╩  ╚═╝╝╚╝═╩╝╩═╩╝╩╩ ╩╩ ╩╝╚╝ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
+
+	public static void Pendidikan() {
+		PendidikanView();
+		System.out.print("\t-- Masukkan nomor virtual account : ");
+		int inputVA = scanner4.nextInt();
+	}
+
+	public static void PdamView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - -╔═╗╔╦╗╔═╗╔╦╗- - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - -╠═╝ ║║╠═╣║║║- - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - -╩  ═╩╝╩ ╩╩ ╩- - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
+
+	public static void Pdam() {
+		PdamView();
+		System.out.print("\t-- Masukkan nomor tagihan : ");
+		int inputVA = scanner4.nextInt();
+	}
+
+	public static void BpjsView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - - ╔╗ ╔═╗╦╔═╗- - - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - - ╠╩╗╠═╝║╚═╗- - - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - - ╚═╝╩ ╚╝╚═╝- - - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    ============================================================================================");
+	}
+
+	public static void Bpjs() {
+		BpjsView();
+		System.out.print("\t-- Masukkan nomor tagihan : ");
+		int inputVA = scanner4.nextInt();
 	}
 
 	public static void RiwayatTransaksiView() {

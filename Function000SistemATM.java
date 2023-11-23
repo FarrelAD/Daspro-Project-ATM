@@ -521,8 +521,23 @@ public class Function000SistemATM {
 		int inputPLN = scanner4.nextInt();
 	}
 
-	public static void Pendidikan() {
+	public static void PendidikanView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╔═╗╔═╗╔╗╔╔╦╗╦╔╦╗╦╦╔═╔═╗╔╗╔ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╠═╝║╣ ║║║ ║║║ ║║║╠╩╗╠═╣║║║ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╩  ╚═╝╝╚╝═╩╝╩═╩╝╩╩ ╩╩ ╩╝╚╝ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 
+	public static void Pendidikan() {
+		PendidikanView();
+		System.out.print("\t-- Masukkan nomor virtual account : ");
+		int inputVA = scanner4.nextInt();
 	}
 
 	public static void Pdam() {

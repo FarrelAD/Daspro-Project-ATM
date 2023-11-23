@@ -1,3 +1,7 @@
+// Program sistem ATM - Kelompok 4 - TI-1B
+// Fitur yang tersedia: autentifikasi pengguna, transfer, tarik tunai, setor tunai, pembayaran lain-lain, riwayat transaksi, cek saldo, ubah PIN, dan EXIT
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Function000SistemATM {
@@ -76,6 +80,7 @@ public class Function000SistemATM {
 				"=====================================================================================================");
 		System.out.println("");
     }
+
     public static  boolean Login() {
         while (loginAttempts <= MAX_LOGIN_ATTEMPTS) {
 			System.out.println(
@@ -143,7 +148,84 @@ public class Function000SistemATM {
     }
 
     public static void Menu() {
+        String inputTarget_AccountNumber;
+        char continueTransaction = 'y', userChoice = 't';
+        int transferAmount, cashWithdrawalAmount, cashDepositAmount;
+        int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
 
+        // Format nilai uang Indonesia Rupiah (IDR)
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+
+        // Perulangan menu berdasarkan continueTransaction user
+        do {
+            System.out.println(
+                    "    ============================================================================================");
+            System.out.println(
+                    "    [  Silakan memilih menu dibawah ini :                                                      ]");
+            System.out.println(
+                    "    [   _________________                                                                      ]");
+            System.out.println(
+                    "    [  |_1._Transfer_____|                                                                     ]");
+            System.out.println(
+                    "    [   _________________                                                                      ]");
+            System.out.println(
+                    "    [  |_2._Tarik tunai__|                                                                     ]");
+            System.out.println(
+                    "    [   ________________                                                                       ]");
+            System.out.println(
+                    "    [  |_3._Setor tunai_|                                                                      ]");
+            System.out.println(
+                    "    [   __________________________                                                             ]");
+            System.out.println(
+                    "    [  |_4._Pembayaran lain-lain__|                                                            ]");
+            System.out.println(
+                    "    [   _______________________                                                                ]");
+            System.out.println(
+                    "    [  |_5._Riwayat transaksi__|                                                               ]");
+            System.out.println(
+                    "    [   ________________                                                                       ]");
+            System.out.println(
+                    "    [  |_6._Cek Saldo___|                                                                      ]");
+            System.out.println(
+                    "    [   ________________                                                                       ]");
+            System.out.println(
+                    "    [  |_7._Ubah PIN____|                                                                      ]");
+            System.out.println(
+                    "    [   ______________                                                                         ]");
+            System.out.println(
+                    "    [  |_8. Keluar____|                                                                        ]");
+            System.out.println(
+                    "    ============================================================================================");
+            System.out.print("\tMenu yang dipilih (angka) : "); // User input pilihan menu berupa angka
+            int menu = scanner2.nextInt();
+            // Menghapus output yang telah ditampilkan
+            System.out.println("\033[H\033[2J");
+            System.out.flush();
+            switch (menu) {
+                case 1:
+                     Transfer();
+                    break;
+                case 2:
+                    TarikTunai();
+                    break;
+                case 3:
+                    SetorTunai();
+                    break;
+                case 4:
+                    PembayaranLainnya();
+                    break;
+                case 5:
+                    CekSaldo();
+                    break;
+                case 6:
+                    UbahPin();
+                    break;
+                case 7:
+                    Exit();
+                default:
+                    break;
+            }
+        } while (continueTransaction == 'y' || continueTransaction == 'Y');
     }
 
     public static void Transfer() {
@@ -177,5 +259,5 @@ public class Function000SistemATM {
     public static void Exit() {
 
     }
-    
+
 }

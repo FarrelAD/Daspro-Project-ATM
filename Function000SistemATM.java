@@ -479,8 +479,22 @@ public class Function000SistemATM {
 		pressEnter = scanner1.nextLine();
 	}
 
+	public static void UbahPinView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - ╦ ╦╔╗ ╔═╗╦ ╦  ╔═╗╦╔╗╔- - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - ║ ║╠╩╗╠═╣╠═╣  ╠═╝║║║║- - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩╩ ╩  ╩  ╩╝╚╝- - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void UbahPin() {
-
+		UbahPinView();
+		System.out.print("    Masukkan nomor rekening : ");
+		String inputUser_AccountNumber7 = scanner1.nextLine();
 	}
 
 	public static char Exit() {

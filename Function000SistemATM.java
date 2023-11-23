@@ -461,8 +461,22 @@ public class Function000SistemATM {
 		pressEnter = scanner1.nextLine();
 	}
 
+	public static void CekSaldoView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╔═╗╔═╗╦╔═  ╔═╗╔═╗╦  ╔╦╗╔═╗ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ║  ║╣ ╠╩╗  ╚═╗╠═╣║   ║║║ ║ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩  ╚═╝╩ ╩╩═╝═╩╝╚═╝ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void CekSaldo() {
-
+		CekSaldoView();
+		System.out.print("Enter untuk melanjutkan -->  ");
+		pressEnter = scanner1.nextLine();
 	}
 
 	public static void UbahPin() {

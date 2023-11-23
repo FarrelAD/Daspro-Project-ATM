@@ -502,8 +502,23 @@ public class Function000SistemATM {
 		String operatorPulsa = scanner2.next();
 	}
 
-	public static void Listrik() {
+	public static void ListrikView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╦  ╦╔═╗╔╦╗╦═╗╦╦╔═ - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -║  ║╚═╗ ║ ╠╦╝║╠╩╗ - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╩═╝╩╚═╝ ╩ ╩╚═╩╩ ╩ - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 
+	public static void Listrik() {
+		ListrikView();
+		System.out.print("\t-- Masukkan ID pelanggan PLN/Nomor meter: ");
+		int inputPLN = scanner4.nextInt();
 	}
 
 	public static void Pendidikan() {

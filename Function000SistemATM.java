@@ -540,8 +540,23 @@ public class Function000SistemATM {
 		int inputVA = scanner4.nextInt();
 	}
 
-	public static void Pdam() {
+	public static void PdamView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - -╔═╗╔╦╗╔═╗╔╦╗- - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - -╠═╝ ║║╠═╣║║║- - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - - -╩  ═╩╝╩ ╩╩ ╩- - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 
+	public static void Pdam() {
+		PdamView();
+		System.out.print("\t-- Masukkan nomor tagihan : ");
+		int inputVA = scanner4.nextInt();
 	}
 
 	public static void Bpjs() {

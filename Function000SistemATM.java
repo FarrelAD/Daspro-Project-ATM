@@ -497,10 +497,24 @@ public class Function000SistemATM {
 		String inputUser_AccountNumber7 = scanner1.nextLine();
 	}
 
+	public static void ExitView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - ╦╔═╔═╗╦  ╦ ╦╔═╗╦═╗ - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - ╠╩╗║╣ ║  ║ ║╠═╣╠╦╝ - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - ╩ ╩╚═╝╩═╝╚═╝╩ ╩╩╚═ - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    ============================================================================================");
+	}	
 	public static char Exit() {
+		ExitView();
 		System.out.println("\t-- Apakah anda yakin untuk keluar?");
 		System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 		char userTryExit = scanner1.next().charAt(0);
+		ClearScreen();
 		if (userTryExit == 'Y' || userTryExit == 'y') {
 			continueTransaction = 't';
 			System.out.println(

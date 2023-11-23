@@ -465,8 +465,41 @@ public class Function000SistemATM {
 		}
 	}
 
-	public static void Pulsa() {
+	public static void PulsaView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╔═╗╦ ╦╦  ╔═╗╔═╗ - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╠═╝║ ║║  ╚═╗╠═╣ - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - -╩  ╚═╝╩═╝╚═╝╩ ╩ - - - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 
+	public static void Pulsa() {
+		PulsaView();
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [ Pilih operator seluler:                                                                  ]");
+		System.out.println(
+				"    [  ____________                                                                            ]");
+		System.out.println(
+				"    [ |1._Indosat__|                                                                           ]");
+		System.out.println(
+				"    [  ____________                                                                            ]");
+		System.out.println(
+				"    [ |2._XL_______|                                                                           ]");
+		System.out.println(
+				"    [  _____________                                                                           ]");
+		System.out.println(
+				"    [ |3._Telkomsel_|                                                                          ]");
+		System.out.println(
+				"    ============================================================================================");
+		System.out.print("\t-- Operator yang anda pilih: ");
+		String operatorPulsa = scanner2.next();
 	}
 
 	public static void Listrik() {
@@ -482,7 +515,7 @@ public class Function000SistemATM {
 	}
 
 	public static void Bpjs() {
-		
+
 	}
 
 	public static void RiwayatTransaksiView() {

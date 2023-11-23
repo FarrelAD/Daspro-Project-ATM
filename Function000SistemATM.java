@@ -399,8 +399,48 @@ public class Function000SistemATM {
 		cashDepositAmount = scanner3.nextInt();
 	}
 
+	public static void PembayaranLainnyaView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - -╔═╗╔═╗╔╦╗╔╗ ╔═╗╦ ╦╔═╗╦═╗╔═╗╔╗╔  ╦  ╔═╗╦╔╗╔╔╗╔╦ ╦╔═╗- - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - -╠═╝║╣ ║║║╠╩╗╠═╣╚╦╝╠═╣╠╦╝╠═╣║║║  ║  ╠═╣║║║║║║║╚╦╝╠═╣- - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - -╩  ╚═╝╩ ╩╚═╝╩ ╩ ╩ ╩ ╩╩╚═╩ ╩╝╚╝  ╩═╝╩ ╩╩╝╚╝╝╚╝ ╩ ╩ ╩- - - - - - - - - - ]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void PembayaranLainnya() {
-
+		PembayaranLainnyaView();
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [  Silakan Pilih transaksi pembayaran berikut:                                             ]");
+		System.out.println(
+				"    [   _____________                                                                          ]");
+		System.out.println(
+				"    [  |_1._Pulsa____|                                                                         ]");
+		System.out.println(
+				"    [   _____________                                                                          ]");
+		System.out.println(
+				"    [  |_2._Listrik__|                                                                         ]");
+		System.out.println(
+				"    [   ______________                                                                         ]");
+		System.out.println(
+				"    [  |_3._Pendidikan                                                                         ]");
+		System.out.println(
+				"    [   ______________                                                                         ]");
+		System.out.println(
+				"    [  |_4._PDAM                                                                               ]");
+		System.out.println(
+				"    [   ______________                                                                         ]");
+		System.out.println(
+				"    [  |_5._BPJS|                                                                              ]");
+		System.out.println(
+				"    ============================================================================================");
+		System.out.print("\t-- Menu yang anda pilih (angka): "); 
+		int menuBayar = scanner3.nextInt();
 	}
 
 	public static void RiwayatTransaksi() {

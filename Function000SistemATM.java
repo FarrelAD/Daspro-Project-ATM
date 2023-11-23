@@ -362,35 +362,159 @@ public class Function000SistemATM {
 		}
 	}
 
-
+	public static void TarikTunaiView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╔╦╗╔═╗╦═╗╦╦╔═  ╔╦╗╦ ╦╔╗╔╔═╗╦ - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - -║ ╠═╣╠╦╝║╠╩╗   ║ ║ ║║║║╠═╣║ - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - -╩ ╩ ╩╩╚═╩╩ ╩   ╩ ╚═╝╝╚╝╩ ╩╩ - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void TarikTunai() {
-
+		TarikTunaiView();
+		System.out.print("\t-- Masukkan nominal tarik tunai : Rp ");
+		cashWithdrawalAmount = scanner3.nextInt();
 	}
 
+	public static void SetorTunaiView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - -╔═╗╔═╗╔╦╗╔═╗╦═╗  ╔╦╗╦ ╦╔╗╔╔═╗╦- - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - -╚═╗║╣  ║ ║ ║╠╦╝   ║ ║ ║║║║╠═╣║- - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - -╚═╝╚═╝ ╩ ╚═╝╩╚═   ╩ ╚═╝╝╚╝╩ ╩╩- - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+
+	}
 	public static void SetorTunai() {
-
+		SetorTunaiView();
+		System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
+		cashDepositAmount = scanner3.nextInt();
 	}
 
+	public static void PembayaranLainnyaView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - -╔═╗╔═╗╔╦╗╔╗ ╔═╗╦ ╦╔═╗╦═╗╔═╗╔╗╔  ╦  ╔═╗╦╔╗╔╔╗╔╦ ╦╔═╗- - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - -╠═╝║╣ ║║║╠╩╗╠═╣╚╦╝╠═╣╠╦╝╠═╣║║║  ║  ╠═╣║║║║║║║╚╦╝╠═╣- - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - -╩  ╚═╝╩ ╩╚═╝╩ ╩ ╩ ╩ ╩╩╚═╩ ╩╝╚╝  ╩═╝╩ ╩╩╝╚╝╝╚╝ ╩ ╩ ╩- - - - - - - - - - ]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void PembayaranLainnya() {
-
+		PembayaranLainnyaView();
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [  Silakan Pilih transaksi pembayaran berikut:                                             ]");
+		System.out.println(
+				"    [   _____________                                                                          ]");
+		System.out.println(
+				"    [  |_1._Pulsa____|                                                                         ]");
+		System.out.println(
+				"    [   _____________                                                                          ]");
+		System.out.println(
+				"    [  |_2._Listrik__|                                                                         ]");
+		System.out.println(
+				"    [   ______________                                                                         ]");
+		System.out.println(
+				"    [  |_3._Pendidikan                                                                         ]");
+		System.out.println(
+				"    [   ______________                                                                         ]");
+		System.out.println(
+				"    [  |_4._PDAM                                                                               ]");
+		System.out.println(
+				"    [   ______________                                                                         ]");
+		System.out.println(
+				"    [  |_5._BPJS|                                                                              ]");
+		System.out.println(
+				"    ============================================================================================");
+		System.out.print("\t-- Menu yang anda pilih (angka): "); 
+		int menuBayar = scanner3.nextInt();
 	}
 
+	public static void RiwayatTransaksiView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - -╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╦╔═╔═╗╦- - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - -╠╦╝║║║║╠═╣╚╦╝╠═╣ ║    ║ ╠╦╝╠═╣║║║╚═╗╠═╣╠╩╗╚═╗║- - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - -╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩    ╩ ╩╚═╩ ╩╝╚╝╚═╝╩ ╩╩ ╩╚═╝╩- - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void RiwayatTransaksi() {
-
+		RiwayatTransaksiView();
+		System.out.print("Enter untuk melanjutkan -->  ");
+		pressEnter = scanner1.nextLine();
 	}
 
+	public static void CekSaldoView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╔═╗╔═╗╦╔═  ╔═╗╔═╗╦  ╔╦╗╔═╗ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ║  ║╣ ╠╩╗  ╚═╗╠═╣║   ║║║ ║ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩  ╚═╝╩ ╩╩═╝═╩╝╚═╝ - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void CekSaldo() {
-
+		CekSaldoView();
+		System.out.print("Enter untuk melanjutkan -->  ");
+		pressEnter = scanner1.nextLine();
 	}
 
+	public static void UbahPinView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - ╦ ╦╔╗ ╔═╗╦ ╦  ╔═╗╦╔╗╔- - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - ║ ║╠╩╗╠═╣╠═╣  ╠═╝║║║║- - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩╩ ╩  ╩  ╩╝╚╝- - - - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void UbahPin() {
-
+		UbahPinView();
+		System.out.print("    Masukkan nomor rekening : ");
+		String inputUser_AccountNumber7 = scanner1.nextLine();
 	}
 
+	public static void ExitView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - ╦╔═╔═╗╦  ╦ ╦╔═╗╦═╗ - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - ╠╩╗║╣ ║  ║ ║╠═╣╠╦╝ - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - - - ╩ ╩╚═╝╩═╝╚═╝╩ ╩╩╚═ - - - - - - - - - - - - - - - - - - ]");
+		System.out.println(
+				"    ============================================================================================");
+	}	
 	public static char Exit() {
+		ExitView();
 		System.out.println("\t-- Apakah anda yakin untuk keluar?");
 		System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 		char userTryExit = scanner1.next().charAt(0);
+		ClearScreen();
 		if (userTryExit == 'Y' || userTryExit == 'y') {
 			continueTransaction = 't';
 			System.out.println(

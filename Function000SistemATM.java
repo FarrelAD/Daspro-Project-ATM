@@ -29,6 +29,14 @@ public class Function000SistemATM {
     static boolean isTransactionExit = true;
     static String pressEnter;
 
+    static String inputTarget_AccountNumber;
+    static char continueTransaction = 'y', userChoice = 't';
+    static int transferAmount, cashWithdrawalAmount, cashDepositAmount;
+    static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
+
+    // Format nilai uang Indonesia Rupiah (IDR)
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+
     public static void main(String[] args) {
         PageMenu();
         Login();
@@ -134,14 +142,6 @@ public class Function000SistemATM {
     }
 
     public static void Menu() {
-        String inputTarget_AccountNumber;
-        char continueTransaction = 'y', userChoice = 't';
-        int transferAmount, cashWithdrawalAmount, cashDepositAmount;
-        int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
-
-        // Format nilai uang Indonesia Rupiah (IDR)
-        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-
         // Perulangan menu berdasarkan continueTransaction user
         do {
             System.out.println(
@@ -188,7 +188,7 @@ public class Function000SistemATM {
             ClearScreen();
             switch (menu) {
                 case 1:
-                     Transfer();
+                    Transfer();
                     break;
                 case 2:
                     TarikTunai();
@@ -244,8 +244,22 @@ public class Function000SistemATM {
 
     }
 
-    public static void Exit() {
-
+    public static char Exit() {
+        System.out.println("\t-- Apakah anda yakin untuk keluar?");
+        System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+        char userTryExit = scanner1.next().charAt(0);
+        if (userTryExit == 'Y' || userTryExit == 'y') {
+            continueTransaction = 't';
+            System.out.println(
+                "    ============================================================================================");
+            System.out.println(
+                "     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
+            System.out.println(
+                "    ============================================================================================");
+        } else {
+            continueTransaction = 'y' ;
+        }
+        return continueTransaction;
     }
 
     public static void ClearScreen() {

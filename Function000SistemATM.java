@@ -443,6 +443,46 @@ public class Function000SistemATM {
 				"    ============================================================================================");
 		System.out.print("\t-- Menu yang anda pilih (angka): "); 
 		int menuBayar = scanner3.nextInt();
+		ClearScreen();
+		switch(menuBayar) {
+			case 1: 
+				Pulsa();
+				break;
+			case 2:
+				Listrik();
+				break;
+			case 3:
+				Pendidikan();
+				break;
+			case 4:
+				Pdam();
+				break;
+			case 5:
+				Bpjs();
+				break;
+			default:
+				break;
+		}
+	}
+
+	public static void Pulsa() {
+
+	}
+
+	public static void Listrik() {
+
+	}
+
+	public static void Pendidikan() {
+
+	}
+
+	public static void Pdam() {
+
+	}
+
+	public static void Bpjs() {
+		
 	}
 
 	public static void RiwayatTransaksiView() {

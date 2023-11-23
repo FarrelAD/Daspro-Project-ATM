@@ -43,7 +43,9 @@ public class Function000SistemATM {
 	public static void main(String[] args) {
 		PageMenu();
 		Login();
-		Menu();
+		if (isAccountValid) {
+			Menu();
+		}
 	}
 
 	public static void PageMenu() {

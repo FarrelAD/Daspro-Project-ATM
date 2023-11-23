@@ -362,9 +362,22 @@ public class Function000SistemATM {
 		}
 	}
 
-
+	public static void TarikTunaiView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - ╔╦╗╔═╗╦═╗╦╦╔═  ╔╦╗╦ ╦╔╗╔╔═╗╦ - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - -║ ╠═╣╠╦╝║╠╩╗   ║ ║ ║║║║╠═╣║ - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - - -╩ ╩ ╩╩╚═╩╩ ╩   ╩ ╚═╝╝╚╝╩ ╩╩ - - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void TarikTunai() {
-
+		TarikTunaiView();
+		System.out.print("\t-- Masukkan nominal tarik tunai : Rp ");
+		cashWithdrawalAmount = scanner3.nextInt();
 	}
 
 	public static void SetorTunai() {

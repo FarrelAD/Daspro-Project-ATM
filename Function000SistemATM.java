@@ -33,21 +33,11 @@ public class Function000SistemATM {
         PageMenu();
         Login();
         Menu();
-        Transfer();
-        TarikTunai();
-        SetorTunai();
-        PembayaranLainnya();
-        CekSaldo();
-        UbahPin();
-        Exit();
     }
 
     public static void PageMenu() {
-        // Menghapus output yang telah ditampilkan
-		System.out.println("\033[H\033[2J");
-		System.out.flush();
+        ClearScreen();
 
-		// Halaman utama sistem ATM
 		System.out.println(
 				"=====================================================================================================");
 		System.out.println(
@@ -94,9 +84,7 @@ public class Function000SistemATM {
 					"    ============================================================================================");
 			System.out.println("");
 			
-			// Menghapus output yang telah ditampilkan
-			System.out.println("\033[H\033[2J");
-			System.out.flush();
+            ClearScreen();
 
 			// Pengecekan kesesuaian nomor rekening dan PIN untuk login
 			for (int i = 0; i < accountData.length; i++) {
@@ -125,9 +113,7 @@ public class Function000SistemATM {
                     System.out.print("Enter untuk melanjutkan -->  ");
                     pressEnter = scanner1.nextLine();
                     
-                    // Menghapus output yang telah ditampilkan
-                    System.out.println("\033[H\033[2J");
-                    System.out.flush();
+                    ClearScreen();
                 } else {
                     System.out.println(
                             "    ============================================================================================");
@@ -198,9 +184,8 @@ public class Function000SistemATM {
                     "    ============================================================================================");
             System.out.print("\tMenu yang dipilih (angka) : "); // User input pilihan menu berupa angka
             int menu = scanner2.nextInt();
-            // Menghapus output yang telah ditampilkan
-            System.out.println("\033[H\033[2J");
-            System.out.flush();
+
+            ClearScreen();
             switch (menu) {
                 case 1:
                      Transfer();
@@ -258,6 +243,11 @@ public class Function000SistemATM {
 
     public static void Exit() {
 
+    }
+
+    public static void ClearScreen() {
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
     }
 
 }

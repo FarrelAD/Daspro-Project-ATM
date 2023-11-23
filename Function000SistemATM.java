@@ -1,5 +1,6 @@
 // Program sistem ATM - Kelompok 4 - TI-1B
-// Fitur yang tersedia: autentifikasi pengguna, transfer, tarik tunai, setor tunai, pembayaran lain-lain, riwayat transaksi, cek saldo, ubah PIN, dan EXIT
+// Fitur yang tersedia: autentifikasi pengguna, transfer, tarik tunai, setor tunai, 
+// pembayaran lain-lain, riwayat transaksi, cek saldo, ubah PIN, dan EXIT
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Scanner;
@@ -45,38 +46,37 @@ public class Function000SistemATM {
 
     public static void PageMenu() {
         ClearScreen();
-
-                System.out.println(
-                                "=====================================================================================================");
-                System.out.println(
-                                "[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]");
-                System.out.println(
-                                "[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]");
-                System.out.println(
-                                "[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]");
-                System.out.println(
-                                "[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]");
-                System.out.println(
-                                "[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]");
-                System.out.println(
-                                "[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]");
-                System.out.println(
-                                "[ ================================================================================================= ]");
-                System.out.println(
-                                "[                         _    _ _____ _     _____ ________  ___ _____                              ]");
-                System.out.println(
-                                "[                        | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|                             ]");
-                System.out.println(
-                                "[                        | |  | | |__ | |   | /  \\/ | | | .  . || |__                               ]");
-                System.out.println(
-                                "[                        | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|                              ]");
-                System.out.println(
-                                "[                        \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___                              ]");
-                System.out.println(
-                                "[                         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/                              ]");
-                System.out.println(
-                                "=====================================================================================================");
-                System.out.println("");
+        System.out.println(
+                        "=====================================================================================================");
+        System.out.println(
+                        "[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]");
+        System.out.println(
+                        "[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]");
+        System.out.println(
+                        "[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]");
+        System.out.println(
+                        "[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]");
+        System.out.println(
+                        "[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]");
+        System.out.println(
+                        "[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]");
+        System.out.println(
+                        "[ ================================================================================================= ]");
+        System.out.println(
+                        "[                         _    _ _____ _     _____ ________  ___ _____                              ]");
+        System.out.println(
+                        "[                        | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|                             ]");
+        System.out.println(
+                        "[                        | |  | | |__ | |   | /  \\/ | | | .  . || |__                               ]");
+        System.out.println(
+                        "[                        | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|                              ]");
+        System.out.println(
+                        "[                        \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___                              ]");
+        System.out.println(
+                        "[                         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/                              ]");
+        System.out.println(
+                        "=====================================================================================================");
+        System.out.println("");
     }
 
     public static  boolean Login() {
@@ -91,10 +91,8 @@ public class Function000SistemATM {
             System.out.println(
                             "    ============================================================================================");
             System.out.println("");
-                        
             ClearScreen();
-
-                        // Pengecekan kesesuaian nomor rekening dan PIN untuk login
+            // Pengecekan kesesuaian nomor rekening dan PIN untuk login
             for (int i = 0; i < accountData.length; i++) {
                 if (inputUser_AccountNumber.equals(accountData[i][0]) && inputPin.equals(accountData[i][1])
                                 && accountData[i][3].equals("aman")) {
@@ -120,7 +118,6 @@ public class Function000SistemATM {
                     loginAttempts++;
                     System.out.print("Enter untuk melanjutkan -->  ");
                     pressEnter = scanner1.nextLine();
-                    
                     ClearScreen();
                 } else {
                     System.out.println(
@@ -144,6 +141,7 @@ public class Function000SistemATM {
     public static void Menu() {
         // Perulangan menu berdasarkan continueTransaction user
         do {
+            ClearScreen();
             System.out.println(
                     "    ============================================================================================");
             System.out.println(

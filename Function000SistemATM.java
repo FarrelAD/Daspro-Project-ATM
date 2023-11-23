@@ -380,8 +380,23 @@ public class Function000SistemATM {
 		cashWithdrawalAmount = scanner3.nextInt();
 	}
 
-	public static void SetorTunai() {
+	public static void SetorTunaiView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - -╔═╗╔═╗╔╦╗╔═╗╦═╗  ╔╦╗╦ ╦╔╗╔╔═╗╦- - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - -╚═╗║╣  ║ ║ ║╠╦╝   ║ ║ ║║║║╠═╣║- - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - - - - - - -╚═╝╚═╝ ╩ ╚═╝╩╚═   ╩ ╚═╝╝╚╝╩ ╩╩- - - - - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
 
+	}
+	public static void SetorTunai() {
+		SetorTunaiView();
+		System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
+		cashDepositAmount = scanner3.nextInt();
 	}
 
 	public static void PembayaranLainnya() {

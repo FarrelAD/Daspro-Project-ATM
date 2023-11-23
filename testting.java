@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Function000SistemATM {
+public class testting {
 	static Scanner scanner1 = new Scanner(System.in);
 		static Scanner scanner2 = new Scanner(System.in);
 		static Scanner scanner3 = new Scanner(System.in);

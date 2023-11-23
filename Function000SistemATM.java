@@ -443,8 +443,22 @@ public class Function000SistemATM {
 		int menuBayar = scanner3.nextInt();
 	}
 
+	public static void RiwayatTransaksiView() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    [- - - - - - - - - - -╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╦╔═╔═╗╦- - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - -╠╦╝║║║║╠═╣╚╦╝╠═╣ ║    ║ ╠╦╝╠═╣║║║╚═╗╠═╣╠╩╗╚═╗║- - - - - - - - - - - -]");
+		System.out.println(
+				"    [- - - - - - - - - - -╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩    ╩ ╩╚═╩ ╩╝╚╝╚═╝╩ ╩╩ ╩╚═╝╩- - - - - - - - - - - -]");
+		System.out.println(
+				"    ============================================================================================");
+	}
 	public static void RiwayatTransaksi() {
-
+		RiwayatTransaksiView();
+		System.out.print("Enter untuk melanjutkan -->  ");
+		pressEnter = scanner1.nextLine();
 	}
 
 	public static void CekSaldo() {

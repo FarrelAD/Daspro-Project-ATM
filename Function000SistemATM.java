@@ -427,6 +427,75 @@ public class Function000SistemATM {
 		SetorTunaiView();
 		System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
 		cashDepositAmount = scanner3.nextInt();
+
+		ClearScreen();
+
+		System.out.println(
+			"    ============================================================================================");
+		String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
+		System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + cashDepositRupiah + " ? ");
+		UserConfirmation();
+
+		ClearScreen();
+
+		System.out.println(
+				"    ============================================================================================");
+
+		if (userConfirmation == 'y' || userConfirmation == 'Y') {
+			PinValidation();
+
+			ClearScreen();
+
+			System.out.println(
+					"    ============================================================================================");
+			if (inputPin.equals(accountData[accountLineIndex][1])) {
+				userBalance += cashDepositAmount; // Penjumlahan saldo dengan nominal setor yang telah
+										// dilakukan
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"    ============================================================================================");
+				// Formatting penulisan rupiah pada output
+				String userBalanceRupiah = currencyFormat.format(userBalance);
+
+				System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
+				System.out.println(
+						"    ============================================================================================");
+				// Pencatatan riwayat transaksi
+				transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan setor tunai sebesar " + cashDepositRupiah;
+				transactionCount--;
+
+				EnterForContinue();
+
+				ClearScreen();
+			} else {
+				// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out
+						.println("                                       [  (!) PIN SALAH! (!)  ]");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"    ============================================================================================");
+				EnterForContinue();
+			}
+		} else {
+			// Kondisi jika pengguna input 'T' atau 't'
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out
+					.println("                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"    ============================================================================================");
+			EnterForContinue();
+		}
 	}
 
 	public static void PembayaranLainnyaView() {

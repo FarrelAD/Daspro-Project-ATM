@@ -32,10 +32,12 @@ public class Function000SistemATM {
 
 	static boolean isTransactionExit = true;
 
+	static boolean pinStatus = false;
+
 	static String pressEnter;
 
 	static String inputTarget_AccountNumber;
-	static char continueTransaction = 'y', userChoice = 't';
+	static char continueTransaction = 'y', userChoice = 't', transactionConfirmation;
 
 	static int transferAmount, cashWithdrawalAmount, cashDepositAmount;
 	static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
@@ -97,7 +99,6 @@ public class Function000SistemATM {
 			System.out.print("Masukkan nomor rekening anda: ");
 			inputUser_AccountNumber = scanner1.nextLine();
 			
-	
 			// Pengecekan kesesuaian input nomor rekening dengan data yang ada
 			isAccountFind = false;
 			for (int i = 0; i < accountData.length; i++) {
@@ -271,9 +272,9 @@ public class Function000SistemATM {
 		// Pengecekan apakah nomor rekening tujuan ada di database
 		for (int i = 0; i < accountData.length; i++) {
 				if ((inputTarget_AccountNumber.equals(accountData[i][0]))
-								&& (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
-						isTargetAccountValid = true;
-						break;
+					&& (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
+					isTargetAccountValid = true;
+					break;
 				}
 		}
 		// Kondisi jika isTargetAccountValid true
@@ -295,14 +296,13 @@ public class Function000SistemATM {
 			// Konfirmasi persetujuan transaksi
 			System.out.println("\t-- Konfirmasi transfer ke rekening " + inputTarget_AccountNumber
 							+ " dengan nominal " + transferAmountRupiah + " ?");
-			System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
-			userChoice = scanner4.next().charAt(0);
+			TransactionConfirmation();
 			ClearScreen();
 			System.out.println(
 							"    ============================================================================================");
 
 			// Konfirmasi transaksi
-			if (userChoice == 'y' || userChoice == 'Y') {
+			if (transactionConfirmation == 'y' || transactionConfirmation == 'Y') {
 				// Pengecekan apakah input PIN sesuai dengan database
 				if (PinValidation()) {
 					if (transferAmount < userBalance) {
@@ -698,6 +698,13 @@ public class Function000SistemATM {
 
 	}
 
+	public static char TransactionConfirmation() {
+		System.out.println("Konfirmasi transaksi ?");
+		System.out.print("Tekan 'Y' untuk IYA. Tekan 'T' untuk TIDAK --> ");
+		transactionConfirmation = scanner2.next().charAt(0);
+		return transactionConfirmation;
+	}
+	
 	public static boolean PinValidation() {
 		System.out.print("Masukkan PIN anda: ");
 		inputPin = scanner1.nextLine();	

@@ -111,8 +111,7 @@ public class Function000SistemATM {
 
 			if (!isAccountFind) {
 				System.out.println("Nomor rekening tidak ditemukan. Mohon input nomor rekening anda lagi!");
-				System.out.print("Enter untuk melanjutkan --> ");
-				pressEnter = scanner1.nextLine();
+				EnterForContinue();
 				ClearScreen();
 				return false;
 			}
@@ -135,8 +134,7 @@ public class Function000SistemATM {
 						ClearScreen();
 						WrongPin();
 						System.out.println("Percobaan login " + loginAttempts + "/" + MAX_LOGIN_ATTEMPTS);
-						System.out.print("Enter untuk melanjutkan --> ");
-						pressEnter = scanner1.nextLine();
+						EnterForContinue();
 						ClearScreen();
 					}
 				}
@@ -144,8 +142,7 @@ public class Function000SistemATM {
 				tryToLogin = true;
 				ClearScreen();
 				System.out.printf("Nomor rekening anda (%s) telah diblokir. Silakan masukkan nomor rekening yang lain\n", inputUser_AccountNumber);
-				System.out.print("Enter untuk melanjutkan --> ");
-				pressEnter = scanner1.nextLine();
+				EnterForContinue();
 				ClearScreen();
 				return false;
 			}
@@ -155,8 +152,7 @@ public class Function000SistemATM {
 				System.out.println("Anda telah salah memasukkan PIN sebanyak 3 kali. Mohon maaf, nomor rekening Anda kami blokir.");
 				accountData[accountLineIndex][3] = "TERBLOKIR";
 				System.out.println("STATUS AKUN ANDA : " + accountData[accountLineIndex][3]);
-				System.out.print("Enter untuk melanjutkan --> ");
-				pressEnter = scanner1.nextLine();
+				EnterForContinue();
 			}
 		} while (tryToLogin || !isAccountFind);
 		return false;
@@ -325,9 +321,7 @@ public class Function000SistemATM {
 						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
 						System.out.println(
 										"    ============================================================================================");
-
-						System.out.print("Enter untuk melanjutkan -->  ");
-						pressEnter = scanner1.nextLine();
+						EnterForContinue();
 						ClearScreen();
 						isTargetAccountValid = false;
 						// Pencatatan riwayat transaksi
@@ -350,6 +344,7 @@ public class Function000SistemATM {
 											"    --------------------------------------------------------------------------------------------");
 							System.out.println(
 											"    ============================================================================================");
+							EnterForContinue();
 					}
 				} else {
 					// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
@@ -364,6 +359,7 @@ public class Function000SistemATM {
 									"    --------------------------------------------------------------------------------------------");
 					System.out.println(
 									"    ============================================================================================");
+					EnterForContinue();
 				}
 			} else {
 				// Kondisi jika pengguna input 't' atau 'T'
@@ -378,6 +374,7 @@ public class Function000SistemATM {
 								"    --------------------------------------------------------------------------------------------");
 				System.out.println(
 								"    ============================================================================================");
+				EnterForContinue();
 			}
 		} else {
 				// Kondisi jika isTargetAccountValid bernilai FALSE
@@ -391,6 +388,7 @@ public class Function000SistemATM {
 								"    --------------------------------------------------------------------------------------------");
 				System.out.println(
 								"    ============================================================================================");
+				EnterForContinue();
 		}
 	}
 
@@ -622,8 +620,7 @@ public class Function000SistemATM {
 	}
 	public static void RiwayatTransaksi() {
 		RiwayatTransaksiView();
-		System.out.print("Enter untuk melanjutkan -->  ");
-		pressEnter = scanner1.nextLine();
+		EnterForContinue();
 	}
 
 	public static void CekSaldoView() {
@@ -640,8 +637,7 @@ public class Function000SistemATM {
 	}
 	public static void CekSaldo() {
 		CekSaldoView();
-		System.out.print("Enter untuk melanjutkan -->  ");
-		pressEnter = scanner1.nextLine();
+		EnterForContinue();
 	}
 
 	public static void UbahPinView() {
@@ -713,6 +709,11 @@ public class Function000SistemATM {
 		} else {
 			return false;
 		}
+	}
+
+	public static void EnterForContinue() {
+		System.out.print("Enter untuk melanjutkan -->  ");
+		pressEnter = scanner1.nextLine();
 	}
 
 	public static void ClearScreen() {

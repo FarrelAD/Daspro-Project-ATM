@@ -673,10 +673,9 @@ public class Function000SistemATM {
 	public static char Exit() {
 		ExitView();
 		System.out.println("\t-- Apakah anda yakin untuk keluar?");
-		System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
-		char userTryExit = scanner1.next().charAt(0);
+		UserConfirmation();
 		ClearScreen();
-		if (userTryExit == 'Y' || userTryExit == 'y') {
+		if (userConfirmation == 'Y' || userConfirmation == 'y') {
 			continueTransaction = 't';
 			System.out.println(
 				"    ============================================================================================");
@@ -695,7 +694,6 @@ public class Function000SistemATM {
 	}
 
 	public static char UserConfirmation() {
-		System.out.println("Konfirmasi transaksi ?");
 		System.out.print("Tekan 'Y' untuk IYA. Tekan 'T' untuk TIDAK --> ");
 		userConfirmation = scanner2.next().charAt(0);
 		return userConfirmation;

@@ -21,31 +21,37 @@ public class Function000SistemATM {
 			{ "7777777", "7777", "10000000", "aman" }, 
 			{ "0000000", "0000", "900000000", "aman"}
 		};
+		
 	static int maxTransactionHistory = 10,  transactionCount = 10, 
 		   accountLineIndex = 0, loginAttempts = 1;
 	static String[] transactionHistory = new String[maxTransactionHistory];
-	static boolean isAccountValid = false, 
-			isTargetAccountValid = false;
+
+	static boolean isAccountValid = false, isAccountNumberValid = false,
+			isAccountFind = false, isTargetAccountValid = false;
 	static final int MAX_LOGIN_ATTEMPTS = 3; 
+
 	static boolean isTransactionExit = true;
+
 	static String pressEnter;
 
 	static String inputTarget_AccountNumber;
 	static char continueTransaction = 'y', userChoice = 't';
+
 	static int transferAmount, cashWithdrawalAmount, cashDepositAmount;
 	static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
-	static String inputUser_AccountNumber = accountData[accountLineIndex][0];
+	static String inputUser_AccountNumber;
 	static String inputPin;
 
 	// Format nilai uang Indonesia Rupiah (IDR)
 	static NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
 
 	public static void main(String[] args) {
-		PageMenu();
-		Login();
-		if (isAccountValid) {
-			Menu();
+		while (!isAccountValid) {
+			PageMenu();
+			Login();
 		}
+
+		Menu();
 	}
 
 	public static void PageMenu() {
@@ -83,63 +89,92 @@ public class Function000SistemATM {
 		System.out.println("");
 	}
 
-	public static  boolean Login() {
-		while (loginAttempts <= MAX_LOGIN_ATTEMPTS) {
-			System.out.println(
-							"    ============================================================================================");
-			System.out.print("    [  Masukkan nomor rekening : ");
-			String inputUser_AccountNumber = scanner1.nextLine();
-
-			System.out.print("    [  Masukkan PIN anda : ");
-			String inputPin = scanner1.nextLine();
-			System.out.println(
-							"    ============================================================================================");
-			System.out.println("");
-			ClearScreen();
-			// Pengecekan kesesuaian nomor rekening dan PIN untuk login
+	public static boolean Login() {
+		loginAttempts = 0;
+		boolean tryToLogin = false;
+	
+		do {
+			System.out.print("Masukkan nomor rekening anda: ");
+			inputUser_AccountNumber = scanner1.nextLine();
+			
+	
+			// Pengecekan kesesuaian input nomor rekening dengan data yang ada
+			isAccountFind = false;
 			for (int i = 0; i < accountData.length; i++) {
-				if (inputUser_AccountNumber.equals(accountData[i][0]) && inputPin.equals(accountData[i][1])
-								&& accountData[i][3].equals("aman")) {
+				if (inputUser_AccountNumber.equals(accountData[i][0])) {
+					isAccountFind = true;
+					accountLineIndex = i;
+					break;
+				}
+			}
+
+			if (!isAccountFind) {
+				System.out.println("Nomor rekening tidak ditemukan. Mohon input nomor rekening anda lagi!");
+				System.out.print("Enter untuk melanjutkan --> ");
+				pressEnter = scanner1.nextLine();
+				ClearScreen();
+				return false;
+			}
+
+			isAccountNumberValid = false;
+			if (isAccountFind) {
+				if (accountData[accountLineIndex][3].equals("aman")) {
+					isAccountNumberValid = true;
+				}
+			}
+			
+			if (isAccountNumberValid) {
+				// Check the PIN with a maximum of MAX_LOGIN_ATTEMPTS attempts
+				for (loginAttempts = 1; loginAttempts <= MAX_LOGIN_ATTEMPTS; loginAttempts++) {
+					System.out.print("Masukkan PIN anda: ");
+					String inputPin = scanner1.nextLine();
+					// Check if the entered PIN matches the account PIN
+					if (inputPin.equals(accountData[accountLineIndex][1])) {
 						isAccountValid = true;
-						accountLineIndex = i;
-				break;
+						return true; // Successful login
+					} else {
+						ClearScreen();
+						WrongPin();
+						System.out.println("Percobaan login " + loginAttempts + "/" + MAX_LOGIN_ATTEMPTS);
+						System.out.print("Enter untuk melanjutkan --> ");
+						pressEnter = scanner1.nextLine();
+						ClearScreen();
+					}
 				}
-			}
-			if (isAccountValid) {
-				return true;
 			} else {
-				if (loginAttempts < MAX_LOGIN_ATTEMPTS) {
-					System.out.println(
-							"    ============================================================================================");
-					System.out.println(
-							"    --------------------------------------------------------------------------------------------");
-					System.out.println(
-							"               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]");
-					System.out.println(
-							"    --------------------------------------------------------------------------------------------");
-					System.out.println(
-							"    ============================================================================================");
-					loginAttempts++;
-					System.out.print("Enter untuk melanjutkan -->  ");
-					pressEnter = scanner1.nextLine();
-					ClearScreen();
-				} else {
-					System.out.println(
-							"    ============================================================================================");
-					System.out.println(
-							"    --------------------------------------------------------------------------------------------");
-					System.out.println(
-							"               [  (!) Anda telah gagal lebih dari 3 kali. Akun anda diblokir. (!)  ]");
-					System.out.println(
-							"    --------------------------------------------------------------------------------------------");
-					System.out.println(
-							"    ============================================================================================");
-					accountData[accountLineIndex][3] = "diblokir";
-					loginAttempts++;
-				}
+				tryToLogin = true;
+				ClearScreen();
+				System.out.printf("Nomor rekening anda (%s) telah diblokir. Silakan masukkan nomor rekening yang lain\n", inputUser_AccountNumber);
+				System.out.print("Enter untuk melanjutkan --> ");
+				pressEnter = scanner1.nextLine();
+				ClearScreen();
+				return false;
 			}
-		} 
+	
+			// If the maximum login attempts are reached and status akun = "TERBLOKIR"
+			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
+				System.out.println("Anda telah salah memasukkan PIN sebanyak 3 kali. Mohon maaf, nomor rekening Anda kami blokir.");
+				accountData[accountLineIndex][3] = "TERBLOKIR";
+				System.out.println("STATUS AKUN ANDA : " + accountData[accountLineIndex][3]);
+				System.out.print("Enter untuk melanjutkan --> ");
+				pressEnter = scanner1.nextLine();
+			}
+		} while (tryToLogin || !isAccountFind);
 		return false;
+	}
+	
+
+	public static void WrongPin() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    --------------------------------------------------------------------------------------------");
+		System.out.println(
+				"               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]");
+		System.out.println(
+				"    --------------------------------------------------------------------------------------------");
+		System.out.println(
+				"    ============================================================================================");
 	}
 
 	public static void Menu() {
@@ -662,6 +697,10 @@ public class Function000SistemATM {
 			continueTransaction = 'y' ;
 		}
 		return continueTransaction;
+	}
+
+	public static void FinalExit() {
+
 	}
 
 	public static void ClearScreen() {

@@ -21,7 +21,7 @@ public class Function000SistemATM {
 			{ "7777777", "7777", "10000000", "aman" }, 
 			{ "0000000", "0000", "900000000", "aman"}
 		};
-		
+
 	static int maxTransactionHistory = 10,  transactionCount = 10, 
 		   accountLineIndex = 0, loginAttempts = 1;
 	static String[] transactionHistory = new String[maxTransactionHistory];
@@ -126,10 +126,8 @@ public class Function000SistemATM {
 			if (isAccountNumberValid) {
 				// Check the PIN with a maximum of MAX_LOGIN_ATTEMPTS attempts
 				for (loginAttempts = 1; loginAttempts <= MAX_LOGIN_ATTEMPTS; loginAttempts++) {
-					System.out.print("Masukkan PIN anda: ");
-					String inputPin = scanner1.nextLine();
 					// Check if the entered PIN matches the account PIN
-					if (inputPin.equals(accountData[accountLineIndex][1])) {
+					if (PinValidation()) {
 						isAccountValid = true;
 						return true; // Successful login
 					} else {
@@ -151,7 +149,7 @@ public class Function000SistemATM {
 				return false;
 			}
 	
-			// If the maximum login attempts are reached and status akun = "TERBLOKIR"
+			// If the maximum login attempts are reached and status akun will change to "TERBLOKIR"
 			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
 				System.out.println("Anda telah salah memasukkan PIN sebanyak 3 kali. Mohon maaf, nomor rekening Anda kami blokir.");
 				accountData[accountLineIndex][3] = "TERBLOKIR";
@@ -305,11 +303,8 @@ public class Function000SistemATM {
 
 			// Konfirmasi transaksi
 			if (userChoice == 'y' || userChoice == 'Y') {
-				System.out.print("\t-- Masukkan PIN anda: ");
-				inputPin = scanner5.nextLine();
-				ClearScreen();
 				// Pengecekan apakah input PIN sesuai dengan database
-				if (inputPin.equals(accountData[accountLineIndex][1])) {
+				if (PinValidation()) {
 					if (transferAmount < userBalance) {
 							userBalance -= transferAmount; // Pengurangan saldo pengguna dengan
 															// nominal
@@ -701,6 +696,16 @@ public class Function000SistemATM {
 
 	public static void FinalExit() {
 
+	}
+
+	public static boolean PinValidation() {
+		System.out.print("Masukkan PIN anda: ");
+		inputPin = scanner1.nextLine();	
+		if (inputPin.equals(accountData[accountLineIndex][1])) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public static void ClearScreen() {

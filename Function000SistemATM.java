@@ -57,8 +57,9 @@ public class Function000SistemATM {
 	static String pressEnter;
 
 	static String inputTarget_AccountNumber;
-	static char continueTransaction = 'y', userChoice = 't', userConfirmation;
-
+	static char continueTransaction = 't', userChoice = 't', 
+		   userConfirmation;
+	static boolean isStopTransaction = false, isContinueTransaction = false;
 	static int transferAmount, cashWithdrawalAmount, cashDepositAmount;
 	static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
 	static String inputUser_AccountNumber;
@@ -72,7 +73,7 @@ public class Function000SistemATM {
 			PageMenu();
 			Login();
 		}
-
+		
 		Menu();
 	}
 
@@ -240,10 +241,10 @@ public class Function000SistemATM {
 			System.out.println(
 					"    ============================================================================================");
 			System.out.print("\tMenu yang dipilih (angka) : "); // User input pilihan menu berupa angka
-			int menu = scanner2.nextInt();
+			int userChoiceMenu = scanner2.nextInt();
 
 			ClearScreen();
-			switch (menu) {
+			switch (userChoiceMenu) {
 				case 1:
 					Transfer();
 					break;
@@ -270,7 +271,27 @@ public class Function000SistemATM {
 				default:
 					break;
 			}
-		} while (continueTransaction == 'y' || continueTransaction == 'Y');
+
+			if (isStopTransaction) {
+				isContinueTransaction = false;
+			} 
+			
+			if (userChoiceMenu != 8) {
+				System.out.println(
+					"    ============================================================================================");
+				System.out.println("\t-- Lakukan transaksi lagi?");
+				System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+				continueTransaction = scanner2.next().charAt(0);
+
+				ClearScreen();
+
+				if (continueTransaction == 'Y' || continueTransaction == 'y') {
+					isContinueTransaction = true;
+				} else {
+					showingThanks();
+				}
+			}
+		} while (isContinueTransaction);
 	}
 
 	public static void TransferView() {
@@ -1012,27 +1033,26 @@ public class Function000SistemATM {
 				"    ============================================================================================");
 	}
 
-	public static char Exit() {
+	public static boolean Exit() {
 		ExitView();
 		System.out.println("\t-- Apakah anda yakin untuk keluar?");
 		UserConfirmation();
 		ClearScreen();
 		if (userConfirmation == 'Y' || userConfirmation == 'y') {
-			continueTransaction = 't';
-			System.out.println(
-					"    ============================================================================================");
-			System.out.println(
-					"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
-			System.out.println(
-					"    ============================================================================================");
+			showingThanks();
+			return isStopTransaction = true;
 		} else {
-			continueTransaction = 'y';
+			return isContinueTransaction = true;
 		}
-		return continueTransaction;
 	}
 
-	public static void FinalExit() {
-
+	public static void showingThanks() {
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
+		System.out.println(
+				"    ============================================================================================");
 	}
 
 	public static char UserConfirmation() {

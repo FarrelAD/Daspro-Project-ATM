@@ -7,28 +7,48 @@ import java.util.Scanner;
 
 public class Function000SistemATM {
 	static Scanner scanner1 = new Scanner(System.in);
-		static Scanner scanner2 = new Scanner(System.in);
-		static Scanner scanner3 = new Scanner(System.in);
-		static Scanner scanner4 = new Scanner(System.in);
-		static Scanner scanner5 = new Scanner(System.in);
-		static Scanner scannerTF = new Scanner(System.in);
-
+	static Scanner scanner2 = new Scanner(System.in);
+	static Scanner scanner3 = new Scanner(System.in);
+	static Scanner scanner4 = new Scanner(System.in);
+	static Scanner scanner5 = new Scanner(System.in);
+	static Scanner scannerTF = new Scanner(System.in);
 
 	// inisialisasi dan deklarasi variabel yang dibutuhkan
-		static String[][] accountData = {
+	static String[][] accountData = {
 			{ "1234567", "1234", "7000000", "aman" },
 			{ "7654321", "5678", "4000000", "aman" },
-			{ "7777777", "7777", "10000000", "aman" }, 
-			{ "0000000", "0000", "900000000", "aman"}
-		};
+			{ "7777777", "7777", "10000000", "aman" },
+			{ "0000000", "0000", "900000000", "aman" }
+	};
 
-	static int maxTransactionHistory = 10,  transactionCount = 10, 
-		   accountLineIndex = 0, loginAttempts = 1;
+	static int[][] listrikData = { // array listrikData menampung ID PLN & tagihan
+		{ 123123123, 100000 },
+		{ 123456789, 70000 },
+		{ 333444555, 80000 },
+	};
+	static int[][] pendidikanData = { // array pendidikanData menampung virtual account (VA) & tagihan
+		{ 232323, 1000000 },
+		{ 454545, 2500000 },
+		{ 909090, 5000000 },
+	};
+	static int[][] tagihanAirData = { // array tagihan pada pdam menampung virtual account (VA) & tagihan
+		{ 232323, 100000 },
+		{ 454545, 250000 },
+		{ 909090, 500000 },
+	};
+	static int[][] BPJSdata = { // array tagihan pada BPJS
+		{ 232323, 125000 },
+		{ 454545, 250000 },
+		{ 909090, 500000 },
+	};
+
+	static int maxTransactionHistory = 10, transactionCount = 10,
+			accountLineIndex = 0, loginAttempts = 1;
 	static String[] transactionHistory = new String[maxTransactionHistory];
 
 	static boolean isAccountValid = false, isAccountNumberValid = false,
 			isAccountFind = false, isTargetAccountValid = false;
-	static final int MAX_LOGIN_ATTEMPTS = 3; 
+	static final int MAX_LOGIN_ATTEMPTS = 3;
 
 	static boolean isTransactionExit = true;
 
@@ -59,46 +79,46 @@ public class Function000SistemATM {
 	public static void PageMenu() {
 		ClearScreen();
 		System.out.println(
-						"=====================================================================================================");
+				"=====================================================================================================");
 		System.out.println(
-						"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]");
+				"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]");
 		System.out.println(
-						"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]");
+				"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]");
 		System.out.println(
-						"[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]");
+				"[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]");
 		System.out.println(
-						"[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]");
+				"[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]");
 		System.out.println(
-						"[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]");
+				"[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]");
 		System.out.println(
-						"[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]");
+				"[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]");
 		System.out.println(
-						"[ ================================================================================================= ]");
+				"[ ================================================================================================= ]");
 		System.out.println(
-						"[                         _    _ _____ _     _____ ________  ___ _____                              ]");
+				"[                         _    _ _____ _     _____ ________  ___ _____                              ]");
 		System.out.println(
-						"[                        | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|                             ]");
+				"[                        | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|                             ]");
 		System.out.println(
-						"[                        | |  | | |__ | |   | /  \\/ | | | .  . || |__                               ]");
+				"[                        | |  | | |__ | |   | /  \\/ | | | .  . || |__                               ]");
 		System.out.println(
-						"[                        | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|                              ]");
+				"[                        | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|                              ]");
 		System.out.println(
-						"[                        \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___                              ]");
+				"[                        \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___                              ]");
 		System.out.println(
-						"[                         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/                              ]");
+				"[                         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/                              ]");
 		System.out.println(
-						"=====================================================================================================");
+				"=====================================================================================================");
 		System.out.println("");
 	}
 
 	public static boolean Login() {
 		loginAttempts = 0;
 		boolean tryToLogin = false;
-	
+
 		do {
 			System.out.print("Masukkan nomor rekening anda: ");
 			inputUser_AccountNumber = scanner1.nextLine();
-			
+
 			// Pengecekan kesesuaian input nomor rekening dengan data yang ada
 			isAccountFind = false;
 			for (int i = 0; i < accountData.length; i++) {
@@ -110,7 +130,8 @@ public class Function000SistemATM {
 			}
 
 			if (!isAccountFind) {
-				System.out.println("Nomor rekening tidak ditemukan. Mohon input nomor rekening anda lagi!");
+				System.out.println(
+						"Nomor rekening tidak ditemukan. Mohon input nomor rekening anda lagi!");
 				EnterForContinue();
 				ClearScreen();
 				return false;
@@ -122,7 +143,7 @@ public class Function000SistemATM {
 					isAccountNumberValid = true;
 				}
 			}
-			
+
 			if (isAccountNumberValid) {
 				// Check the PIN with a maximum of MAX_LOGIN_ATTEMPTS attempts
 				for (loginAttempts = 1; loginAttempts <= MAX_LOGIN_ATTEMPTS; loginAttempts++) {
@@ -133,7 +154,8 @@ public class Function000SistemATM {
 					} else {
 						ClearScreen();
 						WrongPin();
-						System.out.println("Percobaan login " + loginAttempts + "/" + MAX_LOGIN_ATTEMPTS);
+						System.out.println("Percobaan login " + loginAttempts + "/"
+								+ MAX_LOGIN_ATTEMPTS);
 						EnterForContinue();
 						ClearScreen();
 					}
@@ -141,15 +163,19 @@ public class Function000SistemATM {
 			} else {
 				tryToLogin = true;
 				ClearScreen();
-				System.out.printf("Nomor rekening anda (%s) telah diblokir. Silakan masukkan nomor rekening yang lain\n", inputUser_AccountNumber);
+				System.out.printf(
+						"Nomor rekening anda (%s) telah diblokir. Silakan masukkan nomor rekening yang lain\n",
+						inputUser_AccountNumber);
 				EnterForContinue();
 				ClearScreen();
 				return false;
 			}
-	
-			// If the maximum login attempts are reached and status akun will change to "TERBLOKIR"
+
+			// If the maximum login attempts are reached and status akun will change to
+			// "TERBLOKIR"
 			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
-				System.out.println("Anda telah salah memasukkan PIN sebanyak 3 kali. Mohon maaf, nomor rekening Anda kami blokir.");
+				System.out.println(
+						"Anda telah salah memasukkan PIN sebanyak 3 kali. Mohon maaf, nomor rekening Anda kami blokir.");
 				accountData[accountLineIndex][3] = "TERBLOKIR";
 				System.out.println("STATUS AKUN ANDA : " + accountData[accountLineIndex][3]);
 				EnterForContinue();
@@ -157,7 +183,6 @@ public class Function000SistemATM {
 		} while (tryToLogin || !isAccountFind);
 		return false;
 	}
-	
 
 	public static void WrongPin() {
 		System.out.println(
@@ -250,15 +275,15 @@ public class Function000SistemATM {
 
 	public static void TransferView() {
 		System.out.println(
-						"    ============================================================================================");
+				"    ============================================================================================");
 		System.out.println(
-						"    [- - - - - - - - - - - - - - - - -╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗- - - - - - - - - - - - - - - - -]");
+				"    [- - - - - - - - - - - - - - - - -╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗- - - - - - - - - - - - - - - - -]");
 		System.out.println(
-						"    [- - - - - - - - - - - - - - - - - ║ ╠╦╝╠═╣║║║╚═╗╠╣ ║╣ ╠╦╝- - - - - - - - - - - - - - - - -]");
+				"    [- - - - - - - - - - - - - - - - - ║ ╠╦╝╠═╣║║║╚═╗╠╣ ║╣ ╠╦╝- - - - - - - - - - - - - - - - -]");
 		System.out.println(
-						"    [- - - - - - - - - - - - - - - - - ╩ ╩╚═╩ ╩╝╚╝╚═╝╚  ╚═╝╩╚═- - - - - - - - - - - - - - - - -]");
+				"    [- - - - - - - - - - - - - - - - - ╩ ╩╚═╩ ╩╝╚╝╚═╝╚  ╚═╝╩╚═- - - - - - - - - - - - - - - - -]");
 		System.out.println(
-						"    ============================================================================================");
+				"    ============================================================================================");
 	}
 
 	public static void Transfer() {
@@ -267,11 +292,11 @@ public class Function000SistemATM {
 		inputTarget_AccountNumber = scannerTF.nextLine();
 		// Pengecekan apakah nomor rekening tujuan ada di database
 		for (int i = 0; i < accountData.length; i++) {
-				if ((inputTarget_AccountNumber.equals(accountData[i][0]))
+			if ((inputTarget_AccountNumber.equals(accountData[i][0]))
 					&& (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
-					isTargetAccountValid = true;
-					break;
-				}
+				isTargetAccountValid = true;
+				break;
+			}
 		}
 		// Kondisi jika isTargetAccountValid true
 		if (isTargetAccountValid) {
@@ -281,114 +306,114 @@ public class Function000SistemATM {
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
 			System.out.println(
-							"    ============================================================================================");
+					"    ============================================================================================");
 			System.out.println("    [  _______________________________________________  ]");
 			System.out.println("    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]");
 			System.out.printf("    [ |  Rekening tujuan: %s\t\t      | ]\n", inputTarget_AccountNumber);
 			System.out.printf("    [ |  Nominal transfer: %s\t\t\t| ]\n", transferAmountRupiah);
 			System.out.println("    [ ------------------------------------------------- ]");
 			System.out.println(
-							"    ============================================================================================");
+					"    ============================================================================================");
 			// Konfirmasi persetujuan transaksi
 			System.out.println("\t-- Konfirmasi transfer ke rekening " + inputTarget_AccountNumber
-							+ " dengan nominal " + transferAmountRupiah + " ?");
+					+ " dengan nominal " + transferAmountRupiah + " ?");
 			UserConfirmation();
 			ClearScreen();
 			System.out.println(
-							"    ============================================================================================");
+					"    ============================================================================================");
 
 			// Konfirmasi transaksi
 			if (userConfirmation == 'y' || userConfirmation == 'Y') {
 				// Pengecekan apakah input PIN sesuai dengan database
 				if (PinValidation()) {
 					if (transferAmount < userBalance) {
-							userBalance -= transferAmount; // Pengurangan saldo pengguna dengan
-															// nominal
-															// transfer
+						userBalance -= transferAmount; // Pengurangan saldo pengguna dengan
+									       // nominal
+									       // transfer
 
 						// Formatting penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
 						System.out.println(
-										"    ============================================================================================");
+								"    ============================================================================================");
 						System.out.println(
-										"    --------------------------------------------------------------------------------------------");
+								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
-										"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+								"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
 						System.out.println(
-										"    --------------------------------------------------------------------------------------------");
+								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
-										"    ============================================================================================");
+								"    ============================================================================================");
 						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
 						System.out.println(
-										"    ============================================================================================");
+								"    ============================================================================================");
 						EnterForContinue();
 						ClearScreen();
 						isTargetAccountValid = false;
 						// Pencatatan riwayat transaksi
 						transactionHistory[maxTransactionHistory
-						- transactionCount] = "Telah melakukan transaksi ke rekening "
-						+ inputTarget_AccountNumber
-						+ " sebesar "
-						+ transferAmountRupiah;
+								- transactionCount] = "Telah melakukan transaksi ke rekening "
+										+ inputTarget_AccountNumber
+										+ " sebesar "
+										+ transferAmountRupiah;
 						transactionCount--;
 					} else {
-							// Kondisi jika nominal transfer melebihi jumlah saldo
-							isTargetAccountValid = false; // Reset nilai isTargetAccountValid
-							System.out.println(
-											"    ============================================================================================");
-							System.out.println(
-											"    --------------------------------------------------------------------------------------------");
-							System.out.println(
-											"                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
-							System.out.println(
-											"    --------------------------------------------------------------------------------------------");
-							System.out.println(
-											"    ============================================================================================");
-							EnterForContinue();
+						// Kondisi jika nominal transfer melebihi jumlah saldo
+						isTargetAccountValid = false; // Reset nilai isTargetAccountValid
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+						EnterForContinue();
 					}
 				} else {
 					// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
 					isTargetAccountValid = false; // Reset nilai isTargetAccountValid
 					System.out.println(
-									"    ============================================================================================");
+							"    ============================================================================================");
 					System.out.println(
-									"    --------------------------------------------------------------------------------------------");
+							"    --------------------------------------------------------------------------------------------");
 					System.out.println(
-									"                                      [  (!) PIN SALAH! (!)  ]");
+							"                                      [  (!) PIN SALAH! (!)  ]");
 					System.out.println(
-									"    --------------------------------------------------------------------------------------------");
+							"    --------------------------------------------------------------------------------------------");
 					System.out.println(
-									"    ============================================================================================");
+							"    ============================================================================================");
 					EnterForContinue();
 				}
 			} else {
 				// Kondisi jika pengguna input 't' atau 'T'
 				isTargetAccountValid = false; // Reset nilai isTargetAccountValid
 				System.out.println(
-								"    ============================================================================================");
+						"    ============================================================================================");
 				System.out.println(
-								"    --------------------------------------------------------------------------------------------");
+						"    --------------------------------------------------------------------------------------------");
 				System.out.println(
-								"                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+						"                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
 				System.out.println(
-								"    --------------------------------------------------------------------------------------------");
+						"    --------------------------------------------------------------------------------------------");
 				System.out.println(
-								"    ============================================================================================");
+						"    ============================================================================================");
 				EnterForContinue();
 			}
 		} else {
-				// Kondisi jika isTargetAccountValid bernilai FALSE
-				System.out.println(
-								"    ============================================================================================");
-				System.out.println(
-								"    --------------------------------------------------------------------------------------------");
-				System.out.println(
-								"                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]");
-				System.out.println(
-								"    --------------------------------------------------------------------------------------------");
-				System.out.println(
-								"    ============================================================================================");
-				EnterForContinue();
+			// Kondisi jika isTargetAccountValid bernilai FALSE
+			System.out.println(
+					"    ============================================================================================");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"    ============================================================================================");
+			EnterForContinue();
 		}
 	}
 
@@ -404,10 +429,120 @@ public class Function000SistemATM {
 		System.out.println(
 				"    ============================================================================================");
 	}
+
 	public static void TarikTunai() {
-		TarikTunaiView();
-		System.out.print("\t-- Masukkan nominal tarik tunai : Rp ");
+		System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input nominal tarik
+									     // tunai
 		cashWithdrawalAmount = scanner3.nextInt();
+
+		// Menghapus output yang telah ditampilkan
+		System.out.println("\033[H\033[2J");
+		System.out.flush();
+
+		System.out.println(
+				"    ============================================================================================");
+		// Konversi nilai output ke Rupiah
+		String cashWitdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
+		// Persetujuan konfirmasi transaksi
+		System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + cashWitdrawalRupiah + " ? ");
+		System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+		userChoice = scanner4.next().charAt(0);
+
+		// Menghapus output yang telah ditampilkan
+		System.out.println("\033[H\033[2J");
+		System.out.flush();
+		System.out.println(
+				"    ============================================================================================");
+
+		if (userChoice == 'y' || userChoice == 'Y') {
+			System.out.print("\t-- Masukkan PIN anda: ");
+			inputPin = scanner5.nextLine();
+
+			// Menghapus output yang telah ditampilkan
+			System.out.println("\033[H\033[2J");
+			System.out.flush();
+
+			System.out.println(
+					"    ============================================================================================");
+
+			// Pengecekan apakah input PIN sesuai dengan database
+			if (inputPin.equals(accountData[accountLineIndex][1])) {
+				if (cashWithdrawalAmount < userBalance) {
+					// Pengecekan apakah nominal tarik kurang dari saldo pengguna
+					if (cashWithdrawalAmount <= 5000000) {
+						// Kondisi jika cashWithdrawalAmount < userBalance dan
+						// cashWithdrawalAmount <= 5000000
+						userBalance -= cashWithdrawalAmount;
+						// Formating penulisan rupiah pada output
+						String userBalanceRupiah = currencyFormat.format(userBalance);
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
+						System.out.println(
+								"    ============================================================================================");
+
+						// Pencatatan riwayat transaksi
+						transactionHistory[maxTransactionHistory
+								- transactionCount] = "Telah melakukan tarik tunai sebesar "
+										+ cashWitdrawalRupiah;
+						transactionCount--;
+
+						System.out.print("Enter untuk melanjutkan -->  ");
+						pressEnter = scanner1.nextLine();
+
+						// Menghapus output yang telah ditampilkan
+						System.out.println("\033[H\033[2J");
+						System.out.flush();
+					} else {
+						// Kondisi jika nominal Tarik > 5.000.000
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+					}
+				} else {
+					// Kondisi jika cashWithdrawalAmount > userBalance
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"                      [  (!) Transaksi gagal, periksa kembali saldo anda (!)  ]");
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"    ============================================================================================");
+				}
+			} else {
+				// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out
+						.println("                                       [  (!) PIN SALAH! (!)  ]");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"    ============================================================================================");
+			}
+		} else {
+			// Kondisi jika pengguna input 't' atau 'T'
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out
+					.println("                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"    ============================================================================================");
+		}
 	}
 
 	public static void SetorTunaiView() {
@@ -423,6 +558,7 @@ public class Function000SistemATM {
 				"    ============================================================================================");
 
 	}
+
 	public static void SetorTunai() {
 		SetorTunaiView();
 		System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
@@ -431,7 +567,7 @@ public class Function000SistemATM {
 		ClearScreen();
 
 		System.out.println(
-			"    ============================================================================================");
+				"    ============================================================================================");
 		String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
 		System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + cashDepositRupiah + " ? ");
 		UserConfirmation();
@@ -442,15 +578,15 @@ public class Function000SistemATM {
 				"    ============================================================================================");
 
 		if (userConfirmation == 'y' || userConfirmation == 'Y') {
-			PinValidation();
+			// PinValidation();
 
 			ClearScreen();
 
 			System.out.println(
 					"    ============================================================================================");
-			if (inputPin.equals(accountData[accountLineIndex][1])) {
+			if (PinValidation()) {
 				userBalance += cashDepositAmount; // Penjumlahan saldo dengan nominal setor yang telah
-										// dilakukan
+				// dilakukan
 				System.out.println(
 						"    --------------------------------------------------------------------------------------------");
 				System.out.println(
@@ -466,7 +602,9 @@ public class Function000SistemATM {
 				System.out.println(
 						"    ============================================================================================");
 				// Pencatatan riwayat transaksi
-				transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan setor tunai sebesar " + cashDepositRupiah;
+				transactionHistory[maxTransactionHistory
+						- transactionCount] = "Telah melakukan setor tunai sebesar "
+								+ cashDepositRupiah;
 				transactionCount--;
 
 				EnterForContinue();
@@ -510,6 +648,7 @@ public class Function000SistemATM {
 		System.out.println(
 				"    ============================================================================================");
 	}
+
 	public static void PembayaranLainnya() {
 		PembayaranLainnyaView();
 		System.out.println(
@@ -538,11 +677,11 @@ public class Function000SistemATM {
 				"    [  |_5._BPJS_______|                                                                       ]");
 		System.out.println(
 				"    ============================================================================================");
-		System.out.print("\t-- Menu yang anda pilih (angka): "); 
+		System.out.print("\t-- Menu yang anda pilih (angka): ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
-		switch(menuBayar) {
-			case 1: 
+		switch (menuBayar) {
+			case 1:
 				Pulsa();
 				break;
 			case 2:
@@ -577,6 +716,8 @@ public class Function000SistemATM {
 
 	public static void Pulsa() {
 		PulsaView();
+		String nomorTelepon;
+		int nomPulsa;
 		System.out.println(
 				"    ============================================================================================");
 		System.out.println(
@@ -597,6 +738,134 @@ public class Function000SistemATM {
 				"    ============================================================================================");
 		System.out.print("\t-- Operator yang anda pilih: ");
 		String operatorPulsa = scanner2.next();
+		boolean isOperatorValid = false;
+		switch (operatorPulsa) {
+			case "1":
+				operatorPulsa = "Indosat";
+				isOperatorValid = true;
+				break;
+			case "2":
+				operatorPulsa = "XL";
+				isOperatorValid = true;
+				break;
+			case "3":
+				operatorPulsa = "Telkomsel";
+				isOperatorValid = true;
+				break;
+			default:
+				System.out.println("Operator yang dipilih invalid!");
+				break;
+		}
+
+		if (isOperatorValid) {
+			System.out.print("\t-- Input nomor telepon anda: "); // User input nomor telepon
+			nomorTelepon = scanner1.nextLine();
+			System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal pulsa
+			nomPulsa = scanner4.nextInt();
+
+			ClearScreen();
+
+			System.out.println(
+				"    ============================================================================================");
+			// Konversi nilai nomPulsa ke rupiah
+			String nomPulsaRP = currencyFormat.format(nomPulsa);
+			// Menampilkan informasi transaksi sementara
+			System.out
+					.println("    [  _________________________________________________\t]");
+			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t|\t]");
+			System.out.printf("    [ |  Operator seluler\t: %s\t\t|\t]\n", operatorPulsa);
+			System.out.printf("    [ |  Nomor telepon\t\t: %s\t\t|\t]\n", nomorTelepon);
+			System.out.printf("    [ |  Nominal pulsa\t\t: %s\t\t|\t]\n", nomPulsaRP);
+			System.out
+					.println("    [  -------------------------------------------------\t]");
+			System.out.println(
+					"    ============================================================================================");
+			System.out.printf(
+					"\t-- Konfirmasi transaksi ke nomor telepon %s dengan nominal %s\n",
+					nomorTelepon, nomPulsaRP);
+			UserConfirmation();
+
+			ClearScreen();
+
+			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				ClearScreen();
+
+				if (PinValidation()) {
+					ClearScreen();
+					if (nomPulsa < userBalance) {
+						String saldoRupiah2 = currencyFormat.format(userBalance);
+
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+						// Menampilkan output transaksi berhasil
+						System.out.println(
+								"    [  _________________________________________________\t]");
+						System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t|\t]");
+						System.out.printf("    [ |  Operator seluler\t: %s\t\t|\t]\n",
+								operatorPulsa);
+						System.out.printf("    [ |  Nomor telepon\t\t: %s\t\t|\t]\n",
+								nomorTelepon);
+						System.out.printf("    [ |  Nominal pulsa\t\t: %s\t\t|\t]\n",
+								nomPulsaRP);
+						System.out.printf("    [ |  Sisa saldo anda\t: %s\t|\t]\n",
+								saldoRupiah2);
+						System.out.println(
+								"    [  -------------------------------------------------\t]");
+						System.out.println(
+								"    ============================================================================================");
+						// Pencatatan riwayat transaksi
+						transactionHistory[maxTransactionHistory - transactionCount] = "Telah melakukan pembayaran pulsa senilai "
+								+ nomPulsaRP;
+						transactionCount--;
+
+						EnterForContinue();
+						ClearScreen();
+					}  else {
+						// Kondisi jika nominal transaksi > saldo pengguna
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+					}
+				} else {
+					System.out.println(
+								"    ============================================================================================");
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"                                      [  (!) PIN SALAH! (!)  ]");
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"    ============================================================================================");
+				}
+			} else {
+				System.out.println(
+						"    ============================================================================================");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"    ============================================================================================");
+			}
+		}
 	}
 
 	public static void ListrikView() {
@@ -687,6 +956,7 @@ public class Function000SistemATM {
 		System.out.println(
 				"    ============================================================================================");
 	}
+
 	public static void RiwayatTransaksi() {
 		RiwayatTransaksiView();
 		EnterForContinue();
@@ -704,6 +974,7 @@ public class Function000SistemATM {
 		System.out.println(
 				"    ============================================================================================");
 	}
+
 	public static void CekSaldo() {
 		CekSaldoView();
 		EnterForContinue();
@@ -721,6 +992,7 @@ public class Function000SistemATM {
 		System.out.println(
 				"    ============================================================================================");
 	}
+
 	public static void UbahPin() {
 		UbahPinView();
 		System.out.print("    Masukkan nomor rekening : ");
@@ -738,7 +1010,8 @@ public class Function000SistemATM {
 				"    [- - - - - - - - - - - - - - - - - - ╩ ╩╚═╝╩═╝╚═╝╩ ╩╩╚═ - - - - - - - - - - - - - - - - - - ]");
 		System.out.println(
 				"    ============================================================================================");
-	}	
+	}
+
 	public static char Exit() {
 		ExitView();
 		System.out.println("\t-- Apakah anda yakin untuk keluar?");
@@ -747,13 +1020,13 @@ public class Function000SistemATM {
 		if (userConfirmation == 'Y' || userConfirmation == 'y') {
 			continueTransaction = 't';
 			System.out.println(
-				"    ============================================================================================");
+					"    ============================================================================================");
 			System.out.println(
-				"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
+					"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
 			System.out.println(
-				"    ============================================================================================");
+					"    ============================================================================================");
 		} else {
-			continueTransaction = 'y' ;
+			continueTransaction = 'y';
 		}
 		return continueTransaction;
 	}
@@ -767,10 +1040,10 @@ public class Function000SistemATM {
 		userConfirmation = scanner2.next().charAt(0);
 		return userConfirmation;
 	}
-	
+
 	public static boolean PinValidation() {
 		System.out.print("Masukkan PIN anda: ");
-		inputPin = scanner1.nextLine();	
+		inputPin = scanner1.nextLine();
 		if (inputPin.equals(accountData[accountLineIndex][1])) {
 			return true;
 		} else {

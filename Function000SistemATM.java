@@ -78,6 +78,10 @@ public class Function000SistemATM {
 	// 'Exit' feature variables
 	static boolean isStopTransaction = false;
 
+	// 'Listrik' feature variables
+	static int indexListrik = 0;
+	static boolean isListrikValid = false;
+
 	// Konfirmasi transaksi ulang features variables
 	static char continueTransaction = 't', userChoice = 't', 
 		   userConfirmation;
@@ -910,6 +914,130 @@ public class Function000SistemATM {
 		ListrikView();
 		System.out.print("\t-- Masukkan ID pelanggan PLN/Nomor meter: ");
 		int inputPLN = scanner4.nextInt();
+		ClearScreen();
+		// Pengecekan data ID pelanggan
+		isListrikValid = false;
+		for (int i = 0; i < listrikData.length; i++) {
+			if (inputPLN == listrikData[i][0]) {
+				indexListrik = i;
+				isListrikValid = true;
+				break;
+			}
+		}
+
+		// Proses perhitungan tagihan listrik PLN
+		if (isListrikValid) {
+			// Formatting output ke Rupiah
+			String tagihanListrikRP = currencyFormat
+					.format(listrikData[indexListrik][1]);
+			System.out.println(
+					"    ============================================================================================");
+			System.out.println(
+					"    [  _________________________________________________________\t]");
+			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+			System.out.printf("    [ |  ID PLN\t\t\t: %d\t\t\t|\t]\n", inputPLN);
+			System.out.printf("    [ |  Total tagihan\t\t: %s\t\t\t|\t]\n",
+					tagihanListrikRP);
+			System.out.println(
+					"    [  ---------------------------------------------------------\t]");
+			System.out.println(
+					"    ============================================================================================");
+			System.out.printf(
+					"\t-- Konfirmasi transaksi tagihan listrik dengan ID %s sebesar %s\n",
+					inputPLN, tagihanListrikRP);
+			UserConfirmation();
+			ClearScreen();
+			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				if (PinValidation()) {
+					if (listrikData[indexListrik][1] < userBalance) {
+						userBalance -= listrikData[indexListrik][1];
+						// Formatting saldo pengguna ke Rupiah
+						String saldoRupiah3 = currencyFormat.format(userBalance);
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    [  _________________________________________________________\t]");
+						System.out.println(
+								"    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+						System.out.printf("    [ |  ID PLN\t\t\t: %d\t\t\t|\t]\n",
+								inputPLN);
+						System.out.printf("    [ |  Total tagihan\t\t: %s\t\t\t|\t]\n",
+								tagihanListrikRP);
+						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
+								saldoRupiah3);
+						System.out.println(
+								"    [  ---------------------------------------------------------\t]");
+						System.out.println(
+								"    ============================================================================================");
+						
+						// Pencatatan riwayat transaksi
+						transactionHistory[maxTransactionHistory
+						- transactionCount] = "Telah melakukan pembayaran tagihan listrik senilai "
+								+ tagihanListrikRP;
+						transactionCount--;
+
+						EnterForContinue();
+						ClearScreen();
+					} else {
+						// Kondisi jika tagihan listrik > saldo pengguna
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+					}
+				} else {
+					// Kondisi jika PIN tidak sesuai dengan database
+					System.out.println(
+							"    ============================================================================================");
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"                                      [  (!) PIN SALAH! (!)  ]");
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"    ============================================================================================");
+				}
+			} else {
+				// Kondisi jika pengguna input 't' atau 'T'
+				System.out.println(
+						"    ============================================================================================");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"    ============================================================================================");
+			}
+		} else {
+			// Kondisi jika ID PLN tidak sesuai dengan data yang ada
+			System.out.println(
+					"    ============================================================================================");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"                   [  (!) ID PLN invalid. Silakan input ulang ID PLN anda! (!)  ]");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"    ============================================================================================");
+		}
 	}
 
 	public static void PendidikanView() {

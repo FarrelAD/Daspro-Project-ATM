@@ -727,6 +727,7 @@ public class Function000SistemATM {
 				Bpjs();
 				break;
 			default:
+				defaultCaseMenu();
 				break;
 		}
 	}
@@ -1095,4 +1096,4 @@ public class Function000SistemATM {
 		System.out.flush();
 	}
 
-}
+}	

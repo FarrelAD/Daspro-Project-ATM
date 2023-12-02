@@ -290,6 +290,7 @@ public class Function000SistemATM {
 				case 8:
 					Exit();
 				default:
+					defaultCaseMenu();
 					break;
 			}
 
@@ -726,6 +727,7 @@ public class Function000SistemATM {
 				Bpjs();
 				break;
 			default:
+				defaultCaseMenu();
 				break;
 		}
 	}
@@ -1048,6 +1050,16 @@ public class Function000SistemATM {
 		}
 	}
 
+	public static void defaultCaseMenu() {
+		ClearScreen();
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]");
+		System.out.println(
+				"    ============================================================================================");
+	}
+
 	public static void showingThanks() {
 		System.out.println(
 				"    ============================================================================================");
@@ -1084,4 +1096,4 @@ public class Function000SistemATM {
 		System.out.flush();
 	}
 
-}
+}	

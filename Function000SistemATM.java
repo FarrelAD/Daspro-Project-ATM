@@ -473,6 +473,7 @@ public class Function000SistemATM {
 	}
 
 	public static void TarikTunai() {
+		TarikTunaiView();
 		System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input nominal tarik
 									     // tunai
 		cashWithdrawalAmount = scanner3.nextInt();
@@ -487,22 +488,10 @@ public class Function000SistemATM {
 		System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + cashWitdrawalRupiah + " ? ");
 		System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 		userChoice = scanner4.next().charAt(0);
-
 		ClearScreen();
-		System.out.println(
-				"    ============================================================================================");
-
 		if (userChoice == 'y' || userChoice == 'Y') {
-			System.out.print("\t-- Masukkan PIN anda: ");
-			inputPin = scanner5.nextLine();
-
-			ClearScreen();
-
-			System.out.println(
-					"    ============================================================================================");
-
 			// Pengecekan apakah input PIN sesuai dengan database
-			if (inputPin.equals(accountData[accountLineIndex][1])) {
+			if (PinValidation()) {
 				if (cashWithdrawalAmount < userBalance) {
 					// Pengecekan apakah nominal tarik kurang dari saldo pengguna
 					if (cashWithdrawalAmount <= 5000000) {
@@ -511,6 +500,8 @@ public class Function000SistemATM {
 						userBalance -= cashWithdrawalAmount;
 						// Formating penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
+						System.out.println(
+								"    ============================================================================================");
 						System.out.println(
 								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
@@ -535,6 +526,8 @@ public class Function000SistemATM {
 					} else {
 						// Kondisi jika nominal Tarik > 5.000.000
 						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
 								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
 								"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]");
@@ -545,6 +538,8 @@ public class Function000SistemATM {
 					}
 				} else {
 					// Kondisi jika cashWithdrawalAmount > userBalance
+					System.out.println(
+							"    ============================================================================================");
 					System.out.println(
 							"    --------------------------------------------------------------------------------------------");
 					System.out.println(
@@ -557,6 +552,8 @@ public class Function000SistemATM {
 			} else {
 				// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
 				System.out.println(
+						"    ============================================================================================");
+				System.out.println(
 						"    --------------------------------------------------------------------------------------------");
 				System.out
 						.println("                                       [  (!) PIN SALAH! (!)  ]");
@@ -567,6 +564,8 @@ public class Function000SistemATM {
 			}
 		} else {
 			// Kondisi jika pengguna input 't' atau 'T'
+			System.out.println(
+					"    ============================================================================================");
 			System.out.println(
 					"    --------------------------------------------------------------------------------------------");
 			System.out
@@ -606,20 +605,13 @@ public class Function000SistemATM {
 		UserConfirmation();
 
 		ClearScreen();
-
-		System.out.println(
-				"    ============================================================================================");
-
 		if (userConfirmation == 'y' || userConfirmation == 'Y') {
-			// PinValidation();
-
 			ClearScreen();
-
-			System.out.println(
-					"    ============================================================================================");
 			if (PinValidation()) {
 				userBalance += cashDepositAmount; // Penjumlahan saldo dengan nominal setor yang telah
 				// dilakukan
+				System.out.println(
+						"    ============================================================================================");
 				System.out.println(
 						"    --------------------------------------------------------------------------------------------");
 				System.out.println(
@@ -646,6 +638,8 @@ public class Function000SistemATM {
 			} else {
 				// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
 				System.out.println(
+						"    ============================================================================================");
+				System.out.println(
 						"    --------------------------------------------------------------------------------------------");
 				System.out
 						.println("                                       [  (!) PIN SALAH! (!)  ]");
@@ -657,6 +651,8 @@ public class Function000SistemATM {
 			}
 		} else {
 			// Kondisi jika pengguna input 'T' atau 't'
+			System.out.println(
+					"    ============================================================================================");
 			System.out.println(
 					"    --------------------------------------------------------------------------------------------");
 			System.out
@@ -795,9 +791,7 @@ public class Function000SistemATM {
 			nomorTelepon = scanner1.nextLine();
 			System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal pulsa
 			nomPulsa = scanner4.nextInt();
-
 			ClearScreen();
-
 			System.out.println(
 				"    ============================================================================================");
 			// Konversi nilai nomPulsa ke rupiah
@@ -817,14 +811,10 @@ public class Function000SistemATM {
 					"\t-- Konfirmasi transaksi ke nomor telepon %s dengan nominal %s\n",
 					nomorTelepon, nomPulsaRP);
 			UserConfirmation();
-
 			ClearScreen();
-
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
 				ClearScreen();
-
 				if (PinValidation()) {
-					ClearScreen();
 					if (nomPulsa < userBalance) {
 						String saldoRupiah2 = currencyFormat.format(userBalance);
 
@@ -1076,6 +1066,7 @@ public class Function000SistemATM {
 	public static boolean PinValidation() {
 		System.out.print("Masukkan PIN anda: ");
 		inputPin = scanner1.nextLine();
+		ClearScreen();
 		if (inputPin.equals(accountData[accountLineIndex][1])) {
 			return true;
 		} else {

@@ -14,6 +14,7 @@ public class Function000SistemATM {
 	static Scanner scannerTF = new Scanner(System.in);
 
 	// inisialisasi dan deklarasi variabel yang dibutuhkan
+	// array akun di ATM POLINEMA
 	static String[][] accountData = {
 			{ "1234567", "1234", "7000000", "aman" },
 			{ "7654321", "5678", "4000000", "aman" },
@@ -21,48 +22,68 @@ public class Function000SistemATM {
 			{ "0000000", "0000", "900000000", "aman" }
 	};
 
-	static int[][] listrikData = { // array listrikData menampung ID PLN & tagihan
+	// array listrikData menampung ID PLN & tagihan
+	static int[][] listrikData = { 
 		{ 123123123, 100000 },
 		{ 123456789, 70000 },
 		{ 333444555, 80000 },
 	};
-	static int[][] pendidikanData = { // array pendidikanData menampung virtual account (VA) & tagihan
+
+	// array pendidikanData menampung virtual account (VA) & tagihan
+	static int[][] pendidikanData = { 
 		{ 232323, 1000000 },
 		{ 454545, 2500000 },
 		{ 909090, 5000000 },
 	};
-	static int[][] tagihanAirData = { // array tagihan pada pdam menampung virtual account (VA) & tagihan
+
+	// array tagihan pada pdam menampung virtual account (VA) & tagihan
+	static int[][] tagihanAirData = { 
 		{ 232323, 100000 },
 		{ 454545, 250000 },
 		{ 909090, 500000 },
 	};
-	static int[][] BPJSdata = { // array tagihan pada BPJS
+
+	// array tagihan pada BPJS menampung virtual accounr (VA) & tagihan
+	static int[][] BPJSdata = { 
 		{ 232323, 125000 },
 		{ 454545, 250000 },
 		{ 909090, 500000 },
 	};
 
-	static int maxTransactionHistory = 10, transactionCount = 10,
-			accountLineIndex = 0, loginAttempts = 1;
-	static String[] transactionHistory = new String[maxTransactionHistory];
-
+	// 'Login' feature variables
+	static String inputUser_AccountNumber;
+	static int accountLineIndex = 0, loginAttempts = 1;
 	static boolean isAccountValid = false, isAccountNumberValid = false,
-			isAccountFind = false, isTargetAccountValid = false;
+			isAccountFind = false;
 	static final int MAX_LOGIN_ATTEMPTS = 3;
 
-	static boolean isTransactionExit = true;
-
-	static boolean pinStatus = false;
-
-	static String pressEnter;
-
+	// 'Transfer' feature variables
+	static int transferAmount;
 	static String inputTarget_AccountNumber;
+	static boolean  isTargetAccountValid = false;
+
+	// 'Tarik tunai' variables
+	static int cashWithdrawalAmount;
+
+	// 'Setor tunai' variables
+	static int  cashDepositAmount;
+
+	// 'Cek saldo' variables
+	static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
+
+	// 'Riwayat transaksi' features variables
+	static int maxTransactionHistory = 10, transactionCount = 10;
+	static String[] transactionHistory = new String[maxTransactionHistory];
+
+	// 'Exit' feature variables
+	static boolean isStopTransaction = false;
+
+	// Konfirmasi transaksi ulang features variables
 	static char continueTransaction = 't', userChoice = 't', 
 		   userConfirmation;
-	static boolean isStopTransaction = false, isContinueTransaction = false;
-	static int transferAmount, cashWithdrawalAmount, cashDepositAmount;
-	static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
-	static String inputUser_AccountNumber;
+	static boolean  isContinueTransaction = false;
+
+	// 'Validasi PIN' variables
 	static String inputPin;
 
 	// Format nilai uang Indonesia Rupiah (IDR)
@@ -456,9 +477,7 @@ public class Function000SistemATM {
 									     // tunai
 		cashWithdrawalAmount = scanner3.nextInt();
 
-		// Menghapus output yang telah ditampilkan
-		System.out.println("\033[H\033[2J");
-		System.out.flush();
+		ClearScreen();
 
 		System.out.println(
 				"    ============================================================================================");
@@ -469,9 +488,7 @@ public class Function000SistemATM {
 		System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
 		userChoice = scanner4.next().charAt(0);
 
-		// Menghapus output yang telah ditampilkan
-		System.out.println("\033[H\033[2J");
-		System.out.flush();
+		ClearScreen();
 		System.out.println(
 				"    ============================================================================================");
 
@@ -479,9 +496,7 @@ public class Function000SistemATM {
 			System.out.print("\t-- Masukkan PIN anda: ");
 			inputPin = scanner5.nextLine();
 
-			// Menghapus output yang telah ditampilkan
-			System.out.println("\033[H\033[2J");
-			System.out.flush();
+			ClearScreen();
 
 			System.out.println(
 					"    ============================================================================================");
@@ -514,12 +529,9 @@ public class Function000SistemATM {
 										+ cashWitdrawalRupiah;
 						transactionCount--;
 
-						System.out.print("Enter untuk melanjutkan -->  ");
-						pressEnter = scanner1.nextLine();
+						EnterForContinue();
 
-						// Menghapus output yang telah ditampilkan
-						System.out.println("\033[H\033[2J");
-						System.out.flush();
+						ClearScreen();
 					} else {
 						// Kondisi jika nominal Tarik > 5.000.000
 						System.out.println(
@@ -1073,7 +1085,7 @@ public class Function000SistemATM {
 
 	public static void EnterForContinue() {
 		System.out.print("Enter untuk melanjutkan -->  ");
-		pressEnter = scanner1.nextLine();
+		scanner1.nextLine();
 	}
 
 	public static void ClearScreen() {

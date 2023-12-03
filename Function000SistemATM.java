@@ -86,6 +86,10 @@ public class Function000SistemATM {
 	static int indexPendidikan = 0;
 	static boolean isPendidikanValid = false;
 
+	// 'PDAM' feature variables
+	static int indexPdam = 0;
+	static boolean isPdamValid = false;
+
 	// Konfirmasi transaksi ulang features variables
 	static char continueTransaction = 't', userChoice = 't', 
 		   userConfirmation;
@@ -1203,6 +1207,129 @@ public class Function000SistemATM {
 		PdamView();
 		System.out.print("\t-- Masukkan nomor tagihan : ");
 		int inputVA = scanner4.nextInt();
+		ClearScreen();
+
+		// pengecekan data VA
+		isPdamValid = false;
+		for (int i = 0; i < tagihanAirData.length; i++) {
+			if (inputVA == tagihanAirData[i][0]) {
+				indexPdam = i;
+				isPdamValid = true;
+				break;
+			}
+		}
+
+		if (isPdamValid) {
+			String tagihanPdamRp = currencyFormat
+				.format(tagihanAirData[indexPdam][1]);
+			System.out.println(
+					"    ============================================================================================");
+			System.out.println(
+					"    [  _________________________________________________________\t]");
+			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+			System.out.printf("    [ |  Nomor tagihan\t\t: %d\t\t\t|\t]\n", inputVA);
+			System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
+					tagihanPdamRp);
+			System.out.println(
+					"    [  ---------------------------------------------------------\t]");
+			System.out.println(
+					"    ============================================================================================");
+			System.out.printf(
+					"\t-- Konfirmasi transaksi tagihan biaya PDAM sebesar %s\n",
+					tagihanPdamRp);
+			UserConfirmation();
+			ClearScreen();
+			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				if (PinValidation()) {
+					if (tagihanAirData[indexPdam][1] < userBalance) {
+						userBalance -= tagihanAirData[indexPdam][1];
+						// Formatting output ke Rupiah
+						String saldoRupiah3 = currencyFormat.format(userBalance);
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    [  _________________________________________________________\t]");
+						System.out.println(
+								"    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+						System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n",
+								inputVA);
+						System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
+								tagihanPdamRp);
+						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
+								saldoRupiah3);
+						System.out.println(
+								"    [  ---------------------------------------------------------\t]");
+						System.out.println(
+								"    ============================================================================================");
+						
+						// Pencatatan riwayat transaksi
+						transactionHistory[maxTransactionHistory
+						- transactionCount] = "Telah melakukan pembayaran tagihan PDAM senilai "
+								+ tagihanPdamRp;
+						transactionCount--;
+
+						EnterForContinue();
+						ClearScreen();
+					} else {
+						// Kondisi jika tagihan pendidikan > saldo pengguna
+						System.out.println(
+								"    ============================================================================================");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
+						System.out.println(
+								"    --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"    ============================================================================================");
+					}
+				} else {
+					// Kondisi jika PIN tidak sesuai dengan database
+					System.out.println(
+							"    ============================================================================================");
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"                                      [  (!) PIN SALAH! (!)  ]");
+					System.out.println(
+							"    --------------------------------------------------------------------------------------------");
+					System.out.println(
+							"    ============================================================================================");
+				}
+			} else {
+				// Kondisi jika pengguna input 't' atau 'T'
+				System.out.println(
+						"    ============================================================================================");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+				System.out.println(
+						"    --------------------------------------------------------------------------------------------");
+				System.out.println(
+						"    ============================================================================================");
+			}
+		} else {
+			// Kondisi jika nomor VA tidak ditemukan di database
+			System.out.println(
+					"    ============================================================================================");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"                     [  (!) VA invalid. Silakan input ulang nomor VA anda! (!)  ]");
+			System.out.println(
+					"    --------------------------------------------------------------------------------------------");
+			System.out.println(
+					"    ============================================================================================");
+		}
 	}
 
 	public static void BpjsView() {

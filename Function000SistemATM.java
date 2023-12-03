@@ -305,6 +305,7 @@ public class Function000SistemATM {
 					break;
 				case 8:
 					Exit();
+					break;
 				default:
 					defaultCaseMenu();
 					break;

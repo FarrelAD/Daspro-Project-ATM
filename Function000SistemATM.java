@@ -90,6 +90,10 @@ public class Function000SistemATM {
 	static int indexPdam = 0;
 	static boolean isPdamValid = false;
 
+	// 'BPJS' feature variables
+	static int indexBpjs = 0;
+	static boolean isBpjsValid = false;
+
 	// Konfirmasi transaksi ulang features variables
 	static char continueTransaction = 't', userChoice = 't', 
 		   userConfirmation;
@@ -1054,6 +1058,81 @@ public class Function000SistemATM {
 		BpjsView();
 		System.out.print("\t-- Masukkan nomor tagihan : ");
 		int inputVA = scanner4.nextInt();
+		ClearScreen();
+
+		// pengecekan data VA
+		isBpjsValid = false;
+		for (int i = 0; i < BPJSdata.length; i++) {
+			if (inputVA == BPJSdata[i][0]) {
+				indexBpjs = i;
+				isBpjsValid = true;
+				break;
+			}
+		}
+
+		if (isBpjsValid) {
+			String tagihanBpjsRp = currencyFormat
+					.format(BPJSdata[indexBpjs][1]);
+			System.out.println(
+					"    ============================================================================================");
+			System.out.println(
+					"    [  _________________________________________________________\t]");
+			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+			System.out.printf("    [ |  Nomor tagihan\t\t: %d\t\t\t|\t]\n", inputVA);
+			System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
+					tagihanBpjsRp);
+			System.out.println(
+					"    [  ---------------------------------------------------------\t]");
+			System.out.println(
+					"    ============================================================================================");
+			System.out.printf(
+					"\t-- Konfirmasi transaksi tagihan biaya BPJS sebesar %s\n",
+					tagihanBpjsRp);
+			
+			UserConfirmation();
+			ClearScreen();
+			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				if (PinValidation()) {
+					if (BPJSdata[indexBpjs][1] < userBalance) {
+						userBalance -= BPJSdata[indexBpjs][1];
+						// Formatting output ke Rupiah
+						String saldoRupiah3 = currencyFormat.format(userBalance);
+						viewTransactionSuccess();
+						System.out.println(
+								"    [  _________________________________________________________\t]");
+						System.out.println(
+								"    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+						System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n",
+								inputVA);
+						System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
+								tagihanBpjsRp);
+						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
+								saldoRupiah3);
+						System.out.println(
+								"    [  ---------------------------------------------------------\t]");
+						System.out.println(
+								"    ============================================================================================");
+						
+						// Pencatatan riwayat transaksi
+						transactionHistory[maxTransactionHistory
+						- transactionCount] = "Telah melakukan pembayaran tagihan BPJS senilai "
+								+ tagihanBpjsRp;
+						transactionCount--;
+
+						EnterForContinue();
+						ClearScreen();
+					} else {
+						viewBalanceIsNotEnough();
+					}
+				} else {
+					viewWrongPin();
+				}
+			} else {
+				viewTransactionCancelled();
+			}
+		} else {
+			viewPaymentCodeInvalid();
+		}
 	}
 
 	public static void RiwayatTransaksiView() {

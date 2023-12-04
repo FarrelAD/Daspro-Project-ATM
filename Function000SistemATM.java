@@ -463,11 +463,9 @@ public class Function000SistemATM {
         // Konversi nilai output ke Rupiah
         String cashWitdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
         // Persetujuan konfirmasi transaksi
-        System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + cashWitdrawalRupiah + " ? ");
-        System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
-        userChoice = scanner4.next().charAt(0);
+        UserConfirmation();
         ClearScreen();
-        if (userChoice == 'y' || userChoice == 'Y') {
+        if (userConfirmation == 'y' || userConfirmation  == 'Y') {
             // Pengecekan apakah input PIN sesuai dengan database
             if (PinValidation()) {
                 if (cashWithdrawalAmount < userBalance) {

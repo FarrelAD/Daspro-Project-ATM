@@ -233,7 +233,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                "               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]");
+                red+"               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]"+reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
@@ -433,7 +433,7 @@ public class Function000SistemATM {
             System.out.println(
                     "    --------------------------------------------------------------------------------------------");
             System.out.println(
-                    "                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]");
+                    red+"                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]"+reset);
             System.out.println(
                     "    --------------------------------------------------------------------------------------------");
             System.out.println(

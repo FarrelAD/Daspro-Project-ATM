@@ -1246,7 +1246,9 @@ public class Function000SistemATM {
             if (inputNewPin.equals(confirmedNewPin)) {
                 int indeksNoRek = 0;
                 accountData[accountLineIndex][1] = confirmedNewPin;
-
+                transactionHistory[maxTransactionHistory
+                        - transactionCount] = "Telah melakukan pengubahan pin";
+                transactionCount--;
                 // Menghapus output yang telah ditampilkan
                 ClearScreen();
 

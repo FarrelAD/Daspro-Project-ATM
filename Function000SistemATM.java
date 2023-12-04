@@ -466,6 +466,7 @@ public class Function000SistemATM {
                 "    ============================================================================================");
         // Konversi nilai output ke Rupiah
         String cashWitdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
+        System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + cashWitdrawalRupiah + " ? ");
         // Persetujuan konfirmasi transaksi
         UserConfirmation();
         ClearScreen();

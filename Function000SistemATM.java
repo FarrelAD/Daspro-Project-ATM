@@ -13,6 +13,9 @@ public class Function000SistemATM {
     static Scanner scanner4 = new Scanner(System.in);
     static Scanner scanner5 = new Scanner(System.in);
     static Scanner scannerTF = new Scanner(System.in);
+	
+	private static final String red = "\u001B[31m";
+	private static final String reset = "\u001B[0m";
 
     // inisialisasi dan deklarasi variabel yang dibutuhkan
     // array akun di ATM POLINEMA
@@ -1290,7 +1293,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                "               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]");
+                red + "               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]" + reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(

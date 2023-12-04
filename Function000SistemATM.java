@@ -468,7 +468,7 @@ public class Function000SistemATM {
         // Persetujuan konfirmasi transaksi
         UserConfirmation();
         ClearScreen();
-        if (userConfirmation == 'y' || userConfirmation  == 'Y') {
+        if (userConfirmation == 'y' || userConfirmation == 'Y') {
             // Pengecekan apakah input PIN sesuai dengan database
             if (PinValidation()) {
                 if (cashWithdrawalAmount < userBalance) {
@@ -1172,7 +1172,21 @@ public class Function000SistemATM {
 
     public static void CekSaldo() {
         CekSaldoView();
+        String saldoRupiah3 = currencyFormat.format(userBalance);
+        System.out.println(
+                "    ============================================================================================");
+        System.out.println(
+                "    [            ________________________________________________________________              ]");
+        System.out.printf("    [           | Saldo anda sebesar %s\t\t\t\t |\t       ]\n",
+                saldoRupiah3);
+        System.out.println(
+                "    [            ----------------------------------------------------------------              ]");
+        System.out.println(
+                "    ============================================================================================");
+
         EnterForContinue();
+
+        ClearScreen();
     }
 
     public static void UbahPinView() {

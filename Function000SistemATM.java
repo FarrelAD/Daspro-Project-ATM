@@ -15,6 +15,7 @@ public class Function000SistemATM {
     static Scanner scannerTF = new Scanner(System.in);
 	
 	private static final String red = "\u001B[31m";
+	private static final String green = "\u001B[32m";
 	private static final String reset = "\u001B[0m";
 
     // inisialisasi dan deklarasi variabel yang dibutuhkan
@@ -1263,7 +1264,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    ============================================================================================");
         System.out.println(
-                "                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]");
+                red+"                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]"+reset);
         System.out.println(
                 "    ============================================================================================");
     }
@@ -1289,7 +1290,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                "                                      [  (!) PIN SALAH! (!)  ]");
+                red+"                                      [  (!) PIN SALAH! (!)  ]"+reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(

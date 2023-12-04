@@ -1293,7 +1293,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                "                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]");
+                 red +"                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]"+ reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(

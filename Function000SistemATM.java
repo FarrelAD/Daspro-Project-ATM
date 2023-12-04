@@ -13,10 +13,10 @@ public class Function000SistemATM {
     static Scanner scanner4 = new Scanner(System.in);
     static Scanner scanner5 = new Scanner(System.in);
     static Scanner scannerTF = new Scanner(System.in);
-	
-	private static final String red = "\u001B[31m";
-	private static final String green = "\u001B[32m";
-	private static final String reset = "\u001B[0m";
+
+    private static final String red = "\u001B[31m";
+    private static final String green = "\u001B[32m";
+    private static final String reset = "\u001B[0m";
 
     // inisialisasi dan deklarasi variabel yang dibutuhkan
     // array akun di ATM POLINEMA
@@ -233,7 +233,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                red+"               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]"+reset);
+                red + "               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]" + reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
@@ -433,7 +433,7 @@ public class Function000SistemATM {
             System.out.println(
                     "    --------------------------------------------------------------------------------------------");
             System.out.println(
-                    red+"                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]"+reset);
+                    red + "                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]" + reset);
             System.out.println(
                     "    --------------------------------------------------------------------------------------------");
             System.out.println(
@@ -1229,8 +1229,52 @@ public class Function000SistemATM {
 
     public static void UbahPin() {
         UbahPinView();
-        System.out.print("    Masukkan nomor rekening : ");
-        String inputUser_AccountNumber7 = scanner1.nextLine();
+        String userRekening = accountData[accountLineIndex][0];
+        System.out.print("    Masukkan PIN anda : "); // Input PIN pengguna
+        String inputPin7 = scanner1.nextLine();
+
+        ClearScreen();
+
+        if (inputPin7.equals(inputPin)) {
+            System.out.println(
+                    "    ============================================================================================");
+            System.out.print("    Masukkan PIN baru: ");
+            String inputNewPin = scanner1.nextLine();
+            System.out.print("    Konfirmasi PIN baru: ");
+            String confirmedNewPin = scanner1.nextLine();
+            if (inputNewPin.equals(confirmedNewPin)) {
+                int indeksNoRek = 0;
+                accountData[accountLineIndex][1] = confirmedNewPin;
+
+                // Menghapus output yang telah ditampilkan
+                ClearScreen();
+
+                System.out.println(
+                        "    ============================================================================================");
+                System.out.println(
+                        "    --------------------------------------------------------------------------------------------");
+                System.out.println(
+                        "    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+                System.out.println(
+                        "    --------------------------------------------------------------------------------------------");
+                System.out.println(
+                        "    ============================================================================================");
+            } else {
+                System.out.println(
+                        "    ============================================================================================");
+                System.out.println(
+                        "                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]");
+                System.out.println(
+                        "    ============================================================================================");
+            }
+        } else {
+            System.out.println(
+                    "    ============================================================================================");
+            System.out.println(
+                    "                                    [  (!) PIN TIDAK SESUAI (!)  ]");
+            System.out.println(
+                    "    ============================================================================================");
+        }
     }
 
     public static void ExitView() {
@@ -1264,7 +1308,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    ============================================================================================");
         System.out.println(
-                red+"                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]"+reset);
+                red + "                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]" + reset);
         System.out.println(
                 "    ============================================================================================");
     }
@@ -1290,7 +1334,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                red+"                                      [  (!) PIN SALAH! (!)  ]"+reset);
+                red + "                                      [  (!) PIN SALAH! (!)  ]" + reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
@@ -1318,7 +1362,7 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                 red +"                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]"+ reset);
+                red + "                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]" + reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
@@ -1332,7 +1376,8 @@ public class Function000SistemATM {
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(
-                red + "               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]" + reset);
+                red + "               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]"
+                        + reset);
         System.out.println(
                 "    --------------------------------------------------------------------------------------------");
         System.out.println(

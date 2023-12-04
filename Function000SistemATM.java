@@ -1151,7 +1151,31 @@ public class Function000SistemATM {
 
     public static void RiwayatTransaksi() {
         RiwayatTransaksiView();
+        System.out.println(
+                "    ============================================================================================");
+        System.out.println(
+                "\t|                         ________________________________                        |");
+        System.out.println(
+                "\t|                         \\RIWAYAT TRANSAKSI TERBARU ANDA/                        |");
+        System.out.println(
+                "\t|                          ------------------------------                         |");
+        // Menampilkan output riwayat transaksi
+        int j = 0;
+        for (String i : transactionHistory) {
+            if (i != null) {
+                j++;
+                // Menampilkan output
+                System.out.printf("\t| %d. %s\n", j, i);
+            }
+        }
+        System.out.println(
+                "         ---------------------------------------------------------------------------------");
+        System.out.printf("        | Anda telah melakukan %d transaksi\t\t\t\t\t\t  |\n", j);
+        System.out.println(
+                "    ============================================================================================");
+
         EnterForContinue();
+        ClearScreen();
     }
 
     public static void CekSaldoView() {

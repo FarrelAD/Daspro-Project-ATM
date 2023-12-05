@@ -1,9 +1,9 @@
-
 // Program sistem ATM - Kelompok 4 - TI-1B
 // Fitur yang tersedia: autentifikasi pengguna, transfer, tarik tunai, setor tunai, 
 // pembayaran lain-lain, riwayat transaksi, cek saldo, ubah PIN, dan EXIT
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Function000SistemATM {
@@ -77,8 +77,7 @@ public class Function000SistemATM {
     static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
 
     // 'Riwayat transaksi' features variables
-    static int maxTransactionHistory = 10, transactionCount = 10;
-    static String[] transactionHistory = new String[maxTransactionHistory];
+    static ArrayList<String> transactionHistory = new ArrayList<>();
 
     // 'Exit' feature variables
     static boolean isStopTransaction = false;
@@ -333,6 +332,7 @@ public class Function000SistemATM {
                     isContinueTransaction = true;
                 } else {
                     showingThanks();
+                    isContinueTransaction = false;
                 }
             }
         } while (isContinueTransaction);
@@ -406,13 +406,8 @@ public class Function000SistemATM {
                         EnterForContinue();
                         ClearScreen();
                         isTargetAccountValid = false;
-                        // Pencatatan riwayat transaksi
-                        transactionHistory[maxTransactionHistory
-                                - transactionCount] = "Telah melakukan transaksi ke rekening "
-                                        + inputTarget_AccountNumber
-                                        + " sebesar "
-                                        + transferAmountRupiah;
-                        transactionCount--;
+                        // Pencatatan riwawayat transaksi
+                        transactionHistory.add("Telah melakukan transfer ke rekening " + inputTarget_AccountNumber + " sebesar " + transferAmountRupiah);
                     } else {
                         // Kondisi jika nominal transfer melebihi jumlah saldo
                         viewBalanceIsNotEnough();
@@ -487,10 +482,7 @@ public class Function000SistemATM {
                                 "    ============================================================================================");
 
                         // Pencatatan riwayat transaksi
-                        transactionHistory[maxTransactionHistory
-                                - transactionCount] = "Telah melakukan tarik tunai sebesar "
-                                        + cashWitdrawalRupiah;
-                        transactionCount--;
+                        transactionHistory.add("Telah melakukan tarik tunai sebesar " + cashWitdrawalRupiah);
 
                         EnterForContinue();
 
@@ -559,11 +551,9 @@ public class Function000SistemATM {
                 System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
                 System.out.println(
                         "    ============================================================================================");
+                
                 // Pencatatan riwayat transaksi
-                transactionHistory[maxTransactionHistory
-                        - transactionCount] = "Telah melakukan setor tunai sebesar "
-                                + cashDepositRupiah;
-                transactionCount--;
+                transactionHistory.add("Telah melakukan setor tunai sebesar " + cashDepositRupiah);
 
                 EnterForContinue();
 
@@ -748,10 +738,7 @@ public class Function000SistemATM {
                         System.out.println(
                                 "    ============================================================================================");
                         // Pencatatan riwayat transaksi
-                        transactionHistory[maxTransactionHistory
-                                - transactionCount] = "Telah melakukan pembayaran pulsa senilai "
-                                        + nomPulsaRP;
-                        transactionCount--;
+                        transactionHistory.add("Telah melakukan pembelian pulsa ke nomor " + nomorTelepon + " sebesar " + nomPulsaRP);
 
                         EnterForContinue();
                         ClearScreen();
@@ -840,10 +827,7 @@ public class Function000SistemATM {
                                 "    ============================================================================================");
 
                         // Pencatatan riwayat transaksi
-                        transactionHistory[maxTransactionHistory
-                                - transactionCount] = "Telah melakukan pembayaran tagihan listrik senilai "
-                                        + tagihanListrikRP;
-                        transactionCount--;
+                        transactionHistory.add("Telah melakukan pembayaran tagihan listrik sebesar " + tagihanListrikRP);
 
                         EnterForContinue();
                         ClearScreen();
@@ -933,9 +917,7 @@ public class Function000SistemATM {
                                 "    ============================================================================================");
 
                         // Pencatatan riwayat transaksi
-                        transactionHistory[maxTransactionHistory
-                                - transactionCount] = "Telah melakukan pembayaran tagihan pendidikan senilai "
-                                        + tagihanPendidikanRP;
+                        transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + tagihanPendidikanRP);
 
                         EnterForContinue();
                         ClearScreen();
@@ -1026,10 +1008,11 @@ public class Function000SistemATM {
                                 "    ============================================================================================");
 
                         // Pencatatan riwayat transaksi
-                        transactionHistory[maxTransactionHistory
-                                - transactionCount] = "Telah melakukan pembayaran tagihan PDAM senilai "
-                                        + tagihanPdamRp;
-                        transactionCount--;
+                        // transactionHistory[maxTransactionHistory
+                        //         - transactionCount] = "Telah melakukan pembayaran tagihan PDAM senilai "
+                        //                 + tagihanPdamRp;
+                        // transactionCount--;
+                        transactionHistory.add("Telah melakukan pembayaran tagihan PDAM sebesar " + tagihanPdamRp);
 
                         EnterForContinue();
                         ClearScreen();
@@ -1120,10 +1103,7 @@ public class Function000SistemATM {
                                 "    ============================================================================================");
 
                         // Pencatatan riwayat transaksi
-                        transactionHistory[maxTransactionHistory
-                                - transactionCount] = "Telah melakukan pembayaran tagihan BPJS senilai "
-                                        + tagihanBpjsRp;
-                        transactionCount--;
+                        transactionHistory.add("Telah melakukan pembayaran tagihan BPJS sebesar " + tagihanBpjsRp );
 
                         EnterForContinue();
                         ClearScreen();
@@ -1164,18 +1144,17 @@ public class Function000SistemATM {
                 "\t|                         \\RIWAYAT TRANSAKSI TERBARU ANDA/                        |");
         System.out.println(
                 "\t|                          ------------------------------                         |");
-        // Menampilkan output riwayat transaksi
-        int j = 0;
-        for (String i : transactionHistory) {
-            if (i != null) {
-                j++;
-                // Menampilkan output
-                System.out.printf("\t| %d. %s\n", j, i);
-            }
+
+        if (transactionHistory.size() > 10) {
+                transactionHistory.remove(0);
         }
+
+        for (int i = 0; i < transactionHistory.size(); i++) {
+            System.out.printf("%d. %s%n", (i + 1), transactionHistory.get(i));
+        }
+
         System.out.println(
                 "         ---------------------------------------------------------------------------------");
-        System.out.printf("        | Anda telah melakukan %d transaksi\t\t\t\t\t\t  |\n", j);
         System.out.println(
                 "    ============================================================================================");
 
@@ -1246,9 +1225,9 @@ public class Function000SistemATM {
             if (inputNewPin.equals(confirmedNewPin)) {
                 int indeksNoRek = 0;
                 accountData[accountLineIndex][1] = confirmedNewPin;
-                transactionHistory[maxTransactionHistory
-                        - transactionCount] = "Telah melakukan pengubahan pin";
-                transactionCount--;
+                // transactionHistory[maxTransactionHistory
+                //         - transactionCount] = "Telah melakukan pengubahan pin";
+                // transactionCount--;
                 // Menghapus output yang telah ditampilkan
                 ClearScreen();
 

@@ -541,8 +541,8 @@ public class Function000SistemATM {
 
         public static void SetorTunai() {
                 SetorTunaiView();
-                System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
-                cashDepositAmount = scanner3.nextInt();
+                // System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
+                cashDepositAmount = validateNonNegativeIntegerInput("\t-- Masukkan nominal setor tunai : Rp ");
 
                 ClearScreen();
 

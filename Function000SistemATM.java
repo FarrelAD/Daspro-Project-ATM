@@ -712,8 +712,8 @@ public class Function000SistemATM {
                 if (isOperatorValid) {
                         System.out.print("\t-- Input nomor telepon anda: "); // User input nomor telepon
                         nomorTelepon = scanner1.nextLine();
-                        System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal pulsa
-                        nomPulsa = scanner4.nextInt();
+                        //System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal pulsa
+                        nomPulsa = validateNonNegativeIntegerInput("\t-- Input nominal pulsa: Rp ");
                         ClearScreen();
                         System.out.println(
                                         "    ============================================================================================");
@@ -1440,7 +1440,7 @@ public class Function000SistemATM {
                         System.out.print(prompt);
 
                         while (!scanner3.hasNextInt()) {
-                                System.out.println("\t-- Input yang diberikan tidak valid");
+                                System.out.println("\t-- Input yang diberikan tidak valid. Silahkan ulangi kembali");
                                 System.out.print(prompt);
                                 scanner3.next(); // Hapus input yang tidak valid
                         }

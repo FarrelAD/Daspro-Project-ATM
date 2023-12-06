@@ -463,9 +463,10 @@ public class Function000SistemATM {
 
         public static void TarikTunai() {
                 TarikTunaiView();
-                System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input nominal tarik
+                // System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input
+                // nominal tarik
                 // tunai
-                cashWithdrawalAmount = scanner3.nextInt();
+                cashWithdrawalAmount = validateNonNegativeIntegerInput("\t-- Masukkan nominal tarik tunai : Rp ");
 
                 ClearScreen();
 

@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Function000SistemATM {
+public class ATMSystem {
         static Scanner scanner1 = new Scanner(System.in);
         static Scanner scanner2 = new Scanner(System.in);
         static Scanner scanner3 = new Scanner(System.in);

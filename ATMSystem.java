@@ -6,6 +6,8 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ATMSystem {
         static Scanner scanner1 = new Scanner(System.in);
@@ -113,6 +115,12 @@ public class ATMSystem {
         // Format nilai uang Indonesia Rupiah (IDR)
         static NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
 
+        // Formatting time and date to the system
+        static LocalDateTime currentDateTime = LocalDateTime.now();
+        static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+               "dd-MM-yyyy                                                                         HH:mm:ss");
+        static String formattedDateTime = currentDateTime.format(formatter);
+
         public static void main(String[] args) {
                 while (!isAccountValid) {
                         PageMenu();
@@ -124,37 +132,42 @@ public class ATMSystem {
 
         public static void PageMenu() {
                 ClearScreen();
-                System.out.println(
-                                "=====================================================================================================");
-                System.out.println(
-                                "[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]");
-                System.out.println(
-                                "[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]");
-                System.out.println(
-                                "[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]");
-                System.out.println(
-                                "[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]");
-                System.out.println(
-                                "[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]");
-                System.out.println(
-                                "[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]");
-                System.out.println(
-                                "[ ================================================================================================= ]");
-                System.out.println(
-                                "[                         _    _ _____ _     _____ ________  ___ _____                              ]");
-                System.out.println(
-                                "[                        | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|                             ]");
-                System.out.println(
-                                "[                        | |  | | |__ | |   | /  \\/ | | | .  . || |__                               ]");
-                System.out.println(
-                                "[                        | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|                              ]");
-                System.out.println(
-                                "[                        \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___                              ]");
-                System.out.println(
-                                "[                         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/                              ]");
-                System.out.println(
-                                "=====================================================================================================");
-                System.out.println("");
+                String pageMenu =
+                "[===================================================================================================]\n"+
+                "[    " + formattedDateTime + "    ]\n"+
+                "[===================================================================================================]\n"+
+                "[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]\n"+
+                "[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]\n"+
+                "[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]\n"+
+                "[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]\n"+
+                "[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]\n"+
+                "[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]\n"+
+                "[===================================================================================================]\n"+
+                "[                                                                                                   ]\n"+
+                "[                     @@++%@@                      _    _ _____ _     _____ ________  ___ _____     ]\n"+ 
+                "[                 @%.:#@@@@@+.=@@                 | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|    ]\n"+            
+                "[             @* #@@@@@@@@@@@@@-:@@               | |  | | |__ | |   | /  \\/ | | | .  . || |__      ]\n"+         
+                "[          @+-@@@%#=@=#%%*.-+%%@@@==%@            | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|     ]\n"+      
+                "[        @:+@@#==#%@@@@@@@@%%#+%-#@@#-@           \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___     ]\n"+     
+                "[      @:*@@%=+@@@@@@@****%@@@@@%+-#@@%.@          \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/     ]\n"+   
+                "[    @+-@@@+%@@%*+%@=-*.. ++-%@**+@%#@@@@+=@                                                        ]\n"+ 
+                "[   @==@@%#-@@+******:-!! =:*******%@##*@@%=@                                                       ]\n"+
+                "[   @:@@%-%@@@@+***+=::||.=-=+#***%@@@**%@@:@              PLEASE INPUT YOUR ACCOUNT NUMBER         ]\n"+
+                "[   @:@@@%@@@@+*+#*:--.||.*:-:+*=**@@@@%@@@:@                        AND YOUR PIN                   ]\n"+
+                "[   @-#@@@@#****%*+=: .||. :-=#%*****@@@@@-@               ________________________________         ]\n"+
+                "[    ++@@@@#****%#=-. +||+ .:-##+****@@@@%+%               SILAKAN MASUKKAN NOMOR REKENING          ]\n"+
+                "[    *:@@@@%****+++.. +--+...-+*****%@@@@++@                         DAN PIN ANDA                   ]\n"+
+                "[    %=*@@@@@@#****+:*#::%-:=*+**+@@@@@@%=#                                                         ]\n"+ 
+                "[     *-@@@@@@%***+% =    : *=***=@@@@@@++@                                                         ]\n"+ 
+                "[     @+-@@@@@+****####%%##%##***+@@@@@+-@                      FOR SAFETY AND COMFORT              ]\n"+  
+                "[      @=.@@@@@%%##############%%@@@@@=-@                  PLEASE CHANGE YOUR PIN REGULARLY         ]\n"+   
+                "[       @# @@@@@@#:.   --.  .:+@@@@@@:#@                   ________________________________         ]\n"+    
+                "[         %:*@@@-:%@@@@@@@@@@@= @@@%:#                       DEMI KEAMANAN DAN KENYAMANAN           ]\n"+      
+                "[          @#  :*@@@@@@@@@@@@@@%-  *@                           SILAKAN GANTI PIN ANDA              ]\n"+       
+                "[              @@@#+-:....:-+#@@@                                   SECARA BERKALA                  ]\n"+
+                "[                                                                                                   ]\n"+
+                "[===================================================================================================]";           
+                System.out.println(pageMenu);
         }
 
         public static boolean Login() {
@@ -162,7 +175,7 @@ public class ATMSystem {
                 boolean tryToLogin = false;
 
                 do {
-                        System.out.print("Masukkan nomor rekening anda: ");
+                        System.out.print("[  ACCOUNT NUMBER: ");
                         inputUser_AccountNumber = scanner1.nextLine();
 
                         // Pengecekan kesesuaian input nomor rekening dengan data yang ada
@@ -1413,7 +1426,7 @@ public class ATMSystem {
         }
 
         public static boolean PinValidation() {
-                System.out.print("Masukkan PIN anda: ");
+                System.out.print("[  Masukkan PIN anda: ");
                 inputPin = scanner1.nextLine();
                 ClearScreen();
                 if (inputPin.equals(accountData[accountLineIndex][1])) {

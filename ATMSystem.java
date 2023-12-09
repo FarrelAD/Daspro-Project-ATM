@@ -123,6 +123,17 @@ public class ATMSystem {
 
 	// Variables for choose languange feature
 	static int currentLanguange = 0;
+	static String[][] langOutputs = {
+		{"  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI"}, //0
+		{"TRANSFER", "TRANSFER"}, //1
+		{"CASH WITHDRAWAL", "TARIK TUNAI    "}, //2
+		{"CASH DEPOSIT", "SETOR TUNAI "}, //3
+		{"PAYMENT   ", "PEMBAYARAN"}, //4
+		{"HISTORY", "RIWAYAT"}, //5
+		{"BALANCE INQUIRY", "CEK SALDO      "}, //6
+		{"CHANGE PIN", "UBAH PIN  "}, //7
+		{"EXIT  ", "KELUAR"} //8
+	};
 
 
 	public static void main(String[] args) {
@@ -269,12 +280,13 @@ public class ATMSystem {
 		"[                               ______________________________________                              ]\n"+
 		"[                               MOHON PILIH BAHASA YANG AKAN DIGUNAKAN                              ]\n"+
 		"[===================================================================================================]\n"+
-		"[  [1] [BAHASA INDONESIA]                                                                           ]\n"+
-		"[  [2] [ENGLISH]                                                                                    ]\n"+
+		"[  [1] [ENGLISH]                                                                                    ]\n"+
+		"[  [2] [BAHASA INDONESIA]                                                                           ]\n"+
 		"[===================================================================================================]";
 		System.out.println(chooseLanguange);
 		System.out.print("[ ==> ");
 		currentLanguange = scanner1.nextInt();
+		currentLanguange -= 1;
 	}
 
 	public static void Menu() {
@@ -282,45 +294,18 @@ public class ATMSystem {
 		do {
 			isGoToMainMenu = false;
 			ClearScreen();
-			System.out.println(
-					"    ============================================================================================");
-			System.out.println(
-					"    [  Silakan memilih menu dibawah ini :                                                      ]");
-			System.out.println(
-					"    [   _________________                                                                      ]");
-			System.out.println(
-					"    [  |_1._Transfer_____|                                                                     ]");
-			System.out.println(
-					"    [   _________________                                                                      ]");
-			System.out.println(
-					"    [  |_2._Tarik tunai__|                                                                     ]");
-			System.out.println(
-					"    [   ________________                                                                       ]");
-			System.out.println(
-					"    [  |_3._Setor tunai_|                                                                      ]");
-			System.out.println(
-					"    [   __________________________                                                             ]");
-			System.out.println(
-					"    [  |_4._Pembayaran lain-lain__|                                                            ]");
-			System.out.println(
-					"    [   _______________________                                                                ]");
-			System.out.println(
-					"    [  |_5._Riwayat transaksi__|                                                               ]");
-			System.out.println(
-					"    [   ________________                                                                       ]");
-			System.out.println(
-					"    [  |_6._Cek Saldo___|                                                                      ]");
-			System.out.println(
-					"    [   ________________                                                                       ]");
-			System.out.println(
-					"    [  |_7._Ubah PIN____|                                                                      ]");
-			System.out.println(
-					"    [   ______________                                                                         ]");
-			System.out.println(
-					"    [  |_8. Keluar____|                                                                        ]");
-			System.out.println(
-					"    ============================================================================================");
-			System.out.print("\tMenu yang dipilih (angka) : "); // User input pilihan menu berupa angka
+			String menuOutput = 
+			"[===================================================================================================]\n"+
+			"[                                    "+langOutputs[0][currentLanguange]+"                                ]\n"+
+			"[===================================================================================================]\n"+
+			"[                                                                                                   ]\n"+
+			"[                            [1] "+langOutputs[1][currentLanguange]+"                  "+"[5] "+langOutputs[5][currentLanguange]+"                              ]\n"+
+			"[                            [2] "+langOutputs[2][currentLanguange]+"           "+"[6] "+langOutputs[6][currentLanguange]+"                      ]\n"+
+			"[                            [3] "+langOutputs[3][currentLanguange]+"              "+"[7] "+langOutputs[7][currentLanguange]+"                           ]\n"+
+			"[                            [4] "+langOutputs[4][currentLanguange]+"                "+"[8] "+langOutputs[8][currentLanguange]+"                               ]\n"+
+			"[===================================================================================================]";
+			System.out.println(menuOutput);
+			System.out.print("[ ==> ");
 			int userChoiceMenu = scanner2.nextInt();
 
 			ClearScreen();

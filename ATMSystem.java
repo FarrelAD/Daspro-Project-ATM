@@ -132,7 +132,10 @@ public class ATMSystem {
 		{"HISTORY", "RIWAYAT"}, //5
 		{"BALANCE INQUIRY", "CEK SALDO      "}, //6
 		{"CHANGE PIN", "UBAH PIN  "}, //7
-		{"EXIT  ", "KELUAR"} //8
+		{"EXIT  ", "KELUAR"}, //8
+		{"MORE TRANSACTION?", "TRANSAKSI LAGI?  "}, //9
+		{"YES", "YA "}, //10
+		{"NO   ", "TIDAK"} //11
 	};
 
 
@@ -148,7 +151,7 @@ public class ATMSystem {
 
 	public static void PageMenu() {
 		ClearScreen();
-		String pageMenu =
+		String displayPageMenu =
 		"[===================================================================================================]\n"+
 		"[    " + formattedDateTime + "    ]\n"+
 		"[===================================================================================================]\n"+
@@ -172,7 +175,7 @@ public class ATMSystem {
 		"[   @:@@@@@@@@ **+++- .||. -+++** @@@@@@@@:@                      AND YOUR PIN                      ]\n"+
 		"[   @:#@@@@: ***+++=- .||. -=+++*** :@@@@#:@             ________________________________           ]\n"+
 		"[   @:+@@@@ ****++--. +||+ .--++**** @@@@+:@             SILAKAN MASUKKAN NOMOR REKENING            ]\n"+
-		"[   :@:@@@@. ***-++.. +--+ ..++-*** .@@@@:@:                         DAN PIN ANDA                   ]\n"+
+		"[   :@:@@@@. ***-++.. +--+ ..++-*** .@@@@:@:                      DAN PIN ANDA                      ]\n"+
 		"[    @:*@@@@@@ ***** *#::#* ***** @@@@@@*:@                                                         ]\n"+ 
 		"[    @:-@@@@@@ ****  ======  **** @@@@@@-:@                                                         ]\n"+ 
 		"[     @:-@@@@@. ***####%%####*** . @@@@@-:@                    FOR SAFETY AND COMFORT               ]\n"+  
@@ -183,7 +186,7 @@ public class ATMSystem {
 		"[              @@@#+-:....:-+#@@@                                 SECARA BERKALA                    ]\n"+
 		"[                                                                                                   ]\n"+
 		"[===================================================================================================]";           
-		System.out.println(pageMenu);
+		System.out.println(displayPageMenu);
 	}
 
 	public static boolean Login() {
@@ -205,8 +208,13 @@ public class ATMSystem {
 			}
 
 			if (!isAccountFind) {
-				System.out.println(
-						"Nomor rekening tidak ditemukan. Mohon input nomor rekening anda lagi!");
+				String displayAccountIsNotFind =
+				"[===================================================================================================]\n"+
+				"[               ACCOUNT NUMBER IS NOT FOUND. PLEASE INPUT YOUR CORRECT ACCOUNT NUMBER               ]\n"+
+				"[         [!]   _____________________________________________________________________   [!]         ]\n"+
+				"[              NOMOR REKENING TIDAK DITEMUKAN. MOHON MASUKKAN NOMOR REKENING YANG BENAR             ]\n"+
+				"[===================================================================================================]\n";
+				System.out.println(displayAccountIsNotFind);
 				EnterForContinue();
 				ClearScreen();
 				return false;
@@ -229,8 +237,13 @@ public class ATMSystem {
 					} else {
 						ClearScreen();
 						WrongPin();
-						System.out.println("Percobaan login " + loginAttempts + "/"
-								+ MAX_LOGIN_ATTEMPTS);
+						String displayLoginAttempts =
+						"[===================================================================================================]\n"+
+						"[           LOGIN ATTEMPTS                          [=====]     /   [=====]                         ]\n"+
+						"[           ______________                          [  "+loginAttempts+"  ]    /    [  "+MAX_LOGIN_ATTEMPTS+"  ]                         ]\n"+
+						"[           PERCOBAAN MASUK                         [=====]   /     [=====]                         ]\n"+
+						"[===================================================================================================]";
+						System.out.println(displayLoginAttempts);
 						EnterForContinue();
 						ClearScreen();
 					}
@@ -238,9 +251,13 @@ public class ATMSystem {
 			} else {
 				tryToLogin = true;
 				ClearScreen();
-				System.out.printf(
-						"Nomor rekening anda (%s) telah diblokir. Silakan masukkan nomor rekening yang lain\n",
-						inputUser_AccountNumber);
+				String displayAccountBlockedWarning = 
+				"[===================================================================================================]\n"+
+				"[           YOUR ACCOUNT ("+inputUser_AccountNumber+") HAS BEEN BLOCKED. PLEASE INPUT ANOTHER ACCOUNT NUMBER            ]\n"+
+				"[  [!] _______________________________________________________________________________________ [!]  ]\n"+
+				"[      NOMOR REKENING ANDA ("+inputUser_AccountNumber+") TELAH DIBLOKIR. SILAKAN MASUKKAN NOMOR REKENING YANG LAIN      ]\n"+
+				"[===================================================================================================]";
+				System.out.println(displayAccountBlockedWarning);
 				EnterForContinue();
 				ClearScreen();
 				return false;
@@ -249,10 +266,14 @@ public class ATMSystem {
 			// If the maximum login attempts are reached and status akun will change to
 			// "TERBLOKIR"
 			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
-				System.out.println(
-						"Anda telah salah memasukkan PIN sebanyak 3 kali. Mohon maaf, nomor rekening Anda kami blokir.");
+				String displayMaxLoginAttempts = 
+				"[===================================================================================================]\n"+
+				"[          YOU HAVE INPUT YOUR PIN INCORRECTLY 3 TIMES. SORRY, WE HAVE BLOCKED YOUR ACCOUNT         ]\n"+
+				"[    [!]   ________________________________________________________________________________   [!]   ]\n"+
+				"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"+
+				"[===================================================================================================]";
+				System.out.println(displayMaxLoginAttempts);
 				accountData[accountLineIndex][3] = "TERBLOKIR";
-				System.out.println("STATUS AKUN ANDA : " + accountData[accountLineIndex][3]);
 				EnterForContinue();
 			}
 		} while (tryToLogin || !isAccountFind);
@@ -260,17 +281,13 @@ public class ATMSystem {
 	}
 
 	public static void WrongPin() {
-		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				red + "               [  (!) Gagal login, periksa kembali nomor rekening dan PIN anda (!)  ]"
-						+ reset);
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
+		String displayWrongPin =
+		"[===================================================================================================]\n"+
+		"[                             LOGIN FAILED. PLEASE CHECK YOUR PIN AGAIN                             ]\n"+
+		"[                       [!]   _________________________________________   [!]                       ]\n"+
+		"[                             GAGAL MASUK. SILAKAN CEK PIN ANDA KEMBALI                             ]\n"+
+		"[===================================================================================================]";
+		System.out.println(displayWrongPin);
 	}
 
 	public static void chooseLanguange() {
@@ -280,8 +297,11 @@ public class ATMSystem {
 		"[                               ______________________________________                              ]\n"+
 		"[                               MOHON PILIH BAHASA YANG AKAN DIGUNAKAN                              ]\n"+
 		"[===================================================================================================]\n"+
+		"[                                                                                                   ]\n"+
 		"[  [1] [ENGLISH]                                                                                    ]\n"+
+		"[                                                                                                   ]\n"+
 		"[  [2] [BAHASA INDONESIA]                                                                           ]\n"+
+		"[                                                                                                   ]\n"+
 		"[===================================================================================================]";
 		System.out.println(chooseLanguange);
 		System.out.print("[ ==> ");
@@ -300,9 +320,13 @@ public class ATMSystem {
 			"[===================================================================================================]\n"+
 			"[                                                                                                   ]\n"+
 			"[                            [1] "+langOutputs[1][currentLanguange]+"                  "+"[5] "+langOutputs[5][currentLanguange]+"                              ]\n"+
+			"[                                                                                                   ]\n"+
 			"[                            [2] "+langOutputs[2][currentLanguange]+"           "+"[6] "+langOutputs[6][currentLanguange]+"                      ]\n"+
+			"[                                                                                                   ]\n"+
 			"[                            [3] "+langOutputs[3][currentLanguange]+"              "+"[7] "+langOutputs[7][currentLanguange]+"                           ]\n"+
+			"[                                                                                                   ]\n"+
 			"[                            [4] "+langOutputs[4][currentLanguange]+"                "+"[8] "+langOutputs[8][currentLanguange]+"                               ]\n"+
+			"[                                                                                                   ]\n"+
 			"[===================================================================================================]";
 			System.out.println(menuOutput);
 			System.out.print("[ ==> ");
@@ -345,15 +369,22 @@ public class ATMSystem {
 
 			if (userChoiceMenu != 8) {
 				if (!isGoToMainMenu) {
-					System.out.println(
-							"    ============================================================================================");
-					System.out.println("\t-- Lakukan transaksi lagi?");
-					System.out.print("\t-- Tekan 'Y' untuk Ya. Tekan 'T' untuk tidak.  -->  ");
+					String displayMoreTransaction =
+					"[===================================================================================================]\n"+
+					"[  "+langOutputs[9][currentLanguange]+"                                                                                ]\n"+
+					"[                                                                                                   ]\n"+
+					"[  [1] "+langOutputs[10][currentLanguange]+"                                                                                          ]\n"+
+					"[                                                                                                   ]\n"+
+					"[  [2] "+langOutputs[11][currentLanguange]+"                                                                                        ]\n"+
+					"[                                                                                                   ]\n"+
+					"[===================================================================================================]";
+					System.out.println(displayMoreTransaction);
+					System.out.print("[  ==> ");
 					continueTransaction = scanner2.next().charAt(0);
 
 					ClearScreen();
 
-					if (continueTransaction == 'Y' || continueTransaction == 'y') {
+					if (continueTransaction == '1') {
 						isContinueTransaction = true;
 					} else {
 						showingThanks();
@@ -1432,7 +1463,7 @@ public class ATMSystem {
 
 	public static boolean PinValidation() {
 		System.out.print("[  Masukkan PIN anda: ");
-		inputPin = scanner1.nextLine();
+		inputPin = scanner2.nextLine();
 		ClearScreen();
 		if (inputPin.equals(accountData[accountLineIndex][1])) {
 			return true;
@@ -1442,7 +1473,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print("Enter untuk melanjutkan -->  ");
+		System.out.print("[  Enter untuk melanjutkan ==>  ");
 		scanner1.nextLine();
 	}
 

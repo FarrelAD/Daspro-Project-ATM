@@ -387,7 +387,7 @@ public class ATMSystem {
 					if (continueTransaction == '1') {
 						isContinueTransaction = true;
 					} else {
-						showingThanks();
+						displayClosing();
 						isContinueTransaction = false;
 					}
 				}
@@ -1357,7 +1357,7 @@ public class ATMSystem {
 		UserConfirmation();
 		ClearScreen();
 		if (userConfirmation == 'Y' || userConfirmation == 'y') {
-			showingThanks();
+			displayClosing();
 			return isStopTransaction = true;
 		} else {
 			return isContinueTransaction = true;
@@ -1446,13 +1446,20 @@ public class ATMSystem {
 				"    ============================================================================================");
 	}
 
-	public static void showingThanks() {
-		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"     ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~");
-		System.out.println(
-				"    ============================================================================================");
+	public static void displayClosing() {
+		String displayClosing = 
+		"[===================================================================================================]\n"+
+		"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"+
+		"[===================================================================================================]\n"+
+		"\n"+
+		"* * * [   This program is made by:                                      ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   \u00A92023\n"+
+		"[====================================================================================================]";
+		System.out.println(displayClosing);
 	}
 
 	public static char UserConfirmation() {

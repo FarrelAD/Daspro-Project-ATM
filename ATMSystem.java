@@ -1452,7 +1452,7 @@ public class ATMSystem {
 		"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"+
 		"[===================================================================================================]\n"+
 		"\n"+
-		"* * * [   This program is made by:                                      ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"+
 		"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"+
 		"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"+
 		"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"+

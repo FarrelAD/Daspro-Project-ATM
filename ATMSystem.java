@@ -1463,7 +1463,7 @@ public class ATMSystem {
 
 	public static boolean PinValidation() {
 		System.out.print("[  Masukkan PIN anda: ");
-		inputPin = scanner2.nextLine();
+		inputPin = scanner4.nextLine();
 		ClearScreen();
 		if (inputPin.equals(accountData[accountLineIndex][1])) {
 			return true;
@@ -1474,7 +1474,7 @@ public class ATMSystem {
 
 	public static void EnterForContinue() {
 		System.out.print("[  Enter untuk melanjutkan ==>  ");
-		scanner1.nextLine();
+		scanner5.nextLine();
 	}
 
 	public static void ClearScreen() {

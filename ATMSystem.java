@@ -27,7 +27,8 @@ public class ATMSystem {
 			{ "1234567", "1234", "7000000", "aman" },
 			{ "7654321", "5678", "4000000", "aman" },
 			{ "7777777", "7777", "10000000", "aman" },
-			{ "0000000", "0000", "900000000", "aman" }
+			{ "0000000", "0000", "900000000", "aman" }, 
+			{"1", "1", "10000000", "aman"}// for quick try
 	};
 
 	// array listrikData menampung ID PLN & tagihan
@@ -129,15 +130,17 @@ public class ATMSystem {
 		{"CASH WITHDRAWAL", "TARIK TUNAI    "}, //2
 		{"CASH DEPOSIT", "SETOR TUNAI "}, //3
 		{"PAYMENT   ", "PEMBAYARAN"}, //4
-		{"HISTORY", "RIWAYAT"}, //5
+		{"HISTORY", "RIWAYAT"}, //
 		{"BALANCE INQUIRY", "CEK SALDO      "}, //6
 		{"CHANGE PIN", "UBAH PIN  "}, //7
 		{"EXIT  ", "KELUAR"}, //8
-		{"MORE TRANSACTION?", "TRANSAKSI LAGI?  "}, //9
+		{"ANOTHER TRANSACTION?", "TRANSAKSI LAGI?  "}, //9
 		{"YES", "YA "}, //10
-		{"NO   ", "TIDAK"} //11
-	};
+		{"NO   ", "TIDAK"},//11
+		{"-- Masukkan nomor rekening tujuan : ", "Enter the destination account number" }
 
+	};
+	
 
 	public static void main(String[] args) {
 		while (!isAccountValid) {

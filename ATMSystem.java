@@ -761,17 +761,25 @@ public class ATMSystem {
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
 		System.out.println(
-		"[===================================================================================================]\n"+
-		"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"+
-		"[===================================================================================================]\n"+
-		"[                       [1] PULSA                              [4] PDAM                             ]\n"+
-		"[                                                                                                   ]\n"+
-		"[                       [2] LISTRIK                            [5] BPJS                             ]\n"+
-		"[                                                                                                   ]\n"+
-		"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
-		"[                                                                  MENU UTAMA                       ]\n"+
-		"[===================================================================================================]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"[                       [1] PULSA                              [4] PDAM                             ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
+						+
+						"[                                                                  MENU UTAMA                       ]\n"
+						+
+						"[===================================================================================================]");
 		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
@@ -1331,7 +1339,7 @@ public class ATMSystem {
 		}
 
 		for (int i = 0; i < transactionHistory.size(); i++) {
-			System.out.printf("%d. %s%n", (i + 1), transactionHistory.get(i));
+			System.out.printf("\t\t%d. %s%n", (i + 1), transactionHistory.get(i));
 		}
 
 		System.out.println(
@@ -1504,7 +1512,9 @@ public class ATMSystem {
 						"[                                                                                                   ]\n"
 						+
 						"[===================================================================================================]");
+
 		EnterForContinue();
+		ClearScreen();
 	}
 
 	public static void defaultCaseMenu() {

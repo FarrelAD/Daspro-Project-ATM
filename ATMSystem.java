@@ -27,8 +27,8 @@ public class ATMSystem {
 			{ "1234567", "1234", "7000000", "aman" },
 			{ "7654321", "5678", "4000000", "aman" },
 			{ "7777777", "7777", "10000000", "aman" },
-			{ "0000000", "0000", "900000000", "aman" }, 
-			{"1", "1", "10000000", "aman"}// for quick try
+			{ "0000000", "0000", "900000000", "aman" },
+			{ "1", "1", "10000000", "aman" }// for quick try
 	};
 
 	// array listrikData menampung ID PLN & tagihan
@@ -119,31 +119,30 @@ public class ATMSystem {
 	// Formatting time and date to the system
 	static LocalDateTime currentDateTime = LocalDateTime.now();
 	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-		   "dd-MM-yyyy                                                                         HH:mm:ss");
+			"dd-MM-yyyy                                                                         HH:mm:ss");
 	static String formattedDateTime = currentDateTime.format(formatter);
 
 	// Variables for choose languange feature
 	static int currentLanguange = 0;
 	static String[][] langOutputs = {
-		{"  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI"}, //0
-		{"TRANSFER", "TRANSFER"}, //1
-		{"CASH WITHDRAWAL", "TARIK TUNAI    "}, //2
-		{"CASH DEPOSIT", "SETOR TUNAI "}, //3
-		{"PAYMENT   ", "PEMBAYARAN"}, //4
-		{"HISTORY", "RIWAYAT"}, //
-		{"BALANCE INQUIRY", "CEK SALDO      "}, //6
-		{"CHANGE PIN", "UBAH PIN  "}, //7
-		{"EXIT  ", "KELUAR"}, //8
-		{"ANOTHER TRANSACTION?", "TRANSAKSI LAGI?  "}, //9
-		{"YES", "YA "}, //10
-		{"NO   ", "TIDAK"},//11
-		{"\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : "}, //12
-		{"You have made a transfer to an account ", " Telah melakukan transfer ke rekening "},//13
-		{"\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp "},//14
-		{"Press Enter for the next page ==>","[  Enter untuk melanjutkan ==>  "}//15
-		// langOutputs[][currentLanguange]
+			{ "  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI" }, // 0
+			{ "TRANSFER", "TRANSFER" }, // 1
+			{ "CASH WITHDRAWAL", "TARIK TUNAI    " }, // 2
+			{ "CASH DEPOSIT", "SETOR TUNAI " }, // 3
+			{ "PAYMENT   ", "PEMBAYARAN" }, // 4
+			{ "HISTORY", "RIWAYAT" }, //
+			{ "BALANCE INQUIRY", "CEK SALDO      " }, // 6
+			{ "CHANGE PIN", "UBAH PIN  " }, // 7
+			{ "EXIT  ", "KELUAR" }, // 8
+			{ "ANOTHER TRANSACTION?", "TRANSAKSI LAGI?  " }, // 9
+			{ "YES", "YA " }, // 10
+			{ "NO   ", "TIDAK" }, // 11
+			{ "\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : " }, // 12
+			{ "You have made a transfer to an account ", " Telah melakukan transfer ke rekening " }, // 13
+			{ "\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp " }, // 14
+			{ "Press Enter for the next page ==>", "[  Enter untuk melanjutkan ==>  " }// 15
+			// langOutputs[][currentLanguange]
 	};
-	
 
 	public static void main(String[] args) {
 		while (!isAccountValid) {
@@ -157,41 +156,72 @@ public class ATMSystem {
 
 	public static void PageMenu() {
 		ClearScreen();
-		String displayPageMenu =
-		"[===================================================================================================]\n"+
-		"[    " + formattedDateTime + "    ]\n"+
-		"[===================================================================================================]\n"+
-		"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]\n"+
-		"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]\n"+
-		"[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]\n"+
-		"[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]\n"+
-		"[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]\n"+
-		"[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]\n"+
-		"[===================================================================================================]\n"+
-		"[                                                                                                   ]\n"+
-		"[                    .@@@@.                       _    _ _____ _     _____ ________  ___ _____      ]\n"+ 
-		"[                @:=:@@@@@@:=:@                  | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|     ]\n"+            
-		"[             @:-:@@@@====@@@@:-:@               | |  | | |__ | |   | /  \\/ | | | .  . || |__       ]\n"+         
-		"[          @:-@@@::::::::::::::@@@-:@            | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|      ]\n"+      
-		"[        @:-@@::@@@@@@@@@@@@@@@@::@@-:@          \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___      ]\n"+     
-		"[      @:-@@::@@@@@ ******** @@@@@::@@-:@         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/      ]\n"+   
-		"[    @:-@@@:@@@@: ***++**++*** :@@@:@@@-:@                                                          ]\n"+ 
-		"[   @:-@@::@@@: ***++- !! -++*** :@@@::@@-:@                                                        ]\n"+
-		"[   @:@@::@@@@ ***++- .||. -++*** @@@@::@@:@            PLEASE INPUT YOUR ACCOUNT NUMBER            ]\n"+
-		"[   @:@@@@@@@@ **+++- .||. -+++** @@@@@@@@:@                      AND YOUR PIN                      ]\n"+
-		"[   @:#@@@@: ***+++=- .||. -=+++*** :@@@@#:@             ________________________________           ]\n"+
-		"[   @:+@@@@ ****++--. +||+ .--++**** @@@@+:@             SILAKAN MASUKKAN NOMOR REKENING            ]\n"+
-		"[   :@:@@@@. ***-++.. +--+ ..++-*** .@@@@:@:                      DAN PIN ANDA                      ]\n"+
-		"[    @:*@@@@@@ ***** *#::#* ***** @@@@@@*:@                                                         ]\n"+ 
-		"[    @:-@@@@@@ ****  ======  **** @@@@@@-:@                                                         ]\n"+ 
-		"[     @:-@@@@@. ***####%%####*** . @@@@@-:@                    FOR SAFETY AND COMFORT               ]\n"+  
-		"[      @:.@@@@@ ################ @@@@@.:@                PLEASE CHANGE YOUR PIN REGULARLY           ]\n"+   
-		"[       @: @@@@@@+:.  ----  .:+@@@@@@ :@                 ________________________________           ]\n"+    
-		"[         @:* @@@ =@@@@@@@@@@@= @@@ :@                     DEMI KEAMANAN DAN KENYAMANAN             ]\n"+      
-		"[          @*  :*@@@@@@@@@@@@@@*:  *@                         SILAKAN GANTI PIN ANDA                ]\n"+       
-		"[              @@@#+-:....:-+#@@@                                 SECARA BERKALA                    ]\n"+
-		"[                                                                                                   ]\n"+
-		"[===================================================================================================]";           
+		String displayPageMenu = "[===================================================================================================]\n"
+				+
+				"[    " + formattedDateTime + "    ]\n" +
+				"[===================================================================================================]\n"
+				+
+				"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]\n"
+				+
+				"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]\n"
+				+
+				"[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]\n"
+				+
+				"[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]\n"
+				+
+				"[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]\n"
+				+
+				"[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]\n"
+				+
+				"[===================================================================================================]\n"
+				+
+				"[                                                                                                   ]\n"
+				+
+				"[                    .@@@@.                       _    _ _____ _     _____ ________  ___ _____      ]\n"
+				+
+				"[                @:=:@@@@@@:=:@                  | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|     ]\n"
+				+
+				"[             @:-:@@@@====@@@@:-:@               | |  | | |__ | |   | /  \\/ | | | .  . || |__       ]\n"
+				+
+				"[          @:-@@@::::::::::::::@@@-:@            | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|      ]\n"
+				+
+				"[        @:-@@::@@@@@@@@@@@@@@@@::@@-:@          \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___      ]\n"
+				+
+				"[      @:-@@::@@@@@ ******** @@@@@::@@-:@         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/      ]\n"
+				+
+				"[    @:-@@@:@@@@: ***++**++*** :@@@:@@@-:@                                                          ]\n"
+				+
+				"[   @:-@@::@@@: ***++- !! -++*** :@@@::@@-:@                                                        ]\n"
+				+
+				"[   @:@@::@@@@ ***++- .||. -++*** @@@@::@@:@            PLEASE INPUT YOUR ACCOUNT NUMBER            ]\n"
+				+
+				"[   @:@@@@@@@@ **+++- .||. -+++** @@@@@@@@:@                      AND YOUR PIN                      ]\n"
+				+
+				"[   @:#@@@@: ***+++=- .||. -=+++*** :@@@@#:@             ________________________________           ]\n"
+				+
+				"[   @:+@@@@ ****++--. +||+ .--++**** @@@@+:@             SILAKAN MASUKKAN NOMOR REKENING            ]\n"
+				+
+				"[   :@:@@@@. ***-++.. +--+ ..++-*** .@@@@:@:                      DAN PIN ANDA                      ]\n"
+				+
+				"[    @:*@@@@@@ ***** *#::#* ***** @@@@@@*:@                                                         ]\n"
+				+
+				"[    @:-@@@@@@ ****  ======  **** @@@@@@-:@                                                         ]\n"
+				+
+				"[     @:-@@@@@. ***####%%####*** . @@@@@-:@                    FOR SAFETY AND COMFORT               ]\n"
+				+
+				"[      @:.@@@@@ ################ @@@@@.:@                PLEASE CHANGE YOUR PIN REGULARLY           ]\n"
+				+
+				"[       @: @@@@@@+:.  ----  .:+@@@@@@ :@                 ________________________________           ]\n"
+				+
+				"[         @:* @@@ =@@@@@@@@@@@= @@@ :@                     DEMI KEAMANAN DAN KENYAMANAN             ]\n"
+				+
+				"[          @*  :*@@@@@@@@@@@@@@*:  *@                         SILAKAN GANTI PIN ANDA                ]\n"
+				+
+				"[              @@@#+-:....:-+#@@@                                 SECARA BERKALA                    ]\n"
+				+
+				"[                                                                                                   ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayPageMenu);
 	}
 
@@ -214,12 +244,15 @@ public class ATMSystem {
 			}
 
 			if (!isAccountFind) {
-				String displayAccountIsNotFind =
-				"[===================================================================================================]\n"+
-				"[               ACCOUNT NUMBER IS NOT FOUND. PLEASE INPUT YOUR CORRECT ACCOUNT NUMBER               ]\n"+
-				"[         [!]   _____________________________________________________________________   [!]         ]\n"+
-				"[              NOMOR REKENING TIDAK DITEMUKAN. MOHON MASUKKAN NOMOR REKENING YANG BENAR             ]\n"+
-				"[===================================================================================================]\n";
+				String displayAccountIsNotFind = "[===================================================================================================]\n"
+						+
+						"[               ACCOUNT NUMBER IS NOT FOUND. PLEASE INPUT YOUR CORRECT ACCOUNT NUMBER               ]\n"
+						+
+						"[         [!]   _____________________________________________________________________   [!]         ]\n"
+						+
+						"[              NOMOR REKENING TIDAK DITEMUKAN. MOHON MASUKKAN NOMOR REKENING YANG BENAR             ]\n"
+						+
+						"[===================================================================================================]\n";
 				System.out.println(displayAccountIsNotFind);
 				EnterForContinue();
 				ClearScreen();
@@ -243,12 +276,15 @@ public class ATMSystem {
 					} else {
 						ClearScreen();
 						WrongPin();
-						String displayLoginAttempts =
-						"[===================================================================================================]\n"+
-						"[           LOGIN ATTEMPTS                          [=====]     /   [=====]                         ]\n"+
-						"[           ______________                          [  "+loginAttempts+"  ]    /    [  "+MAX_LOGIN_ATTEMPTS+"  ]                         ]\n"+
-						"[           PERCOBAAN MASUK                         [=====]   /     [=====]                         ]\n"+
-						"[===================================================================================================]";
+						String displayLoginAttempts = "[===================================================================================================]\n"
+								+
+								"[           LOGIN ATTEMPTS                          [=====]     /   [=====]                         ]\n"
+								+
+								"[           ______________                          [  " + loginAttempts
+								+ "  ]    /    [  " + MAX_LOGIN_ATTEMPTS + "  ]                         ]\n" +
+								"[           PERCOBAAN MASUK                         [=====]   /     [=====]                         ]\n"
+								+
+								"[===================================================================================================]";
 						System.out.println(displayLoginAttempts);
 						EnterForContinue();
 						ClearScreen();
@@ -257,12 +293,15 @@ public class ATMSystem {
 			} else {
 				tryToLogin = true;
 				ClearScreen();
-				String displayAccountBlockedWarning = 
-				"[===================================================================================================]\n"+
-				"[           YOUR ACCOUNT ("+inputUser_AccountNumber+") HAS BEEN BLOCKED. PLEASE INPUT ANOTHER ACCOUNT NUMBER            ]\n"+
-				"[  [!] _______________________________________________________________________________________ [!]  ]\n"+
-				"[      NOMOR REKENING ANDA ("+inputUser_AccountNumber+") TELAH DIBLOKIR. SILAKAN MASUKKAN NOMOR REKENING YANG LAIN      ]\n"+
-				"[===================================================================================================]";
+				String displayAccountBlockedWarning = "[===================================================================================================]\n"
+						+
+						"[           YOUR ACCOUNT (" + inputUser_AccountNumber
+						+ ") HAS BEEN BLOCKED. PLEASE INPUT ANOTHER ACCOUNT NUMBER            ]\n" +
+						"[  [!] _______________________________________________________________________________________ [!]  ]\n"
+						+
+						"[      NOMOR REKENING ANDA (" + inputUser_AccountNumber
+						+ ") TELAH DIBLOKIR. SILAKAN MASUKKAN NOMOR REKENING YANG LAIN      ]\n" +
+						"[===================================================================================================]";
 				System.out.println(displayAccountBlockedWarning);
 				EnterForContinue();
 				ClearScreen();
@@ -272,12 +311,15 @@ public class ATMSystem {
 			// If the maximum login attempts are reached and status akun will change to
 			// "TERBLOKIR"
 			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
-				String displayMaxLoginAttempts = 
-				"[===================================================================================================]\n"+
-				"[          YOU HAVE INPUT YOUR PIN INCORRECTLY 3 TIMES. SORRY, WE HAVE BLOCKED YOUR ACCOUNT         ]\n"+
-				"[    [!]   ________________________________________________________________________________   [!]   ]\n"+
-				"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"+
-				"[===================================================================================================]";
+				String displayMaxLoginAttempts = "[===================================================================================================]\n"
+						+
+						"[          YOU HAVE INPUT YOUR PIN INCORRECTLY 3 TIMES. SORRY, WE HAVE BLOCKED YOUR ACCOUNT         ]\n"
+						+
+						"[    [!]   ________________________________________________________________________________   [!]   ]\n"
+						+
+						"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"
+						+
+						"[===================================================================================================]";
 				System.out.println(displayMaxLoginAttempts);
 				accountData[accountLineIndex][3] = "TERBLOKIR";
 				EnterForContinue();
@@ -287,28 +329,40 @@ public class ATMSystem {
 	}
 
 	public static void WrongPin() {
-		String displayWrongPin =
-		"[===================================================================================================]\n"+
-		"[                             LOGIN FAILED. PLEASE CHECK YOUR PIN AGAIN                             ]\n"+
-		"[                       [!]   _________________________________________   [!]                       ]\n"+
-		"[                             GAGAL MASUK. SILAKAN CEK PIN ANDA KEMBALI                             ]\n"+
-		"[===================================================================================================]";
+		String displayWrongPin = "[===================================================================================================]\n"
+				+
+				"[                             LOGIN FAILED. PLEASE CHECK YOUR PIN AGAIN                             ]\n"
+				+
+				"[                       [!]   _________________________________________   [!]                       ]\n"
+				+
+				"[                             GAGAL MASUK. SILAKAN CEK PIN ANDA KEMBALI                             ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayWrongPin);
 	}
 
 	public static void chooseLanguange() {
-		String chooseLanguange = 
-		"[===================================================================================================]\n"+
-		"[                               PLEASE SELECT THE LANGUAGE TO BE USED                               ]\n"+
-		"[                               ______________________________________                              ]\n"+
-		"[                               MOHON PILIH BAHASA YANG AKAN DIGUNAKAN                              ]\n"+
-		"[===================================================================================================]\n"+
-		"[                                                                                                   ]\n"+
-		"[  [1] [ENGLISH]                                                                                    ]\n"+
-		"[                                                                                                   ]\n"+
-		"[  [2] [BAHASA INDONESIA]                                                                           ]\n"+
-		"[                                                                                                   ]\n"+
-		"[===================================================================================================]";
+		String chooseLanguange = "[===================================================================================================]\n"
+				+
+				"[                               PLEASE SELECT THE LANGUAGE TO BE USED                               ]\n"
+				+
+				"[                               ______________________________________                              ]\n"
+				+
+				"[                               MOHON PILIH BAHASA YANG AKAN DIGUNAKAN                              ]\n"
+				+
+				"[===================================================================================================]\n"
+				+
+				"[                                                                                                   ]\n"
+				+
+				"[  [1] [ENGLISH]                                                                                    ]\n"
+				+
+				"[                                                                                                   ]\n"
+				+
+				"[  [2] [BAHASA INDONESIA]                                                                           ]\n"
+				+
+				"[                                                                                                   ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(chooseLanguange);
 		System.out.print("[ ==> ");
 		currentLanguange = scanner1.nextInt();
@@ -320,20 +374,31 @@ public class ATMSystem {
 		do {
 			isGoToMainMenu = false;
 			ClearScreen();
-			String menuOutput = 
-			"[===================================================================================================]\n"+
-			"[                                    "+langOutputs[0][currentLanguange]+"                                ]\n"+
-			"[===================================================================================================]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [1] "+langOutputs[1][currentLanguange]+"                  "+"[5] "+langOutputs[5][currentLanguange]+"                              ]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [2] "+langOutputs[2][currentLanguange]+"           "+"[6] "+langOutputs[6][currentLanguange]+"                      ]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [3] "+langOutputs[3][currentLanguange]+"              "+"[7] "+langOutputs[7][currentLanguange]+"                           ]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [4] "+langOutputs[4][currentLanguange]+"                "+"[8] "+langOutputs[8][currentLanguange]+"                               ]\n"+
-			"[                                                                                                   ]\n"+
-			"[===================================================================================================]";
+			String menuOutput = "[===================================================================================================]\n"
+					+
+					"[                                    " + langOutputs[0][currentLanguange]
+					+ "                                ]\n" +
+					"[===================================================================================================]\n"
+					+
+					"[                                                                                                   ]\n"
+					+
+					"[                            [1] " + langOutputs[1][currentLanguange] + "                  "
+					+ "[5] " + langOutputs[5][currentLanguange] + "                              ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[                            [2] " + langOutputs[2][currentLanguange] + "           " + "[6] "
+					+ langOutputs[6][currentLanguange] + "                      ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[                            [3] " + langOutputs[3][currentLanguange] + "              " + "[7] "
+					+ langOutputs[7][currentLanguange] + "                           ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[                            [4] " + langOutputs[4][currentLanguange] + "                " + "[8] "
+					+ langOutputs[8][currentLanguange] + "                               ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[===================================================================================================]";
 			System.out.println(menuOutput);
 			System.out.print("[ ==> ");
 			int userChoiceMenu = scanner2.nextInt();
@@ -375,45 +440,73 @@ public class ATMSystem {
 
 			if (userChoiceMenu != 8) {
 				if (!isGoToMainMenu) {
-					String displayMoreTransaction =
-					"[===================================================================================================]\n"+
-					"[  "+langOutputs[9][currentLanguange]+"                                                                                ]\n"+
-					"[                                                                                                   ]\n"+
-					"[  [1] "+langOutputs[10][currentLanguange]+"                                                                                          ]\n"+
-					"[                                                                                                   ]\n"+
-					"[  [2] "+langOutputs[11][currentLanguange]+"                                                                                        ]\n"+
-					"[                                                                                                   ]\n"+
-					"[===================================================================================================]";
+					String displayMoreTransaction = "[===================================================================================================]\n"
+							+
+							"[  " + langOutputs[9][currentLanguange]
+							+ "                                                                                ]\n" +
+							"[                                                                                                   ]\n"
+							+
+							"[  [1] " + langOutputs[10][currentLanguange]
+							+ "                                                                                          ]\n"
+							+
+							"[                                                                                                   ]\n"
+							+
+							"[  [2] " + langOutputs[11][currentLanguange]
+							+ "                                                                                        ]\n"
+							+
+							"[                                                                                                   ]\n"
+							+
+							"[===================================================================================================]";
 					System.out.println(displayMoreTransaction);
-					System.out.print("[  ==> ");
-					continueTransaction = scanner2.next().charAt(0);
+					boolean isLoopConfirm = false;
 
-					ClearScreen();
+					do {
+						System.out.print("[  ==> ");
+						continueTransaction = scanner2.next().charAt(0);
+						switch (continueTransaction) {
+							case '1':
+								isContinueTransaction = true;
+								isLoopConfirm = false;
+								break;
 
-					if (continueTransaction == '1') {
-						isContinueTransaction = true;
-					} else {
-						displayClosing();
-						isContinueTransaction = false;
-					}
+							case '2':
+								displayClosing();
+								isContinueTransaction = false;
+								isLoopConfirm = false;
+								break;
+
+							default:
+								String displayInvalidChoice = "[===================================================================================================]\n"
+										+
+										"[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"
+										+
+										"[===================================================================================================]";
+								System.out.println(displayInvalidChoice);
+								isLoopConfirm = true;
+								break;
+						}
+					} while (isLoopConfirm);
 				}
 			}
 		} while (isContinueTransaction);
 	}
 
 	public static void displayHeaderTransfer() {
-		String displayHeaderTransfer = 
-		"[===================================================================================================]\n"+
-		"[ - - - - - - - - - - - - - - - - - - -╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗- - - - - - - - - - - - - - - - - - -]\n"+
-		"[ - - - - - - - - - - - - - - - - - - - ║ ╠╦╝╠═╣║║║╚═╗╠╣ ║╣ ╠╦╝- - - - - - - - - - - - - - - - - - -]\n"+
-		"[ - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╩ ╩╝╚╝╚═╝╚  ╚═╝╩╚═- - - - - - - - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderTransfer = "[===================================================================================================]\n"
+				+
+				"[ - - - - - - - - - - - - - - - - - - -╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗- - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[ - - - - - - - - - - - - - - - - - - - ║ ╠╦╝╠═╣║║║╚═╗╠╣ ║╣ ╠╦╝- - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[ - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╩ ╩╝╚╝╚═╝╚  ╚═╝╩╚═- - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderTransfer);
 	}
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		System.out.print(""+langOutputs[12][currentLanguange]);
+		System.out.print("" + langOutputs[12][currentLanguange]);
 		inputTarget_AccountNumber = scannerTF.nextLine();
 		// Pengecekan apakah nomor rekening tujuan ada di database
 		isTargetAccountValid = false;
@@ -428,7 +521,7 @@ public class ATMSystem {
 		if (isTargetAccountValid) {
 			// System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input
 			// nominal transfer
-			transferAmount = validateNonNegativeIntegerInput(""+langOutputs[14][currentLanguange]);
+			transferAmount = validateNonNegativeIntegerInput("" + langOutputs[14][currentLanguange]);
 			ClearScreen();
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
@@ -501,12 +594,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderCashWithdrawal() {
-		String displayHeaderCashWithdrawal = 
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - -╔╦╗╔═╗╦═╗╦╦╔═  ╔╦╗╦ ╦╔╗╔╔═╗╦ - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - - ║ ╠═╣╠╦╝║╠╩╗   ║ ║ ║║║║╠═╣║ - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - - ╩ ╩ ╩╩╚═╩╩ ╩   ╩ ╚═╝╝╚╝╩ ╩╩ - - - - - - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderCashWithdrawal = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - -╔╦╗╔═╗╦═╗╦╦╔═  ╔╦╗╦ ╦╔╗╔╔═╗╦ - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - ║ ╠═╣╠╦╝║╠╩╗   ║ ║ ║║║║╠═╣║ - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - ╩ ╩ ╩╩╚═╩╩ ╩   ╩ ╚═╝╝╚╝╩ ╩╩ - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderCashWithdrawal);
 	}
 
@@ -575,12 +671,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderCashDeposit() {
-		String displayHeaderCashDeposit = 
-		"[===================================================================================================]\n"+
-		"[ - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╦╗╔═╗╦═╗  ╔╦╗╦ ╦╔╗╔╔═╗╦- - - - - - - - - - - - - - - - -]\n"+
-		"[ - - - - - - - - - - - - - - - - - -╚═╗║╣  ║ ║ ║╠╦╝   ║ ║ ║║║║╠═╣║- - - - - - - - - - - - - - - - -]\n"+
-		"[ - - - - - - - - - - - - - - - - - -╚═╝╚═╝ ╩ ╚═╝╩╚═   ╩ ╚═╝╝╚╝╩ ╩╩- - - - - - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderCashDeposit = "[===================================================================================================]\n"
+				+
+				"[ - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╦╗╔═╗╦═╗  ╔╦╗╦ ╦╔╗╔╔═╗╦- - - - - - - - - - - - - - - - -]\n"
+				+
+				"[ - - - - - - - - - - - - - - - - - -╚═╗║╣  ║ ║ ║╠╦╝   ║ ║ ║║║║╠═╣║- - - - - - - - - - - - - - - - -]\n"
+				+
+				"[ - - - - - - - - - - - - - - - - - -╚═╝╚═╝ ╩ ╚═╝╩╚═   ╩ ╚═╝╝╚╝╩ ╩╩- - - - - - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderCashDeposit);
 	}
 
@@ -626,12 +725,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderPayments() {
-		String displayHeaderPayments =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - -╔═╗╔═╗╔╦╗╔╗ ╔═╗╦ ╦╔═╗╦═╗╔═╗╔╗╔  ╦  ╔═╗╦╔╗╔╔╗╔╦ ╦╔═╗- - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - -╠═╝║╣ ║║║╠╩╗╠═╣╚╦╝╠═╣╠╦╝╠═╣║║║  ║  ╠═╣║║║║║║║╚╦╝╠═╣- - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - -╩  ╚═╝╩ ╩╚═╝╩ ╩ ╩ ╩ ╩╩╚═╩ ╩╝╚╝  ╩═╝╩ ╩╩╝╚╝╝╚╝ ╩ ╩ ╩- - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderPayments = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - -╔═╗╔═╗╔╦╗╔╗ ╔═╗╦ ╦╔═╗╦═╗╔═╗╔╗╔  ╦  ╔═╗╦╔╗╔╔╗╔╦ ╦╔═╗- - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - -╠═╝║╣ ║║║╠╩╗╠═╣╚╦╝╠═╣╠╦╝╠═╣║║║  ║  ╠═╣║║║║║║║╚╦╝╠═╣- - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - -╩  ╚═╝╩ ╩╚═╝╩ ╩ ╩ ╩ ╩╩╚═╩ ╩╝╚╝  ╩═╝╩ ╩╩╝╚╝╝╚╝ ╩ ╩ ╩- - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderPayments);
 	}
 
@@ -696,12 +798,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderPulsa() {
-		String displayHeaderPulsa =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╔═╗╦ ╦╦  ╔═╗╔═╗ - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╠═╝║ ║║  ╚═╗╠═╣ - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╩  ╚═╝╩═╝╚═╝╩ ╩ - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[===================================================================================================]";
+		String displayHeaderPulsa = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - -╔═╗╦ ╦╦  ╔═╗╔═╗ - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - -╠═╝║ ║║  ╚═╗╠═╣ - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - -╩  ╚═╝╩═╝╚═╝╩ ╩ - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderPulsa);
 	}
 
@@ -751,7 +856,8 @@ public class ATMSystem {
 		if (isOperatorValid) {
 			System.out.print("\t-- Input nomor telepon anda: "); // User input nomor telepon
 			nomorTelepon = scanner1.nextLine();
-			//System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal pulsa
+			// System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal
+			// pulsa
 			nomPulsa = validateNonNegativeIntegerInput("\t-- Input nominal pulsa: Rp ");
 			ClearScreen();
 			System.out.println(
@@ -816,12 +922,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderElectricity() {
-		String displayHeaderElectricity =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - ╦  ╦╔═╗╔╦╗╦═╗╦╦╔═ - - - - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - ║  ║╚═╗ ║ ╠╦╝║╠╩╗ - - - - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - ╩═╝╩╚═╝ ╩ ╩╚═╩╩ ╩ - - - - - - - - - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderElectricity = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - ╦  ╦╔═╗╔╦╗╦═╗╦╦╔═ - - - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - ║  ║╚═╗ ║ ╠╦╝║╠╩╗ - - - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - ╩═╝╩╚═╝ ╩ ╩╚═╩╩ ╩ - - - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderElectricity);
 	}
 
@@ -906,12 +1015,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderEducationBill() {
-		String displayHeaderEducationBill = 
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╗╔╔╦╗╦╔╦╗╦╦╔═╔═╗╔╗╔ - - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - -╠═╝║╣ ║║║ ║║║ ║║║╠╩╗╠═╣║║║ - - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - -╩  ╚═╝╝╚╝═╩╝╩═╩╝╩╩ ╩╩ ╩╝╚╝ - - - - - - - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderEducationBill = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╗╔╔╦╗╦╔╦╗╦╦╔═╔═╗╔╗╔ - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - -╠═╝║╣ ║║║ ║║║ ║║║╠╩╗╠═╣║║║ - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - -╩  ╚═╝╝╚╝═╩╝╩═╩╝╩╩ ╩╩ ╩╝╚╝ - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderEducationBill);
 	}
 
@@ -996,12 +1108,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderWaterBill() {
-		String displayHeaderWaterBill =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - - ╔═╗╔╦╗╔═╗╔╦╗- - - - - - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - - ╠═╝ ║║╠═╣║║║- - - - - - - - - - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - - ╩  ═╩╝╩ ╩╩ ╩- - - - - - - - - - - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderWaterBill = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - - ╔═╗╔╦╗╔═╗╔╦╗- - - - - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - - ╠═╝ ║║╠═╣║║║- - - - - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - - ╩  ═╩╝╩ ╩╩ ╩- - - - - - - - - - - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderWaterBill);
 	}
 
@@ -1084,12 +1199,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderBpjs() {
-		String displayHeaderBpjs =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - - -╔╗ ╔═╗╦╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - - -╠╩╗╠═╝║╚═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - - -╚═╝╩ ╚╝╚═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[===================================================================================================]";
+		String displayHeaderBpjs = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - - -╔╗ ╔═╗╦╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - - -╠╩╗╠═╝║╚═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - - - -╚═╝╩ ╚╝╚═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderBpjs);
 	}
 
@@ -1179,12 +1297,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderTransactionHistory() {
-		String displayHeaderTransactionHistory =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - ╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╦╔═╔═╗╦- - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - ╠╦╝║║║║╠═╣╚╦╝╠═╣ ║    ║ ╠╦╝╠═╣║║║╚═╗╠═╣╠╩╗╚═╗║- - - - - - - - - - - - - -]\n"+
-		"[- - - - - - - - - - - - - ╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩    ╩ ╩╚═╩ ╩╝╚╝╚═╝╩ ╩╩ ╩╚═╝╩- - - - - - - - - - - - - -]\n"+
-		"[===================================================================================================]";
+		String displayHeaderTransactionHistory = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - ╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╦╔═╔═╗╦- - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - ╠╦╝║║║║╠═╣╚╦╝╠═╣ ║    ║ ╠╦╝╠═╣║║║╚═╗╠═╣╠╩╗╚═╗║- - - - - - - - - - - - - -]\n"
+				+
+				"[- - - - - - - - - - - - - ╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩    ╩ ╩╚═╩ ╩╝╚╝╚═╝╩ ╩╩ ╩╚═╝╩- - - - - - - - - - - - - -]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderTransactionHistory);
 	}
 
@@ -1217,12 +1338,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderBalanceInquiry() {
-		String displayHeaderBalanceInquiry =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - ╔═╗╔═╗╦╔═  ╔═╗╔═╗╦  ╔╦╗╔═╗ - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - ║  ║╣ ╠╩╗  ╚═╗╠═╣║   ║║║ ║ - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩  ╚═╝╩ ╩╩═╝═╩╝╚═╝ - - - - - - - - - - - - - - - - - - ]\n"+
-		"[===================================================================================================]";
+		String displayHeaderBalanceInquiry = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - ╔═╗╔═╗╦╔═  ╔═╗╔═╗╦  ╔╦╗╔═╗ - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - ║  ║╣ ╠╩╗  ╚═╗╠═╣║   ║║║ ║ - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩  ╚═╝╩ ╩╩═╝═╩╝╚═╝ - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderBalanceInquiry);
 	}
 
@@ -1246,12 +1370,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderChangePin() {
-		String displayHeaderChangePin =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - ╦ ╦╔╗ ╔═╗╦ ╦  ╔═╗╦╔╗╔- - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - ║ ║╠╩╗╠═╣╠═╣  ╠═╝║║║║- - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩╩ ╩  ╩  ╩╝╚╝- - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[===================================================================================================]";
+		String displayHeaderChangePin = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - ╦ ╦╔╗ ╔═╗╦ ╦  ╔═╗╦╔╗╔- - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - ║ ║╠╩╗╠═╣╠═╣  ╠═╝║║║║- - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - ╚═╝╚═╝╩ ╩╩ ╩  ╩  ╩╝╚╝- - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderChangePin);
 	}
 
@@ -1308,12 +1435,15 @@ public class ATMSystem {
 	}
 
 	public static void displayHeaderExit() {
-		String displayHeaderExit =
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - ╦╔═╔═╗╦  ╦ ╦╔═╗╦═╗ - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - ╠╩╗║╣ ║  ║ ║╠═╣╠╦╝ - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╝╩═╝╚═╝╩ ╩╩╚═ - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[===================================================================================================]";
+		String displayHeaderExit = "[===================================================================================================]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - ╦╔═╔═╗╦  ╦ ╦╔═╗╦═╗ - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - ╠╩╗║╣ ║  ║ ║╠═╣╠╦╝ - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[- - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╝╩═╝╚═╝╩ ╩╩╚═ - - - - - - - - - - - - - - - - - - - - ]\n"
+				+
+				"[===================================================================================================]";
 		System.out.println(displayHeaderExit);
 	}
 
@@ -1413,18 +1543,25 @@ public class ATMSystem {
 	}
 
 	public static void displayClosing() {
-		String displayClosing = 
-		"[===================================================================================================]\n"+
-		"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"+
-		"[===================================================================================================]\n"+
-		"\n"+
-		"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   \u00A92023\n"+
-		"[====================================================================================================]";
+		String displayClosing = "[===================================================================================================]\n"
+				+
+				"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"
+				+
+				"[===================================================================================================]\n"
+				+
+				"\n" +
+				"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"
+				+
+				"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"
+				+
+				"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"
+				+
+				"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"
+				+
+				"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"
+				+
+				"* * * [   \u00A92023\n" +
+				"[====================================================================================================]";
 		System.out.println(displayClosing);
 	}
 
@@ -1446,7 +1583,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print(""+langOutputs[15][currentLanguange]);
+		System.out.print("" + langOutputs[15][currentLanguange]);
 		scanner5.nextLine();
 	}
 

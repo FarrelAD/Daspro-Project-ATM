@@ -378,7 +378,7 @@ public class ATMSystem {
 				+
 				"[===================================================================================================]";
 		System.out.println(chooseLanguange);
-		System.out.print("[ ==> ");
+		System.out.print("[  ==> ");
 		currentLanguange = scanner1.nextInt();
 		currentLanguange -= 1;
 	}
@@ -418,7 +418,7 @@ public class ATMSystem {
 					+
 					"[===================================================================================================]";
 			System.out.println(menuOutput);
-			System.out.print("[ ==> ");
+			System.out.print("[  ==> ");
 			int userChoiceMenu = scanner2.nextInt();
 
 			ClearScreen();
@@ -761,36 +761,18 @@ public class ATMSystem {
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    [  Silakan Pilih transaksi pembayaran berikut:                                             ]");
-		System.out.println(
-				"    [   _____________                                                                          ]");
-		System.out.println(
-				"    [  |_1._Pulsa____|                                                                         ]");
-		System.out.println(
-				"    [   _____________                                                                          ]");
-		System.out.println(
-				"    [  |_2._Listrik__|                                                                         ]");
-		System.out.println(
-				"    [   _______________                                                                        ]");
-		System.out.println(
-				"    [  |_3._Pendidikan_|                                                                       ]");
-		System.out.println(
-				"    [   _______________                                                                        ]");
-		System.out.println(
-				"    [  |_4._PDAM_______|                                                                       ]");
-		System.out.println(
-				"    [   _______________                                                                        ]");
-		System.out.println(
-				"    [  |_5._BPJS_______|                                                                       ]");
-		System.out.println(
-				"    [   ____________________________                                                           ]");
-		System.out.println(
-				"    [  |_6._Kembali ke menu utama___|                                                          ]");
-		System.out.println(
-				"    ============================================================================================");
-		System.out.print("\t-- Menu yang anda pilih (angka): ");
+		"[===================================================================================================]\n"+
+		"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"+
+		"[===================================================================================================]\n"+
+		"[                       [1] PULSA                              [4] PDAM                             ]\n"+
+		"[                                                                                                   ]\n"+
+		"[                       [2] LISTRIK                            [5] BPJS                             ]\n"+
+		"[                                                                                                   ]\n"+
+		"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
+		"[                                                                  MENU UTAMA                       ]\n"+
+		"[===================================================================================================]"
+		);
+		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
 		switch (menuBayar) {

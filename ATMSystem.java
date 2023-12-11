@@ -972,42 +972,37 @@ public class ATMSystem {
 		// Proses perhitungan tagihan listrik PLN
 		if (isListrikValid) {
 			// Formatting output ke Rupiah
-			String tagihanListrikRP = currencyFormat
-					.format(listrikData[indexListrik][1]);
+			String tagihanListrikRP = currencyFormat.format(listrikData[indexListrik][1]);
+			int totalPayment = listrikData[indexListrik][1] + adminFee;
+			String totalPaymentRp = currencyFormat.format(totalPayment);
 			System.out.println(
 					"    ============================================================================================");
 			System.out.println(
 					"    [  _________________________________________________________\t]");
 			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
 			System.out.printf("    [ |  ID PLN\t\t\t: %d\t\t\t|\t]\n", inputPLN);
-			System.out.printf("    [ |  Total tagihan\t\t: %s\t\t\t|\t]\n",
-					tagihanListrikRP);
+			System.out.printf("    [ |  Tagihan listrik\t\t: %s\t\t\t|\t]\n", tagihanListrikRP);
+			System.out.printf("    [ |  Biaya admin\t\t: %s\t\t\t|\t]\n", adminFeeRp);
 			System.out.println(
 					"    [  ---------------------------------------------------------\t]");
 			System.out.println(
 					"    ============================================================================================");
-			System.out.printf(
-					"\t-- Konfirmasi transaksi tagihan listrik dengan ID %s sebesar %s\n",
-					inputPLN, tagihanListrikRP);
+			System.out.println("-- Konfirmasi transaksi ?");
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
 				if (PinValidation()) {
 					if (listrikData[indexListrik][1] < userBalance) {
-						userBalance -= listrikData[indexListrik][1];
+						userBalance -= adminFee;
 						// Formatting saldo pengguna ke Rupiah
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println(
-								"    [  _________________________________________________________\t]");
-						System.out.println(
-								"    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
-						System.out.printf("    [ |  ID PLN\t\t\t: %d\t\t\t|\t]\n",
-								inputPLN);
-						System.out.printf("    [ |  Total tagihan\t\t: %s\t\t\t|\t]\n",
-								tagihanListrikRP);
-						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
-								saldoRupiah3);
+						System.out.println("    [  _________________________________________________________\t]");
+						System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+						System.out.printf("    [ |  ID PLN\t\t\t: %d\t\t\t|\t]\n", inputPLN);
+						System.out.printf("    [ |  Tagihan listrik\t\t: %s\t\t\t|\t]\n", tagihanListrikRP);
+						System.out.printf("    [ |  Biaya admin\t\t: %s\t\t\t|\t]\n", adminFeeRp);
+						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n", saldoRupiah3);
 						System.out.println(
 								"    [  ---------------------------------------------------------\t]");
 						System.out.println(
@@ -1016,7 +1011,7 @@ public class ATMSystem {
 						// Pencatatan riwayat transaksi
 						transactionHistory.add(
 								"Telah melakukan pembayaran tagihan listrik sebesar "
-										+ tagihanListrikRP);
+										+ totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

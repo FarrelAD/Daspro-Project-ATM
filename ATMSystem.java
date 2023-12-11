@@ -139,8 +139,9 @@ public class ATMSystem {
 		{"NO   ", "TIDAK"},//11
 		{"\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : "}, //12
 		{"You have made a transfer to an account ", " Telah melakukan transfer ke rekening "},//13
-		{"\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp "}//14
-
+		{"\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp "},//14
+		{"Press Enter for the next page ==>","[  Enter untuk melanjutkan ==>  "}//15
+		// langOutputs[][currentLanguange]
 	};
 	
 
@@ -1445,7 +1446,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print("[  Enter untuk melanjutkan ==>  ");
+		System.out.print(""+langOutputs[15][currentLanguange]);
 		scanner5.nextLine();
 	}
 

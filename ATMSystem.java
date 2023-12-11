@@ -877,6 +877,7 @@ public class ATMSystem {
 		if (isOperatorValid) {
 			System.out.print("\t-- Input nomor telepon anda: "); // User input nomor telepon
 			nomorTelepon = scanner1.nextLine();
+			scanner1.nextLine();
 			// System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal
 			// pulsa
 			nomPulsa = validateNonNegativeIntegerInput("\t-- Input nominal pulsa: Rp ");
@@ -905,6 +906,7 @@ public class ATMSystem {
 				ClearScreen();
 				if (PinValidation()) {
 					if (nomPulsa < userBalance) {
+						userBalance -= nomPulsa;
 						String saldoRupiah2 = currencyFormat.format(userBalance);
 
 						// Menampilkan output transaksi berhasil

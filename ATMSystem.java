@@ -1090,9 +1090,7 @@ public class ATMSystem {
 						System.out.println("    ============================================================================================");
 
 						// Pencatatan riwayat transaksi
-						transactionHistory.add(
-								"Telah melakukan pembayaran tagihan pendidikan sebesar "
-										+ tagihanPendidikanRP);
+						transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + tagihanPendidikanRP);
 
 						EnterForContinue();
 						ClearScreen();
@@ -1219,52 +1217,39 @@ public class ATMSystem {
 		}
 
 		if (isBpjsValid) {
-			String tagihanBpjsRp = currencyFormat
-					.format(BPJSdata[indexBpjs][1]);
-			System.out.println(
-					"    ============================================================================================");
-			System.out.println(
-					"    [  _________________________________________________________\t]");
+			String tagihanBpjsRp = currencyFormat.format(BPJSdata[indexBpjs][1]);
+			int totalPayment = BPJSdata[indexBpjs][1] + adminFee;
+			String totalPaymentRp = currencyFormat.format(totalPayment);
+			System.out.println("    ============================================================================================");
+			System.out.println("    [  _________________________________________________________\t]");
 			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
 			System.out.printf("    [ |  Nomor tagihan\t\t: %d\t\t\t|\t]\n", inputVA);
-			System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
-					tagihanBpjsRp);
-			System.out.println(
-					"    [  ---------------------------------------------------------\t]");
-			System.out.println(
-					"    ============================================================================================");
-			System.out.printf(
-					"\t-- Konfirmasi transaksi tagihan biaya BPJS sebesar %s\n",
-					tagihanBpjsRp);
+			System.out.printf("    [ |  Tagihan BPJS\t\t: %s\t\t|\t]\n", tagihanBpjsRp);
+			System.out.printf("    [ | Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
+			System.out.println("    [  ---------------------------------------------------------\t]");
+			System.out.println("    ============================================================================================");
+			System.out.println("-- Konfirmasi transaksi ?");
 
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
 				if (PinValidation()) {
 					if (BPJSdata[indexBpjs][1] < userBalance) {
-						userBalance -= BPJSdata[indexBpjs][1];
+						userBalance -= totalPayment;
 						// Formatting output ke Rupiah
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println(
-								"    [  _________________________________________________________\t]");
-						System.out.println(
-								"    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
-						System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n",
-								inputVA);
-						System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
-								tagihanBpjsRp);
-						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
-								saldoRupiah3);
-						System.out.println(
-								"    [  ---------------------------------------------------------\t]");
-						System.out.println(
-								"    ============================================================================================");
+						System.out.println("    [  _________________________________________________________\t]");
+						System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+						System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n", inputVA);
+						System.out.printf("    [ |  Tagihan BPJS\t\t: %s\t\t|\t]\n", tagihanBpjsRp);
+						System.out.printf("    [ | Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
+						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n", saldoRupiah3);
+						System.out.println("    [  ---------------------------------------------------------\t]");
+						System.out.println("    ============================================================================================");
 
 						// Pencatatan riwayat transaksi
-						transactionHistory
-								.add("Telah melakukan pembayaran tagihan BPJS sebesar "
-										+ tagihanBpjsRp);
+						transactionHistory.add("Telah melakukan pembayaran tagihan BPJS sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

@@ -463,12 +463,10 @@ public class ATMSystem {
 								break;
 
 							default:
-								String displayInvalidChoice = "[===================================================================================================]\n"
-										+
-										"[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"
-										+
-										"[===================================================================================================]";
-								System.out.println(displayInvalidChoice);
+								System.out.println(
+								"[===================================================================================================]\n"+
+								"[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"+
+								"[===================================================================================================]");
 								isLoopConfirm = true;
 								break;
 						}
@@ -1558,26 +1556,20 @@ public class ATMSystem {
 	}
 
 	public static void displayClosing() {
-		String displayClosing = "[===================================================================================================]\n"
-				+
-				"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"
-				+
-				"[===================================================================================================]\n"
-				+
-				"\n" +
-				"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"
-				+
-				"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"
-				+
-				"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"
-				+
-				"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"
-				+
-				"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"
-				+
-				"* * * [   \u00A92023\n" +
-				"[====================================================================================================]";
-		System.out.println(displayClosing);
+		ClearScreen();
+		System.out.println(
+		"[===================================================================================================]\n"+
+		"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"+
+		"[===================================================================================================]\n"+
+		"\n" +
+		"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"+
+		"* * * [   \u00A92023\n" +
+		"[====================================================================================================]"
+		);
 	}
 
 	public static char UserConfirmation() {

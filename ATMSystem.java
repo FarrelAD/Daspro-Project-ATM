@@ -125,30 +125,32 @@ public class ATMSystem {
 	// Variables for choose languange feature
 	static int currentLanguange = 0;
 	static String[][] langOutputs = {
-		{"  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI"}, //0
-		{"TRANSFER", "TRANSFER"}, //1
-		{"CASH WITHDRAWAL", "TARIK TUNAI    "}, //2
-		{"CASH DEPOSIT", "SETOR TUNAI "}, //3
-		{"PAYMENT   ", "PEMBAYARAN"}, //4
-		{"HISTORY", "RIWAYAT"}, //5
-		{"BALANCE INQUIRY", "CEK SALDO      "}, //6
-		{"CHANGE PIN", "UBAH PIN  "}, //7
-		{"EXIT  ", "KELUAR"}, //8
-		{"ANOTHER TRANSACTION?", "TRANSAKSI LAGI?  "}, //9
-		{"YES", "YA "}, //10
-		{"NO   ", "TIDAK"},//11
-		{"\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : "}, //12
-		{"You have made a transfer to an account ", " Telah melakukan transfer ke rekening "},//13
-		{"\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp "},//14
-		{"Press Enter for the next page ==>","[  Enter untuk melanjutkan ==>  "},//15
-		{ "                    [  (!) Failed Transaction. Invalid Account(!)  ]", "                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]"}, //16
-		{"    [ |  $$$  - Detail TRANSFER - $$$\t\t      | ]", "    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]"},//17
-		{"    [ |  Account : %s\t\t      | ]\n", "    [ |  Rekening tujuan: %s\t\t      | ]\n"},//18
-		{"    [ |  Amount  : %s\t\t\t| ]\n", "    [ |  Nominal transfer: %s\t\t\t| ]\n"},//19
-		{"\t-- Confirm account ", "\t-- Konfirmasi transfer ke rekening "},//20
-		{" amount "," sebesar "}//21
+			{ "  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI" }, // 0
+			{ "TRANSFER", "TRANSFER" }, // 1
+			{ "CASH WITHDRAWAL", "TARIK TUNAI    " }, // 2
+			{ "CASH DEPOSIT", "SETOR TUNAI " }, // 3
+			{ "PAYMENT   ", "PEMBAYARAN" }, // 4
+			{ "HISTORY", "RIWAYAT" }, // 5
+			{ "BALANCE INQUIRY", "CEK SALDO      " }, // 6
+			{ "CHANGE PIN", "UBAH PIN  " }, // 7
+			{ "EXIT  ", "KELUAR" }, // 8
+			{ "ANOTHER TRANSACTION?", "TRANSAKSI LAGI?  " }, // 9
+			{ "YES", "YA " }, // 10
+			{ "NO   ", "TIDAK" }, // 11
+			{ "\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : " }, // 12
+			{ "You have made a transfer to an account ", " Telah melakukan transfer ke rekening " }, // 13
+			{ "\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp " }, // 14
+			{ "Press Enter for the next page ==>", "[  Enter untuk melanjutkan ==>  " }, // 15
+			{ "                    [  (!) Failed Transaction. Invalid Account(!)  ]",
+					"                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]" }, // 16
+			{ "    [ |  $$$  - Detail TRANSFER - $$$\t\t      | ]",
+					"    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]" }, // 17
+			{ "    [ |  Account : %s\t\t      | ]\n", "    [ |  Rekening tujuan: %s\t\t      | ]\n" }, // 18
+			{ "    [ |  Amount  : %s\t\t\t| ]\n", "    [ |  Nominal transfer: %s\t\t\t| ]\n" }, // 19
+			{ "\t-- Confirm account ", "\t-- Konfirmasi transfer ke rekening " }, // 20
+			{ " amount ", " sebesar " }// 21
 
-		// langOutputs[][currentLanguange]
+			// langOutputs[][currentLanguange]
 	};
 
 	public static void main(String[] args) {
@@ -381,22 +383,35 @@ public class ATMSystem {
 		do {
 			isGoToMainMenu = false;
 			ClearScreen();
-			String menuOutput = 
-			"[===================================================================================================]\n"+
-			"[                                    "+langOutputs[0][currentLanguange]+"                                ]\n"+
-			"[===================================================================================================]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [1] "+langOutputs[1][currentLanguange]+"                  "+"[5] "+langOutputs[5][currentLanguange]+"                              ]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [2] "+langOutputs[2][currentLanguange]+"           "+"[6] "+langOutputs[6][currentLanguange]+"                      ]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [3] "+langOutputs[3][currentLanguange]+"              "+"[7] "+langOutputs[7][currentLanguange]+"                           ]\n"+
-			"[                                                                                                   ]\n"+
-			"[                            [4] "+langOutputs[4][currentLanguange]+"                "+"[8] "+langOutputs[8][currentLanguange]+"                               ]\n"+
-			"[                                                                                                   ]\n"+
-			"[                                                          [9] "+langOutputs[9][currentLanguange]+"                              ]\n"+
-			"[                                                                                                   ]\n"+
-			"[===================================================================================================]";
+			String menuOutput = "[===================================================================================================]\n"
+					+
+					"[                                    " + langOutputs[0][currentLanguange]
+					+ "                                ]\n" +
+					"[===================================================================================================]\n"
+					+
+					"[                                                                                                   ]\n"
+					+
+					"[                            [1] " + langOutputs[1][currentLanguange] + "                  "
+					+ "[5] " + langOutputs[5][currentLanguange] + "                              ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[                            [2] " + langOutputs[2][currentLanguange] + "           " + "[6] "
+					+ langOutputs[6][currentLanguange] + "                      ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[                            [3] " + langOutputs[3][currentLanguange] + "              " + "[7] "
+					+ langOutputs[7][currentLanguange] + "                           ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[                            [4] " + langOutputs[4][currentLanguange] + "                " + "[8] "
+					+ langOutputs[8][currentLanguange] + "                               ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[                                                          [9] " + langOutputs[9][currentLanguange]
+					+ "                              ]\n" +
+					"[                                                                                                   ]\n"
+					+
+					"[===================================================================================================]";
 			System.out.println(menuOutput);
 			System.out.print("[ ==> ");
 			int userChoiceMenu = scanner2.nextInt();
@@ -441,15 +456,23 @@ public class ATMSystem {
 
 			if (userChoiceMenu != 8) {
 				if (!isGoToMainMenu) {
-					String displayMoreTransaction =
-					"[===================================================================================================]\n"+
-					"[  "+langOutputs[10][currentLanguange]+"                                                                                ]\n"+
-					"[                                                                                                   ]\n"+
-					"[  [1] "+langOutputs[11][currentLanguange]+"                                                                                          ]\n"+
-					"[                                                                                                   ]\n"+
-					"[  [2] "+langOutputs[12][currentLanguange]+"                                                                                        ]\n"+
-					"[                                                                                                   ]\n"+
-					"[===================================================================================================]";
+					String displayMoreTransaction = "[===================================================================================================]\n"
+							+
+							"[  " + langOutputs[10][currentLanguange]
+							+ "                                                                                ]\n" +
+							"[                                                                                                   ]\n"
+							+
+							"[  [1] " + langOutputs[11][currentLanguange]
+							+ "                                                                                          ]\n"
+							+
+							"[                                                                                                   ]\n"
+							+
+							"[  [2] " + langOutputs[12][currentLanguange]
+							+ "                                                                                        ]\n"
+							+
+							"[                                                                                                   ]\n"
+							+
+							"[===================================================================================================]";
 					System.out.println(displayMoreTransaction);
 					boolean isLoopConfirm = false;
 
@@ -470,9 +493,11 @@ public class ATMSystem {
 
 							default:
 								System.out.println(
-								"[===================================================================================================]\n"+
-								"[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"+
-								"[===================================================================================================]");
+										"[===================================================================================================]\n"
+												+
+												"[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"
+												+
+												"[===================================================================================================]");
 								isLoopConfirm = true;
 								break;
 						}
@@ -497,7 +522,7 @@ public class ATMSystem {
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		System.out.print(""+langOutputs[13][currentLanguange]);
+		System.out.print("" + langOutputs[13][currentLanguange]);
 		inputTarget_AccountNumber = scannerTF.nextLine();
 		// Pengecekan apakah nomor rekening tujuan ada di database
 		isTargetAccountValid = false;
@@ -512,7 +537,7 @@ public class ATMSystem {
 		if (isTargetAccountValid) {
 			// System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input
 			// nominal transfer
-			transferAmount = validateNonNegativeIntegerInput(""+langOutputs[15][currentLanguange]);
+			transferAmount = validateNonNegativeIntegerInput("" + langOutputs[15][currentLanguange]);
 			ClearScreen();
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
@@ -526,7 +551,7 @@ public class ATMSystem {
 			System.out.println(
 					"    ============================================================================================");
 			// Konfirmasi persetujuan transaksi
-			System.out.println( inputTarget_AccountNumber
+			System.out.println(inputTarget_AccountNumber
 					+ langOutputs[21][currentLanguange] + transferAmountRupiah + " ?");
 			UserConfirmation();
 			ClearScreen();
@@ -545,7 +570,7 @@ public class ATMSystem {
 						// Formatting penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah); //your remaining balance
+						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah); // your remaining balance
 						System.out.println(
 								"    ============================================================================================");
 						EnterForContinue();
@@ -1385,9 +1410,9 @@ public class ATMSystem {
 			System.out.println(
 					"    ============================================================================================");
 			System.out.print("    Masukkan PIN baru: ");
-			String inputNewPin = scanner1.nextLine();
+			String inputNewPin = getValidatedPin(scanner1);
 			System.out.print("    Konfirmasi PIN baru: ");
-			String confirmedNewPin = scanner1.nextLine();
+			String confirmedNewPin = getValidatedPin(scanner1);
 			if (inputNewPin.equals(confirmedNewPin)) {
 				int indeksNoRek = 0;
 				accountData[accountLineIndex][1] = confirmedNewPin;
@@ -1453,29 +1478,41 @@ public class ATMSystem {
 
 	public static void displayHeaderHelp() {
 		System.out.println(
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╦ ╦╔═╗╦  ╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╠═╣║╣ ║  ╠═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╩ ╩╚═╝╩═╝╩- - - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[===================================================================================================]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[- - - - - - - - - - - - - - - - - - - - - -╦ ╦╔═╗╦  ╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"
+						+
+						"[- - - - - - - - - - - - - - - - - - - - - -╠═╣║╣ ║  ╠═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"
+						+
+						"[- - - - - - - - - - - - - - - - - - - - - -╩ ╩╚═╝╩═╝╩- - - - - - - - - - - - - - - - - - - - - - - ]\n"
+						+
+						"[===================================================================================================]");
 	}
 
 	public static void displayHelp() {
 		displayHeaderHelp();
 		System.out.println(
-		"[===================================================================================================]\n"+
-		"[                                PETUNJUK MENGGUNAKAN ATM POLINEMA                                  ]\n"+
-		"[                                                                                                   ]\n"+
-		"[  Q: Bagaimana cara menggunakannya?                                                                ]\n"+
-		"[  A: Anda bisa memulai program dengan menekan angka yang sesuai dengan menu                        ]\n"+
-		"[                                                                                                   ]\n"+
-		"[  Q: Apakah saya bisa melakukan transaksi lebih dari 1 kali?                                       ]\n"+
-		"[  A: Bisa. Setelah anda melakukan konfirmasi, akan ada pemberitahuan mengenai konfirmasi transaksi ]\n"+
-		"[     lagi. Anda bisa memilih menu yang tersedia kembali.                                           ]\n"+
-		"[                                                                                                   ]\n"+
-		"[===================================================================================================]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[                                PETUNJUK MENGGUNAKAN ATM POLINEMA                                  ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[  Q: Bagaimana cara menggunakannya?                                                                ]\n"
+						+
+						"[  A: Anda bisa memulai program dengan menekan angka yang sesuai dengan menu                        ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[  Q: Apakah saya bisa melakukan transaksi lebih dari 1 kali?                                       ]\n"
+						+
+						"[  A: Bisa. Setelah anda melakukan konfirmasi, akan ada pemberitahuan mengenai konfirmasi transaksi ]\n"
+						+
+						"[     lagi. Anda bisa memilih menu yang tersedia kembali.                                           ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[===================================================================================================]");
 		EnterForContinue();
 	}
 
@@ -1564,18 +1601,25 @@ public class ATMSystem {
 	public static void displayClosing() {
 		ClearScreen();
 		System.out.println(
-		"[===================================================================================================]\n"+
-		"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"+
-		"[===================================================================================================]\n"+
-		"\n" +
-		"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   \u00A92023\n" +
-		"[====================================================================================================]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"\n" +
+						"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   \u00A92023\n" +
+						"[====================================================================================================]");
 	}
 
 	public static char UserConfirmation() {
@@ -1596,7 +1640,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print(""+langOutputs[16][currentLanguange]);
+		System.out.print("" + langOutputs[16][currentLanguange]);
 		scanner5.nextLine();
 	}
 
@@ -1625,6 +1669,24 @@ public class ATMSystem {
 		} while (userInput < 0);
 
 		return userInput;
+	}
+
+	public static String getValidatedPin(Scanner scanner) {
+		String pin;
+		do {
+			pin = scanner.nextLine();
+			if (!pin.matches("\\d{4}")) {
+				System.out.println(
+						"    ============================================================================================");
+				System.out.println(
+						"                          [  (!) PIN HANYA TERDIRI DARI 4 DIGIT ANGKA (!) ]");
+				System.out.println(
+						"    ============================================================================================");
+
+				System.out.print("    Masukkan PIN baru (4 digit angka): ");
+			}
+		} while (!pin.matches("\\d{4}"));
+		return pin;
 	}
 
 }

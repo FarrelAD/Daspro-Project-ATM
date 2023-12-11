@@ -137,8 +137,11 @@ public class ATMSystem {
 		{"ANOTHER TRANSACTION?", "TRANSAKSI LAGI?  "}, //9
 		{"YES", "YA "}, //10
 		{"NO   ", "TIDAK"},//11
-		{"-- Masukkan nomor rekening tujuan : ", "Enter the destination account number" }
-
+		{"\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : "}, //12
+		{"You have made a transfer to an account ", " Telah melakukan transfer ke rekening "},//13
+		{"\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp "},//14
+		{"Press Enter for the next page ==>","[  Enter untuk melanjutkan ==>  "}//15
+		// langOutputs[][currentLanguange]
 	};
 	
 
@@ -410,7 +413,7 @@ public class ATMSystem {
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		System.out.print("\t-- Masukkan nomor rekening tujuan : ");
+		System.out.print(""+langOutputs[12][currentLanguange]);
 		inputTarget_AccountNumber = scannerTF.nextLine();
 		// Pengecekan apakah nomor rekening tujuan ada di database
 		isTargetAccountValid = false;
@@ -425,7 +428,7 @@ public class ATMSystem {
 		if (isTargetAccountValid) {
 			// System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input
 			// nominal transfer
-			transferAmount = validateNonNegativeIntegerInput("\t-- Masukkan nominal transfer : Rp ");
+			transferAmount = validateNonNegativeIntegerInput(""+langOutputs[14][currentLanguange]);
 			ClearScreen();
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
@@ -1443,7 +1446,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print("[  Enter untuk melanjutkan ==>  ");
+		System.out.print(""+langOutputs[15][currentLanguange]);
 		scanner5.nextLine();
 	}
 

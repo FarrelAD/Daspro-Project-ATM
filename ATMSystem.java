@@ -1638,9 +1638,9 @@ public class ATMSystem {
 	}
 
 	public static boolean PinValidation() {
+		Scanner scannerPin = new Scanner(System.in);
 		System.out.print("[  Masukkan PIN anda: ");
-		inputPin = scanner4.nextLine();
-		scanner4.nextLine();
+		inputPin = scannerPin.nextLine();
 		ClearScreen();
 		if (inputPin.equals(accountData[accountLineIndex][1])) {
 			return true;

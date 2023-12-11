@@ -529,7 +529,7 @@ public class ATMSystem {
 			System.out.println(
 					"    ============================================================================================");
 			// Konfirmasi persetujuan transaksi
-			System.out.println( inputTarget_AccountNumber
+			System.out.println(inputTarget_AccountNumber
 					+ langOutputs[21][currentLanguange] + transferAmountRupiah + " ?");
 			UserConfirmation();
 			ClearScreen();
@@ -1388,9 +1388,9 @@ public class ATMSystem {
 			System.out.println(
 					"    ============================================================================================");
 			System.out.print("    Masukkan PIN baru: ");
-			String inputNewPin = scanner1.nextLine();
+			String inputNewPin = getValidatedPin(scanner1);
 			System.out.print("    Konfirmasi PIN baru: ");
-			String confirmedNewPin = scanner1.nextLine();
+			String confirmedNewPin = getValidatedPin(scanner1);
 			if (inputNewPin.equals(confirmedNewPin)) {
 				int indeksNoRek = 0;
 				accountData[accountLineIndex][1] = confirmedNewPin;
@@ -1456,29 +1456,41 @@ public class ATMSystem {
 
 	public static void displayHeaderHelp() {
 		System.out.println(
-		"[===================================================================================================]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╦ ╦╔═╗╦  ╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╠═╣║╣ ║  ╠═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[- - - - - - - - - - - - - - - - - - - - - -╩ ╩╚═╝╩═╝╩- - - - - - - - - - - - - - - - - - - - - - - ]\n"+
-		"[===================================================================================================]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[- - - - - - - - - - - - - - - - - - - - - -╦ ╦╔═╗╦  ╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"
+						+
+						"[- - - - - - - - - - - - - - - - - - - - - -╠═╣║╣ ║  ╠═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"
+						+
+						"[- - - - - - - - - - - - - - - - - - - - - -╩ ╩╚═╝╩═╝╩- - - - - - - - - - - - - - - - - - - - - - - ]\n"
+						+
+						"[===================================================================================================]");
 	}
 
 	public static void displayHelp() {
 		displayHeaderHelp();
 		System.out.println(
-		"[===================================================================================================]\n"+
-		"[                                PETUNJUK MENGGUNAKAN ATM POLINEMA                                  ]\n"+
-		"[                                                                                                   ]\n"+
-		"[  Q: Bagaimana cara menggunakannya?                                                                ]\n"+
-		"[  A: Anda bisa memulai program dengan menekan angka yang sesuai dengan menu                        ]\n"+
-		"[                                                                                                   ]\n"+
-		"[  Q: Apakah saya bisa melakukan transaksi lebih dari 1 kali?                                       ]\n"+
-		"[  A: Bisa. Setelah anda melakukan konfirmasi, akan ada pemberitahuan mengenai konfirmasi transaksi ]\n"+
-		"[     lagi. Anda bisa memilih menu yang tersedia kembali.                                           ]\n"+
-		"[                                                                                                   ]\n"+
-		"[===================================================================================================]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[                                PETUNJUK MENGGUNAKAN ATM POLINEMA                                  ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[  Q: Bagaimana cara menggunakannya?                                                                ]\n"
+						+
+						"[  A: Anda bisa memulai program dengan menekan angka yang sesuai dengan menu                        ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[  Q: Apakah saya bisa melakukan transaksi lebih dari 1 kali?                                       ]\n"
+						+
+						"[  A: Bisa. Setelah anda melakukan konfirmasi, akan ada pemberitahuan mengenai konfirmasi transaksi ]\n"
+						+
+						"[     lagi. Anda bisa memilih menu yang tersedia kembali.                                           ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[===================================================================================================]");
 		EnterForContinue();
 	}
 
@@ -1567,18 +1579,25 @@ public class ATMSystem {
 	public static void displayClosing() {
 		ClearScreen();
 		System.out.println(
-		"[===================================================================================================]\n"+
-		"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"+
-		"[===================================================================================================]\n"+
-		"\n" +
-		"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"+
-		"* * * [   \u00A92023\n" +
-		"[====================================================================================================]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"\n" +
+						"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"
+						+
+						"* * * [   \u00A92023\n" +
+						"[====================================================================================================]");
 	}
 
 	public static char UserConfirmation() {
@@ -1628,6 +1647,24 @@ public class ATMSystem {
 		} while (userInput < 0);
 
 		return userInput;
+	}
+
+	public static String getValidatedPin(Scanner scanner) {
+		String pin;
+		do {
+			pin = scanner.nextLine();
+			if (!pin.matches("\\d{4}")) {
+				System.out.println(
+						"    ============================================================================================");
+				System.out.println(
+						"                          [  (!) PIN HANYA TERDIRI DARI 4 DIGIT ANGKA (!) ]");
+				System.out.println(
+						"    ============================================================================================");
+
+				System.out.print("    Masukkan PIN baru (4 digit angka): ");
+			}
+		} while (!pin.matches("\\d{4}"));
+		return pin;
 	}
 
 }

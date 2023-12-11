@@ -993,7 +993,7 @@ public class ATMSystem {
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
 				if (PinValidation()) {
 					if (listrikData[indexListrik][1] < userBalance) {
-						userBalance -= adminFee;
+						userBalance -= totalPayment;
 						// Formatting saldo pengguna ke Rupiah
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
@@ -1059,46 +1059,35 @@ public class ATMSystem {
 		}
 
 		if (isPendidikanValid) {
-			String tagihanPendidikanRP = currencyFormat
-					.format(pendidikanData[indexPendidikan][1]);
-			System.out.println(
-					"    ============================================================================================");
-			System.out.println(
-					"    [  _________________________________________________________\t]");
+			String tagihanPendidikanRP = currencyFormat.format(pendidikanData[indexPendidikan][1]);
+			int totalPayment = pendidikanData[indexPendidikan][1] + adminFee;
+			String totalPaymentRp = currencyFormat.format(totalPayment);
+			System.out.println("    ============================================================================================");
+			System.out.println("    [  _________________________________________________________\t]");
 			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
 			System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n", inputVA);
-			System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
-					tagihanPendidikanRP);
-			System.out.println(
-					"    [  ---------------------------------------------------------\t]");
-			System.out.println(
-					"    ============================================================================================");
-			System.out.printf(
-					"\t-- Konfirmasi transaksi tagihan biaya pendidikan sebesar %s\n",
-					tagihanPendidikanRP);
+			System.out.printf("    [ |  Tagihan Pendidikan\t\t: %s\t\t|\t]\n", tagihanPendidikanRP);
+			System.out.printf("    [ |  Biaya admin\t\t: %s\t\t\t|\t]\n", adminFeeRp);
+			System.out.println("    [  ---------------------------------------------------------\t]");
+			System.out.println("    ============================================================================================");
+			System.out.println("-- Konfirmasi transaksi ?");
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
 				if (PinValidation()) {
 					if (pendidikanData[indexPendidikan][1] < userBalance) {
-						userBalance -= pendidikanData[indexPendidikan][1];
+						userBalance -= totalPayment;
 						// Formatting output ke Rupiah
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println(
-								"    [  _________________________________________________________\t]");
-						System.out.println(
-								"    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
-						System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n",
-								inputVA);
-						System.out.printf("    [ |  Total tagihan\t\t: %s\t\t|\t]\n",
-								tagihanPendidikanRP);
-						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n",
-								saldoRupiah3);
-						System.out.println(
-								"    [  ---------------------------------------------------------\t]");
-						System.out.println(
-								"    ============================================================================================");
+						System.out.println("    [  _________________________________________________________\t]");
+						System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
+						System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n", inputVA);
+						System.out.printf("    [ |  Tagihan Pendidikan\t\t: %s\t\t|\t]\n", tagihanPendidikanRP);
+						System.out.printf("    [ |  Biaya admin\t\t: %s\t\t\t|\t]\n", adminFeeRp);						
+						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n", saldoRupiah3);
+						System.out.println("    [  ---------------------------------------------------------\t]");
+						System.out.println("    ============================================================================================");
 
 						// Pencatatan riwayat transaksi
 						transactionHistory.add(

@@ -144,7 +144,9 @@ public class ATMSystem {
 		{ "                    [  (!) Failed Transaction. Invalid Account(!)  ]", "                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]"}, //16
 		{"    [ |  $$$  - Detail TRANSFER - $$$\t\t      | ]", "    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]"},//17
 		{"    [ |  Account : %s\t\t      | ]\n", "    [ |  Rekening tujuan: %s\t\t      | ]\n"},//18
-		{"    [ |  Amount  : %s\t\t\t| ]\n", "    [ |  Nominal transfer: %s\t\t\t| ]\n"}
+		{"    [ |  Amount  : %s\t\t\t| ]\n", "    [ |  Nominal transfer: %s\t\t\t| ]\n"},//19
+		{"\t-- Confirm account ", "\t-- Konfirmasi transfer ke rekening "},//20
+		{" amount "," sebesar "}//21
 		// langOutputs[][currentLanguange]
 	};
 	
@@ -446,8 +448,8 @@ public class ATMSystem {
 			System.out.println(
 					"    ============================================================================================");
 			// Konfirmasi persetujuan transaksi
-			System.out.println("\t-- Konfirmasi transfer ke rekening " + inputTarget_AccountNumber
-					+ " dengan nominal " + transferAmountRupiah + " ?");
+			System.out.println( inputTarget_AccountNumber
+					+ langOutputs[21][currentLanguange] + transferAmountRupiah + " ?");
 			UserConfirmation();
 			ClearScreen();
 			System.out.println(
@@ -465,15 +467,15 @@ public class ATMSystem {
 						// Formatting penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
+						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah); //your remaining balance
 						System.out.println(
 								"    ============================================================================================");
 						EnterForContinue();
 						ClearScreen();
 						isTargetAccountValid = false;
 						// Pencatatan riwawayat transaksi
-						transactionHistory.add("Telah melakukan transfer ke rekening "
-								+ inputTarget_AccountNumber + " sebesar "
+						transactionHistory.add(langOutputs[20][currentLanguange]
+								+ inputTarget_AccountNumber + langOutputs[21][currentLanguange]
 								+ transferAmountRupiah);
 					} else {
 						// Kondisi jika nominal transfer melebihi jumlah saldo

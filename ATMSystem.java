@@ -28,7 +28,8 @@ public class ATMSystem {
 			{ "7654321", "5678", "4000000", "aman" },
 			{ "7777777", "7777", "10000000", "aman" },
 			{ "0000000", "0000", "900000000", "aman" },
-			{ "1", "1", "10000000", "aman" }// for quick try
+			{ "1", "1", "10000000", "aman" },// for quick try
+			{ "2", "2", "22222222", "aman"}
 	};
 
 	// array listrikData menampung ID PLN & tagihan
@@ -134,7 +135,7 @@ public class ATMSystem {
 		{"BALANCE INQUIRY", "CEK SALDO      "}, //6
 		{"CHANGE PIN", "UBAH PIN  "}, //7
 		{"EXIT  ", "KELUAR"}, //8
-		{"ANOTHER TRANSACTION?", "TRANSAKSI LAGI?  "}, //9
+		{"HELP", "BANTUAN"}, //9
 		{"YES", "YA "}, //10
 		{"NO   ", "TIDAK"},//11
 		{"\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : "}, //12
@@ -146,8 +147,10 @@ public class ATMSystem {
 		{"    [ |  Account : %s\t\t      | ]\n", "    [ |  Rekening tujuan: %s\t\t      | ]\n"},//18
 		{"    [ |  Amount  : %s\t\t\t| ]\n", "    [ |  Nominal transfer: %s\t\t\t| ]\n"},//19
 		{"\t-- Confirm account ", "\t-- Konfirmasi transfer ke rekening "},//20
-		{" amount "," sebesar "}//21
-
+		{" amount "," sebesar "},//21
+		{"\t-- Your bank balance : ", "\t-- Sisa saldo anda : " },//22
+		{"[                                 INVALID INPUT. OPTION NOT AVAILABLE                             ]\n","[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"},
+		{"Another Action", "Tindakan lain"}//24
 		// langOutputs[][currentLanguange]
 	};
 
@@ -365,7 +368,7 @@ public class ATMSystem {
 				+
 				"[                                                                                                   ]\n"
 				+
-				"[  [2] [BAHASA INDONESIA]                                                                           ]\n"
+				"[  [2] [INDONESIA]                	                                                            ]\n"
 				+
 				"[                                                                                                   ]\n"
 				+
@@ -394,7 +397,7 @@ public class ATMSystem {
 			"[                                                                                                   ]\n"+
 			"[                            [4] "+langOutputs[4][currentLanguange]+"                "+"[8] "+langOutputs[8][currentLanguange]+"                               ]\n"+
 			"[                                                                                                   ]\n"+
-			"[                                                          [9] "+langOutputs[9][currentLanguange]+"                              ]\n"+
+			"[                                                          [9] "+langOutputs[9][currentLanguange]+"      	                    ]\n"+
 			"[                                                                                                   ]\n"+
 			"[===================================================================================================]";
 			System.out.println(menuOutput);
@@ -443,11 +446,11 @@ public class ATMSystem {
 				if (!isGoToMainMenu) {
 					String displayMoreTransaction =
 					"[===================================================================================================]\n"+
-					"[  "+langOutputs[10][currentLanguange]+"                                                                                ]\n"+
+					"[  "+langOutputs[24][currentLanguange]+"                                                                                ]\n"+
 					"[                                                                                                   ]\n"+
-					"[  [1] "+langOutputs[11][currentLanguange]+"                                                                                          ]\n"+
+					"[  [1] "+langOutputs[10][currentLanguange]+"                                                                                          ]\n"+
 					"[                                                                                                   ]\n"+
-					"[  [2] "+langOutputs[12][currentLanguange]+"                                                                                        ]\n"+
+					"[  [2] "+langOutputs[11][currentLanguange]+"                                                                                        ]\n"+
 					"[                                                                                                   ]\n"+
 					"[===================================================================================================]";
 					System.out.println(displayMoreTransaction);
@@ -471,7 +474,7 @@ public class ATMSystem {
 							default:
 								System.out.println(
 								"[===================================================================================================]\n"+
-								"[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"+
+								langOutputs[23][currentLanguange]+
 								"[===================================================================================================]");
 								isLoopConfirm = true;
 								break;
@@ -497,7 +500,7 @@ public class ATMSystem {
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		System.out.print(""+langOutputs[13][currentLanguange]);
+		System.out.print(""+langOutputs[12][currentLanguange]);
 		inputTarget_AccountNumber = scannerTF.nextLine();
 		// Pengecekan apakah nomor rekening tujuan ada di database
 		isTargetAccountValid = false;
@@ -512,7 +515,7 @@ public class ATMSystem {
 		if (isTargetAccountValid) {
 			// System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input
 			// nominal transfer
-			transferAmount = validateNonNegativeIntegerInput(""+langOutputs[15][currentLanguange]);
+			transferAmount = validateNonNegativeIntegerInput(""+langOutputs[14][currentLanguange]);
 			ClearScreen();
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
@@ -545,7 +548,7 @@ public class ATMSystem {
 						// Formatting penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah); //your remaining balance
+						System.out.println(langOutputs[22][currentLanguange] + userBalanceRupiah); //your remaining balance
 						System.out.println(
 								"    ============================================================================================");
 						EnterForContinue();
@@ -1596,7 +1599,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print(""+langOutputs[16][currentLanguange]);
+		System.out.print(""+langOutputs[15][currentLanguange]);
 		scanner5.nextLine();
 	}
 

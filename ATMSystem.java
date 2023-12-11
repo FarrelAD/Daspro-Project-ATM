@@ -875,8 +875,9 @@ public class ATMSystem {
 		}
 
 		if (isOperatorValid) {
+			Scanner scannerPulsa = new Scanner(System.in);
 			System.out.print("\t-- Input nomor telepon anda: "); // User input nomor telepon
-			nomorTelepon = scanner1.nextLine();
+			nomorTelepon = scannerPulsa.nextLine();
 			scanner1.nextLine();
 			// System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal
 			// pulsa

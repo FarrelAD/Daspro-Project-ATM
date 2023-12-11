@@ -29,7 +29,7 @@ public class ATMSystem {
 			{ "7777777", "7777", "10000000", "aman" },
 			{ "0000000", "0000", "900000000", "aman" },
 			{ "1", "1", "10000000", "aman" },// for quick try
-			{ "2", "2", "22222222", "aman"}
+			{ "2", "2", "22222222", "aman"},
 	};
 
 	// array listrikData menampung ID PLN & tagihan
@@ -150,7 +150,8 @@ public class ATMSystem {
 		{" amount "," sebesar "},//21
 		{"\t-- Your bank balance : ", "\t-- Sisa saldo anda : " },//22
 		{"[                                 INVALID INPUT. OPTION NOT AVAILABLE                             ]\n","[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n"},
-		{"Another Action", "Tindakan lain"}//24
+		{"Another Action", "Tindakan lain"},//24
+		{"Press 'Y' for Yes. Press 'T' for Cancel --> ", "Tekan 'Y' untuk IYA. Tekan 'T' untuk TIDAK --> "}//25
 		// langOutputs[][currentLanguange]
 	};
 
@@ -1601,7 +1602,7 @@ public class ATMSystem {
 	}
 
 	public static char UserConfirmation() {
-		System.out.print("Tekan 'Y' untuk IYA. Tekan 'T' untuk TIDAK --> ");
+		System.out.print(langOutputs[25][currentLanguange]);
 		userConfirmation = scanner2.next().charAt(0);
 		return userConfirmation;
 	}

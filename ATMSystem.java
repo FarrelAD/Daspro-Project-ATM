@@ -87,6 +87,13 @@ public class ATMSystem {
 	// 'Exit' feature variables
 	static boolean isStopTransaction = false;
 
+	// Format nilai uang Indonesia Rupiah (IDR)
+	static NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+
+	// 'Payment' feature variable
+	static int adminFee = 1000;
+	static String adminFeeRp = currencyFormat.format(adminFee);
+
 	// 'Listrik' feature variables
 	static int indexListrik = 0;
 	static boolean isListrikValid = false;
@@ -113,9 +120,6 @@ public class ATMSystem {
 
 	// 'Validasi PIN' variables
 	static String inputPin;
-
-	// Format nilai uang Indonesia Rupiah (IDR)
-	static NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
 
 	// Formatting time and date to the system
 	static LocalDateTime currentDateTime = LocalDateTime.now();
@@ -872,6 +876,8 @@ public class ATMSystem {
 			// System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal
 			// pulsa
 			nomPulsa = validateNonNegativeIntegerInput("\t-- Input nominal pulsa: Rp ");
+			int totalPayment = nomPulsa + adminFee;
+			String totalPaymentRp = currencyFormat.format(totalPayment);
 			ClearScreen();
 			System.out.println(
 					"    ============================================================================================");
@@ -884,20 +890,19 @@ public class ATMSystem {
 			System.out.printf("    [ |  Operator seluler\t: %s\t\t|\t]\n", operatorPulsa);
 			System.out.printf("    [ |  Nomor telepon\t\t: %s\t\t|\t]\n", nomorTelepon);
 			System.out.printf("    [ |  Nominal pulsa\t\t: %s\t\t|\t]\n", nomPulsaRP);
+			System.out.printf("    [ |  Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
 			System.out
 					.println("    [  -------------------------------------------------\t]");
 			System.out.println(
 					"    ============================================================================================");
-			System.out.printf(
-					"\t-- Konfirmasi transaksi ke nomor telepon %s dengan nominal %s\n",
-					nomorTelepon, nomPulsaRP);
+			System.out.println("-- Konfirmasi transaksi ?");
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
 				ClearScreen();
 				if (PinValidation()) {
 					if (nomPulsa < userBalance) {
-						userBalance -= nomPulsa;
+						userBalance -= totalPayment;
 						String saldoRupiah2 = currencyFormat.format(userBalance);
 
 						// Menampilkan output transaksi berhasil
@@ -911,6 +916,7 @@ public class ATMSystem {
 								nomorTelepon);
 						System.out.printf("    [ |  Nominal pulsa\t\t: %s\t\t|\t]\n",
 								nomPulsaRP);
+						System.out.printf("    [ |  Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
 						System.out.printf("    [ |  Sisa saldo anda\t: %s\t|\t]\n",
 								saldoRupiah2);
 						System.out.println(
@@ -919,7 +925,7 @@ public class ATMSystem {
 								"    ============================================================================================");
 						// Pencatatan riwayat transaksi
 						transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "
-								+ nomorTelepon + " sebesar " + nomPulsaRP);
+								+ nomorTelepon + " sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

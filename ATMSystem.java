@@ -1022,6 +1022,7 @@ public class ATMSystem {
 						userBalance -= totalPayment;
 						// Formatting output ke Rupiah
 						String saldoRupiah3 = currencyFormat.format(userBalance);
+
 						viewTransactionSuccess();
 						System.out.println(
 							"[===================================================================================================]\n"+
@@ -1034,7 +1035,7 @@ public class ATMSystem {
 						);
 
 						// Pencatatan riwayat transaksi
-						transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + tagihanPendidikanRP);
+						transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

@@ -331,36 +331,23 @@ public class ATMSystem {
 		do {
 			isGoToMainMenu = false;
 			ClearScreen();
-			String menuOutput = "[===================================================================================================]\n"
-					+
-					"[                                    " + langOutputs[0][currentLanguange]
-					+ "                                ]\n" +
-					"[===================================================================================================]\n"
-					+
-					"[                                                                                                   ]\n"
-					+
-					"[                            [1] " + langOutputs[1][currentLanguange] + "                  "
-					+ "[5] " + langOutputs[5][currentLanguange] + "                              ]\n" +
-					"[                                                                                                   ]\n"
-					+
-					"[                            [2] " + langOutputs[2][currentLanguange] + "           " + "[6] "
-					+ langOutputs[6][currentLanguange] + "                      ]\n" +
-					"[                                                                                                   ]\n"
-					+
-					"[                            [3] " + langOutputs[3][currentLanguange] + "              " + "[7] "
-					+ langOutputs[7][currentLanguange] + "                           ]\n" +
-					"[                                                                                                   ]\n"
-					+
-					"[                            [4] " + langOutputs[4][currentLanguange] + "                " + "[8] "
-					+ langOutputs[8][currentLanguange] + "                               ]\n" +
-					"[                                                                                                   ]\n"
-					+
-					"[                                                          [9] " + langOutputs[9][currentLanguange]
-					+ "      	                    ]\n" +
-					"[                                                                                                   ]\n"
-					+
-					"[===================================================================================================]";
-			System.out.println(menuOutput);
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                    " + langOutputs[0][currentLanguange]+ "                                ]\n" +
+				"[===================================================================================================]\n"+
+				"[                                                                                                   ]\n"+
+				"[                            [1] " + langOutputs[1][currentLanguange] + "                  "+ "[5] " + langOutputs[5][currentLanguange] + "                              ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                            [2] " + langOutputs[2][currentLanguange] + "           " + "[6] "+ langOutputs[6][currentLanguange] + "                      ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                            [3] " + langOutputs[3][currentLanguange] + "              " + "[7] "+ langOutputs[7][currentLanguange] + "                           ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                            [4] " + langOutputs[4][currentLanguange] + "                " + "[8] "+ langOutputs[8][currentLanguange] + "                               ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                                                          [9] " + langOutputs[9][currentLanguange]+ "      	                    ]\n" +
+				"[                                                                                                   ]\n"+
+				"[===================================================================================================]"
+			);
 			System.out.print("[  ==> ");
 			int userChoiceMenu = scanner2.nextInt();
 

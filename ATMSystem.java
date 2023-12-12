@@ -885,10 +885,11 @@ public class ATMSystem {
 
 	public static void Listrik() {
 		displayHeaderElectricity();
-		System.out.print("\t-- Masukkan ID pelanggan PLN/Nomor meter: ");
+		System.out.print("-- Masukkan ID pelanggan PLN/Nomor meter: ");
 		int inputPLN = scanner4.nextInt();
 		ClearScreen();
-		// Pengecekan data ID pelanggan
+		
+		// Checking destination account availability
 		isListrikValid = false;
 		for (int i = 0; i < listrikData.length; i++) {
 			if (inputPLN == listrikData[i][0]) {
@@ -905,18 +906,14 @@ public class ATMSystem {
 			int totalPayment = listrikData[indexListrik][1] + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			System.out.println(
-					"    ============================================================================================");
-			System.out.println(
-					"    [  _________________________________________________________\t]");
-			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
-			System.out.printf("    [ |  ID PLN\t\t\t: %d\t\t\t|\t]\n", inputPLN);
-			System.out.printf("    [ |  Tagihan listrik\t\t: %s\t\t\t|\t]\n", tagihanListrikRP);
-			System.out.printf("    [ |  Biaya admin\t\t: %s\t\t\t|\t]\n", adminFeeRp);
-			System.out.println(
-					"    [  ---------------------------------------------------------\t]");
-			System.out.println(
-					"    ============================================================================================");
-			System.out.println("-- Konfirmasi transaksi ?");
+				"[===================================================================================================]\n"+
+				"[                                       RINCIAN PEMBAYARAN                                          ]\n"+
+				"[  -- ID PLN            : "+inputPLN+"                                                                 ]\n"+
+				"[  -- TAGIHAN LISTRIK   : "+tagihanListrikRP+"\t                                                            ]\n"+
+				"[  -- BIAYA ADMIN       : "+adminFeeRp+"                                                                ]\n"+
+				"[===================================================================================================]"
+			);
+
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
@@ -926,21 +923,18 @@ public class ATMSystem {
 						// Formatting saldo pengguna ke Rupiah
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println("    [  _________________________________________________________\t]");
-						System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
-						System.out.printf("    [ |  ID PLN\t\t\t: %d\t\t\t|\t]\n", inputPLN);
-						System.out.printf("    [ |  Tagihan listrik\t\t: %s\t\t\t|\t]\n", tagihanListrikRP);
-						System.out.printf("    [ |  Biaya admin\t\t: %s\t\t\t|\t]\n", adminFeeRp);
-						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n", saldoRupiah3);
 						System.out.println(
-								"    [  ---------------------------------------------------------\t]");
-						System.out.println(
-								"    ============================================================================================");
+							"[===================================================================================================]\n"+
+							"[                                       RINCIAN PEMBAYARAN                                          ]\n"+
+							"[  -- ID PLN            : "+inputPLN+"                                                                 ]\n"+
+							"[  -- TAGIHAN LISTRIK   : "+tagihanListrikRP+"\t                                                            ]\n"+
+							"[  -- BIAYA ADMIN       : "+adminFeeRp+"                                                                ]\n"+
+							"[  -- SISA SALDO ANDA   : "+saldoRupiah3+"\t                                                    ]\n"+
+							"[===================================================================================================]"
+						);
 
 						// Pencatatan riwayat transaksi
-						transactionHistory.add(
-								"Telah melakukan pembayaran tagihan listrik sebesar "
-										+ totalPaymentRp);
+						transactionHistory.add("Telah melakukan pembayaran tagihan listrik sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

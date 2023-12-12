@@ -140,7 +140,7 @@ public class ATMSystem {
 			{ "CHANGE PIN", "UBAH PIN  " }, // 7
 			{ "EXIT  ", "KELUAR" }, // 8
 			{ "HELP", "BANTUAN" }, // 9
-			{ "ANOTHER ACTION?", "TINDAKAN LAIN?" }, // 10 NEW
+			{ "ANOTHER ACTION?", "TINDAKAN LAIN? " }, // 10 NEW
 			{ "YES", "YA " }, // 11 
 			{ "NO   ", "TIDAK" }, // 12
 			{ "[                                 INVALID INPUT. OPTION NOT AVAILABLE                             ]\n",
@@ -390,25 +390,17 @@ public class ATMSystem {
 			}
 
 			if (userChoiceMenu != 8) {
-				if (!isGoToMainMenu) {
-					String displayMoreTransaction = "[===================================================================================================]\n"
-							+
-							"[  " + langOutputs[10][currentLanguange]
-							+ "                                                                                ]\n" +
-							"[                                                                                                   ]\n"
-							+
-							"[  [1] " + langOutputs[11][currentLanguange]
-							+ "                                                                                          ]\n"
-							+
-							"[                                                                                                   ]\n"
-							+
-							"[  [2] " + langOutputs[12][currentLanguange]
-							+ "                                                                                        ]\n"
-							+
-							"[                                                                                                   ]\n"
-							+
-							"[===================================================================================================]";
-					System.out.println(displayMoreTransaction);
+				if (!isGoToMainMenu) {;
+					System.out.println(
+						"[===================================================================================================]\n"+
+						"[  "+langOutputs[10][currentLanguange]+"                                                                                  ]\n" +
+						"[                                                                                                   ]\n"+
+						"[  [1] "+langOutputs[11][currentLanguange]+"                                                                                          ]\n"+
+						"[                                                                                                   ]\n"+
+						"[  [2] "+langOutputs[12][currentLanguange]+"                                                                                        ]\n"+
+						"[                                                                                                   ]\n"+
+						"[===================================================================================================]"
+					);
 					boolean isLoopConfirm = false;
 
 					do {

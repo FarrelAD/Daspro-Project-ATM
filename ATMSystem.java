@@ -168,7 +168,6 @@ public class ATMSystem {
 
 	public static void PageMenu() {
 		ClearScreen();
-		String displayPageMenu = 
 		System.out.println(
 		"[===================================================================================================]\n"+
 		"[    " + formattedDateTime + "    ]\n" +
@@ -226,16 +225,13 @@ public class ATMSystem {
 			}
 
 			if (!isAccountFind) {
-				String displayAccountIsNotFind = "[===================================================================================================]\n"
-						+
-						"[               ACCOUNT NUMBER IS NOT FOUND. PLEASE INPUT YOUR CORRECT ACCOUNT NUMBER               ]\n"
-						+
-						"[         [!]   _____________________________________________________________________   [!]         ]\n"
-						+
-						"[              NOMOR REKENING TIDAK DITEMUKAN. MOHON MASUKKAN NOMOR REKENING YANG BENAR             ]\n"
-						+
-						"[===================================================================================================]\n";
-				System.out.println(displayAccountIsNotFind);
+				System.out.println(
+				"[===================================================================================================]\n"+
+				"[               ACCOUNT NUMBER IS NOT FOUND. PLEASE INPUT YOUR CORRECT ACCOUNT NUMBER               ]\n"+
+				"[         [!]   _____________________________________________________________________   [!]         ]\n"+
+				"[              NOMOR REKENING TIDAK DITEMUKAN. MOHON MASUKKAN NOMOR REKENING YANG BENAR             ]\n"+
+				"[===================================================================================================]\n"
+				);
 				EnterForContinue();
 				ClearScreen();
 				return false;
@@ -258,16 +254,13 @@ public class ATMSystem {
 					} else {
 						ClearScreen();
 						WrongPin();
-						String displayLoginAttempts = "[===================================================================================================]\n"
-								+
-								"[           LOGIN ATTEMPTS                          [=====]     /   [=====]                         ]\n"
-								+
-								"[           ______________                          [  " + loginAttempts
-								+ "  ]    /    [  " + MAX_LOGIN_ATTEMPTS + "  ]                         ]\n" +
-								"[           PERCOBAAN MASUK                         [=====]   /     [=====]                         ]\n"
-								+
-								"[===================================================================================================]";
-						System.out.println(displayLoginAttempts);
+						System.out.println(
+						"[===================================================================================================]\n"+
+						"[           LOGIN ATTEMPTS                          [=====]     /   [=====]                         ]\n"+
+						"[           ______________                          [  " +loginAttempts+ "  ]    /    [  " + MAX_LOGIN_ATTEMPTS + "  ]                         ]\n" +
+						"[           PERCOBAAN MASUK                         [=====]   /     [=====]                         ]\n"+
+						"[===================================================================================================]"
+						);
 						EnterForContinue();
 						ClearScreen();
 					}
@@ -275,16 +268,13 @@ public class ATMSystem {
 			} else {
 				tryToLogin = true;
 				ClearScreen();
-				String displayAccountBlockedWarning = "[===================================================================================================]\n"
-						+
-						"[           YOUR ACCOUNT (" + inputUser_AccountNumber
-						+ ") HAS BEEN BLOCKED. PLEASE INPUT ANOTHER ACCOUNT NUMBER            ]\n" +
-						"[  [!] _______________________________________________________________________________________ [!]  ]\n"
-						+
-						"[      NOMOR REKENING ANDA (" + inputUser_AccountNumber
-						+ ") TELAH DIBLOKIR. SILAKAN MASUKKAN NOMOR REKENING YANG LAIN      ]\n" +
-						"[===================================================================================================]";
-				System.out.println(displayAccountBlockedWarning);
+				System.out.println(
+				"[===================================================================================================]\n"+
+				"[           YOUR ACCOUNT (" +inputUser_AccountNumber+ ") HAS BEEN BLOCKED. PLEASE INPUT ANOTHER ACCOUNT NUMBER            ]\n"+
+				"[  [!] _______________________________________________________________________________________ [!]  ]\n"+
+				"[      NOMOR REKENING ANDA (" +inputUser_AccountNumber+ ") TELAH DIBLOKIR. SILAKAN MASUKKAN NOMOR REKENING YANG LAIN      ]\n"+
+				"[===================================================================================================]"
+				);
 				EnterForContinue();
 				ClearScreen();
 				return false;
@@ -293,16 +283,13 @@ public class ATMSystem {
 			// If the maximum login attempts are reached and status akun will change to
 			// "TERBLOKIR"
 			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
-				String displayMaxLoginAttempts = "[===================================================================================================]\n"
-						+
-						"[          YOU HAVE INPUT YOUR PIN INCORRECTLY 3 TIMES. SORRY, WE HAVE BLOCKED YOUR ACCOUNT         ]\n"
-						+
-						"[    [!]   ________________________________________________________________________________   [!]   ]\n"
-						+
-						"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"
-						+
-						"[===================================================================================================]";
-				System.out.println(displayMaxLoginAttempts);
+				System.out.println(
+				"[===================================================================================================]\n"+
+				"[          YOU HAVE INPUT YOUR PIN INCORRECTLY 3 TIMES. SORRY, WE HAVE BLOCKED YOUR ACCOUNT         ]\n"+
+				"[    [!]   ________________________________________________________________________________   [!]   ]\n"+
+				"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"+
+				"[===================================================================================================]"
+				);
 				accountData[accountLineIndex][3] = "TERBLOKIR";
 				EnterForContinue();
 			}
@@ -311,16 +298,13 @@ public class ATMSystem {
 	}
 
 	public static void WrongPin() {
-		String displayWrongPin = "[===================================================================================================]\n"
-				+
-				"[                             LOGIN FAILED. PLEASE CHECK YOUR PIN AGAIN                             ]\n"
-				+
-				"[                       [!]   _________________________________________   [!]                       ]\n"
-				+
-				"[                             GAGAL MASUK. SILAKAN CEK PIN ANDA KEMBALI                             ]\n"
-				+
-				"[===================================================================================================]";
-		System.out.println(displayWrongPin);
+		System.out.println(
+		"[===================================================================================================]\n"+
+		"[                             LOGIN FAILED. PLEASE CHECK YOUR PIN AGAIN                             ]\n"+
+		"[                       [!]   _________________________________________   [!]                       ]\n"+
+		"[                             GAGAL MASUK. SILAKAN CEK PIN ANDA KEMBALI                             ]\n"+
+		"[===================================================================================================]"
+		);
 	}
 
 	public static void chooseLanguange() {

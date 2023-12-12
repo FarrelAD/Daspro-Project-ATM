@@ -140,26 +140,20 @@ public class ATMSystem {
 			{ "CHANGE PIN", "UBAH PIN  " }, // 7
 			{ "EXIT  ", "KELUAR" }, // 8
 			{ "HELP", "BANTUAN" }, // 9
-			{ "YES", "YA " }, // 10
-			{ "NO   ", "TIDAK" }, // 11
-			{ "\t-- Enter the destination account number : ", "\t-- Masukkan nomor rekening tujuan : " }, // 12
-			{ "You have made a transfer to an account ", " Telah melakukan transfer ke rekening " }, // 13
-			{ "\t-- input amount = ", "\t-- Masukkan nominal transfer : Rp " }, // 14
-			{ "Press Enter for the next page ==>", "[  Enter untuk melanjutkan ==>  " }, // 15
-			{ "                    [  (!) Failed Transaction. Invalid Account(!)  ]",
-					"                    [  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]" }, // 16
-			{ "    [ |  $$$  - Detail TRANSFER - $$$\t\t      | ]",
-					"    [ |  $$$  - RINCIAN TRANSFER - $$$\t\t      | ]" }, // 17
-			{ "    [ |  Account : %s\t\t      | ]\n", "    [ |  Rekening tujuan: %s\t\t      | ]\n" }, // 18
-			{ "    [ |  Amount  : %s\t\t\t| ]\n", "    [ |  Nominal transfer: %s\t\t\t| ]\n" }, // 19
-			{ "\t-- Confirm account ", "\t-- Konfirmasi transfer ke rekening " }, // 20
-			{ " amount ", " sebesar " }, // 21
-			{ "\t-- Your bank balance : ", "\t-- Sisa saldo anda : " }, // 22
+			{ "ANOTHER ACTION?", "TINDAKAN LAIN?" }, // 10 NEW
+			{ "YES", "YA " }, // 11 
+			{ "NO   ", "TIDAK" }, // 12
 			{ "[                                 INVALID INPUT. OPTION NOT AVAILABLE                             ]\n",
-					"[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n" },
-			{ "Another Action", "Tindakan lain" }, // 24
-			{ "Press 'Y' for Yes. Press 'T' for Cancel --> ", "Tekan 'Y' untuk IYA. Tekan 'T' untuk TIDAK --> " }// 25
-			// langOutputs[][currentLanguange]
+			  "[                                 INVALID INPUT. PILIHAN TIDAK TERSEDIA                             ]\n" }, // 13
+			{ "Enter the destination account number : ", "Masukkan nomor rekening tujuan : "}, // 14
+			{ "input amount = ", "Masukkan nominal transfer : Rp " }, // 15
+			{ "$$$  - Detail TRANSFER - $$$",
+			 "$$$  - RINCIAN TRANSFER - $$$" }, // 16 
+			{ "Account : %s\t\t\n", "Rekening tujuan: %s\t\t\n"}, // 17
+			{ "Amount  : %s\t\t\t\n", "Nominal transfer: %s\t\t\t\n"}, // 18
+			{ "Your bank balance : ", "Sisa saldo anda : " }, // 19 
+			{ "[  (!) Failed Transaction. Invalid Account(!)  ]",
+			  "[  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]" }, // 20 new
 	};
 
 	public static void main(String[] args) {
@@ -467,16 +461,16 @@ public class ATMSystem {
 				if (!isGoToMainMenu) {
 					String displayMoreTransaction = "[===================================================================================================]\n"
 							+
-							"[  " + langOutputs[24][currentLanguange]
+							"[  " + langOutputs[10][currentLanguange]
 							+ "                                                                                ]\n" +
 							"[                                                                                                   ]\n"
 							+
-							"[  [1] " + langOutputs[10][currentLanguange]
+							"[  [1] " + langOutputs[11][currentLanguange]
 							+ "                                                                                          ]\n"
 							+
 							"[                                                                                                   ]\n"
 							+
-							"[  [2] " + langOutputs[11][currentLanguange]
+							"[  [2] " + langOutputs[12][currentLanguange]
 							+ "                                                                                        ]\n"
 							+
 							"[                                                                                                   ]\n"
@@ -504,7 +498,7 @@ public class ATMSystem {
 								System.out.println(
 										"[===================================================================================================]\n"
 												+
-												langOutputs[23][currentLanguange] +
+												langOutputs[13][currentLanguange] +
 												"[===================================================================================================]");
 								isLoopConfirm = true;
 								break;
@@ -530,7 +524,7 @@ public class ATMSystem {
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		System.out.print("" + langOutputs[12][currentLanguange]);
+		System.out.print("" + langOutputs[14][currentLanguange]);
 		inputTarget_AccountNumber = scannerTF.nextLine();
 		// Pengecekan apakah nomor rekening tujuan ada di database
 		isTargetAccountValid = false;
@@ -545,22 +539,20 @@ public class ATMSystem {
 		if (isTargetAccountValid) {
 			// System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input
 			// nominal transfer
-			transferAmount = validateNonNegativeIntegerInput("" + langOutputs[14][currentLanguange]);
+			transferAmount = validateNonNegativeIntegerInput("" + langOutputs[15][currentLanguange]);
 			ClearScreen();
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
 			System.out.println(
 					"    ============================================================================================");
 			System.out.println("    [  _______________________________________________  ]");
-			System.out.println(langOutputs[17][currentLanguange]);
-			System.out.printf(langOutputs[18][currentLanguange], inputTarget_AccountNumber);
-			System.out.printf(langOutputs[19][currentLanguange], transferAmountRupiah);
+			System.out.println(langOutputs[16][currentLanguange]);
+			System.out.printf(langOutputs[17][currentLanguange], inputTarget_AccountNumber);
+			System.out.printf(langOutputs[18][currentLanguange], transferAmountRupiah);
 			System.out.println("    [ ------------------------------------------------- ]");
 			System.out.println(
 					"    ============================================================================================");
 			// Konfirmasi persetujuan transaksi
-			System.out.println(inputTarget_AccountNumber
-					+ langOutputs[21][currentLanguange] + transferAmountRupiah + " ?");
 			UserConfirmation();
 			ClearScreen();
 			System.out.println(
@@ -578,17 +570,18 @@ public class ATMSystem {
 						// Formatting penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println(langOutputs[22][currentLanguange] + userBalanceRupiah); // your remaining
-																									// balance
-						System.out.println(
-								"    ============================================================================================");
+						System.out.println("============================================================================================");
+						System.out.println("[  _______________________________________________  ]");
+						System.out.println(langOutputs[16][currentLanguange]);
+						System.out.printf(langOutputs[17][currentLanguange], inputTarget_AccountNumber);
+						System.out.printf(langOutputs[18][currentLanguange], transferAmountRupiah);
+						System.out.println(langOutputs[19][currentLanguange] + userBalanceRupiah); // your remaining
+						System.out.println("============================================================================================");
 						EnterForContinue();
 						ClearScreen();
 						isTargetAccountValid = false;
 						// Pencatatan riwawayat transaksi
-						transactionHistory.add(langOutputs[20][currentLanguange]
-								+ inputTarget_AccountNumber + langOutputs[21][currentLanguange]
-								+ transferAmountRupiah);
+						transactionHistory.add("Telah melakukan transaksi ke rekening: " + inputTarget_AccountNumber + " sebesar " + transferAmountRupiah);
 					} else {
 						// Kondisi jika nominal transfer melebihi jumlah saldo
 						viewBalanceIsNotEnough();
@@ -609,7 +602,7 @@ public class ATMSystem {
 			System.out.println(
 					"    --------------------------------------------------------------------------------------------");
 			System.out.println(
-					red + langOutputs[16][currentLanguange]
+					red + langOutputs[20][currentLanguange]
 							+ reset);
 			System.out.println(
 					"    --------------------------------------------------------------------------------------------");
@@ -1586,7 +1579,8 @@ public class ATMSystem {
 	}
 
 	public static char UserConfirmation() {
-		System.out.print(langOutputs[25][currentLanguange]);
+		System.out.println("Konfirmasi transaksi?");
+		System.out.print("Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> ");
 		userConfirmation = scanner2.next().charAt(0);
 		return userConfirmation;
 	}
@@ -1604,7 +1598,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print("" + langOutputs[15][currentLanguange]);
+		System.out.print("Klik enter untuk melanjutkan --> ");
 		scanner5.nextLine();
 	}
 

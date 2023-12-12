@@ -162,11 +162,52 @@ public class ATMSystem {
 			  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25 
 			{"\t-- Enter amount Withdraw : Rp ","\t-- Masukkan nominal tarik tunai : Rp "}, //26 new RIL
 			{"\t-- Confirm withdrawl = " ,"\t-- Konfirmasi Tarik tunai dengan nominal " },//27 new bro
-			{"\t-- Your balance : " , "\t-- Sisa saldo anda : " },//24 new bro
-			{"You have been withdraw = ", "Telah melakukan tarik tunai sebesar "}, //25 new bro
+			{"\t-- Your balance : " , "\t-- Sisa saldo anda : " },//28 new bro
+			{"You have been withdraw = ", "Telah melakukan tarik tunai sebesar "}, //29 new bro
 			{"           [  (!) Failed Transaction. you exceed the maximum cash withdrawal limit(!)  ]",
-			"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]"}, //26 new nih
-			{"\t-- Amount Deposit : Rp ", "\t-- Masukkan nominal setor tunai : Rp "} //31 NEW RIIL
+			"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]"}, //30 new nih
+			{"\t-- Amount Deposit : Rp ", "\t-- Masukkan nominal setor tunai : Rp "},//31 NEW RIIL
+			{"[===================================================================================================]\n"
+			+
+			"[                            CHOOSE THE PAYMENT TRANSACTION BELOW       	                    ]\n"
+			+
+			"[===================================================================================================]\n"
+			+
+			"[                       [1] Credit                              [4] Water Bills                     ]\n"
+			+
+			"[                                                                                                   ]\n"
+			+
+			"[                       [2] Electric bill                       [5] Health Incsurance               ]\n"
+			+
+			"[                                                                                                   ]\n"
+			+
+			"[                       [3] Education                           [6] Back to Menu                    ]\n"
+			+
+			"[                                                                                                   ]\n"
+			+
+			"[===================================================================================================]",
+		"[===================================================================================================]\n"
+			+
+			"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
+			+
+			"[===================================================================================================]\n"
+			+
+			"[                       [1] PULSA                              [4] PDAM                             ]\n"
+			+
+			"[                                                                                                   ]\n"
+			+
+			"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
+			+
+			"[                                                                                                   ]\n"
+			+
+			"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
+			+
+			"[                                                                  MENU UTAMA                       ]\n"
+			+
+			"[===================================================================================================]"},//32
+			{"    [ Choose an operator cellular:                                                             ]",
+			"    [ Pilih operator seluler:                                                                  ]"}//33
+
 	};
 
 	public static void main(String[] args) {
@@ -700,25 +741,7 @@ public class ATMSystem {
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
-						+
-						"[===================================================================================================]\n"
-						+
-						"[                       [1] PULSA                              [4] PDAM                             ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
-						+
-						"[                                                                  MENU UTAMA                       ]\n"
-						+
-						"[===================================================================================================]");
+				langOutputs[32][currentLanguange]);
 		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
@@ -764,7 +787,7 @@ public class ATMSystem {
 		System.out.println(
 				"    ============================================================================================");
 		System.out.println(
-				"    [ Pilih operator seluler:                                                                  ]");
+				langOutputs[33][currentLanguange]);
 		System.out.println(
 				"    [  ____________                                                                            ]");
 		System.out.println(
@@ -779,7 +802,7 @@ public class ATMSystem {
 				"    [ |3._Telkomsel_|                                                                          ]");
 		System.out.println(
 				"    ============================================================================================");
-		System.out.print("\t-- Operator yang anda pilih: ");
+		System.out.print("\t-- 1 / 2 / 3 = ");
 		String operatorPulsa = scanner2.next();
 		boolean isOperatorValid = false;
 		switch (operatorPulsa) {

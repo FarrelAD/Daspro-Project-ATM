@@ -152,8 +152,16 @@ public class ATMSystem {
 			{ "Account : %s\t\t\n", "Rekening tujuan: %s\t\t\n"}, // 17
 			{ "Amount  : %s\t\t\t\n", "Nominal transfer: %s\t\t\t\n"}, // 18
 			{ "Your bank balance : ", "Sisa saldo anda : " }, // 19 
-			{ "[  (!) Failed Transaction. Invalid Account(!)  ]",
-			  "[  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]" }, // 20 new
+			{ "[  (!) Failed Transaction. Invalid Account(!)  ]",//20
+			  "[  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]" }, // 21 new
+			{"\t-- Enter amount Withdraw : Rp ","\t-- Masukkan nominal tarik tunai : Rp "}, //22 new bro
+			{"\t-- Confirm withdrawl = " ,"\t-- Konfirmasi Tarik tunai dengan nominal " },//23 new bro
+			{"\t-- Your balance : " , "\t-- Sisa saldo anda : " },//24 new bro
+			{"You have been withdraw = ", "Telah melakukan tarik tunai sebesar "}, //25 new bro
+			{"           [  (!) Failed Transaction. you exceed the maximum cash withdrawal limit(!)  ]",
+			"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]"}, //26 new nih
+			{"\t-- Amount Deposit : Rp ", "\t-- Masukkan nominal setor tunai : Rp "} //27
+			
 	};
 
 	public static void main(String[] args) {
@@ -548,7 +556,7 @@ public class ATMSystem {
 		// System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input
 		// nominal tarik
 		// tunai
-		cashWithdrawalAmount = validateNonNegativeIntegerInput("\t-- Masukkan nominal tarik tunai : Rp ");
+		cashWithdrawalAmount = validateNonNegativeIntegerInput(langOutputs[22][currentLanguange]);
 
 		ClearScreen();
 
@@ -556,7 +564,7 @@ public class ATMSystem {
 				"    ============================================================================================");
 		// Konversi nilai output ke Rupiah
 		String cashWitdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
-		System.out.println("\t-- Konfirmasi Tarik tunai dengan nominal " + cashWitdrawalRupiah + " ? ");
+		System.out.println(langOutputs[23][currentLanguange]+ cashWitdrawalRupiah + " ? ");
 		// Persetujuan konfirmasi transaksi
 		UserConfirmation();
 		ClearScreen();
@@ -572,12 +580,12 @@ public class ATMSystem {
 						// Formating penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
+						System.out.println( langOutputs[24][currentLanguange]+ userBalanceRupiah);
 						System.out.println(
 								"    ============================================================================================");
 
 						// Pencatatan riwayat transaksi
-						transactionHistory.add("Telah melakukan tarik tunai sebesar "
+						transactionHistory.add(langOutputs[25][currentLanguange]
 								+ cashWitdrawalRupiah);
 
 						EnterForContinue();
@@ -590,7 +598,7 @@ public class ATMSystem {
 						System.out.println(
 								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
-								"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]");
+								langOutputs[26][currentLanguange]);
 						System.out.println(
 								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
@@ -620,7 +628,7 @@ public class ATMSystem {
 	public static void SetorTunai() {
 		displayHeaderCashDeposit();
 		// System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
-		cashDepositAmount = validateNonNegativeIntegerInput("\t-- Masukkan nominal setor tunai : Rp ");
+		cashDepositAmount = validateNonNegativeIntegerInput(langOutputs[27][currentLanguange]);
 
 		ClearScreen();
 

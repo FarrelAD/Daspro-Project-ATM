@@ -160,7 +160,50 @@ public class ATMSystem {
 			{"You have been withdraw = ", "Telah melakukan tarik tunai sebesar "}, //25 new bro
 			{"           [  (!) Failed Transaction. you exceed the maximum cash withdrawal limit(!)  ]",
 			"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]"}, //26 new nih
-			{"\t-- Amount Deposit : Rp ", "\t-- Masukkan nominal setor tunai : Rp "} //27
+			{"\t-- Amount Deposit : Rp ", "\t-- Masukkan nominal setor tunai : Rp "}, //27
+			{"\t-- Confirm deposit cash amount = " , "\t-- Konfirmasi setor tunai dengan nominal " },//28
+			{"Have deposit amount =  " , "Telah melakukan setor tunai sebesar " },//29
+			{"[===================================================================================================]\n"
+						+
+						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"[                       [1] Credit                              [4] Water Bills                     ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [2] Electric bill                       [5] Health Incsurance               ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [3] Education                           [6] Back to Menu                    ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[===================================================================================================]",
+					"[===================================================================================================]\n"
+						+
+						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"[                       [1] PULSA                              [4] PDAM                             ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
+						+
+						"[                                                                  MENU UTAMA                       ]\n"
+						+
+						"[===================================================================================================]"},//30
+			{"    [ Choose an operator cellular:                                                             ]",
+			"    [ Pilih operator seluler:                                                                  ]"}//31
+			//langOutputs[27][currentLanguange]
 			
 	};
 
@@ -635,7 +678,7 @@ public class ATMSystem {
 		System.out.println(
 				"    ============================================================================================");
 		String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
-		System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + cashDepositRupiah + " ? ");
+		System.out.println(langOutputs[28][currentLanguange] + cashDepositRupiah + " ? ");
 		UserConfirmation();
 
 		ClearScreen();
@@ -648,12 +691,12 @@ public class ATMSystem {
 				// Formatting penulisan rupiah pada output
 				String userBalanceRupiah = currencyFormat.format(userBalance);
 
-				System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
+				System.out.println(langOutputs[19][currentLanguange] + userBalanceRupiah);
 				System.out.println(
 						"    ============================================================================================");
 
 				// Pencatatan riwayat transaksi
-				transactionHistory.add("Telah melakukan setor tunai sebesar " + cashDepositRupiah);
+				transactionHistory.add(langOutputs[29][currentLanguange]+ cashDepositRupiah);
 
 				EnterForContinue();
 
@@ -679,25 +722,7 @@ public class ATMSystem {
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
-						+
-						"[===================================================================================================]\n"
-						+
-						"[                       [1] PULSA                              [4] PDAM                             ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
-						+
-						"[                                                                  MENU UTAMA                       ]\n"
-						+
-						"[===================================================================================================]");
+				langOutputs[30][currentLanguange]);
 		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
@@ -743,7 +768,7 @@ public class ATMSystem {
 		System.out.println(
 				"    ============================================================================================");
 		System.out.println(
-				"    [ Pilih operator seluler:                                                                  ]");
+				langOutputs[31][currentLanguange]);
 		System.out.println(
 				"    [  ____________                                                                            ]");
 		System.out.println(
@@ -758,7 +783,7 @@ public class ATMSystem {
 				"    [ |3._Telkomsel_|                                                                          ]");
 		System.out.println(
 				"    ============================================================================================");
-		System.out.print("\t-- Operator yang anda pilih: ");
+		System.out.print("\t--  1 / 2 / 3 = ");
 		String operatorPulsa = scanner2.next();
 		boolean isOperatorValid = false;
 		switch (operatorPulsa) {
@@ -775,7 +800,7 @@ public class ATMSystem {
 				isOperatorValid = true;
 				break;
 			default:
-				System.out.println("Operator yang dipilih invalid!");
+				System.out.println(red + "\tinvalid operator!"+ reset);
 				break;
 		}
 

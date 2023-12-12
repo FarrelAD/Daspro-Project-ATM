@@ -24,12 +24,12 @@ public class ATMSystem {
 	// inisialisasi dan deklarasi variabel yang dibutuhkan
 	// array akun di ATM POLINEMA
 	static String[][] accountData = {
-			{ "1234567", "1234", "7000000", "aman" },
-			{ "7654321", "5678", "4000000", "aman" },
-			{ "7777777", "7777", "10000000", "aman" },
-			{ "0000000", "0000", "900000000", "aman" },
-			{ "1", "1", "10000000", "aman" }, // for quick try
-			{ "2", "2", "22222222", "aman" },
+			{ "1234567", "1234", "ATABIK", "BANK POLINEMA", "7000000", "aman" },
+			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "aman" },
+			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "aman" },
+			{ "0000000", "0000", "KARL", "BANK POLINEMA", "900000000", "aman" },
+			{ "1", "1", "RIO", "10000000", "BANK JOSS", "aman" }, // for quick try
+			{ "2", "2", "TAYLOR", "22222222", "RICH BANK", "aman" },
 	};
 
 	// array listrikData menampung ID PLN & tagihan
@@ -75,11 +75,14 @@ public class ATMSystem {
 	// 'Tarik tunai' variables
 	static int cashWithdrawalAmount;
 
+	// Limitations the amount of transactions
+	static final int MAX_AMOUNT_TRANSACTION = 5000000;
+
 	// 'Setor tunai' variables
 	static int cashDepositAmount;
 
 	// 'Cek saldo' variables
-	static int userBalance = Integer.parseInt(accountData[accountLineIndex][2]);
+	static int userBalance = Integer.parseInt(accountData[accountLineIndex][4]);
 
 	// 'Riwayat transaksi' features variables
 	static ArrayList<String> transactionHistory = new ArrayList<>();
@@ -140,71 +143,30 @@ public class ATMSystem {
 			{ "CHANGE PIN", "UBAH PIN  " }, // 7
 			{ "EXIT  ", "KELUAR" }, // 8
 			{ "HELP", "BANTUAN" }, // 9
-			{ "ANOTHER ACTION?", "TINDAKAN LAIN? " }, // 10 NEW
+			{ "ANOTHER ACTION?", "TINDAKAN LAIN? " }, // 10
 			{ "YES", "YA " }, // 11 
 			{ "NO   ", "TIDAK" }, // 12
 			{ "   INVALID INPUT. OPTION NOT AVAILABLE.   ", "INPUT TIDAK VALID. PILIHAN TIDAK TERSEDIA." }, // 13
 			{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR"}, //14
-			{ "Enter the destination account number : ", "Masukkan nomor rekening tujuan : "}, // 15 new
-			{ "input amount = ", "Masukkan nominal transfer : Rp " }, // 15
-			{ "$$$  - Detail TRANSFER - $$$",
-			 "$$$  - RINCIAN TRANSFER - $$$" }, // 16 
-			{ "Account : %s\t\t\n", "Rekening tujuan: %s\t\t\n"}, // 17
-			{ "Amount  : %s\t\t\t\n", "Nominal transfer: %s\t\t\t\n"}, // 18
-			{ "Your bank balance : ", "Sisa saldo anda : " }, // 19 
-			{ "[  (!) Failed Transaction. Invalid Account(!)  ]",//20
-			  "[  (!) Transaksi gagal. Nomor rekening tujuan invalid (!)  ]" }, // 21 new
-			{"\t-- Enter amount Withdraw : Rp ","\t-- Masukkan nominal tarik tunai : Rp "}, //22 new bro
-			{"\t-- Confirm withdrawl = " ,"\t-- Konfirmasi Tarik tunai dengan nominal " },//23 new bro
+			{ "INPUT THE DESTINATION ACCOUNT NUMBER ==> ", "MASUKKAN NOMOR REKENING TUJUAN ==> "}, // 15
+			{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
+			{ "DETAIL TRANSFER ", "RINCIAN TRANSFER" }, // 17 
+			{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //18
+			{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 19 
+			{ "NAME                   : ", "NAMA                   : " }, // 20 
+			{ "BANK                   : ", "BANK                   : " }, // 21 
+			{ "TRANSFER AMOUNT        : ", "NOMINAL TRANSFER       : " }, // 22
+			{ "ADMIN FEE              : ", "BIAYA ADMIN            : " }, // 23 
+			{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 24
+			{ " [!]  FAILED TRANSACTION. INVALID DESTINATION ACCOUNT  [!] ",
+			  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25 
+			{"\t-- Enter amount Withdraw : Rp ","\t-- Masukkan nominal tarik tunai : Rp "}, //26 new RIL
+			{"\t-- Confirm withdrawl = " ,"\t-- Konfirmasi Tarik tunai dengan nominal " },//27 new bro
 			{"\t-- Your balance : " , "\t-- Sisa saldo anda : " },//24 new bro
 			{"You have been withdraw = ", "Telah melakukan tarik tunai sebesar "}, //25 new bro
 			{"           [  (!) Failed Transaction. you exceed the maximum cash withdrawal limit(!)  ]",
 			"           [  (!) Transaksi gagal, anda melebihi batas maksimum nominal tarik tunai (!)  ]"}, //26 new nih
-			{"\t-- Amount Deposit : Rp ", "\t-- Masukkan nominal setor tunai : Rp "}, //27
-			{"\t-- Confirm deposit cash amount = " , "\t-- Konfirmasi setor tunai dengan nominal " },//28
-			{"Have deposit amount =  " , "Telah melakukan setor tunai sebesar " },//29
-			{"[===================================================================================================]\n"
-						+
-						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
-						+
-						"[===================================================================================================]\n"
-						+
-						"[                       [1] Credit                              [4] Water Bills                     ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [2] Electric bill                       [5] Health Incsurance               ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [3] Education                           [6] Back to Menu                    ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[===================================================================================================]",
-					"[===================================================================================================]\n"
-						+
-						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
-						+
-						"[===================================================================================================]\n"
-						+
-						"[                       [1] PULSA                              [4] PDAM                             ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
-						+
-						"[                                                                  MENU UTAMA                       ]\n"
-						+
-						"[===================================================================================================]"},//30
-			{"    [ Choose an operator cellular:                                                             ]",
-			"    [ Pilih operator seluler:                                                                  ]"}//31
-			//langOutputs[27][currentLanguange]
-			
+			{"\t-- Amount Deposit : Rp ", "\t-- Masukkan nominal setor tunai : Rp "} //31 NEW RIIL
 	};
 
 	public static void main(String[] args) {
@@ -290,7 +252,7 @@ public class ATMSystem {
 
 			isAccountNumberValid = false;
 			if (isAccountFind) {
-				if (accountData[accountLineIndex][3].equals("aman")) {
+				if (accountData[accountLineIndex][5].equals("aman")) {
 					isAccountNumberValid = true;
 				}
 			}
@@ -341,7 +303,7 @@ public class ATMSystem {
 				"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"+
 				"[===================================================================================================]"
 				);
-				accountData[accountLineIndex][3] = "TERBLOKIR";
+				accountData[accountLineIndex][5] = "TERBLOKIR";
 				EnterForContinue();
 			}
 		} while (tryToLogin || !isAccountFind);
@@ -497,64 +459,86 @@ public class ATMSystem {
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		System.out.print("" + langOutputs[15][currentLanguange]);
+		System.out.print("[  " + langOutputs[15][currentLanguange]);
 		inputTarget_AccountNumber = scannerTF.nextLine();
-		// Pengecekan apakah nomor rekening tujuan ada di database
+		
+		// Checking destination account availability
+		int indexTargetAccount = 0;
 		isTargetAccountValid = false;
 		for (int i = 0; i < accountData.length; i++) {
 			if ((inputTarget_AccountNumber.equals(accountData[i][0]))
 					&& (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
 				isTargetAccountValid = true;
+				indexTargetAccount = i;
 				break;
 			}
 		}
 		// Kondisi jika isTargetAccountValid true
 		if (isTargetAccountValid) {
-			// System.out.print("\t-- Masukkan nominal transfer : Rp "); // User input
-			// nominal transfer
+
+			// Counting admin fee
+			int adminFeeTf = 0;
+			if (!accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
+				adminFeeTf = 1500;
+			}
+
+			String adminFeeTfRp = currencyFormat.format(adminFeeTf);
+
 			transferAmount = validateNonNegativeIntegerInput("" + langOutputs[16][currentLanguange]);
 			ClearScreen();
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
+			int totalTransfer = transferAmount + adminFeeTf;
+			String totalTransferRp = currencyFormat.format(totalTransfer);
 			System.out.println(
-					"    ============================================================================================");
-			System.out.println("    [  _______________________________________________  ]");
-			System.out.println(langOutputs[17][currentLanguange]);
-			System.out.printf(langOutputs[18][currentLanguange], inputTarget_AccountNumber);
-			System.out.printf(langOutputs[19][currentLanguange], transferAmountRupiah);
-			System.out.println("    [ ------------------------------------------------- ]");
-			System.out.println(
-					"    ============================================================================================");
+				"[===================================================================================================]\n"+
+				"[                                         "+langOutputs[17][currentLanguange]+"                                          ]\n"+
+				"[                              "+langOutputs[18][currentLanguange]+"                              ]\n"+
+				"[                              _______________________________________                              ]\n"+
+				"[  -- "+langOutputs[19][currentLanguange]+inputTarget_AccountNumber+"\n"+
+				"[  -- "+langOutputs[20][currentLanguange]+accountData[indexTargetAccount][2]+"\n"+
+				"[  -- "+langOutputs[21][currentLanguange]+accountData[indexTargetAccount][3]+"\n"+
+				"[  -- "+langOutputs[22][currentLanguange]+transferAmountRupiah+"\n"+
+				"[  -- "+langOutputs[23][currentLanguange]+adminFeeTfRp+"\n"+
+				"[===================================================================================================]"
+			);
+
 			// Konfirmasi persetujuan transaksi
 			UserConfirmation();
 			ClearScreen();
-			System.out.println(
-					"    ============================================================================================");
 
 			// Konfirmasi transaksi
 			if (userConfirmation == 'y' || userConfirmation == 'Y') {
 				// Pengecekan apakah input PIN sesuai dengan database
 				if (PinValidation()) {
 					if (transferAmount < userBalance) {
-						userBalance -= transferAmount; // Pengurangan saldo pengguna dengan
-						// nominal
-						// transfer
+						if (transferAmount <= MAX_AMOUNT_TRANSACTION) {
+							userBalance -= (transferAmount + adminFeeTf); 
 
-						// Formatting penulisan rupiah pada output
-						String userBalanceRupiah = currencyFormat.format(userBalance);
-						viewTransactionSuccess();
-						System.out.println("============================================================================================");
-						System.out.println("[  _______________________________________________  ]");
-						System.out.println(langOutputs[17][currentLanguange]);
-						System.out.printf(langOutputs[18][currentLanguange], inputTarget_AccountNumber);
-						System.out.printf(langOutputs[19][currentLanguange], transferAmountRupiah);
-						System.out.println(langOutputs[20][currentLanguange] + userBalanceRupiah); // your remaining
-						System.out.println("============================================================================================");
-						EnterForContinue();
-						ClearScreen();
-						isTargetAccountValid = false;
-						// Pencatatan riwawayat transaksi
-						transactionHistory.add("Telah melakukan transaksi ke rekening: " + inputTarget_AccountNumber + " sebesar " + transferAmountRupiah);
+							// Formatting penulisan rupiah pada output
+							String userBalanceRupiah = currencyFormat.format(userBalance);
+							viewTransactionSuccess();
+							System.out.println(
+								"[===================================================================================================]\n"+
+								"[                                         "+langOutputs[17][currentLanguange]+"                                          ]\n"+
+								"[                              _______________________________________                              ]\n"+
+								"[  -- "+langOutputs[19][currentLanguange]+inputTarget_AccountNumber+"\n"+
+								"[  -- "+langOutputs[20][currentLanguange]+accountData[indexTargetAccount][2]+"\n"+
+								"[  -- "+langOutputs[21][currentLanguange]+accountData[indexTargetAccount][3]+"\n"+
+								"[  -- "+langOutputs[22][currentLanguange]+transferAmountRupiah+"\n"+
+								"[  -- "+langOutputs[23][currentLanguange]+adminFeeTfRp+"\n"+
+								"[  -- "+langOutputs[24][currentLanguange]+userBalanceRupiah+"\n"+
+								"[===================================================================================================]"
+							);
+
+							EnterForContinue();
+							ClearScreen();
+
+							// Pencatatan riwawayat transaksi
+							transactionHistory.add("Telah melakukan transaksi ke rekening: " + inputTarget_AccountNumber + " sebesar " + totalTransferRp);
+						} else {
+							displayTransactionOverLimit();
+						}
 					} else {
 						// Kondisi jika nominal transfer melebihi jumlah saldo
 						viewBalanceIsNotEnough();
@@ -571,16 +555,10 @@ public class ATMSystem {
 			// Kondisi jika isTargetAccountValid bernilai FALSE
 			ClearScreen();
 			System.out.println(
-					"    ============================================================================================");
-			System.out.println(
-					"    --------------------------------------------------------------------------------------------");
-			System.out.println(
-					red + langOutputs[21][currentLanguange]
-							+ reset);
-			System.out.println(
-					"    --------------------------------------------------------------------------------------------");
-			System.out.println(
-					"    ============================================================================================");
+				"[===================================================================================================]\n"+
+				"[                    "+red+langOutputs[25][currentLanguange]+reset+"                    ]\n"+
+				"[===================================================================================================]"
+			);
 		}
 	}
 
@@ -599,7 +577,7 @@ public class ATMSystem {
 		// System.out.print("\t-- Masukkan nominal tarik tunai : Rp "); // User input
 		// nominal tarik
 		// tunai
-		cashWithdrawalAmount = validateNonNegativeIntegerInput(langOutputs[22][currentLanguange]);
+		cashWithdrawalAmount = validateNonNegativeIntegerInput(langOutputs[26][currentLanguange]);
 
 		ClearScreen();
 
@@ -607,7 +585,7 @@ public class ATMSystem {
 				"    ============================================================================================");
 		// Konversi nilai output ke Rupiah
 		String cashWitdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
-		System.out.println(langOutputs[23][currentLanguange]+ cashWitdrawalRupiah + " ? ");
+		System.out.println(langOutputs[27][currentLanguange]+ cashWitdrawalRupiah + " ? ");
 		// Persetujuan konfirmasi transaksi
 		UserConfirmation();
 		ClearScreen();
@@ -623,12 +601,12 @@ public class ATMSystem {
 						// Formating penulisan rupiah pada output
 						String userBalanceRupiah = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println( langOutputs[24][currentLanguange]+ userBalanceRupiah);
+						System.out.println( langOutputs[28][currentLanguange]+ userBalanceRupiah);
 						System.out.println(
 								"    ============================================================================================");
 
 						// Pencatatan riwayat transaksi
-						transactionHistory.add(langOutputs[25][currentLanguange]
+						transactionHistory.add(langOutputs[29][currentLanguange]
 								+ cashWitdrawalRupiah);
 
 						EnterForContinue();
@@ -641,7 +619,7 @@ public class ATMSystem {
 						System.out.println(
 								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
-								langOutputs[26][currentLanguange]);
+								langOutputs[30][currentLanguange]);
 						System.out.println(
 								"    --------------------------------------------------------------------------------------------");
 						System.out.println(
@@ -671,14 +649,14 @@ public class ATMSystem {
 	public static void SetorTunai() {
 		displayHeaderCashDeposit();
 		// System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
-		cashDepositAmount = validateNonNegativeIntegerInput(langOutputs[27][currentLanguange]);
+		cashDepositAmount = validateNonNegativeIntegerInput(langOutputs[31][currentLanguange]);
 
 		ClearScreen();
 
 		System.out.println(
 				"    ============================================================================================");
 		String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
-		System.out.println(langOutputs[28][currentLanguange] + cashDepositRupiah + " ? ");
+		System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + cashDepositRupiah + " ? ");
 		UserConfirmation();
 
 		ClearScreen();
@@ -691,12 +669,12 @@ public class ATMSystem {
 				// Formatting penulisan rupiah pada output
 				String userBalanceRupiah = currencyFormat.format(userBalance);
 
-				System.out.println(langOutputs[19][currentLanguange] + userBalanceRupiah);
+				System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
 				System.out.println(
 						"    ============================================================================================");
 
 				// Pencatatan riwayat transaksi
-				transactionHistory.add(langOutputs[29][currentLanguange]+ cashDepositRupiah);
+				transactionHistory.add("Telah melakukan setor tunai sebesar " + cashDepositRupiah);
 
 				EnterForContinue();
 
@@ -722,7 +700,25 @@ public class ATMSystem {
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
 		System.out.println(
-				langOutputs[30][currentLanguange]);
+				"[===================================================================================================]\n"
+						+
+						"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"[                       [1] PULSA                              [4] PDAM                             ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
+						+
+						"[                                                                  MENU UTAMA                       ]\n"
+						+
+						"[===================================================================================================]");
 		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
@@ -768,7 +764,7 @@ public class ATMSystem {
 		System.out.println(
 				"    ============================================================================================");
 		System.out.println(
-				langOutputs[31][currentLanguange]);
+				"    [ Pilih operator seluler:                                                                  ]");
 		System.out.println(
 				"    [  ____________                                                                            ]");
 		System.out.println(
@@ -783,7 +779,7 @@ public class ATMSystem {
 				"    [ |3._Telkomsel_|                                                                          ]");
 		System.out.println(
 				"    ============================================================================================");
-		System.out.print("\t--  1 / 2 / 3 = ");
+		System.out.print("\t-- Operator yang anda pilih: ");
 		String operatorPulsa = scanner2.next();
 		boolean isOperatorValid = false;
 		switch (operatorPulsa) {
@@ -800,7 +796,7 @@ public class ATMSystem {
 				isOperatorValid = true;
 				break;
 			default:
-				System.out.println(red + "\tinvalid operator!"+ reset);
+				System.out.println("Operator yang dipilih invalid!");
 				break;
 		}
 
@@ -1397,6 +1393,15 @@ public class ATMSystem {
 						+ reset);
 		System.out.println(
 				"    ============================================================================================");
+	}
+
+	public static void displayTransactionOverLimit() {
+		ClearScreen();
+		System.out.println(
+			"[===================================================================================================]\n"+
+			"[                            SORRY, YOUR TRANSACTION EXCEEDED THE LIMIT                             ]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void viewBalanceIsNotEnough() {

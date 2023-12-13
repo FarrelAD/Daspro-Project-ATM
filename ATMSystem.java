@@ -1084,15 +1084,15 @@ public class ATMSystem {
 			String tagihanPdamRp = currencyFormat.format(tagihanAirData[indexPdam][1]);
 			int totalPayment = tagihanAirData[indexPdam][1] + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
-			System.out.println("    ============================================================================================");
-			System.out.println("    [  _________________________________________________________\t]");
-			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
-			System.out.printf("    [ |  Nomor tagihan\t\t: %d\t\t\t|\t]\n", inputVA);
-			System.out.printf("    [ |  Tagihan PDAM\t\t: %s\t\t|\t]\n", tagihanPdamRp);
-			System.out.printf("    [ |  Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
-			System.out.println("    [  ---------------------------------------------------------\t]");
-			System.out.println("    ============================================================================================");
-			System.out.println("-- Konfirmasi transaksi ?");
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                       RINCIAN PEMBAYARAN                                          ]\n"+
+				"[  -- NOMOR TAGIHAN        : "+inputVA+"                                                                 ]\n"+
+				"[  -- TAGIHAN PDAM         : "+tagihanPdamRp+"                                                           ]\n"+
+				"[  -- BIAYA ADMIN          : "+adminFeeRp+"                                                             ]\n"+
+				"[===================================================================================================]"
+			);
+
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
@@ -1102,14 +1102,15 @@ public class ATMSystem {
 						// Formatting output ke Rupiah
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
-						System.out.println("    [  _________________________________________________________\t]");
-						System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t\t|\t]");
-						System.out.printf("    [ |  Nomor VA\t\t: %d\t\t\t|\t]\n", inputVA);
-						System.out.printf("    [ |  Tagihan PDAM\t\t: %s\t\t|\t]\n", tagihanPdamRp);
-						System.out.printf("    [ | Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
-						System.out.printf("    [ |  Sisa saldo anda\t: %s\t\t|\t]\n", saldoRupiah3);
-						System.out.println("    [  ---------------------------------------------------------\t]");
-						System.out.println("    ============================================================================================");
+						System.out.println(
+							"[===================================================================================================]\n"+
+							"[                                       RINCIAN PEMBAYARAN                                          ]\n"+
+							"[  -- NOMOR TAGIHAN        : "+inputVA+"                                                                 ]\n"+
+							"[  -- TAGIHAN PDAM         : "+tagihanPdamRp+"                                                           ]\n"+
+							"[  -- BIAYA ADMIN          : "+adminFeeRp+"                                                             ]\n"+
+							"[  -- SISA SALDO ANDA      : "+saldoRupiah3+"\t                                                    ]\n"+
+							"[===================================================================================================]"
+						);
 
 						transactionHistory.add("Telah melakukan pembayaran tagihan PDAM sebesar " + totalPaymentRp);
 

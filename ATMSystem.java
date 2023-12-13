@@ -206,7 +206,8 @@ public class ATMSystem {
 			+
 			"[===================================================================================================]"},//32
 			{"    [ Choose an operator cellular:                                                             ]",
-			"    [ Pilih operator seluler:                                                                  ]"}//33
+			"    [ Pilih operator seluler:                                                                  ]"},//33
+			{"Enter for the next page --> ","Klik enter untuk melanjutkan --> "}//34
 
 	};
 
@@ -1540,7 +1541,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print("Klik enter untuk melanjutkan --> ");
+		System.out.print(langOutputs[34][currentLanguange]);
 		scanner5.nextLine();
 	}
 

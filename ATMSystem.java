@@ -1591,12 +1591,13 @@ public class ATMSystem {
 
 	public static void displayTransactionOverLimit() {
 		ClearScreen();
-		System.out.println(
+		System.out.println(red +
 				"[===================================================================================================]\n"
-						+
-						"[                TRANSAKSI VALID DENGAN NOMINAL RP 50.000,00 HINGGA RP 5.000.000,00                 ]\n"
-						+
-						"[===================================================================================================]");
+				+
+				"[                TRANSAKSI VALID DENGAN NOMINAL RP 50.000,00 HINGGA RP 5.000.000,00                 ]\n"
+				+
+				"[===================================================================================================]"
+				+ reset);
 	}
 
 	public static void viewBalanceIsNotEnough() {

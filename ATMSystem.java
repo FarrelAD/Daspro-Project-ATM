@@ -760,17 +760,7 @@ public class ATMSystem {
 
 						ClearScreen();
 					} else {
-						// Kondisi jika nominal Tarik > 5.000.000
-						System.out.println(
-								"    ============================================================================================");
-						System.out.println(
-								"    --------------------------------------------------------------------------------------------");
-						System.out.println(
-								langOutputs[30][currentLanguange]);
-						System.out.println(
-								"    --------------------------------------------------------------------------------------------");
-						System.out.println(
-								"    ============================================================================================");
+						displayTransactionOverLimit();
 					}
 				} else {
 					viewBalanceIsNotEnough();
@@ -1604,7 +1594,7 @@ public class ATMSystem {
 		System.out.println(
 				"[===================================================================================================]\n"
 						+
-						"[                            SORRY, YOUR TRANSACTION EXCEEDED THE LIMIT                             ]\n"
+						"[                TRANSAKSI VALID DENGAN NOMINAL RP 50.000,00 HINGGA RP 5.000.000,00                 ]\n"
 						+
 						"[===================================================================================================]");
 	}

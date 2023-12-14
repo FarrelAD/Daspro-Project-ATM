@@ -28,8 +28,8 @@ public class ATMSystem {
 			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "aman" },
 			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "aman" },
 			{ "0000000", "0000", "KARL", "BANK POLINEMA", "900000000", "aman" },
-			{ "1", "1", "RIO", "10000000", "BANK JOSS", "aman" }, // for quick try
-			{ "2", "2", "TAYLOR", "22222222", "RICH BANK", "aman" },
+			{ "1", "1", "RIO", "BANK JOSS", "10000000", "aman" }, // for quick try
+			{ "2", "2", "TAYLOR", "RICH BANK", "22222222", "aman" }, // for quick try
 	};
 
 	// array listrikData menampung ID PLN & tagihan

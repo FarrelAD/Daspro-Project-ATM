@@ -168,44 +168,31 @@ public class ATMSystem {
 			{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //28
 			{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//29
 			{"Amount Deposit : Rp ", "Masukkan nominal setor tunai : Rp "},//30 NEW
-			{"[===================================================================================================]\n"
-			+
-			"[                            CHOOSE THE PAYMENT TRANSACTION BELOW       	                    ]\n"
-			+
-			"[===================================================================================================]\n"
-			+
-			"[                       [1] Credit                              [4] Water Bills                     ]\n"
-			+
-			"[                                                                                                   ]\n"
-			+
-			"[                       [2] Electric bill                       [5] Health Incsurance               ]\n"
-			+
-			"[                                                                                                   ]\n"
-			+
-			"[                       [3] Education                           [6] Back to Menu                    ]\n"
-			+
-			"[                                                                                                   ]\n"
-			+
-			"[===================================================================================================]",
-		"[===================================================================================================]\n"
-			+
-			"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
-			+
-			"[===================================================================================================]\n"
-			+
-			"[                       [1] PULSA                              [4] PDAM                             ]\n"
-			+
-			"[                                                                                                   ]\n"
-			+
-			"[                       [2] LISTRIK                            [5] BPJS                             ]\n"
-			+
-			"[                                                                                                   ]\n"
-			+
-			"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
-			+
-			"[                                                                  MENU UTAMA                       ]\n"
-			+
-			"[===================================================================================================]"},//31
+			{"[===================================================================================================]\n"+
+			 "[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"+
+			 "[===================================================================================================]\n"+
+			 "[                       [1] CREDIT                              [4] PDAM /                          ]\n"+
+			 "[                                                                   WATER BILL                      ]\n"+
+			 "[                                                                                                   ]\n"+
+			 "[                       [2] PLN /                               [5] BPJS /                          ]\n"+
+			 "[                           ELECTRIC BILL                           HEALTH INSURANCE                ]\n"+
+			 "[                                                                                                   ]\n"+
+			 "[                       [3] EDUCATION                           [6] BACK TO THE                     ]\n"+
+			 "[                                                                   MAIN MENU                       ]\n"+
+			 "[                                                                                                   ]\n"+
+			 "[===================================================================================================]",
+		     "[===================================================================================================]\n"+
+			 "[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"+
+		     "[===================================================================================================]\n"+
+			 "[                       [1] PULSA                              [4] PDAM /                           ]\n"+
+			 "[                                                                  TAGIHAN AIR                      ]\n"+
+			 "[                                                                                                   ]\n"+
+	         "[                       [2] PLN /                              [5] BPJS /                           ]\n"+
+	         "[                           TAGIHAN LISTRIK                        ASURANSI KESEHATAN               ]\n"+
+			 "[                                                                                                   ]\n"+
+			 "[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
+			 "[                                                                  MENU UTAMA                       ]\n"+
+			 "[===================================================================================================]"}, //31
 			{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //32
 			{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //33
 			{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 34 
@@ -886,8 +873,7 @@ public class ATMSystem {
 
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
-		System.out.println(
-				langOutputs[31][currentLanguange]);
+		System.out.println(langOutputs[31][currentLanguange]);
 		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();

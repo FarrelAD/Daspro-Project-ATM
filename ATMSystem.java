@@ -202,7 +202,7 @@ public class ATMSystem {
 		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 38
 		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 39
 		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //40
-		{ "AMOUNT OF ELECTRICITY  : ", "JUMLAH TAGIHAN LISTRIK : "} // 41
+		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "} // 41
 	};
 
 	public static void main(String[] args) {
@@ -1022,20 +1022,17 @@ public class ATMSystem {
 
 	public static void displayHeaderEducationBill() {
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╗╔╔╦╗╦╔╦╗╦╦╔═╔═╗╔╗╔ - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - -╠═╝║╣ ║║║ ║║║ ║║║╠╩╗╠═╣║║║ - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - -╩  ╚═╝╝╚╝═╩╝╩═╩╝╩╩ ╩╩ ╩╝╚╝ - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[===================================================================================================]");
+			"[===================================================================================================]\n"+
+			"[- - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╗╔╔╦╗╦╔╦╗╦╦╔═╔═╗╔╗╔ - - - - - - - - - - - - - - - - - -]\n"+
+			"[- - - - - - - - - - - - - - - - - - -╠═╝║╣ ║║║ ║║║ ║║║╠╩╗╠═╣║║║ - - - - - - - - - - - - - - - - - -]\n"+
+			"[- - - - - - - - - - - - - - - - - - -╩  ╚═╝╝╚╝═╩╝╩═╩╝╩╩ ╩╩ ╩╝╚╝ - - - - - - - - - - - - - - - - - -]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void Pendidikan() {
 		displayHeaderEducationBill();
-		System.out.print("\t-- Masukkan nomor virtual account : ");
+		System.out.print("[  "+langOutputs[39][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1054,17 +1051,14 @@ public class ATMSystem {
 			int totalPayment = pendidikanData[indexPendidikan][1] + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-							+
-							"[  -- NOMOR VA            : " + inputVA
-							+ "                                                                  ]\n" +
-							"[  -- TAGIHAN PENDIDIKAN  : " + tagihanPendidikanRP
-							+ "                                                          ]\n" +
-							"[  -- BIAYA ADMIN         : " + adminFeeRp
-							+ "                                                              ]\n" +
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+				"[                                      ______________________                                       ]\n"+
+				"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ tagihanPendidikanRP+"\n" +
+				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+				"[===================================================================================================]"
+				);
 
 			UserConfirmation();
 			ClearScreen();
@@ -1077,23 +1071,18 @@ public class ATMSystem {
 
 						viewTransactionSuccess();
 						System.out.println(
-								"[===================================================================================================]\n"
-										+
-										"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-										+
-										"[  -- NOMOR VA            : " + inputVA
-										+ "                                                                  ]\n" +
-										"[  -- TAGIHAN PENDIDIKAN  : " + tagihanPendidikanRP
-										+ "                                                          ]\n" +
-										"[  -- BIAYA ADMIN         : " + adminFeeRp
-										+ "                                                              ]\n" +
-										"[  -- SISA SALDO ANDA     : " + saldoRupiah3
-										+ "\t                                                    ]\n" +
-										"[===================================================================================================]");
+							"[===================================================================================================]\n"+
+							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+							"[                                      ______________________                                       ]\n"+
+							"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ tagihanPendidikanRP+"\n" +
+							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
+							"[===================================================================================================]"
+							);
 
-						// Pencatatan riwayat transaksi
-						transactionHistory
-								.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + totalPaymentRp);
+						// Recording Transaction History
+						transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

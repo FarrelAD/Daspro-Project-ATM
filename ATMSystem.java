@@ -211,8 +211,6 @@ public class ATMSystem {
 			{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 34 
 			{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 35
 			{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "} // 36
-
-
 	};
 
 	public static void main(String[] args) {
@@ -1797,7 +1795,7 @@ public class ATMSystem {
 				System.out.println(
 						"    ============================================================================================");
 
-				System.out.print("    Masukkan PIN baru (4 digit angka): ");
+				System.out.print("MASUKKAN PIN BARU (4 DIGIT): ");
 			}
 		} while (!pin.matches("\\d{4}"));
 		return pin;

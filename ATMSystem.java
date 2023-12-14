@@ -150,7 +150,7 @@ public class ATMSystem {
 			{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR"}, //14
 			{ "INPUT THE DESTINATION ACCOUNT NUMBER ==> ", "MASUKKAN NOMOR REKENING TUJUAN ==> "}, // 15
 			{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
-			{ "DETAIL TRANSFER ", "RINCIAN TRANSFER" }, // 17 
+			{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 17 
 			{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //18
 			{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 19 
 			{ "NAME                   : ", "NAMA                   : " }, // 20 
@@ -205,8 +205,11 @@ public class ATMSystem {
 			"[                                                                  MENU UTAMA                       ]\n"
 			+
 			"[===================================================================================================]"},//32
-			{"    [ Choose an operator cellular:                                                             ]",
-			"    [ Pilih operator seluler:                                                                  ]"}//33
+			{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //33
+			{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //34
+			{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 35 
+			{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 36
+			{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "} // 37
 
 	};
 
@@ -533,7 +536,7 @@ public class ATMSystem {
 			String totalTransferRp = currencyFormat.format(totalTransfer);
 			System.out.println(
 				"[===================================================================================================]\n"+
-				"[                                         "+langOutputs[17][currentLanguange]+"                                          ]\n"+
+				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 				"[                              "+langOutputs[18][currentLanguange]+"                              ]\n"+
 				"[                              _______________________________________                              ]\n"+
 				"[  -- "+langOutputs[19][currentLanguange]+inputTarget_AccountNumber+"\n"+
@@ -561,7 +564,7 @@ public class ATMSystem {
 							viewTransactionSuccess();
 							System.out.println(
 								"[===================================================================================================]\n"+
-								"[                                         "+langOutputs[17][currentLanguange]+"                                          ]\n"+
+								"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 								"[                              _______________________________________                              ]\n"+
 								"[  -- "+langOutputs[19][currentLanguange]+inputTarget_AccountNumber+"\n"+
 								"[  -- "+langOutputs[20][currentLanguange]+accountData[indexTargetAccount][2]+"\n"+
@@ -781,56 +784,59 @@ public class ATMSystem {
 	}
 
 	public static void Pulsa() {
+		Scanner scannerPulsa = new Scanner(System.in);
 		displayHeaderPulsa();
 		String nomorTelepon;
 		int nomPulsa;
-		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				langOutputs[33][currentLanguange]);
-		System.out.println(
-				"    [  ____________                                                                            ]");
-		System.out.println(
-				"    [ |1._Indosat__|                                                                           ]");
-		System.out.println(
-				"    [  ____________                                                                            ]");
-		System.out.println(
-				"    [ |2._XL_______|                                                                           ]");
-		System.out.println(
-				"    [  _____________                                                                           ]");
-		System.out.println(
-				"    [ |3._Telkomsel_|                                                                          ]");
-		System.out.println(
-				"    ============================================================================================");
-		System.out.print("\t-- 1 / 2 / 3 = ");
-		String operatorPulsa = scanner2.next();
+
 		boolean isOperatorValid = false;
-		switch (operatorPulsa) {
-			case "1":
-				operatorPulsa = "Indosat";
-				isOperatorValid = true;
-				break;
-			case "2":
-				operatorPulsa = "XL";
-				isOperatorValid = true;
-				break;
-			case "3":
-				operatorPulsa = "Telkomsel";
-				isOperatorValid = true;
-				break;
-			default:
-				System.out.println("Operator yang dipilih invalid!");
-				break;
-		}
+		String operatorPulsa = null;
+		do {
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                     "+langOutputs[33][currentLanguange]+"                                   ]\n"+
+				"[===================================================================================================]\n"+
+				"[           [1] INDOSAT                                                                             ]\n"+
+				"[                                                                                                   ]\n"+
+				"[           [2] XL                                                                                  ]\n"+
+				"[                                                                                                   ]\n"+
+				"[           [3] TELKOMSEL                                                                           ]\n"+
+				"[===================================================================================================]"
+			);
+			System.out.print("[  ==> ");
+			operatorPulsa = scannerPulsa.nextLine();
+
+			switch (operatorPulsa) {
+				case "1":
+					operatorPulsa = "Indosat";
+					isOperatorValid = true;
+					break;
+				case "2":
+					operatorPulsa = "XL";
+					isOperatorValid = true;
+					break;
+				case "3":
+					operatorPulsa = "Telkomsel";
+					isOperatorValid = true;
+					break;
+				default:
+					System.out.println(
+						"[===================================================================================================]\n"+
+						"[                         [!]  "+langOutputs[34][currentLanguange]+"  [!]                            ]\n"+
+						"[===================================================================================================]"
+					);
+					EnterForContinue();
+					isOperatorValid = false;
+					break;
+			}
+		} while (!isOperatorValid);
+
 
 		if (isOperatorValid) {
-			Scanner scannerPulsa = new Scanner(System.in);
-			System.out.print("\t-- Input nomor telepon anda: "); // User input nomor telepon
+			System.out.print("[  INPUT NOMOR TELEPON ANDA : "); // User input nomor telepon
 			nomorTelepon = scannerPulsa.nextLine();
 			scanner1.nextLine();
-			// System.out.print("\t-- Input nominal pulsa: Rp "); // User input nominal
-			// pulsa
-			nomPulsa = validateNonNegativeIntegerInput("\t-- Input nominal pulsa: Rp ");
+			nomPulsa = validateNonNegativeIntegerInput("[  INPUT NOMINAL PULSA : Rp ");
 			int totalPayment = nomPulsa + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			ClearScreen();
@@ -839,18 +845,18 @@ public class ATMSystem {
 			// Konversi nilai nomPulsa ke rupiah
 			String nomPulsaRP = currencyFormat.format(nomPulsa);
 			// Menampilkan informasi transaksi sementara
-			System.out
-					.println("    [  _________________________________________________\t]");
-			System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t|\t]");
-			System.out.printf("    [ |  Operator seluler\t: %s\t\t|\t]\n", operatorPulsa);
-			System.out.printf("    [ |  Nomor telepon\t\t: %s\t\t|\t]\n", nomorTelepon);
-			System.out.printf("    [ |  Nominal pulsa\t\t: %s\t\t|\t]\n", nomPulsaRP);
-			System.out.printf("    [ |  Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
-			System.out
-					.println("    [  -------------------------------------------------\t]");
+
 			System.out.println(
-					"    ============================================================================================");
-			System.out.println("-- Konfirmasi transaksi ?");
+				"[===================================================================================================]\n"+
+				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+				"[                                        ______________________                                     ]\n"+
+				"[  -- "+langOutputs[35][currentLanguange]+operatorPulsa+"\n"+
+				"[  -- "+langOutputs[36][currentLanguange]+nomorTelepon+"\n"+
+				"[  -- "+langOutputs[37][currentLanguange]+nomPulsaRP+"\n"+
+				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+				"[===================================================================================================]"
+			);
+
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
@@ -863,24 +869,19 @@ public class ATMSystem {
 						// Menampilkan output transaksi berhasil
 						viewTransactionSuccess();
 						System.out.println(
-								"    [  _________________________________________________\t]");
-						System.out.println("    [ |  $$$ RINCIAN PEMBAYARAN $$$\t\t\t|\t]");
-						System.out.printf("    [ |  Operator seluler\t: %s\t\t|\t]\n",
-								operatorPulsa);
-						System.out.printf("    [ |  Nomor telepon\t\t: %s\t\t|\t]\n",
-								nomorTelepon);
-						System.out.printf("    [ |  Nominal pulsa\t\t: %s\t\t|\t]\n",
-								nomPulsaRP);
-						System.out.printf("    [ |  Biaya admin\t\t: %s\t\t|\t]\n", adminFeeRp);
-						System.out.printf("    [ |  Sisa saldo anda\t: %s\t|\t]\n",
-								saldoRupiah2);
-						System.out.println(
-								"    [  -------------------------------------------------\t]");
-						System.out.println(
-								"    ============================================================================================");
+							"[===================================================================================================]\n"+
+							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+							"[                                        ______________________                                     ]\n"+
+							"[  -- "+langOutputs[35][currentLanguange]+operatorPulsa+"\n"+
+							"[  -- "+langOutputs[36][currentLanguange]+nomorTelepon+"\n"+
+							"[  -- "+langOutputs[37][currentLanguange]+nomPulsaRP+"\n"+
+							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah2+"\n"+
+							"[===================================================================================================]"
+						);
+
 						// Pencatatan riwayat transaksi
-						transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "
-								+ nomorTelepon + " sebesar " + totalPaymentRp);
+						transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "+nomorTelepon+" sebesar "+totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

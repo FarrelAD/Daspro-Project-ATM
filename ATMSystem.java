@@ -1705,7 +1705,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print(langOutputs[34][currentLanguange]);
+		System.out.print("Enter untuk melanjutkan => ");
 		scanner5.nextLine();
 	}
 

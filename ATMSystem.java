@@ -136,68 +136,70 @@ public class ATMSystem {
 	// Variables for choose languange feature
 	static int currentLanguange = 0;
 	static String[][] langOutputs = {
-			{ "  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI" }, // 0
-			{ "TRANSFER", "TRANSFER" }, // 1
-			{ "CASH WITHDRAWAL", "TARIK TUNAI    " }, // 2
-			{ "CASH DEPOSIT", "SETOR TUNAI " }, // 3
-			{ "PAYMENT   ", "PEMBAYARAN" }, // 4
-			{ "HISTORY", "RIWAYAT" }, // 5
-			{ "BALANCE INQUIRY", "CEK SALDO      " }, // 6
-			{ "CHANGE PIN", "UBAH PIN  " }, // 7
-			{ "EXIT  ", "KELUAR" }, // 8
-			{ "HELP", "BANTUAN" }, // 9
-			{ "ANOTHER ACTION?", "TINDAKAN LAIN? " }, // 10
-			{ "YES", "YA " }, // 11
-			{ "NO   ", "TIDAK" }, // 12
-			{ "   INVALID INPUT. OPTION NOT AVAILABLE.   ", "INPUT TIDAK VALID. PILIHAN TIDAK TERSEDIA." }, // 13
-			{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR" }, // 14
-			{ "INPUT THE DESTINATION ACCOUNT NUMBER ==> ", "MASUKKAN NOMOR REKENING TUJUAN ==> " }, // 15
-			{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
-			{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 17 
-			{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //18
-			{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 19 
-			{ "NAME                   : ", "NAMA                   : " }, // 20 
-			{ "BANK                   : ", "BANK                   : " }, // 21 
-			{ "TRANSFER AMOUNT        : ", "NOMINAL TRANSFER       : " }, // 22
-			{ "ADMIN FEE              : ", "BIAYA ADMIN            : " }, // 23
-			{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 24
-			{ " [!]  FAILED TRANSACTION. INVALID DESTINATION ACCOUNT  [!] ",
-			  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25 
-			{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   "}, // 26 BARU
-			{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //27 BARU
-			{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //28
-			{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//29
-			{"Amount Deposit : Rp ", "Masukkan nominal setor tunai : Rp "},//30
-			{"[===================================================================================================]\n"+
-			 "[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"+
-			 "[===================================================================================================]\n"+
-			 "[                       [1] CREDIT                              [4] PDAM /                          ]\n"+
-			 "[                                                                   WATER BILL                      ]\n"+
-			 "[                                                                                                   ]\n"+
-			 "[                       [2] PLN /                               [5] BPJS /                          ]\n"+
-			 "[                           ELECTRIC BILL                           HEALTH INSURANCE                ]\n"+
-			 "[                                                                                                   ]\n"+
-			 "[                       [3] EDUCATION                           [6] BACK TO THE                     ]\n"+
-			 "[                                                                   MAIN MENU                       ]\n"+
-			 "[                                                                                                   ]\n"+
-			 "[===================================================================================================]",
-		     "[===================================================================================================]\n"+
-			 "[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"+
-		     "[===================================================================================================]\n"+
-			 "[                       [1] PULSA                              [4] PDAM /                           ]\n"+
-			 "[                                                                  TAGIHAN AIR                      ]\n"+
-			 "[                                                                                                   ]\n"+
-	         "[                       [2] PLN /                              [5] BPJS /                           ]\n"+
-	         "[                           TAGIHAN LISTRIK                        ASURANSI KESEHATAN               ]\n"+
-			 "[                                                                                                   ]\n"+
-			 "[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
-			 "[                                                                  MENU UTAMA                       ]\n"+
-			 "[===================================================================================================]"}, //31
-			{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //32
-			{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //33
-			{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 34 
-			{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 35
-			{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "} // 36
+		{ "  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI" }, // 0
+		{ "TRANSFER", "TRANSFER" }, // 1
+		{ "CASH WITHDRAWAL", "TARIK TUNAI    " }, // 2
+		{ "CASH DEPOSIT", "SETOR TUNAI " }, // 3
+		{ "PAYMENT   ", "PEMBAYARAN" }, // 4
+		{ "HISTORY", "RIWAYAT" }, // 5
+		{ "BALANCE INQUIRY", "CEK SALDO      " }, // 6
+		{ "CHANGE PIN", "UBAH PIN  " }, // 7
+		{ "EXIT  ", "KELUAR" }, // 8
+		{ "HELP", "BANTUAN" }, // 9
+		{ "ANOTHER ACTION?", "TINDAKAN LAIN? " }, // 10
+		{ "YES", "YA " }, // 11
+		{ "NO   ", "TIDAK" }, // 12
+		{ "   INVALID INPUT. OPTION NOT AVAILABLE.   ", "INPUT TIDAK VALID. PILIHAN TIDAK TERSEDIA." }, // 13
+		{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR" }, // 14
+		{ "INPUT THE DESTINATION ACCOUNT NUMBER ==> ", "MASUKKAN NOMOR REKENING TUJUAN ==> " }, // 15
+		{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
+		{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 17 
+		{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //18
+		{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 19 
+		{ "NAME                   : ", "NAMA                   : " }, // 20 
+		{ "BANK                   : ", "BANK                   : " }, // 21 
+		{ "TRANSFER AMOUNT        : ", "NOMINAL TRANSFER       : " }, // 22
+		{ "ADMIN FEE              : ", "BIAYA ADMIN            : " }, // 23
+		{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 24
+		{ " [!]  FAILED TRANSACTION. INVALID DESTINATION ACCOUNT  [!] ",
+		  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25 
+		{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   "}, // 26 BARU
+		{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //27 BARU
+		{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //28
+		{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//29
+		{"Amount Deposit : Rp ", "Masukkan nominal setor tunai : Rp "},//30
+		{"[===================================================================================================]\n"+
+		 "[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"+
+		 "[===================================================================================================]\n"+
+		 "[                       [1] CREDIT                              [4] PDAM /                          ]\n"+
+		 "[                                                                   WATER BILL                      ]\n"+
+		 "[                                                                                                   ]\n"+
+		 "[                       [2] PLN /                               [5] BPJS /                          ]\n"+
+		 "[                           ELECTRIC BILL                           HEALTH INSURANCE                ]\n"+
+		 "[                                                                                                   ]\n"+
+		 "[                       [3] EDUCATION                           [6] BACK TO THE                     ]\n"+
+		 "[                                                                   MAIN MENU                       ]\n"+
+		 "[                                                                                                   ]\n"+
+		 "[===================================================================================================]",
+	     "[===================================================================================================]\n"+
+		 "[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"+
+	     "[===================================================================================================]\n"+
+		 "[                       [1] PULSA                              [4] PDAM /                           ]\n"+
+		 "[                                                                  TAGIHAN AIR                      ]\n"+
+		 "[                                                                                                   ]\n"+
+         "[                       [2] PLN /                              [5] BPJS /                           ]\n"+
+         "[                           TAGIHAN LISTRIK                        ASURANSI KESEHATAN               ]\n"+
+		 "[                                                                                                   ]\n"+
+		 "[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
+		 "[                                                                  MENU UTAMA                       ]\n"+
+		 "[===================================================================================================]"}, //31
+		{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //32
+		{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //33
+		{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : "}, // 34 NEW
+		{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp"}, //35 NEW
+		{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 36 
+		{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 37
+		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "} // 38
 	};
 
 	public static void main(String[] args) {
@@ -871,16 +873,15 @@ public class ATMSystem {
 
 
 		if (isOperatorValid) {
-			System.out.print("[  INPUT NOMOR TELEPON ANDA : "); // User input nomor telepon
+			System.out.print("[  "+langOutputs[34][currentLanguange]); // User input nomor telepon
 			nomorTelepon = scannerPulsa.nextLine();
 			scanner1.nextLine();
-			nomPulsa = validateNonNegativeIntegerInput("[  INPUT NOMINAL PULSA : Rp ");
+			nomPulsa = validateNonNegativeIntegerInput("[  "+langOutputs[35][currentLanguange]);
 			int totalPayment = nomPulsa + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			ClearScreen();
-			System.out.println(
-					"    ============================================================================================");
-			// Konversi nilai nomPulsa ke rupiah
+
+			// Conversion of output value to Rupiah
 			String nomPulsaRP = currencyFormat.format(nomPulsa);
 			// Menampilkan informasi transaksi sementara
 
@@ -888,9 +889,9 @@ public class ATMSystem {
 				"[===================================================================================================]\n"+
 				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 				"[                                        ______________________                                     ]\n"+
-				"[  -- "+langOutputs[34][currentLanguange]+operatorPulsa+"\n"+
-				"[  -- "+langOutputs[35][currentLanguange]+nomorTelepon+"\n"+
-				"[  -- "+langOutputs[36][currentLanguange]+nomPulsaRP+"\n"+
+				"[  -- "+langOutputs[36][currentLanguange]+operatorPulsa+"\n"+
+				"[  -- "+langOutputs[37][currentLanguange]+nomorTelepon+"\n"+
+				"[  -- "+langOutputs[38][currentLanguange]+nomPulsaRP+"\n"+
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
 			);
@@ -910,9 +911,9 @@ public class ATMSystem {
 							"[===================================================================================================]\n"+
 							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 							"[                                        ______________________                                     ]\n"+
-							"[  -- "+langOutputs[34][currentLanguange]+operatorPulsa+"\n"+
-							"[  -- "+langOutputs[35][currentLanguange]+nomorTelepon+"\n"+
-							"[  -- "+langOutputs[36][currentLanguange]+nomPulsaRP+"\n"+
+							"[  -- "+langOutputs[36][currentLanguange]+operatorPulsa+"\n"+
+							"[  -- "+langOutputs[37][currentLanguange]+nomorTelepon+"\n"+
+							"[  -- "+langOutputs[38][currentLanguange]+nomPulsaRP+"\n"+
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah2+"\n"+
 							"[===================================================================================================]"

@@ -199,7 +199,10 @@ public class ATMSystem {
 		{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp"}, //35 NEW
 		{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 36 
 		{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 37
-		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "} // 38
+		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 38
+		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 39
+		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //40
+		{ "AMOUNT OF ELECTRICITY  : ", "JUMLAH TAGIHAN LISTRIK : "} // 41
 	};
 
 	public static void main(String[] args) {
@@ -547,7 +550,7 @@ public class ATMSystem {
 							System.out.println(
 								"[===================================================================================================]\n"+
 								"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
-								"[                                        ____________________                                       ]\n"+
+								"[                                      ______________________                                       ]\n"+
 								"[  -- "+langOutputs[19][currentLanguange]+inputTarget_AccountNumber+"\n"+
 								"[  -- "+langOutputs[20][currentLanguange]+accountData[indexTargetAccount][2]+"\n"+
 								"[  -- "+langOutputs[21][currentLanguange]+accountData[indexTargetAccount][3]+"\n"+
@@ -888,7 +891,7 @@ public class ATMSystem {
 			System.out.println(
 				"[===================================================================================================]\n"+
 				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
-				"[                                        ______________________                                     ]\n"+
+				"[                                      ______________________                                       ]\n"+
 				"[  -- "+langOutputs[36][currentLanguange]+operatorPulsa+"\n"+
 				"[  -- "+langOutputs[37][currentLanguange]+nomorTelepon+"\n"+
 				"[  -- "+langOutputs[38][currentLanguange]+nomPulsaRP+"\n"+
@@ -910,7 +913,7 @@ public class ATMSystem {
 						System.out.println(
 							"[===================================================================================================]\n"+
 							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
-							"[                                        ______________________                                     ]\n"+
+							"[                                      ______________________                                       ]\n"+
 							"[  -- "+langOutputs[36][currentLanguange]+operatorPulsa+"\n"+
 							"[  -- "+langOutputs[37][currentLanguange]+nomorTelepon+"\n"+
 							"[  -- "+langOutputs[38][currentLanguange]+nomPulsaRP+"\n"+
@@ -938,24 +941,21 @@ public class ATMSystem {
 
 	public static void displayHeaderElectricity() {
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - ╦  ╦╔═╗╔╦╗╦═╗╦╦╔═ - - - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - ║  ║╚═╗ ║ ╠╦╝║╠╩╗ - - - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - ╩═╝╩╚═╝ ╩ ╩╚═╩╩ ╩ - - - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[===================================================================================================]");
+			"[===================================================================================================]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - ╦  ╦╔═╗╔╦╗╦═╗╦╦╔═ - - - - - - - - - - - - - - - - - - - -]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - ║  ║╚═╗ ║ ╠╦╝║╠╩╗ - - - - - - - - - - - - - - - - - - - -]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - ╩═╝╩╚═╝ ╩ ╩╚═╩╩ ╩ - - - - - - - - - - - - - - - - - - - -]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void Listrik() {
 		displayHeaderElectricity();
-		System.out.print("-- Masukkan ID pelanggan PLN/Nomor meter: ");
+		System.out.print("[  "+langOutputs[39][currentLanguange]);
 		int inputPLN = scanner4.nextInt();
 		ClearScreen();
 
-		// Checking destination account availability
+		// Checking payment code availability
 		isListrikValid = false;
 		for (int i = 0; i < listrikData.length; i++) {
 			if (inputPLN == listrikData[i][0]) {
@@ -972,17 +972,14 @@ public class ATMSystem {
 			int totalPayment = listrikData[indexListrik][1] + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-							+
-							"[  -- ID PLN            : " + inputPLN
-							+ "                                                                 ]\n" +
-							"[  -- TAGIHAN LISTRIK   : " + tagihanListrikRP
-							+ "\t                                                            ]\n" +
-							"[  -- BIAYA ADMIN       : " + adminFeeRp
-							+ "                                                                ]\n" +
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+				"[                                      ______________________                                       ]\n"+
+				"[  -- "+langOutputs[40][currentLanguange]+ inputPLN+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ tagihanListrikRP+"\n" +
+				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+				"[===================================================================================================]"
+			);
 
 			UserConfirmation();
 			ClearScreen();
@@ -994,21 +991,17 @@ public class ATMSystem {
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
 						System.out.println(
-								"[===================================================================================================]\n"
-										+
-										"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-										+
-										"[  -- ID PLN            : " + inputPLN
-										+ "                                                                 ]\n" +
-										"[  -- TAGIHAN LISTRIK   : " + tagihanListrikRP
-										+ "\t                                                            ]\n" +
-										"[  -- BIAYA ADMIN       : " + adminFeeRp
-										+ "                                                                ]\n" +
-										"[  -- SISA SALDO ANDA   : " + saldoRupiah3
-										+ "\t                                                    ]\n" +
-										"[===================================================================================================]");
+							"[===================================================================================================]\n"+
+							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+							"[                                      ______________________                                       ]\n"+
+							"[  -- "+langOutputs[40][currentLanguange]+ inputPLN+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ tagihanListrikRP+"\n" +
+							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
+							"[===================================================================================================]"
+						);
 
-						// Pencatatan riwayat transaksi
+						// Recording transaction history
 						transactionHistory.add("Telah melakukan pembayaran tagihan listrik sebesar " + totalPaymentRp);
 
 						EnterForContinue();

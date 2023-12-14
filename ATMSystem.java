@@ -193,7 +193,7 @@ public class ATMSystem {
 		 "[                                                                                                   ]\n"+
 		 "[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
 		 "[                                                                  MENU UTAMA                       ]\n"+
-		 "[===================================================================================================]"}, //31
+		 "[===================================================================================================]"}, //32 NEW
 		{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //32
 		{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //33
 		{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : "}, // 34 NEW
@@ -805,7 +805,7 @@ public class ATMSystem {
 
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
-		System.out.println(langOutputs[31][currentLanguange]);
+		System.out.println(langOutputs[32][currentLanguange]);
 		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
@@ -865,7 +865,7 @@ public class ATMSystem {
 		do {
 			System.out.println(
 				"[===================================================================================================]\n"+
-				"[                                     "+langOutputs[32][currentLanguange]+"                                   ]\n"+
+				"[                                     "+langOutputs[33][currentLanguange]+"                                   ]\n"+
 				"[===================================================================================================]\n"+
 				"[           [1] INDOSAT                                                                             ]\n"+
 				"[                                                                                                   ]\n"+
@@ -893,7 +893,7 @@ public class ATMSystem {
 				default:
 					System.out.println(
 						"[===================================================================================================]\n"+
-						"[                         [!]  "+langOutputs[33][currentLanguange]+"  [!]                            ]\n"+
+						"[                         [!]  "+langOutputs[34][currentLanguange]+"  [!]                            ]\n"+
 						"[===================================================================================================]"
 					);
 					EnterForContinue();
@@ -904,10 +904,10 @@ public class ATMSystem {
 
 
 		if (isOperatorValid) {
-			System.out.print("[  "+langOutputs[34][currentLanguange]); // User input nomor telepon
+			System.out.print("[  "+langOutputs[35][currentLanguange]); // User input nomor telepon
 			nomorTelepon = scannerPulsa.nextLine();
 			scanner1.nextLine();
-			nomPulsa = validateNonNegativeIntegerInput("[  "+langOutputs[35][currentLanguange]);
+			nomPulsa = validateNonNegativeIntegerInput("[  "+langOutputs[36][currentLanguange]);
 			int totalPayment = nomPulsa + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			ClearScreen();
@@ -920,9 +920,9 @@ public class ATMSystem {
 				"[===================================================================================================]\n"+
 				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 				"[                                      ______________________                                       ]\n"+
-				"[  -- "+langOutputs[36][currentLanguange]+operatorPulsa+"\n"+
-				"[  -- "+langOutputs[37][currentLanguange]+nomorTelepon+"\n"+
-				"[  -- "+langOutputs[38][currentLanguange]+nomPulsaRP+"\n"+
+				"[  -- "+langOutputs[37][currentLanguange]+operatorPulsa+"\n"+
+				"[  -- "+langOutputs[38][currentLanguange]+nomorTelepon+"\n"+
+				"[  -- "+langOutputs[39][currentLanguange]+nomPulsaRP+"\n"+
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
 			);
@@ -942,9 +942,9 @@ public class ATMSystem {
 							"[===================================================================================================]\n"+
 							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 							"[                                      ______________________                                       ]\n"+
-							"[  -- "+langOutputs[36][currentLanguange]+operatorPulsa+"\n"+
-							"[  -- "+langOutputs[37][currentLanguange]+nomorTelepon+"\n"+
-							"[  -- "+langOutputs[38][currentLanguange]+nomPulsaRP+"\n"+
+							"[  -- "+langOutputs[37][currentLanguange]+operatorPulsa+"\n"+
+							"[  -- "+langOutputs[38][currentLanguange]+nomorTelepon+"\n"+
+							"[  -- "+langOutputs[39][currentLanguange]+nomPulsaRP+"\n"+
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah2+"\n"+
 							"[===================================================================================================]"
@@ -979,7 +979,7 @@ public class ATMSystem {
 
 	public static void Listrik() {
 		displayHeaderElectricity();
-		System.out.print("[  "+langOutputs[39][currentLanguange]);
+		System.out.print("[  "+langOutputs[40][currentLanguange]);
 		int inputPLN = scanner4.nextInt();
 		ClearScreen();
 
@@ -1003,8 +1003,8 @@ public class ATMSystem {
 				"[===================================================================================================]\n"+
 				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 				"[                                      ______________________                                       ]\n"+
-				"[  -- "+langOutputs[40][currentLanguange]+ inputPLN+"\n" +
-				"[  -- "+langOutputs[41][currentLanguange]+ tagihanListrikRP+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ inputPLN+"\n" +
+				"[  -- "+langOutputs[42][currentLanguange]+ tagihanListrikRP+"\n" +
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
 			);
@@ -1022,8 +1022,8 @@ public class ATMSystem {
 							"[===================================================================================================]\n"+
 							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 							"[                                      ______________________                                       ]\n"+
-							"[  -- "+langOutputs[40][currentLanguange]+ inputPLN+"\n" +
-							"[  -- "+langOutputs[41][currentLanguange]+ tagihanListrikRP+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ inputPLN+"\n" +
+							"[  -- "+langOutputs[42][currentLanguange]+ tagihanListrikRP+"\n" +
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
 							"[===================================================================================================]"
@@ -1060,7 +1060,7 @@ public class ATMSystem {
 
 	public static void Pendidikan() {
 		displayHeaderEducationBill();
-		System.out.print("[  "+langOutputs[39][currentLanguange]);
+		System.out.print("[  "+langOutputs[40][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1082,8 +1082,8 @@ public class ATMSystem {
 				"[===================================================================================================]\n"+
 				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 				"[                                      ______________________                                       ]\n"+
-				"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
-				"[  -- "+langOutputs[41][currentLanguange]+ tagihanPendidikanRP+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ inputVA+"\n" +
+				"[  -- "+langOutputs[42][currentLanguange]+ tagihanPendidikanRP+"\n" +
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
 			);
@@ -1102,8 +1102,8 @@ public class ATMSystem {
 							"[===================================================================================================]\n"+
 							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 							"[                                      ______________________                                       ]\n"+
-							"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
-							"[  -- "+langOutputs[41][currentLanguange]+ tagihanPendidikanRP+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ inputVA+"\n" +
+							"[  -- "+langOutputs[42][currentLanguange]+ tagihanPendidikanRP+"\n" +
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
 							"[===================================================================================================]"
@@ -1141,7 +1141,7 @@ public class ATMSystem {
 
 	public static void Pdam() {
 		displayHeaderWaterBill();
-		System.out.print("[  "+langOutputs[39][currentLanguange]);
+		System.out.print("[  "+langOutputs[40][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1163,8 +1163,8 @@ public class ATMSystem {
 				"[===================================================================================================]\n"+
 				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 				"[                                      ______________________                                       ]\n"+
-				"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
-				"[  -- "+langOutputs[41][currentLanguange]+ tagihanPdamRp+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ inputVA+"\n" +
+				"[  -- "+langOutputs[42][currentLanguange]+ tagihanPdamRp+"\n" +
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
 			);
@@ -1182,8 +1182,8 @@ public class ATMSystem {
 							"[===================================================================================================]\n"+
 							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 							"[                                      ______________________                                       ]\n"+
-							"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
-							"[  -- "+langOutputs[41][currentLanguange]+ tagihanPdamRp+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ inputVA+"\n" +
+							"[  -- "+langOutputs[42][currentLanguange]+ tagihanPdamRp+"\n" +
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
 							"[===================================================================================================]"
@@ -1220,7 +1220,7 @@ public class ATMSystem {
 
 	public static void Bpjs() {
 		displayHeaderBpjs();
-		System.out.print("[  "+langOutputs[39][currentLanguange]);
+		System.out.print("[  "+langOutputs[40][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1242,8 +1242,8 @@ public class ATMSystem {
 				"[===================================================================================================]\n"+
 				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 				"[                                      ______________________                                       ]\n"+
-				"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
-				"[  -- "+langOutputs[41][currentLanguange]+ tagihanBpjsRp+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ inputVA+"\n" +
+				"[  -- "+langOutputs[42][currentLanguange]+ tagihanBpjsRp+"\n" +
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
 			);
@@ -1262,8 +1262,8 @@ public class ATMSystem {
 							"[===================================================================================================]\n"+
 							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
 							"[                                      ______________________                                       ]\n"+
-							"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
-							"[  -- "+langOutputs[41][currentLanguange]+ tagihanBpjsRp+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ inputVA+"\n" +
+							"[  -- "+langOutputs[42][currentLanguange]+ tagihanBpjsRp+"\n" +
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
 							"[===================================================================================================]"

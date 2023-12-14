@@ -212,7 +212,8 @@ public class ATMSystem {
 			{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //34
 			{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 35 
 			{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 36
-			{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "} // 37
+			{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 37
+			{"    Insert a new PIN (4 digit number): ","    Masukkan PIN baru (4 digit angka): "}//38
 
 
 	};
@@ -1748,7 +1749,7 @@ public class ATMSystem {
 				System.out.println(
 						"    ============================================================================================");
 
-				System.out.print("    Masukkan PIN baru (4 digit angka): ");
+				System.out.print(langOutputs[38][currentLanguange]);
 			}
 		} while (!pin.matches("\\d{4}"));
 		return pin;

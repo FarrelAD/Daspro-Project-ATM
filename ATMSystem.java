@@ -167,7 +167,8 @@ public class ATMSystem {
 		{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //27 BARU
 		{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //28
 		{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//29
-		{"Amount Deposit : Rp ", "Masukkan nominal setor tunai : Rp "},//30
+		{"INPUT CASH DEPOSIT AMOUNT : Rp ", "MASUKKAN NOMINAL SETOR TUNAI : Rp "}, //30
+		{ "CONFIRM CASH DEPOSIT : ", "KONFIRMASI SETOR TUNAI : "}, // 31 NEWWW
 		{"[===================================================================================================]\n"+
 		 "[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"+
 		 "[===================================================================================================]\n"+
@@ -713,28 +714,24 @@ public class ATMSystem {
 
 	public static void displayHeaderCashDeposit() {
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[ - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╦╗╔═╗╦═╗  ╔╦╗╦ ╦╔╗╔╔═╗╦- - - - - - - - - - - - - - - - -]\n"
-						+
-						"[ - - - - - - - - - - - - - - - - - -╚═╗║╣  ║ ║ ║╠╦╝   ║ ║ ║║║║╠═╣║- - - - - - - - - - - - - - - - -]\n"
-						+
-						"[ - - - - - - - - - - - - - - - - - -╚═╝╚═╝ ╩ ╚═╝╩╚═   ╩ ╚═╝╝╚╝╩ ╩╩- - - - - - - - - - - - - - - - -]\n"
-						+
-						"[===================================================================================================]");
+			"[===================================================================================================]\n"+
+			"[ - - - - - - - - - - - - - - - - - -╔═╗╔═╗╔╦╗╔═╗╦═╗  ╔╦╗╦ ╦╔╗╔╔═╗╦- - - - - - - - - - - - - - - - -]\n"+
+			"[ - - - - - - - - - - - - - - - - - -╚═╗║╣  ║ ║ ║╠╦╝   ║ ║ ║║║║╠═╣║- - - - - - - - - - - - - - - - -]\n"+
+			"[ - - - - - - - - - - - - - - - - - -╚═╝╚═╝ ╩ ╚═╝╩╚═   ╩ ╚═╝╝╚╝╩ ╩╩- - - - - - - - - - - - - - - - -]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void SetorTunai() {
 		displayHeaderCashDeposit();
-		// System.out.print("\t-- Masukkan nominal setor tunai : Rp ");
-		cashDepositAmount = validateNonNegativeIntegerInput(langOutputs[30][currentLanguange]);
+		cashDepositAmount = validateNonNegativeIntegerInput("[  "+langOutputs[30][currentLanguange]);
 
 		ClearScreen();
 
-		System.out.println(
-				"    ============================================================================================");
 		String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
-		System.out.println("\t-- Konfirmasi setor tunai dengan nominal " + cashDepositRupiah + " ? ");
+		System.out.println("[  "+langOutputs[31][currentLanguange]+cashDepositRupiah+" ? ");
+
+		// Transaction confirmation approval
 		UserConfirmation();
 
 		ClearScreen();
@@ -742,17 +739,15 @@ public class ATMSystem {
 			ClearScreen();
 			if (PinValidation()) {
 				if (cashDepositAmount <= MAX_AMOUNT_TRANSACTION && cashDepositAmount >= MIN_AMOUNT_TRANSACTION) {
-					userBalance += cashDepositAmount; // Penjumlahan saldo dengan nominal setor yang telah
-					// dilakukan
+					userBalance += cashDepositAmount; 
 					viewTransactionSuccess();
-					// Formatting penulisan rupiah pada output
+					
+					// Conversion of output value to Rupiah
 					String userBalanceRupiah = currencyFormat.format(userBalance);
 
-					System.out.println("\t-- Sisa saldo anda : " + userBalanceRupiah);
-					System.out.println(
-							"    ============================================================================================");
+					System.out.println("[  "+langOutputs[24][currentLanguange]+userBalanceRupiah);
 
-					// Pencatatan riwayat transaksi
+					// Recording transaction history
 					transactionHistory.add("Telah melakukan setor tunai sebesar " + cashDepositRupiah);
 
 					EnterForContinue();

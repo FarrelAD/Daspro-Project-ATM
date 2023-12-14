@@ -1058,7 +1058,7 @@ public class ATMSystem {
 				"[  -- "+langOutputs[41][currentLanguange]+ tagihanPendidikanRP+"\n" +
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
-				);
+			);
 
 			UserConfirmation();
 			ClearScreen();
@@ -1079,7 +1079,7 @@ public class ATMSystem {
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
 							"[===================================================================================================]"
-							);
+						);
 
 						// Recording Transaction History
 						transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + totalPaymentRp);
@@ -1103,20 +1103,17 @@ public class ATMSystem {
 
 	public static void displayHeaderWaterBill() {
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - - ╔═╗╔╦╗╔═╗╔╦╗- - - - - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - - ╠═╝ ║║╠═╣║║║- - - - - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - - ╩  ═╩╝╩ ╩╩ ╩- - - - - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[===================================================================================================]");
+			"[===================================================================================================]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - - ╔═╗╔╦╗╔═╗╔╦╗- - - - - - - - - - - - - - - - - - - - - -]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - - ╠═╝ ║║╠═╣║║║- - - - - - - - - - - - - - - - - - - - - -]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - - ╩  ═╩╝╩ ╩╩ ╩- - - - - - - - - - - - - - - - - - - - - -]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void Pdam() {
 		displayHeaderWaterBill();
-		System.out.print("\t-- Masukkan nomor tagihan : ");
+		System.out.print("[  "+langOutputs[39][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1135,17 +1132,14 @@ public class ATMSystem {
 			int totalPayment = tagihanAirData[indexPdam][1] + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-							+
-							"[  -- NOMOR TAGIHAN        : " + inputVA
-							+ "                                                                 ]\n" +
-							"[  -- TAGIHAN PDAM         : " + tagihanPdamRp
-							+ "                                                           ]\n" +
-							"[  -- BIAYA ADMIN          : " + adminFeeRp
-							+ "                                                             ]\n" +
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+				"[                                      ______________________                                       ]\n"+
+				"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ tagihanPdamRp+"\n" +
+				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+				"[===================================================================================================]"
+			);
 
 			UserConfirmation();
 			ClearScreen();
@@ -1157,20 +1151,17 @@ public class ATMSystem {
 						String saldoRupiah3 = currencyFormat.format(userBalance);
 						viewTransactionSuccess();
 						System.out.println(
-								"[===================================================================================================]\n"
-										+
-										"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-										+
-										"[  -- NOMOR TAGIHAN        : " + inputVA
-										+ "                                                                 ]\n" +
-										"[  -- TAGIHAN PDAM         : " + tagihanPdamRp
-										+ "                                                           ]\n" +
-										"[  -- BIAYA ADMIN          : " + adminFeeRp
-										+ "                                                             ]\n" +
-										"[  -- SISA SALDO ANDA      : " + saldoRupiah3
-										+ "\t                                                    ]\n" +
-										"[===================================================================================================]");
+							"[===================================================================================================]\n"+
+							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+							"[                                      ______________________                                       ]\n"+
+							"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ tagihanPdamRp+"\n" +
+							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
+							"[===================================================================================================]"
+						);
 
+						// Recording Transaction History
 						transactionHistory.add("Telah melakukan pembayaran tagihan PDAM sebesar " + totalPaymentRp);
 
 						EnterForContinue();

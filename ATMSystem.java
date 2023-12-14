@@ -1182,20 +1182,17 @@ public class ATMSystem {
 
 	public static void displayHeaderBpjs() {
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - - -╔╗ ╔═╗╦╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - - -╠╩╗╠═╝║╚═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"
-						+
-						"[- - - - - - - - - - - - - - - - - - - - - - -╚═╝╩ ╚╝╚═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"
-						+
-						"[===================================================================================================]");
+			"[===================================================================================================]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - - -╔╗ ╔═╗╦╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - - -╠╩╗╠═╝║╚═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"+
+			"[- - - - - - - - - - - - - - - - - - - - - - -╚═╝╩ ╚╝╚═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void Bpjs() {
 		displayHeaderBpjs();
-		System.out.print("\t-- Masukkan nomor tagihan : ");
+		System.out.print("[  "+langOutputs[39][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1214,18 +1211,15 @@ public class ATMSystem {
 			int totalPayment = BPJSdata[indexBpjs][1] + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-							+
-							"[  -- NOMOR TAGIHAN        : " + inputVA
-							+ "                                                                 ]\n" +
-							"[  -- TAGIHAN BPJS         : " + tagihanBpjsRp
-							+ "                                                           ]\n" +
-							"[  -- BIAYA ADMIN          : " + adminFeeRp
-							+ "                                                             ]\n" +
-							"[===================================================================================================]");
-
+				"[===================================================================================================]\n"+
+				"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+				"[                                      ______________________                                       ]\n"+
+				"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
+				"[  -- "+langOutputs[41][currentLanguange]+ tagihanBpjsRp+"\n" +
+				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+				"[===================================================================================================]"
+			);
+			
 			UserConfirmation();
 			ClearScreen();
 			if (userConfirmation == 'Y' || userConfirmation == 'y') {
@@ -1237,21 +1231,17 @@ public class ATMSystem {
 						viewTransactionSuccess();
 
 						System.out.println(
-								"[===================================================================================================]\n"
-										+
-										"[                                       RINCIAN PEMBAYARAN                                          ]\n"
-										+
-										"[  -- NOMOR TAGIHAN        : " + inputVA
-										+ "                                                                 ]\n" +
-										"[  -- TAGIHAN BPJS         : " + tagihanBpjsRp
-										+ "                                                           ]\n" +
-										"[  -- BIAYA ADMIN          : " + adminFeeRp
-										+ "                                                             ]\n" +
-										"[  -- SISA SALDO ANDA      : " + saldoRupiah3
-										+ "\t                                                    ]\n" +
-										"[===================================================================================================]");
+							"[===================================================================================================]\n"+
+							"[                                        "+langOutputs[17][currentLanguange]+"                                         ]\n"+
+							"[                                      ______________________                                       ]\n"+
+							"[  -- "+langOutputs[40][currentLanguange]+ inputVA+"\n" +
+							"[  -- "+langOutputs[41][currentLanguange]+ tagihanBpjsRp+"\n" +
+							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
+							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah3+"\n"+
+							"[===================================================================================================]"
+						);
 
-						// Pencatatan riwayat transaksi
+						// Recording Transaction History
 						transactionHistory.add("Telah melakukan pembayaran tagihan BPJS sebesar " + totalPaymentRp);
 
 						EnterForContinue();

@@ -3,10 +3,13 @@
 // pembayaran lain-lain, riwayat transaksi, cek saldo, ubah PIN, dan EXIT
 
 import java.text.NumberFormat;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.List;
 import java.util.Scanner;
 
 public class ATMSystem {
@@ -67,6 +70,8 @@ public class ATMSystem {
 			isAccountFind = false;
 	static final int MAX_LOGIN_ATTEMPTS = 3;
 
+	static int userChoiceMenu = 0;
+
 	// 'Transfer' feature variables
 	static int transferAmount;
 	static String inputTarget_AccountNumber;
@@ -88,7 +93,8 @@ public class ATMSystem {
 	static int userBalance = Integer.parseInt(accountData[accountLineIndex][4]);
 
 	// 'Riwayat transaksi' features variables
-	static ArrayList<String> transactionHistory = new ArrayList<>();
+	static ArrayList<ArrayList<String>> transactionHistoryList = new ArrayList<>();
+	static ArrayList<String> eachTransactionHistory = new ArrayList<>();
 
 	// 'Exit' feature variables
 	static boolean isStopTransaction = false;
@@ -128,10 +134,16 @@ public class ATMSystem {
 	static String inputPin;
 
 	// Formatting time and date to the system
-	static LocalDateTime currentDateTime = LocalDateTime.now();
-	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-			"dd-MM-yyyy                                                                         HH:mm:ss");
-	static String formattedDateTime = currentDateTime.format(formatter);
+	static LocalDate currentDate = LocalDate.now();
+	static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	static String formattedDate = currentDate.format(dateFormatter);
+
+	static DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
+    static String formattedDay = currentDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH).toUpperCase();
+
+	static LocalTime currentTime = LocalTime.now();
+	static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+	static String formattedTime = currentTime.format(timeFormatter);
 
 	// Variables for choose languange feature
 	static int currentLanguange = 0;
@@ -151,7 +163,7 @@ public class ATMSystem {
 		{ "NO   ", "TIDAK" }, // 12
 		{ "   INVALID INPUT. OPTION NOT AVAILABLE.   ", "INPUT TIDAK VALID. PILIHAN TIDAK TERSEDIA." }, // 13
 		{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR" }, // 14
-		{ "INPUT THE DESTINATION ACCOUNT NUMBER ==> ", "MASUKKAN NOMOR REKENING TUJUAN ==> " }, // 15
+		{ "INPUT THE DESTINATION ACCOUNT NUMBER : ", "MASUKKAN NOMOR REKENING TUJUAN : " }, // 15
 		{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
 		{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 17 
 		{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //18
@@ -163,12 +175,12 @@ public class ATMSystem {
 		{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 24
 		{ " [!]  FAILED TRANSACTION. INVALID DESTINATION ACCOUNT  [!] ",
 		  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25 
-		{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   "}, // 26 BARU
-		{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //27 BARU
+		{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   "}, // 26 
+		{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //27
 		{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //28
 		{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//29
 		{"INPUT CASH DEPOSIT AMOUNT : Rp ", "MASUKKAN NOMINAL SETOR TUNAI : Rp "}, //30
-		{ "CONFIRM CASH DEPOSIT : ", "KONFIRMASI SETOR TUNAI : "}, // 31 NEWWW
+		{ "CONFIRM CASH DEPOSIT : ", "KONFIRMASI SETOR TUNAI : "}, // 31
 		{"[===================================================================================================]\n"+
 		 "[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"+
 		 "[===================================================================================================]\n"+
@@ -193,19 +205,23 @@ public class ATMSystem {
 		 "[                                                                                                   ]\n"+
 		 "[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
 		 "[                                                                  MENU UTAMA                       ]\n"+
-		 "[===================================================================================================]"}, //32 NEW
-		{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //32
-		{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //33
-		{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : "}, // 34 NEW
-		{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp"}, //35 NEW
-		{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 36 
-		{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 37
-		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 38
-		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 39
-		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //40
-		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "}, // 41
-		{ "Amount You've been withdraw : ","Telah melakukan tarik tunai sebesar: "},//42
-		{ "Amount " ," sebesar " }//43
+		 "[===================================================================================================]"}, //32
+		{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //33
+		{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //34
+		{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : "}, // 35 
+		{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp"}, //36
+		{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 37 
+		{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 38
+		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 39
+		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 40
+		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //41
+		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "}, // 42
+		{ "TRANSACTION HISTORY", "RIWAYAT TRANSAKSI  "}, // 43
+		{ "ACCOUNT HISTORY", "RIWAYAT AKUN   "}, // 44 NEW
+		{ "YOUR RECENT TRANSACTION HISTORY", "RIWAYAT TRANSAKSI TERBARU ANDA "}, // 45
+		{ "TIME ", "WAKTU"}, // 46
+		{ " DATE  ", "TANGGAL"}, //47
+		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "} // 48
 	};
 
 	public static void main(String[] args) {
@@ -222,7 +238,7 @@ public class ATMSystem {
 		ClearScreen();
 		System.out.println(
 			"[===================================================================================================]\n"+
-			"[    " + formattedDateTime + "    ]\n" +
+			"[     "+formattedDate+"                                  "+formattedDay+"                                  "+formattedTime+"     ]\n"+
 			"[===================================================================================================]\n"+
 			"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]\n"+
 			"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]\n"+
@@ -393,7 +409,7 @@ public class ATMSystem {
 				"[                                                                                                   ]\n"+
 				"[===================================================================================================]");
 			System.out.print("[  ==> ");
-			int userChoiceMenu = scanner2.nextInt();
+			userChoiceMenu = scanner2.nextInt();
 
 			ClearScreen();
 			switch (userChoiceMenu) {
@@ -410,7 +426,7 @@ public class ATMSystem {
 					PembayaranLainnya();
 					break;
 				case 5:
-					RiwayatTransaksi();
+					History();
 					break;
 				case 6:
 					CekSaldo();
@@ -516,7 +532,7 @@ public class ATMSystem {
 
 			String adminFeeTfRp = currencyFormat.format(adminFeeTf);
 
-			transferAmount = validateNonNegativeIntegerInput("" + langOutputs[16][currentLanguange]);
+			transferAmount = validateNonNegativeIntegerInput("[  " + langOutputs[16][currentLanguange]);
 			ClearScreen();
 			// Konversi nilai output ke rupiah
 			String transferAmountRupiah = currencyFormat.format(transferAmount);
@@ -566,8 +582,10 @@ public class ATMSystem {
 							EnterForContinue();
 							ClearScreen();
 
-							// Pencatatan riwawayat transaksi
-							transactionHistory.add("Telah melakukan transaksi ke rekening: " + inputTarget_AccountNumber+ " sebesar " + totalTransferRp);
+							// Recording transaction history
+							// transactionHistoryList.add(new ArrayList<>(List.of("TRANSFER KE REKENING "+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", totalTransferRp)));
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[48][currentLanguange]+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", totalTransferRp, formattedTime, formattedDate)));
+							// transactionHistory.add("Telah melakukan transaksi ke rekening: " + inputTarget_AccountNumber+ " sebesar " + totalTransferRp);
 						} else {
 							displayTransactionOverLimit();
 						}
@@ -702,7 +720,7 @@ public class ATMSystem {
 							System.out.println("[  "+langOutputs[24][currentLanguange]+ userBalanceRupiah);
 
 							// Recording transaction history
-							transactionHistory.add("Telah melakukan tarik tunai sebesar: "+ cashWitdrawalRupiah); //pagruhpwaeiroughbproew bhaepodifjbhaeiprubhaeiurb
+							// transactionHistory.add("Telah melakukan tarik tunai sebesar: "+ cashWitdrawalRupiah);
 
 							EnterForContinue();
 
@@ -769,7 +787,7 @@ public class ATMSystem {
 					System.out.println("[  "+langOutputs[24][currentLanguange]+userBalanceRupiah);
 
 					// Recording transaction history
-					transactionHistory.add(langOutputs[42][currentLanguange] + cashDepositRupiah);
+					// transactionHistory.add("Telah melakukan setor tunai sebesar " + cashDepositRupiah);
 
 					EnterForContinue();
 
@@ -953,7 +971,7 @@ public class ATMSystem {
 						);
 
 						// Pencatatan riwayat transaksi
-						transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "+nomorTelepon+langOutputs[43][currentLanguange]+totalPaymentRp);
+						// transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "+nomorTelepon+" sebesar "+totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();
@@ -1032,7 +1050,7 @@ public class ATMSystem {
 						);
 
 						// Recording transaction history
-						transactionHistory.add("Telah melakukan pembayaran tagihan listrik sebesar " + totalPaymentRp);
+						// transactionHistory.add("Telah melakukan pembayaran tagihan listrik sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();
@@ -1123,7 +1141,7 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + totalPaymentRp);
+						// transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();
@@ -1203,7 +1221,7 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						transactionHistory.add("Telah melakukan pembayaran tagihan PDAM sebesar " + totalPaymentRp);
+						// transactionHistory.add("Telah melakukan pembayaran tagihan PDAM sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();
@@ -1283,7 +1301,7 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						transactionHistory.add("Telah melakukan pembayaran tagihan BPJS sebesar " + totalPaymentRp);
+						// transactionHistory.add("Telah melakukan pembayaran tagihan BPJS sebesar " + totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();
@@ -1306,7 +1324,7 @@ public class ATMSystem {
 		isContinueTransaction = true;
 	}
 
-	public static void displayHeaderTransactionHistory() {
+	public static void displayHeaderHistory() {
 		if (currentLanguange == 0) {
 			System.out.println(
 				"[===================================================================================================]\n"+
@@ -1326,32 +1344,85 @@ public class ATMSystem {
 		}
 	}
 
-	public static void RiwayatTransaksi() {
-		displayHeaderTransactionHistory();
-		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"\t|                         ________________________________                        |");
-		System.out.println(
-				"\t|                         \\RIWAYAT TRANSAKSI TERBARU ANDA/                        |");
-		System.out.println(
-				"\t|                          ------------------------------                         |");
-
-		if (transactionHistory.size() > 10) {
-			transactionHistory.remove(0);
+	public static void History() {
+		displayHeaderHistory();
+		System.out.print(
+			"[===================================================================================================]\n"+
+			"[                                    "+langOutputs[0][currentLanguange]+"                                ]\n" +
+			"[===================================================================================================]\n"+
+			"[   --  [1] "+langOutputs[43][currentLanguange]+"                                                                     ]\n"+
+			"[                                                                                                   ]\n"+
+			"[   --  [2] "+langOutputs[44][currentLanguange]+"                                                                         ]\n"+
+			"[===================================================================================================]\n"+
+			"[  ==> "
+		);
+		userChoiceMenu = scanner1.nextInt();
+		switch (userChoiceMenu) {
+			case 1:
+				transactionHistory();
+				break;
+			case 2:
+				accountHistory();
+				break;
+			default:
+				defaultCaseMenu();
 		}
-
-		for (int i = 0; i < transactionHistory.size(); i++) {
-			System.out.printf("\t\t%d. %s%n", (i + 1), transactionHistory.get(i));
-		}
-
-		System.out.println(
-				"         ---------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
 
 		EnterForContinue();
 		ClearScreen();
+	}
+
+	public static void displayHeaderTransactionHistory() {
+		if (currentLanguange == 0) {
+ 			System.out.println(
+ 				"[===================================================================================================]\n"+
+ 				"[- - - - - - - - - - - -╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔  ╦ ╦╦╔═╗╔╦╗╔═╗╦═╗╦ ╦ - - - - - - - - - - - -]\n"+
+ 				"[- - - - - - - - - - - - ║ ╠╦╝╠═╣║║║╚═╗╠═╣║   ║ ║║ ║║║║  ╠═╣║╚═╗ ║ ║ ║╠╦╝╚╦╝ - - - - - - - - - - - -]\n"+
+ 				"[- - - - - - - - - - - - ╩ ╩╚═╩ ╩╝╚╝╚═╝╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝  ╩ ╩╩╚═╝ ╩ ╚═╝╩╚═ ╩  - - - - - - - - - - - -]\n"+
+ 				"[===================================================================================================]"
+ 			);
+		} else {
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - ╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╦╔═╔═╗╦- - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - ╠╦╝║║║║╠═╣╚╦╝╠═╣ ║    ║ ╠╦╝╠═╣║║║╚═╗╠═╣╠╩╗╚═╗║- - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - ╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩    ╩ ╩╚═╩ ╩╝╚╝╚═╝╩ ╩╩ ╩╚═╝╩- - - - - - - - - - - - - -]\n"+
+				"[===================================================================================================]"
+			);
+		}
+	}
+
+	public static void transactionHistory() {
+		displayHeaderTransactionHistory();
+		System.out.println(
+			"[===================================================================================================]\n"+
+			"[                                  "+langOutputs[45][currentLanguange]+"                                  ]\n"+
+			"[                                 _________________________________                                 ]\n"+
+			"[                                                                                                   ]\n"+
+			"[               INFO                                 NOMINAL              "+langOutputs[46][currentLanguange]+"     "+langOutputs[47][currentLanguange]+"         ]"
+		);
+
+		// if (transactionHistory.size() > 10) {
+		// 	transactionHistory.remove(0);
+		// }
+
+		// for (int i = 0; i < transactionHistory.size(); i++) {
+		// 	System.out.printf("%d. %s%n", (i + 1), transactionHistory.get(i));
+		// }
+
+		int i = 1;
+		for (ArrayList<String> transactionHistoryInfo : transactionHistoryList) {
+			System.out.printf("[  %d. "+transactionHistoryInfo.get(0)+"\t| "+transactionHistoryInfo.get(1)+"\t\t| "+transactionHistoryInfo.get(2)+"\t| "+transactionHistoryInfo.get(3)+"\t    ]\n", i);
+			i++;
+		}
+		System.out.println("[===================================================================================================]");
+	}
+
+	public static void accountHistory() {
+		System.out.println(
+			"[===================================================================================================]\n"+
+			"[===================================================================================================]\n"
+		);
 	}
 
 	public static void displayHeaderBalanceInquiry() {

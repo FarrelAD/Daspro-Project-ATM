@@ -221,7 +221,11 @@ public class ATMSystem {
 		{ "YOUR RECENT TRANSACTION HISTORY", "RIWAYAT TRANSAKSI TERBARU ANDA "}, // 45
 		{ "TIME ", "WAKTU"}, // 46
 		{ " DATE  ", "TANGGAL"}, //47
-		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "} // 48
+		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "}, // 48
+		{ "CASH WITHDRAWAL                    ", "TARIK TUNAI                        " }, // 49
+		{ "CASH DEPOSIT                       ", "SETOR TUNAI                        " }, //50
+		{ "BUY CREDIT TO NUMBER ", "BELI PULSA KE NOMOR "}, //51
+		{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK "}
 	};
 
 	public static void main(String[] args) {
@@ -583,9 +587,7 @@ public class ATMSystem {
 							ClearScreen();
 
 							// Recording transaction history
-							// transactionHistoryList.add(new ArrayList<>(List.of("TRANSFER KE REKENING "+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", totalTransferRp)));
 							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[48][currentLanguange]+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", totalTransferRp, formattedTime, formattedDate)));
-							// transactionHistory.add("Telah melakukan transaksi ke rekening: " + inputTarget_AccountNumber+ " sebesar " + totalTransferRp);
 						} else {
 							displayTransactionOverLimit();
 						}
@@ -701,10 +703,10 @@ public class ATMSystem {
 		ClearScreen();
 
 		// Conversion of output value to Rupiah
-		String cashWitdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
+		String cashWithdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
 		
 		if (isCashWithdrawalValid) {
-			System.out.println("[  "+langOutputs[29][currentLanguange]+ cashWitdrawalRupiah + " ? ");
+			System.out.println("[  "+langOutputs[29][currentLanguange]+ cashWithdrawalRupiah + " ? ");
 
 			// Transaction confirmation approval
 			UserConfirmation();
@@ -720,7 +722,7 @@ public class ATMSystem {
 							System.out.println("[  "+langOutputs[24][currentLanguange]+ userBalanceRupiah);
 
 							// Recording transaction history
-							// transactionHistory.add("Telah melakukan tarik tunai sebesar: "+ cashWitdrawalRupiah);
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[49][currentLanguange], cashWithdrawalRupiah, formattedTime, formattedDate)));
 
 							EnterForContinue();
 
@@ -787,7 +789,7 @@ public class ATMSystem {
 					System.out.println("[  "+langOutputs[24][currentLanguange]+userBalanceRupiah);
 
 					// Recording transaction history
-					// transactionHistory.add("Telah melakukan setor tunai sebesar " + cashDepositRupiah);
+					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange], cashDepositRupiah, formattedTime, formattedDate)));
 
 					EnterForContinue();
 
@@ -933,7 +935,7 @@ public class ATMSystem {
 			ClearScreen();
 
 			// Conversion of output value to Rupiah
-			String nomPulsaRP = currencyFormat.format(nomPulsa);
+			String nomPulsaRp = currencyFormat.format(nomPulsa);
 			// Menampilkan informasi transaksi sementara
 
 			System.out.println(
@@ -942,7 +944,7 @@ public class ATMSystem {
 				"[                                      ______________________                                       ]\n"+
 				"[  -- "+langOutputs[37][currentLanguange]+operatorPulsa+"\n"+
 				"[  -- "+langOutputs[38][currentLanguange]+nomorTelepon+"\n"+
-				"[  -- "+langOutputs[39][currentLanguange]+nomPulsaRP+"\n"+
+				"[  -- "+langOutputs[39][currentLanguange]+nomPulsaRp+"\n"+
 				"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 				"[===================================================================================================]"
 			);
@@ -964,13 +966,14 @@ public class ATMSystem {
 							"[                                      ______________________                                       ]\n"+
 							"[  -- "+langOutputs[37][currentLanguange]+operatorPulsa+"\n"+
 							"[  -- "+langOutputs[38][currentLanguange]+nomorTelepon+"\n"+
-							"[  -- "+langOutputs[39][currentLanguange]+nomPulsaRP+"\n"+
+							"[  -- "+langOutputs[39][currentLanguange]+nomPulsaRp+"\n"+
 							"[  -- "+langOutputs[23][currentLanguange]+adminFeeRp+"\n"+
 							"[  -- "+langOutputs[24][currentLanguange]+saldoRupiah2+"\n"+
 							"[===================================================================================================]"
 						);
 
 						// Pencatatan riwayat transaksi
+						transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange]+nomorTelepon, totalPaymentRp, formattedTime, formattedDate)));
 						// transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "+nomorTelepon+" sebesar "+totalPaymentRp);
 
 						EnterForContinue();
@@ -1050,7 +1053,7 @@ public class ATMSystem {
 						);
 
 						// Recording transaction history
-						// transactionHistory.add("Telah melakukan pembayaran tagihan listrik sebesar " + totalPaymentRp);
+						transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[52][currentLanguange]+"("+inputPLN+")", totalPaymentRp, formattedTime, formattedDate)));
 
 						EnterForContinue();
 						ClearScreen();
@@ -1410,11 +1413,28 @@ public class ATMSystem {
 		// 	System.out.printf("%d. %s%n", (i + 1), transactionHistory.get(i));
 		// }
 
-		int i = 1;
-		for (ArrayList<String> transactionHistoryInfo : transactionHistoryList) {
-			System.out.printf("[  %d. "+transactionHistoryInfo.get(0)+"\t| "+transactionHistoryInfo.get(1)+"\t\t| "+transactionHistoryInfo.get(2)+"\t| "+transactionHistoryInfo.get(3)+"\t    ]\n", i);
-			i++;
+		for (int i = transactionHistoryList.size(); i > 10; i-- ) {
+			transactionHistoryList.remove(0);
 		}
+
+		for (int i = 0; i < transactionHistoryList.size(); i++) {
+			// if (transactionHistoryList.get(i).get(0).length() <= 24) {
+			// 	String temp = transactionHistoryList.get(i).get(0) + "\t\t";
+			// 	transactionHistoryList.get(i).set(0, temp);
+			// }
+			// if (transactionHistoryList.get(i).get(1).length() < 14) {
+			// 	String temp = transactionHistoryList.get(i).get(1) + "\t";
+			// 	transactionHistoryList.get(i).set(1, temp);
+			// }
+
+			System.out.printf("[  %d. "+transactionHistoryList.get(i).get(0)+"\t| "+transactionHistoryList.get(i).get(1)+"\t\t| "+transactionHistoryList.get(i).get(2)+"\t| "+transactionHistoryList.get(i).get(3)+"\t    ]\n", (i+1));
+		}
+		// int i = 1;
+		// for (ArrayList<String> transactionHistoryInfo : transactionHistoryList) {
+		// 	System.out.printf("[  %d. "+transactionHistoryInfo.get(0)+"\t| "+transactionHistoryInfo.get(1)+"\t\t| "+transactionHistoryInfo.get(2)+"\t| "+transactionHistoryInfo.get(3)+"\t    ]\n", i);
+		// 	i++;
+		// }
+
 		System.out.println("[===================================================================================================]");
 	}
 

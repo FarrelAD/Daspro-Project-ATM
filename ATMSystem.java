@@ -203,7 +203,9 @@ public class ATMSystem {
 		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 38
 		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 39
 		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //40
-		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "} // 41
+		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "}, // 41
+		{ "Amount You've been withdraw : ","Telah melakukan tarik tunai sebesar: "},//42
+		{ "Amount " ," sebesar " }//43
 	};
 
 	public static void main(String[] args) {
@@ -700,7 +702,7 @@ public class ATMSystem {
 							System.out.println("[  "+langOutputs[24][currentLanguange]+ userBalanceRupiah);
 
 							// Recording transaction history
-							transactionHistory.add("Telah melakukan tarik tunai sebesar: "+ cashWitdrawalRupiah);
+							transactionHistory.add("Telah melakukan tarik tunai sebesar: "+ cashWitdrawalRupiah); //pagruhpwaeiroughbproew bhaepodifjbhaeiprubhaeiurb
 
 							EnterForContinue();
 
@@ -767,7 +769,7 @@ public class ATMSystem {
 					System.out.println("[  "+langOutputs[24][currentLanguange]+userBalanceRupiah);
 
 					// Recording transaction history
-					transactionHistory.add("Telah melakukan setor tunai sebesar " + cashDepositRupiah);
+					transactionHistory.add(langOutputs[42][currentLanguange] + cashDepositRupiah);
 
 					EnterForContinue();
 
@@ -951,7 +953,7 @@ public class ATMSystem {
 						);
 
 						// Pencatatan riwayat transaksi
-						transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "+nomorTelepon+" sebesar "+totalPaymentRp);
+						transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "+nomorTelepon+langOutputs[43][currentLanguange]+totalPaymentRp);
 
 						EnterForContinue();
 						ClearScreen();

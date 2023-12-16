@@ -254,6 +254,12 @@ public class ATMSystem {
 			"[                    [1] ANTAR REKENING                          [2] ANTAR BANK                      ]\n"},//63
 			{"[  INTERBANK TRANSFER VIA BI FAST, YOU WILL BE CHARGED AN ADMIN FEE OF IDR 2500,00 ]\n","[  TRANSFER ANTAR BANK MELALUI BI FAST, ANDA DIKENAKAN BIAYA ADMIN SEBESAR RP 2500,00 	 ]\n"},//64
 			{"Invalid option, please select number 1 or 2.","Pilihan bank tidak valid. Silakan pilih 1 atau 2."},//65
+			{"[  insert PIN  : ","[  Masukkan PIN anda : "},//66
+			{"    insert a new pin : ", "    Masukkan PIN baru: "},// 67
+			{"    Confirm a new pin : ","    Konfirmasi PIN baru: "},//68
+			{"    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN CHANGED~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~","    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"},//69
+			{"                          [  (!) A new PIN and Confirm must be the same (!) ]","                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]"},//70
+			{"                                    [  (!) INCORRECT PIN (!)  ]","                                    [  (!) PIN TIDAK SESUAI (!)  ]"},//71
 
 	};
 
@@ -1957,15 +1963,15 @@ public class ATMSystem {
 		Scanner scanNewPin = new Scanner(System.in);
 		displayHeaderChangePin();
 		String userRekening = accountData[accountLineIndex][0];
-		System.out.print("[  Masukkan PIN anda : ");
+		System.out.print(langOutputs[66][currentLanguange]);
 		String inputPin7 = scanNewPin.nextLine();
 
 		ClearScreen();
 
 		if (inputPin7.equals(inputPin)) {
-			System.out.print("    Masukkan PIN baru: ");
+			System.out.print(langOutputs[67][currentLanguange]);
 			String inputNewPin = getValidatedPin(scanNewPin);
-			System.out.print("    Konfirmasi PIN baru: ");
+			System.out.print(langOutputs[68][currentLanguange]);
 			String confirmedNewPin = getValidatedPin(scanNewPin);
 
 			ClearScreen();
@@ -1985,7 +1991,7 @@ public class ATMSystem {
 				System.out.println(
 						"    --------------------------------------------------------------------------------------------");
 				System.out.println(
-						"    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+						langOutputs[69][currentLanguange]);
 				System.out.println(
 						"    --------------------------------------------------------------------------------------------");
 				System.out.println(
@@ -1994,7 +2000,7 @@ public class ATMSystem {
 				System.out.println(
 						"    ============================================================================================");
 				System.out.println(
-						"                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]");
+						langOutputs[70][currentLanguange]);
 				System.out.println(
 						"    ============================================================================================");
 			}
@@ -2002,7 +2008,7 @@ public class ATMSystem {
 			System.out.println(
 					"    ============================================================================================");
 			System.out.println(
-					"                                    [  (!) PIN TIDAK SESUAI (!)  ]");
+					langOutputs[71][currentLanguange]);
 			System.out.println(
 					"    ============================================================================================");
 		}

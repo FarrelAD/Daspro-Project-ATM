@@ -275,6 +275,9 @@ public class ATMSystem {
 						"[                     TRANSAKSI VALID JIKA NOMINAL Rp50.000 HINGGA Rp5.000.000                      ]\n"
 						+
 						"[===================================================================================================]"},//73
+			{"                     [  (!) Transaction failed. Your balance is insufficient (!)  ]","                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]"},//74
+			{"                                      [  (!) WRONG PIN (!)  ]","                                      [  (!) PIN SALAH! (!)  ]"},//75
+			{"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSACTION SUCCESS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ", "     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "},//76
 
 	};
 
@@ -2179,7 +2182,7 @@ public class ATMSystem {
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
-				"                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]");
+				langOutputs[74][currentLanguange]);
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
@@ -2193,7 +2196,7 @@ public class ATMSystem {
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
-				red + "                                      [  (!) PIN SALAH! (!)  ]" + reset);
+				red + langOutputs[75][currentLanguange]+ reset);
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
@@ -2207,7 +2210,7 @@ public class ATMSystem {
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
-				"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ");
+				langOutputs[76][currentLanguange]);
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(

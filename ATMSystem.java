@@ -736,39 +736,43 @@ public class ATMSystem {
 										adjustNumCharHistory(totalTransferRp), formattedLocalTime(),
 										formattedLocalDate())));
 								recordTransactionHistory();
+
 							} else {
 								// Kondisi jika nominal transfer melebihi jumlah saldo
 								displayTransactionOverLimit();
 							}
 						} else {
-							// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
-							viewWrongPin();
+							// Kondisi jika nominal transfer melebihi jumlah saldo
+							viewBalanceIsNotEnough();
 						}
 					} else {
-						// Kondisi jika pengguna input 't' atau 'T'
-						viewTransactionCancelled();
+						// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
+						viewWrongPin();
 					}
 				} else {
-					// Kondisi jika isTargetAccountValid bernilai FALSE
-					ClearScreen();
-					System.out.println(
-							"[===================================================================================================]\n"
-									+
-									"[                    " + red + langOutputs[25][currentLanguange] + reset
-									+ "                    ]\n" +
-									"[===================================================================================================]");
+					// Kondisi jika pengguna input 't' atau 'T'
+					viewTransactionCancelled();
 				}
 			} else {
-				// Kondisi jika bankChoice bukan angka 1 atau 2
+				// Kondisi jika isTargetAccountValid bernilai FALSE
 				ClearScreen();
 				System.out.println(
 						"[===================================================================================================]\n"
 								+
-								"[                        " + red + "Pilihan bank tidak valid. Silakan pilih 1 atau 2."
-								+ reset
-								+ "                          ]\n" +
+								"[                    " + red + langOutputs[25][currentLanguange] + reset
+								+ "                    ]\n" +
 								"[===================================================================================================]");
 			}
+		} else {
+			// Kondisi jika bankChoice bukan angka 1 atau 2
+			ClearScreen();
+			System.out.println(
+					"[===================================================================================================]\n"
+							+
+							"[                        " + red + "Pilihan bank tidak valid. Silakan pilih 1 atau 2."
+							+ reset
+							+ "                          ]\n" +
+							"[===================================================================================================]");
 		}
 	}
 

@@ -250,8 +250,11 @@ public class ATMSystem {
 			{ "Are you sure want to exit?", "Apakah anda yakin untuk keluar?" }, // 61
 			{"[                                     SELECT TRANSFER                                        ]\n",
 			"[                                     PILIH LAYANAN TRANSFER                                        ]\n"}, //62
-			{"[                    [1] BETWEEN ACCOUNT                          [2] BETWEEN BANK                      ]\n",
-		"[                    [1] ANTAR REKENING                          [2] ANTAR BANK                      ]\n"}//63
+			{"[                    [1] BETWEEN ACCOUNT                          [2] INTER BANK                      ]\n",
+			"[                    [1] ANTAR REKENING                          [2] ANTAR BANK                      ]\n"},//63
+			{"[  INTERBANK TRANSFER VIA BI FAST, YOU WILL BE CHARGED AN ADMIN FEE OF IDR 2500,00 ]\n","[  TRANSFER ANTAR BANK MELALUI BI FAST, ANDA DIKENAKAN BIAYA ADMIN SEBESAR RP 2500,00 	 ]\n"},//64
+			{"Invalid option, please select number 1 or 2.","Pilihan bank tidak valid. Silakan pilih 1 atau 2."},//65
+
 	};
 
 	public static void main(String[] args) {
@@ -670,10 +673,10 @@ public class ATMSystem {
 					System.out.println(
 							"[==========================================================================================================]\n"
 									+
-									"[  NOMOR REKENING TUJUAN TIDAK TERDAFTAR DI BANK POLINEMA, ANDA DIKENAKAN BIAYA ADMIN SEBESAR RP 1500,00  ]\n"
+									langOutputs[64][currentLanguange]
 									+
 									"[==========================================================================================================]");
-					adminFeeTf = 1500;
+					adminFeeTf = 2500;
 				}
 
 				String adminFeeTfRp = currencyFormat.format(adminFeeTf);
@@ -778,7 +781,7 @@ public class ATMSystem {
 			System.out.println(
 					"[===================================================================================================]\n"
 							+
-							"[                        " + red + "Pilihan bank tidak valid. Silakan pilih 1 atau 2."
+							"[                        " + red + langOutputs[65][currentLanguange]
 							+ reset
 							+ "                          ]\n" +
 							"[===================================================================================================]");

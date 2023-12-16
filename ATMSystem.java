@@ -12,6 +12,8 @@ import java.util.Locale;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.security.auth.callback.LanguageCallback;
+
 public class ATMSystem {
 	static Scanner scanner1 = new Scanner(System.in);
 	static Scanner scanner2 = new Scanner(System.in);
@@ -244,8 +246,12 @@ public class ATMSystem {
 			{ "YOUR RECENT ACCOUNT HISTORY", " RIWAYAT AKUN TERBARU ANDA " }, // 57
 			{ "ACCOUNT CREATED", "AKUN DIBUAT    " }, // 58
 			{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN" }, // 59
-			{ "Your Balance Amount %s\t\t\t\t |\t       ]\n", "Saldo anda sebesar %s\t\t\t\t |\t       ]\n" }, // 57 OLD
-			{ "Are you sure want to exit?", "Apakah anda yakin untuk keluar?" } // 58
+			{ "Your Balance Amount %s\t\t\t\t |\t       ]\n", "Saldo anda sebesar %s\t\t\t\t |\t       ]\n" }, // 60 OLD
+			{ "Are you sure want to exit?", "Apakah anda yakin untuk keluar?" }, // 61
+			{"[                                     SELECT TRANSFER                                        ]\n",
+			"[                                     PILIH LAYANAN TRANSFER                                        ]\n"}, //62
+			{"[                    [1] BETWEEN ACCOUNT                          [2] BETWEEN BANK                      ]\n",
+		"[                    [1] ANTAR REKENING                          [2] ANTAR BANK                      ]\n"}//63
 	};
 
 	public static void main(String[] args) {
@@ -629,11 +635,11 @@ public class ATMSystem {
 		System.out.println(
 				"[===================================================================================================]\n"
 						+
-						"[                                     PILIH LAYANAN TRANSFER                                        ]\n"
+						langOutputs[62][currentLanguange]
 						+
 						"[===================================================================================================]\n"
 						+
-						"[                    [1] BANK POLINEMA                          [2] ANTAR BANK                      ]\n"
+						langOutputs[63][currentLanguange]
 						+
 						"[===================================================================================================]");
 

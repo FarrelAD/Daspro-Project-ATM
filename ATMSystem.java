@@ -260,6 +260,21 @@ public class ATMSystem {
 			{"    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN CHANGED~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~","    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"},//69
 			{"                          [  (!) A new PIN and Confirm must be the same (!) ]","                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]"},//70
 			{"                                    [  (!) INCORRECT PIN (!)  ]","                                    [  (!) PIN TIDAK SESUAI (!)  ]"},//71
+			{"                   [  (!) Incorrect input. Double check your input (!) ]\" (!)  ]","                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]"},//72
+			{"[===================================================================================================]\n"
+						+
+						"[                                 SORRY, INVALID TRANSACTION                                 ]\n"
+						+
+						"[                     TRANSAKSI VALID MUST BE BETWEEN Rp50.000 - Rp5.000.000                      ]\n"
+						+
+						"[===================================================================================================]",
+						"[===================================================================================================]\n"
+						+
+						"[                                 MOHON MAAF, TRANSAKSI TIDAK VALID                                 ]\n"
+						+
+						"[                     TRANSAKSI VALID JIKA NOMINAL Rp50.000 HINGGA Rp5.000.000                      ]\n"
+						+
+						"[===================================================================================================]"},//73
 
 	};
 
@@ -2113,7 +2128,7 @@ public class ATMSystem {
 		System.out.println(
 				"    ============================================================================================");
 		System.out.println(
-				red + "                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]"
+				red + langOutputs[72][currentLanguange]
 						+ reset);
 		System.out.println(
 				"    ============================================================================================");
@@ -2154,13 +2169,7 @@ public class ATMSystem {
 	public static void displayTransactionOverLimit() {
 		ClearScreen();
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[                                 MOHON MAAF, TRANSAKSI TIDAK VALID                                 ]\n"
-						+
-						"[                     TRANSAKSI VALID JIKA NOMINAL Rp50.000 HINGGA Rp5.000.000                      ]\n"
-						+
-						"[===================================================================================================]");
+				langOutputs[73][currentLanguange]);
 	}
 
 	public static void viewBalanceIsNotEnough() {

@@ -31,6 +31,7 @@ public class ATMSystem {
 			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "GOOD", "14-11-2023" },
 			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "GOOD", "01-01-2001" },
 			{ "0000000", "0000", "KARL", "BANK POLINEMA", "900000000", "GOOD", "05-05-2005" },
+			{ "1231231", "1122", "AGUS", "BANK HOKI", "12000000", "GOOD", "14-02-2019"},
 			{ "1", "1", "RIO", "BANK JOSS", "10000000", "GOOD", "29-10-2010" }, // for quick try
 			{ "2", "2", "TAYLOR", "RICH BANK", "22222222", "GOOD", "29-02-2020" } // for quick try
 	};
@@ -151,24 +152,26 @@ public class ATMSystem {
 		{ "NO   ", "TIDAK" }, // 12
 		{ "   INVALID INPUT. OPTION NOT AVAILABLE.   ", "INPUT TIDAK VALID. PILIHAN TIDAK TERSEDIA." }, // 13
 		{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR" }, // 14
-		{ "INPUT THE DESTINATION ACCOUNT NUMBER : ", "MASUKKAN NOMOR REKENING TUJUAN : " }, // 15
-		{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
-		{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 17 
-		{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //18
-		{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 19 
-		{ "NAME                   : ", "NAMA                   : " }, // 20 
-		{ "BANK                   : ", "BANK                   : " }, // 21 
-		{ "TRANSFER AMOUNT        : ", "NOMINAL TRANSFER       : " }, // 22
-		{ "ADMIN FEE              : ", "BIAYA ADMIN            : " }, // 23
-		{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 24
+		{ "SELECT TRANSFER DESTINATION", "   PILIH TUJUAN TRANSFER   "}, // 15 NEW 
+		{ "OTHER BANK  ", "BANK LAINNYA"}, // 16 NEW 
+		{ "INPUT THE DESTINATION ACCOUNT NUMBER : ", "MASUKKAN NOMOR REKENING TUJUAN : " }, // 17
+		{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 18
+		{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 19 
+		{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //20
+		{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 21 
+		{ "NAME                   : ", "NAMA                   : " }, // 22 
+		{ "BANK                   : ", "BANK                   : " }, // 23 
+		{ "TRANSFER AMOUNT        : ", "NOMINAL TRANSFER       : " }, // 24
+		{ "ADMIN FEE              : ", "BIAYA ADMIN            : " }, // 25
+		{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 26
 		{ " [!]  FAILED TRANSACTION. INVALID DESTINATION ACCOUNT  [!] ",
-		  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25 
-		{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   "}, // 26 
-		{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //27
-		{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //28
-		{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//29
-		{"INPUT CASH DEPOSIT AMOUNT : Rp ", "MASUKKAN NOMINAL SETOR TUNAI : Rp "}, //30
-		{ "CONFIRM CASH DEPOSIT : ", "KONFIRMASI SETOR TUNAI : "}, // 31
+		  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 27
+		{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   "}, // 28
+		{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //29
+		{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //30
+		{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//31
+		{"INPUT CASH DEPOSIT AMOUNT : Rp ", "MASUKKAN NOMINAL SETOR TUNAI : Rp "}, //32
+		{ "CONFIRM CASH DEPOSIT : ", "KONFIRMASI SETOR TUNAI : "}, // 33
 		{"[===================================================================================================]\n"+
 		 "[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"+
 		 "[===================================================================================================]\n"+
@@ -193,36 +196,57 @@ public class ATMSystem {
 		 "[                                                                                                   ]\n"+
 		 "[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
 		 "[                                                                  MENU UTAMA                       ]\n"+
-		 "[===================================================================================================]"}, //32
-		{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //33
-		{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //34
-		{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : "}, // 35 
-		{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp"}, //36
-		{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 37 
-		{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 38
-		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 39
-		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 40
-		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //41
-		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "}, // 42
-		{ "TRANSACTION HISTORY", "RIWAYAT TRANSAKSI  "}, // 43
-		{ "ACCOUNT HISTORY", "RIWAYAT AKUN   "}, // 44 NEW
-		{ "YOUR RECENT TRANSACTION HISTORY", "RIWAYAT TRANSAKSI TERBARU ANDA "}, // 45
-		{ " AMOUNT", "NOMINAL"}, // 46
-		{ "TIME ", "WAKTU"}, // 47
-		{ " DATE  ", "TANGGAL"}, //48
-		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "}, // 49
-		{ "CASH WITHDRAWAL                    ", "TARIK TUNAI                        " }, // 40
-		{ "CASH DEPOSIT                       ", "SETOR TUNAI                        " }, //51
-		{ "BUY CREDIT TO NUMBER ", "BELI PULSA KE NOMOR "}, //52
-		{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK "}, // 53
-		{ "PAY EDUCATION COST ", "BAYAR BIAYA PENDIDIKAN "}, // 53
-		{ "PAY WATER BILL ", "BAYAR TAGIHAN AIR "}, //55
-		{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN "}, //56
-		{ "YOUR RECENT ACCOUNT HISTORY", " RIWAYAT AKUN TERBARU ANDA "}, //57
-		{ "ACCOUNT CREATED", "AKUN DIBUAT    "}, //58
-		{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN"}, //59
-		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//57 OLD
-		{"Are you sure want to exit?","Apakah anda yakin untuk keluar?"} // 58
+		 "[===================================================================================================]"}, //34
+		{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //35
+		{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //36
+		{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : "}, // 37
+		{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp"}, //38
+		{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 39 
+		{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 40
+		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 41
+		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 42
+		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //43
+		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "}, // 44
+		{ "TRANSACTION HISTORY", "RIWAYAT TRANSAKSI  "}, // 45
+		{ "ACCOUNT HISTORY", "RIWAYAT AKUN   "}, // 46
+		{ "YOUR RECENT TRANSACTION HISTORY", "RIWAYAT TRANSAKSI TERBARU ANDA "}, // 47
+		{ " AMOUNT", "NOMINAL"}, // 48
+		{ "TIME ", "WAKTU"}, // 49
+		{ " DATE  ", "TANGGAL"}, //50
+		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "}, // 51
+		{ "CASH WITHDRAWAL                    ", "TARIK TUNAI                        " }, // 52
+		{ "CASH DEPOSIT                       ", "SETOR TUNAI                        " }, //53
+		{ "BUY CREDIT TO NUMBER ", "BELI PULSA KE NOMOR "}, //54
+		{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK "}, // 55
+		{ "PAY EDUCATION COST ", "BAYAR BIAYA PENDIDIKAN "}, // 56
+		{ "PAY WATER BILL ", "BAYAR TAGIHAN AIR "}, //57
+		{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN "}, //58
+		{ "YOUR RECENT ACCOUNT HISTORY", " RIWAYAT AKUN TERBARU ANDA "}, //59
+		{ "ACCOUNT CREATED", "AKUN DIBUAT    "}, //60
+		{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN"}, //61
+		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//62
+		{"Are you sure want to exit?","Apakah anda yakin untuk keluar?"}, // 63
+		{ "[                                ADD THE BANK CODE AT THE BEGINNING                                 ]\n"+
+		  "[                                  WHEN INPUT THE ACCOUNT NUMBER                                    ]\n"+
+		  "[                          -----------------------------------------------                          ]\n"+
+		  "[                            INTERBANK TRANSFER WILL INCUR AN ADMIN FEE                             ]\n"+
+		  "[                                    OF Rp1.500 PER TRANSACTION                                     ]\n", 
+		  "[                                TAMBAHKAN KODE BANK PADA SAAT AWAL                                 ]\n"+
+		  "[                                    MEMASUKKAN NOMOR REKENING                                      ]\n"+
+		  "[                          -----------------------------------------------                          ]\n"+
+		  "[                           TRANSFER ANTARBANK AKAN DIKENAKAN BIAYA ADMIN                           ]\n"+
+		  "[                                  SEBESAR Rp1.500 TIAP TRANSAKSI                                   ]\n" }, // 64
+		{ "VIEW BANK CODE ", "LIHAT CODE BANK"}, // 65
+		{ "CONTINUE ", "LANJUTKAN"}, // 66
+		{ "BACK   ", "KEMBALI"}, // 67
+		{ "[                               INPUT THE DESTINATION ACCOUNT NUMBER                                ]\n"+
+		  "[                                   STARTING WITH THE BANK CODE                                     ]\n",
+		  "[                                  MASUKKAN NOMOR REKENING TUJUAN                                   ]\n"+
+		  "[                                     DENGAN DIAWALI KODE BANK                                      ]\n" }, // 68
+		{ "[                                   PLEASE INPUT THE SEVEN DIGIT                                    ]\n"+
+		  "[                                    DESTINATION ACCOUNT NUMBER                                     ]\n", 
+		  "[                                   SILAKAN MASUKKAN TUJUH DIGIT                                    ]\n"+
+		  "[                                       NOMOR REKENING TUJUAN                                       ]\n"} // 69
 	};
 
 	public static void main(String[] args) {
@@ -453,36 +477,21 @@ public class ATMSystem {
 			isGoToMainMenu = false;
 			ClearScreen();
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                    " + langOutputs[0][currentLanguange]
-							+ "                                ]\n" +
-							"[===================================================================================================]\n"
-							+
-							"[                                                                                                   ]\n"
-							+
-							"[                            [1] " + langOutputs[1][currentLanguange]
-							+ "                  " + "[5] " + langOutputs[5][currentLanguange]
-							+ "                              ]\n" +
-							"[                                                                                                   ]\n"
-							+
-							"[                            [2] " + langOutputs[2][currentLanguange] + "           "
-							+ "[6] " + langOutputs[6][currentLanguange] + "                      ]\n" +
-							"[                                                                                                   ]\n"
-							+
-							"[                            [3] " + langOutputs[3][currentLanguange] + "              "
-							+ "[7] " + langOutputs[7][currentLanguange] + "                           ]\n" +
-							"[                                                                                                   ]\n"
-							+
-							"[                            [4] " + langOutputs[4][currentLanguange] + "                "
-							+ "[8] " + langOutputs[8][currentLanguange] + "                               ]\n" +
-							"[                                                                                                   ]\n"
-							+
-							"[                                                          [9] "
-							+ langOutputs[9][currentLanguange] + "      	                    ]\n" +
-							"[                                                                                                   ]\n"
-							+
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[                                    " + langOutputs[0][currentLanguange]+ "                                ]\n" +
+				"[===================================================================================================]\n"+
+				"[                                                                                                   ]\n"+
+				"[                            [1] " + langOutputs[1][currentLanguange]+ "                  " + "[5] " + langOutputs[5][currentLanguange]+ "                              ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                            [2] " + langOutputs[2][currentLanguange] + "           "+ "[6] " + langOutputs[6][currentLanguange] + "                      ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                            [3] " + langOutputs[3][currentLanguange] + "              "+ "[7] " + langOutputs[7][currentLanguange] + "                           ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                            [4] " + langOutputs[4][currentLanguange] + "                "+ "[8] " + langOutputs[8][currentLanguange] + "                               ]\n" +
+				"[                                                                                                   ]\n"+
+				"[                                                          [9] "+ langOutputs[9][currentLanguange] + "      	                    ]\n" +
+				"[                                                                                                   ]\n"+
+				"[===================================================================================================]");
 			System.out.print("[  ==> ");
 			userChoiceMenu = scanner2.nextInt();
 
@@ -526,26 +535,15 @@ public class ATMSystem {
 
 			if (userChoiceMenu != 8) {
 				if (!isGoToMainMenu) {
-					;
 					System.out.println(
-							"[===================================================================================================]\n"
-									+
-									"[  " + langOutputs[10][currentLanguange]
-									+ "                                                                                  ]\n"
-									+
-									"[                                                                                                   ]\n"
-									+
-									"[  [1] " + langOutputs[11][currentLanguange]
-									+ "                                                                                          ]\n"
-									+
-									"[                                                                                                   ]\n"
-									+
-									"[  [2] " + langOutputs[12][currentLanguange]
-									+ "                                                                                        ]\n"
-									+
-									"[                                                                                                   ]\n"
-									+
-									"[===================================================================================================]");
+						"[===================================================================================================]\n"+
+						"[  " + langOutputs[10][currentLanguange]+ "                                                                                  ]\n"+
+						"[                                                                                                   ]\n"+
+						"[  [1] " + langOutputs[11][currentLanguange]+ "                                                                                          ]\n"+
+						"[                                                                                                   ]\n"+
+						"[  [2] " + langOutputs[12][currentLanguange]+ "                                                                                        ]\n"+
+						"[                                                                                                   ]\n"+
+						"[===================================================================================================]");
 					boolean isLoopConfirm = false;
 
 					do {
@@ -565,14 +563,10 @@ public class ATMSystem {
 
 							default:
 								System.out.println(
-										"[===================================================================================================]\n"
-												+
-												"[                           " + langOutputs[13][currentLanguange]
-												+ "                              ]\n" +
-												"[                                    "
-												+ langOutputs[14][currentLanguange]
-												+ "                                       ]\n" +
-												"[===================================================================================================]");
+									"[===================================================================================================]\n"+
+									"[                           " + langOutputs[13][currentLanguange]+ "                              ]\n" +
+									"[                                    "+ langOutputs[14][currentLanguange]+ "                                       ]\n" +
+									"[===================================================================================================]");
 								isLoopConfirm = true;
 								break;
 						}
@@ -584,15 +578,11 @@ public class ATMSystem {
 
 	public static void displayHeaderTransfer() {
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[ - - - - - - - - - - - - - - - - - - -╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗- - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[ - - - - - - - - - - - - - - - - - - - ║ ╠╦╝╠═╣║║║╚═╗╠╣ ║╣ ╠╦╝- - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[ - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╩ ╩╝╚╝╚═╝╚  ╚═╝╩╚═- - - - - - - - - - - - - - - - - - -]\n"
-						+
-						"[===================================================================================================]");
+			"[===================================================================================================]\n"+
+			"[ - - - - - - - - - - - - - - - - - - -╔╦╗╦═╗╔═╗╔╗╔╔═╗╔═╗╔═╗╦═╗- - - - - - - - - - - - - - - - - - -]\n"+
+			"[ - - - - - - - - - - - - - - - - - - - ║ ╠╦╝╠═╣║║║╚═╗╠╣ ║╣ ╠╦╝- - - - - - - - - - - - - - - - - - -]\n"+
+			"[ - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╩ ╩╝╚╝╚═╝╚  ╚═╝╩╚═- - - - - - - - - - - - - - - - - - -]\n"+
+			"[===================================================================================================]");
 	}
 
 	public static void Transfer() {
@@ -600,155 +590,290 @@ public class ATMSystem {
 		// Counting admin fee
 		int adminFeeTf = 1500;
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[                                     PILIH LAYANAN TRANSFER                                        ]\n"
-						+
-						"[===================================================================================================]\n"
-						+
-						"[                    [1] BANK POLINEMA                          [2] ANTAR BANK                      ]\n"
-						+
-						"[===================================================================================================]");
+			"[===================================================================================================]\n"+
+			"[                                    "+langOutputs[15][currentLanguange]+"                                    ]\n"+
+			"[===================================================================================================]\n"+
+			"[                    [1] BANK POLINEMA                          [2] "+langOutputs[16][currentLanguange]+"                    ]\n"+
+			"[===================================================================================================]");
 
-		System.out.print("  =>\t");
+		System.out.print("[  ==> ");
 		int bankChoice = scanner1.nextInt();
 		ClearScreen();
-		if (bankChoice == 1 || bankChoice == 2) {
-			System.out.print("[  " + langOutputs[15][currentLanguange]);
-			inputTarget_AccountNumber = scannerTF.nextLine();
 
-			// Checking destination account availability
-			int indexTargetAccount = 0;
-			isTargetAccountValid = false;
+		switch (bankChoice) {
+			case 1:
+				transferSameBank();	
+				break;
+			case 2:
+				transferOtherBank();
+				break;
+			default:
+				defaultCaseMenu();
+		}
+
+		EnterForContinue();
+	}
+
+	public static void transferSameBank() {
+		ClearScreen();
+		System.out.println(
+			"[===================================================================================================]\n"+
+			langOutputs[69][currentLanguange]+
+			"[===================================================================================================]"
+		);
+		System.out.print("[  " + langOutputs[17][currentLanguange]);
+		inputTarget_AccountNumber = scannerTF.nextLine();
+
+		int indexTargetAccount = 0;
+		isTargetAccountValid = false;
+		for (int i = 0; i < accountData.length; i++) {
+			if ((inputTarget_AccountNumber.equals(accountData[i][0])) && (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
+				indexTargetAccount = i;
+				break;
+			}
+		}
+
+		if (accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
+			isTargetAccountValid = true;
+		}
+
+
+		if (isTargetAccountValid) {
+			int adminFeeTf = 0;
+			String adminFeeTfRp = currencyFormat.format(adminFeeTf);
+
+			transferAmount = validateNonNegativeIntegerInput("[  " + langOutputs[18][currentLanguange]);
+			String transferAmountRupiah = currencyFormat.format(transferAmount);
+			int totalTransfer = transferAmount + adminFeeTf;
+			String totalTransferRp = currencyFormat.format(totalTransfer);
+			ClearScreen();
+
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                        " + langOutputs[19][currentLanguange]+ "                                         ]\n" +
+				"[                              " + langOutputs[20][currentLanguange]+ "                              ]\n" +
+				"[                              _______________________________________                              ]\n"+
+				"[  -- " + langOutputs[21][currentLanguange] + inputTarget_AccountNumber + "\n" +
+				"[  -- " + langOutputs[22][currentLanguange] + accountData[indexTargetAccount][2] + "\n"+
+				"[  -- " + langOutputs[23][currentLanguange] + accountData[indexTargetAccount][3] + "\n"+
+				"[  -- " + langOutputs[24][currentLanguange] + transferAmountRupiah + "\n" +
+				"[  -- " + langOutputs[25][currentLanguange] + adminFeeTfRp + "\n" +
+				"[===================================================================================================]"
+			);
+
+			UserConfirmation();
+			ClearScreen();
+
+			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				if (PinValidation()) {
+					if (transferAmount < userBalance) {
+						if (transferAmount <= MAX_AMOUNT_TRANSACTION && transferAmount >= MIN_AMOUNT_TRANSACTION) {
+							userBalance -= totalTransfer;
+
+							String userBalanceRupiah = currencyFormat.format(userBalance);
+							viewTransactionSuccess();
+
+							System.out.println(
+								"[===================================================================================================]\n"+
+								"[                                        "+ langOutputs[19][currentLanguange]+ "                                         ]\n" +
+								"[                                      ______________________                                       ]\n"+
+								"[  -- " + langOutputs[21][currentLanguange] + inputTarget_AccountNumber+ "\n" +
+								"[  -- " + langOutputs[22][currentLanguange]+ accountData[indexTargetAccount][2] + "\n" +
+								"[  -- " + langOutputs[23][currentLanguange]+ accountData[indexTargetAccount][3] + "\n" +
+								"[  -- " + langOutputs[24][currentLanguange] + transferAmountRupiah+ "\n" +
+								"[  -- " + langOutputs[25][currentLanguange] + adminFeeTfRp + "\n" +
+								"[  -- " + langOutputs[26][currentLanguange] + userBalanceRupiah + "\n"+
+								"[===================================================================================================]"
+							);	
+
+							// Recording transaction history
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange] + inputTarget_AccountNumber + " ("+ accountData[indexTargetAccount][2] + ")", adjustNumCharHistory(totalTransferRp), formattedLocalTime(), formattedLocalDate())));
+							recordTransactionHistory();
+						} else {
+							displayTransactionOverLimit();
+						}
+					} else {
+						viewBalanceIsNotEnough();
+					}
+				} else {
+					viewWrongPin();
+				}
+			} else {
+				viewTransactionCancelled();
+			}
+		} else {
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                    " + red + langOutputs[27][currentLanguange] + reset+ "                    ]\n" +
+				"[===================================================================================================]"
+			);
+		}
+	}
+
+	public static void transferOtherBank() {
+		ClearScreen();
+		Scanner scanTfOtherBank = new Scanner(System.in);
+		System.out.println(
+			"[===================================================================================================]\n"+
+			langOutputs[64][currentLanguange]+
+			"[===================================================================================================]\n"+
+			"[         [1] "+langOutputs[65][currentLanguange]+"                                                                       ]\n"+
+			"[                                                                                                   ]\n"+
+			"[         [2] "+langOutputs[66][currentLanguange]+"                                                                             ]\n"+
+			"[===================================================================================================]"
+		);
+		System.out.print("[  ==> ");
+		userChoiceMenu = scanTfOtherBank.nextInt();
+		switch (userChoiceMenu) {
+			case 1:
+				displayBankCode();
+				break;
+			case 2:
+				exeTransferOtherBank();
+				break;
+			default:
+				defaultCaseMenu();
+		}
+	}
+
+	public static void displayBankCode() {
+		ClearScreen();
+		System.out.print(
+			"[===================================================================================================]\n"+
+			"[   001 - BANK JOSS                                                                                 ]\n"+
+			"[   002 - RICH BANK                                                                                 ]\n"+
+			"[   003 - GOOD BANK                                                                                 ]\n"+
+			"[   004 - BANK HOKI                                                                                 ]\n"+
+			"[===================================================================================================]\n"+
+			"[   [1] "+langOutputs[67][currentLanguange]+"                                                                                     ]\n"+
+			"[===================================================================================================]\n"+
+			"[  ==> "
+		);
+		userChoiceMenu = scanner2.nextInt();
+		if (userChoiceMenu == 1) {
+			transferOtherBank();
+		} else {
+			defaultCaseMenu();
+		}
+	}
+
+	public static void exeTransferOtherBank() {
+		ClearScreen();
+		System.out.println(
+			"[===================================================================================================]\n"+
+			langOutputs[68][currentLanguange]+
+			"[===================================================================================================]"
+		);
+		System.out.print("[  " + langOutputs[17][currentLanguange]);
+		inputTarget_AccountNumber = scannerTF.nextLine();
+		String bankCode = inputTarget_AccountNumber.substring(0, 3);
+		boolean isBankCodeValid = false;
+		String targetAccountNumber = inputTarget_AccountNumber.substring(3);
+
+		// Checking bank code availibility
+		if (bankCode.equals("001") || bankCode.equals("002") || bankCode.equals("003") || bankCode.equals("004")) {
+			isBankCodeValid = true;
+		}
+
+		// Checking target account availibility
+		int indexTargetAccount = 0;
+		isTargetAccountValid = false;
+		if (isBankCodeValid) {
 			for (int i = 0; i < accountData.length; i++) {
-				if ((inputTarget_AccountNumber.equals(accountData[i][0]))
-						&& (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
-					isTargetAccountValid = true;
+				if ((targetAccountNumber.equals(accountData[i][0])) && (!targetAccountNumber.equals(inputUser_AccountNumber))) {
 					indexTargetAccount = i;
 					break;
 				}
 			}
-			// Kondisi jika isTargetAccountValid true
-			if (isTargetAccountValid) {
 
-				if (bankChoice == 1 && accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
-					adminFeeTf = 0;
-				} else {
-					System.out.println(
-							"[==========================================================================================================]\n"
-									+
-									"[  NOMOR REKENING TUJUAN TIDAK TERDAFTAR DI BANK POLINEMA, ANDA DIKENAKAN BIAYA ADMIN SEBESAR RP 1500,00  ]\n"
-									+
-									"[==========================================================================================================]");
-					adminFeeTf = 1500;
+			if (bankCode.equals("001")) {
+				if (accountData[indexTargetAccount][3].equals("BANK JOSS")) {
+					isTargetAccountValid = true;
 				}
+			} else if (bankCode.equals("002")) {
+				if (accountData[indexTargetAccount][3].equals("RICH BANK")) {
+					isTargetAccountValid = true;
+				}
+			} else if (bankCode.equals("003")) {
+				if (accountData[indexTargetAccount][3].equals("GOOD BANK")) {
+					isTargetAccountValid = true;
+				}
+			} else if (bankCode.equals("004")) {
+				if (accountData[indexTargetAccount][3].equals("BANK HOKI")) {
+					isTargetAccountValid = true;
+				}
+			}
+		}
 
-				String adminFeeTfRp = currencyFormat.format(adminFeeTf);
+		if (isTargetAccountValid) {
+			int adminFeeTf = 1500;
+			String adminFeeTfRp = currencyFormat.format(adminFeeTf);
 
-				transferAmount = validateNonNegativeIntegerInput("[  " + langOutputs[16][currentLanguange]);
-				ClearScreen();
-				// Konversi nilai output ke rupiah
-				String transferAmountRupiah = currencyFormat.format(transferAmount);
-				int totalTransfer = transferAmount + adminFeeTf;
-				String totalTransferRp = currencyFormat.format(totalTransfer);
-				System.out.println(
-						"[===================================================================================================]\n"
-								+
-								"[                                        " + langOutputs[17][currentLanguange]
-								+ "                                         ]\n" +
-								"[                              " + langOutputs[18][currentLanguange]
-								+ "                              ]\n" +
-								"[                              _______________________________________                              ]\n"
-								+
-								"[  -- " + langOutputs[19][currentLanguange] + inputTarget_AccountNumber + "\n" +
-								"[  -- " + langOutputs[20][currentLanguange] + accountData[indexTargetAccount][2] + "\n"
-								+
-								"[  -- " + langOutputs[21][currentLanguange] + accountData[indexTargetAccount][3] + "\n"
-								+
-								"[  -- " + langOutputs[22][currentLanguange] + transferAmountRupiah + "\n" +
-								"[  -- " + langOutputs[23][currentLanguange] + adminFeeTfRp + "\n" +
-								"[===================================================================================================]");
+			transferAmount = validateNonNegativeIntegerInput("[  " + langOutputs[18][currentLanguange]);
+			String transferAmountRupiah = currencyFormat.format(transferAmount);
+			int totalTransfer = transferAmount + adminFeeTf;
+			String totalTransferRp = currencyFormat.format(totalTransfer);
+			ClearScreen();
 
-				// Konfirmasi persetujuan transaksi
-				UserConfirmation();
-				ClearScreen();
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                        " + langOutputs[19][currentLanguange]+ "                                         ]\n" +
+				"[                              " + langOutputs[20][currentLanguange]+ "                              ]\n" +
+				"[                              _______________________________________                              ]\n"+
+				"[  -- " + langOutputs[21][currentLanguange] + targetAccountNumber + "\n" +
+				"[  -- " + langOutputs[22][currentLanguange] + accountData[indexTargetAccount][2] + "\n"+
+				"[  -- " + langOutputs[23][currentLanguange] + accountData[indexTargetAccount][3] + "\n"+
+				"[  -- " + langOutputs[24][currentLanguange] + transferAmountRupiah + "\n" +
+				"[  -- " + langOutputs[25][currentLanguange] + adminFeeTfRp + "\n" +
+				"[===================================================================================================]"
+			);
 
-				// Konfirmasi transaksi
-				if (userConfirmation == 'y' || userConfirmation == 'Y') {
-					// Pengecekan apakah input PIN sesuai dengan database
-					if (PinValidation()) {
-						if (transferAmount < userBalance) {
-							if (transferAmount <= MAX_AMOUNT_TRANSACTION && transferAmount >= MIN_AMOUNT_TRANSACTION) {
-								userBalance -= (transferAmount + adminFeeTf);
+			UserConfirmation();
+			ClearScreen();
 
-								// Formatting penulisan rupiah pada output
-								String userBalanceRupiah = currencyFormat.format(userBalance);
-								viewTransactionSuccess();
-								System.out.println(
-										"[===================================================================================================]\n"
-												+
-												"[                                        "
-												+ langOutputs[17][currentLanguange]
-												+ "                                         ]\n" +
-												"[                                      ______________________                                       ]\n"
-												+
-												"[  -- " + langOutputs[19][currentLanguange] + inputTarget_AccountNumber
-												+ "\n" +
-												"[  -- " + langOutputs[20][currentLanguange]
-												+ accountData[indexTargetAccount][2] + "\n" +
-												"[  -- " + langOutputs[21][currentLanguange]
-												+ accountData[indexTargetAccount][3] + "\n" +
-												"[  -- " + langOutputs[22][currentLanguange] + transferAmountRupiah
-												+ "\n" +
-												"[  -- " + langOutputs[23][currentLanguange] + adminFeeTfRp + "\n" +
-												"[  -- " + langOutputs[24][currentLanguange] + userBalanceRupiah + "\n"
-												+
-												"[===================================================================================================]");
+			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				if (PinValidation()) {
+					if (transferAmount < userBalance) {
+						if (transferAmount <= MAX_AMOUNT_TRANSACTION && transferAmount >= MIN_AMOUNT_TRANSACTION) {
+							userBalance -= totalTransfer;
 
-								// Recording transaction history
-								transactionHistoryList.add(new ArrayList<>(List.of(
-										langOutputs[49][currentLanguange] + inputTarget_AccountNumber + " ("
-												+ accountData[indexTargetAccount][2] + ")",
-										adjustNumCharHistory(totalTransferRp), formattedLocalTime(),
-										formattedLocalDate())));
-								recordTransactionHistory();
+							String userBalanceRupiah = currencyFormat.format(userBalance);
+							viewTransactionSuccess();
 
-							} else {
-								// Kondisi jika nominal transfer melebihi jumlah saldo
-								displayTransactionOverLimit();
-							}
+							System.out.println(
+								"[===================================================================================================]\n"+
+								"[                                        "+ langOutputs[19][currentLanguange]+ "                                         ]\n" +
+								"[                                      ______________________                                       ]\n"+
+								"[  -- " + langOutputs[21][currentLanguange] + targetAccountNumber+ "\n" +
+								"[  -- " + langOutputs[22][currentLanguange]+ accountData[indexTargetAccount][2] + "\n" +
+								"[  -- " + langOutputs[23][currentLanguange]+ accountData[indexTargetAccount][3] + "\n" +
+								"[  -- " + langOutputs[24][currentLanguange] + transferAmountRupiah+ "\n" +
+								"[  -- " + langOutputs[25][currentLanguange] + adminFeeTfRp + "\n" +
+								"[  -- " + langOutputs[26][currentLanguange] + userBalanceRupiah + "\n"+
+								"[===================================================================================================]"
+							);	
+
+							// Recording transaction history
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange] + inputTarget_AccountNumber + " ("+ accountData[indexTargetAccount][2] + ")", adjustNumCharHistory(totalTransferRp), formattedLocalTime(), formattedLocalDate())));
+							recordTransactionHistory();
 						} else {
-							// Kondisi jika nominal transfer melebihi jumlah saldo
-							viewBalanceIsNotEnough();
+							displayTransactionOverLimit();
 						}
 					} else {
-						// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
-						viewWrongPin();
+						viewBalanceIsNotEnough();
 					}
 				} else {
-					// Kondisi jika pengguna input 't' atau 'T'
-					viewTransactionCancelled();
+					viewWrongPin();
 				}
 			} else {
-				// Kondisi jika isTargetAccountValid bernilai FALSE
-				ClearScreen();
-				System.out.println(
-						"[===================================================================================================]\n"
-								+
-								"[                    " + red + langOutputs[25][currentLanguange] + reset
-								+ "                    ]\n" +
-								"[===================================================================================================]");
+				viewTransactionCancelled();
 			}
 		} else {
-			// Kondisi jika bankChoice bukan angka 1 atau 2
-			ClearScreen();
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                        " + red + "Pilihan bank tidak valid. Silakan pilih 1 atau 2."
-							+ reset
-							+ "                          ]\n" +
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[                    " + red + langOutputs[27][currentLanguange] + reset+ "                    ]\n" +
+				"[===================================================================================================]"
+			);
 		}
 	}
 
@@ -785,7 +910,7 @@ public class ATMSystem {
 		System.out.println(
 				"[===================================================================================================]\n"
 						+
-						"[                                     " + langOutputs[26][currentLanguange]
+						"[                                     " + langOutputs[28][currentLanguange]
 						+ "                                     ]\n" +
 						"[                                     _________________________                                     ]\n"
 						+
@@ -802,7 +927,7 @@ public class ATMSystem {
 						"[                                                                                                   ]\n"
 						+
 						"[                       [4] Rp300.000                           [8] "
-						+ langOutputs[27][currentLanguange] + "                 ]\n" +
+						+ langOutputs[29][currentLanguange] + "                 ]\n" +
 						"[===================================================================================================]");
 
 		System.out.print("[  ==> ");
@@ -839,7 +964,7 @@ public class ATMSystem {
 				break;
 			case 8:
 				// User input cashwithdrawal amount manually
-				cashWithdrawalAmount = validateNonNegativeIntegerInput("[  " + langOutputs[28][currentLanguange]);
+				cashWithdrawalAmount = validateNonNegativeIntegerInput("[  " + langOutputs[30][currentLanguange]);
 				isCashWithdrawalValid = true;
 				break;
 			default:
@@ -859,7 +984,7 @@ public class ATMSystem {
 		String cashWithdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
 
 		if (isCashWithdrawalValid) {
-			System.out.println("[  " + langOutputs[29][currentLanguange] + cashWithdrawalRupiah + " ? ");
+			System.out.println("[  " + langOutputs[31][currentLanguange] + cashWithdrawalRupiah + " ? ");
 
 			// Transaction confirmation approval
 			UserConfirmation();
@@ -872,10 +997,10 @@ public class ATMSystem {
 							// Conversion of output value to Rupiah
 							String userBalanceRupiah = currencyFormat.format(userBalance);
 							viewTransactionSuccess();
-							System.out.println("[  " + langOutputs[24][currentLanguange] + userBalanceRupiah);
+							System.out.println("[  " + langOutputs[26][currentLanguange] + userBalanceRupiah);
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange],
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[52][currentLanguange],
 									adjustNumCharHistory(cashWithdrawalRupiah), formattedLocalTime(),
 									formattedLocalDate())));
 							recordTransactionHistory();
@@ -927,12 +1052,12 @@ public class ATMSystem {
 
 	public static void SetorTunai() {
 		displayHeaderCashDeposit();
-		cashDepositAmount = validateNonNegativeIntegerInput("[  " + langOutputs[30][currentLanguange]);
+		cashDepositAmount = validateNonNegativeIntegerInput("[  " + langOutputs[32][currentLanguange]);
 
 		ClearScreen();
 
 		String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
-		System.out.println("[  " + langOutputs[31][currentLanguange] + cashDepositRupiah + " ? ");
+		System.out.println("[  " + langOutputs[33][currentLanguange] + cashDepositRupiah + " ? ");
 
 		// Transaction confirmation approval
 		UserConfirmation();
@@ -948,10 +1073,10 @@ public class ATMSystem {
 					// Conversion of output value to Rupiah
 					String userBalanceRupiah = currencyFormat.format(userBalance);
 
-					System.out.println("[  " + langOutputs[24][currentLanguange] + userBalanceRupiah);
+					System.out.println("[  " + langOutputs[26][currentLanguange] + userBalanceRupiah);
 
 					// Recording transaction history
-					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange],
+					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[53][currentLanguange],
 							adjustNumCharHistory(cashDepositRupiah), formattedLocalTime(), formattedLocalDate())));
 					recordTransactionHistory();
 
@@ -997,7 +1122,7 @@ public class ATMSystem {
 
 	public static void PembayaranLainnya() {
 		displayHeaderPayments();
-		System.out.println(langOutputs[32][currentLanguange]);
+		System.out.println(langOutputs[34][currentLanguange]);
 		System.out.print("[  ==> ");
 		int menuBayar = scanner3.nextInt();
 		ClearScreen();
@@ -1064,7 +1189,7 @@ public class ATMSystem {
 			System.out.println(
 					"[===================================================================================================]\n"
 							+
-							"[                                     " + langOutputs[33][currentLanguange]
+							"[                                     " + langOutputs[35][currentLanguange]
 							+ "                                   ]\n" +
 							"[===================================================================================================]\n"
 							+
@@ -1099,7 +1224,7 @@ public class ATMSystem {
 					System.out.println(
 							"[===================================================================================================]\n"
 									+
-									"[                         [!]  " + langOutputs[34][currentLanguange]
+									"[                         [!]  " + langOutputs[36][currentLanguange]
 									+ "  [!]                            ]\n" +
 									"[===================================================================================================]");
 					EnterForContinue();
@@ -1109,10 +1234,10 @@ public class ATMSystem {
 		} while (!isOperatorValid);
 
 		if (isOperatorValid) {
-			System.out.print("[  " + langOutputs[35][currentLanguange]); // User input nomor telepon
+			System.out.print("[  " + langOutputs[37][currentLanguange]); // User input nomor telepon
 			nomorTelepon = scannerPulsa.nextLine();
 			scanner1.nextLine();
-			nomPulsa = validateNonNegativeIntegerInput("[  " + langOutputs[36][currentLanguange]);
+			nomPulsa = validateNonNegativeIntegerInput("[  " + langOutputs[38][currentLanguange]);
 			int totalPayment = nomPulsa + adminFee;
 			String totalPaymentRp = currencyFormat.format(totalPayment);
 			ClearScreen();
@@ -1124,14 +1249,14 @@ public class ATMSystem {
 			System.out.println(
 					"[===================================================================================================]\n"
 							+
-							"[                                        " + langOutputs[17][currentLanguange]
+							"[                                        " + langOutputs[19][currentLanguange]
 							+ "                                         ]\n" +
 							"[                                      ______________________                                       ]\n"
 							+
-							"[  -- " + langOutputs[37][currentLanguange] + operatorPulsa + "\n" +
-							"[  -- " + langOutputs[38][currentLanguange] + nomorTelepon + "\n" +
-							"[  -- " + langOutputs[39][currentLanguange] + nomPulsaRp + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+							"[  -- " + langOutputs[39][currentLanguange] + operatorPulsa + "\n" +
+							"[  -- " + langOutputs[40][currentLanguange] + nomorTelepon + "\n" +
+							"[  -- " + langOutputs[41][currentLanguange] + nomPulsaRp + "\n" +
+							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
 
 			UserConfirmation();
@@ -1148,20 +1273,20 @@ public class ATMSystem {
 						System.out.println(
 								"[===================================================================================================]\n"
 										+
-										"[                                        " + langOutputs[17][currentLanguange]
+										"[                                        " + langOutputs[19][currentLanguange]
 										+ "                                         ]\n" +
 										"[                                      ______________________                                       ]\n"
 										+
-										"[  -- " + langOutputs[37][currentLanguange] + operatorPulsa + "\n" +
-										"[  -- " + langOutputs[38][currentLanguange] + nomorTelepon + "\n" +
-										"[  -- " + langOutputs[39][currentLanguange] + nomPulsaRp + "\n" +
-										"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-										"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah2 + "\n" +
+										"[  -- " + langOutputs[39][currentLanguange] + operatorPulsa + "\n" +
+										"[  -- " + langOutputs[40][currentLanguange] + nomorTelepon + "\n" +
+										"[  -- " + langOutputs[41][currentLanguange] + nomPulsaRp + "\n" +
+										"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
+										"[  -- " + langOutputs[26][currentLanguange] + saldoRupiah2 + "\n" +
 										"[===================================================================================================]");
 
 						// Pencatatan riwayat transaksi
 						transactionHistoryList.add(new ArrayList<>(List.of(
-								adjustNumCharHistory(langOutputs[52][currentLanguange] + nomorTelepon),
+								adjustNumCharHistory(langOutputs[54][currentLanguange] + nomorTelepon),
 								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
@@ -1194,7 +1319,7 @@ public class ATMSystem {
 
 	public static void Listrik() {
 		displayHeaderElectricity();
-		System.out.print("[  " + langOutputs[40][currentLanguange]);
+		System.out.print("[  " + langOutputs[42][currentLanguange]);
 		int inputPLN = scanner4.nextInt();
 		ClearScreen();
 
@@ -1218,13 +1343,13 @@ public class ATMSystem {
 				System.out.println(
 						"[===================================================================================================]\n"
 								+
-								"[                                        " + langOutputs[17][currentLanguange]
+								"[                                        " + langOutputs[19][currentLanguange]
 								+ "                                         ]\n" +
 								"[                                      ______________________                                       ]\n"
 								+
-								"[  -- " + langOutputs[41][currentLanguange] + inputPLN + "\n" +
-								"[  -- " + langOutputs[42][currentLanguange] + tagihanListrikRP + "\n" +
-								"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+								"[  -- " + langOutputs[43][currentLanguange] + inputPLN + "\n" +
+								"[  -- " + langOutputs[44][currentLanguange] + tagihanListrikRP + "\n" +
+								"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 								"[===================================================================================================]");
 
 				UserConfirmation();
@@ -1241,19 +1366,19 @@ public class ATMSystem {
 									"[===================================================================================================]\n"
 											+
 											"[                                        "
-											+ langOutputs[17][currentLanguange]
+											+ langOutputs[19][currentLanguange]
 											+ "                                         ]\n" +
 											"[                                      ______________________                                       ]\n"
 											+
-											"[  -- " + langOutputs[41][currentLanguange] + inputPLN + "\n" +
-											"[  -- " + langOutputs[42][currentLanguange] + tagihanListrikRP + "\n" +
-											"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-											"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
+											"[  -- " + langOutputs[43][currentLanguange] + inputPLN + "\n" +
+											"[  -- " + langOutputs[44][currentLanguange] + tagihanListrikRP + "\n" +
+											"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
+											"[  -- " + langOutputs[26][currentLanguange] + saldoRupiah3 + "\n" +
 											"[===================================================================================================]");
 
 							// Recording transaction history
 							transactionHistoryList.add(new ArrayList<>(List.of(
-									adjustNumCharHistory(langOutputs[53][currentLanguange] + "(" + inputPLN + ")"),
+									adjustNumCharHistory(langOutputs[55][currentLanguange] + "(" + inputPLN + ")"),
 									adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 							recordTransactionHistory();
 
@@ -1305,7 +1430,7 @@ public class ATMSystem {
 
 	public static void Pendidikan() {
 		displayHeaderEducationBill();
-		System.out.print("[  " + langOutputs[40][currentLanguange]);
+		System.out.print("[  " + langOutputs[42][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1326,13 +1451,13 @@ public class ATMSystem {
 			System.out.println(
 					"[===================================================================================================]\n"
 							+
-							"[                                        " + langOutputs[17][currentLanguange]
+							"[                                        " + langOutputs[19][currentLanguange]
 							+ "                                         ]\n" +
 							"[                                      ______________________                                       ]\n"
 							+
-							"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-							"[  -- " + langOutputs[42][currentLanguange] + tagihanPendidikanRP + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+							"[  -- " + langOutputs[43][currentLanguange] + inputVA + "\n" +
+							"[  -- " + langOutputs[44][currentLanguange] + tagihanPendidikanRP + "\n" +
+							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
 
 			UserConfirmation();
@@ -1348,19 +1473,19 @@ public class ATMSystem {
 						System.out.println(
 								"[===================================================================================================]\n"
 										+
-										"[                                        " + langOutputs[17][currentLanguange]
+										"[                                        " + langOutputs[19][currentLanguange]
 										+ "                                         ]\n" +
 										"[                                      ______________________                                       ]\n"
 										+
-										"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-										"[  -- " + langOutputs[42][currentLanguange] + tagihanPendidikanRP + "\n" +
-										"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-										"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
+										"[  -- " + langOutputs[42][currentLanguange] + inputVA + "\n" +
+										"[  -- " + langOutputs[44][currentLanguange] + tagihanPendidikanRP + "\n" +
+										"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
+										"[  -- " + langOutputs[26][currentLanguange] + saldoRupiah3 + "\n" +
 										"[===================================================================================================]");
 
 						// Recording Transaction History
 						transactionHistoryList.add(new ArrayList<>(List.of(
-								adjustNumCharHistory(langOutputs[54][currentLanguange] + "(" + inputVA + ")"),
+								adjustNumCharHistory(langOutputs[56][currentLanguange] + "(" + inputVA + ")"),
 								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
@@ -1396,7 +1521,7 @@ public class ATMSystem {
 
 	public static void Pdam() {
 		displayHeaderWaterBill();
-		System.out.print("[  " + langOutputs[40][currentLanguange]);
+		System.out.print("[  " + langOutputs[42][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1417,13 +1542,13 @@ public class ATMSystem {
 			System.out.println(
 					"[===================================================================================================]\n"
 							+
-							"[                                        " + langOutputs[17][currentLanguange]
+							"[                                        " + langOutputs[19][currentLanguange]
 							+ "                                         ]\n" +
 							"[                                      ______________________                                       ]\n"
 							+
-							"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-							"[  -- " + langOutputs[42][currentLanguange] + tagihanPdamRp + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+							"[  -- " + langOutputs[43][currentLanguange] + inputVA + "\n" +
+							"[  -- " + langOutputs[44][currentLanguange] + tagihanPdamRp + "\n" +
+							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
 
 			UserConfirmation();
@@ -1438,19 +1563,19 @@ public class ATMSystem {
 						System.out.println(
 								"[===================================================================================================]\n"
 										+
-										"[                                        " + langOutputs[17][currentLanguange]
+										"[                                        " + langOutputs[19][currentLanguange]
 										+ "                                         ]\n" +
 										"[                                      ______________________                                       ]\n"
 										+
-										"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-										"[  -- " + langOutputs[42][currentLanguange] + tagihanPdamRp + "\n" +
-										"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-										"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
+										"[  -- " + langOutputs[43][currentLanguange] + inputVA + "\n" +
+										"[  -- " + langOutputs[44][currentLanguange] + tagihanPdamRp + "\n" +
+										"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
+										"[  -- " + langOutputs[26][currentLanguange] + saldoRupiah3 + "\n" +
 										"[===================================================================================================]");
 
 						// Recording Transaction History
 						transactionHistoryList.add(new ArrayList<>(List.of(
-								adjustNumCharHistory(langOutputs[55][currentLanguange] + "(" + inputVA + ")"),
+								adjustNumCharHistory(langOutputs[57][currentLanguange] + "(" + inputVA + ")"),
 								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
@@ -1485,7 +1610,7 @@ public class ATMSystem {
 
 	public static void Bpjs() {
 		displayHeaderBpjs();
-		System.out.print("[  " + langOutputs[40][currentLanguange]);
+		System.out.print("[  " + langOutputs[42][currentLanguange]);
 		int inputVA = scanner4.nextInt();
 		ClearScreen();
 
@@ -1506,13 +1631,13 @@ public class ATMSystem {
 			System.out.println(
 					"[===================================================================================================]\n"
 							+
-							"[                                        " + langOutputs[17][currentLanguange]
+							"[                                        " + langOutputs[19][currentLanguange]
 							+ "                                         ]\n" +
 							"[                                      ______________________                                       ]\n"
 							+
-							"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-							"[  -- " + langOutputs[42][currentLanguange] + tagihanBpjsRp + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+							"[  -- " + langOutputs[43][currentLanguange] + inputVA + "\n" +
+							"[  -- " + langOutputs[44][currentLanguange] + tagihanBpjsRp + "\n" +
+							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
 
 			UserConfirmation();
@@ -1528,19 +1653,19 @@ public class ATMSystem {
 						System.out.println(
 								"[===================================================================================================]\n"
 										+
-										"[                                        " + langOutputs[17][currentLanguange]
+										"[                                        " + langOutputs[19][currentLanguange]
 										+ "                                         ]\n" +
 										"[                                      ______________________                                       ]\n"
 										+
-										"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-										"[  -- " + langOutputs[42][currentLanguange] + tagihanBpjsRp + "\n" +
-										"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-										"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
+										"[  -- " + langOutputs[43][currentLanguange] + inputVA + "\n" +
+										"[  -- " + langOutputs[44][currentLanguange] + tagihanBpjsRp + "\n" +
+										"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
+										"[  -- " + langOutputs[26][currentLanguange] + saldoRupiah3 + "\n" +
 										"[===================================================================================================]");
 
 						// Recording Transaction History
 						transactionHistoryList.add(new ArrayList<>(List.of(
-								adjustNumCharHistory(langOutputs[56][currentLanguange] + "(" + inputVA + ")"),
+								adjustNumCharHistory(langOutputs[58][currentLanguange] + "(" + inputVA + ")"),
 								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
@@ -1600,11 +1725,11 @@ public class ATMSystem {
 						+ "                                ]\n" +
 						"[===================================================================================================]\n"
 						+
-						"[   --  [1] " + langOutputs[43][currentLanguange]
+						"[   --  [1] " + langOutputs[45][currentLanguange]
 						+ "                                                                     ]\n" +
 						"[                                                                                                   ]\n"
 						+
-						"[   --  [2] " + langOutputs[44][currentLanguange]
+						"[   --  [2] " + langOutputs[46][currentLanguange]
 						+ "                                                                         ]\n" +
 						"[===================================================================================================]\n"
 						+
@@ -1656,15 +1781,15 @@ public class ATMSystem {
 		System.out.println(
 				"[===================================================================================================]\n"
 						+
-						"[                                  " + langOutputs[45][currentLanguange]
+						"[                                  " + langOutputs[47][currentLanguange]
 						+ "                                  ]\n" +
 						"[                                 _________________________________                                 ]\n"
 						+
 						"[                                                                                                   ]\n"
 						+
-						"[               INFO                                 " + langOutputs[46][currentLanguange]
-						+ "              " + langOutputs[47][currentLanguange] + "     "
-						+ langOutputs[48][currentLanguange] + "         ]");
+						"[               INFO                                 " + langOutputs[48][currentLanguange]
+						+ "              " + langOutputs[49][currentLanguange] + "     "
+						+ langOutputs[50][currentLanguange] + "         ]");
 
 		displayTransactionHistory();
 
@@ -1778,8 +1903,8 @@ public class ATMSystem {
 		}
 		System.out.println(
 			"[===================================================================================================]\n"+
-			"[                                     "+langOutputs[57][currentLanguange]+"                                   ]\n"+
-			"[   - "+langOutputs[58][currentLanguange]+"\t: "+accountData[accountLineIndex][6]+"                                                                ]\n"+
+			"[                                     "+langOutputs[59][currentLanguange]+"                                   ]\n"+
+			"[   - "+langOutputs[60][currentLanguange]+"\t: "+accountData[accountLineIndex][6]+"                                                                ]\n"+
 			"[   - STATUS         \t: "+accountStatus+"                                                                      ]\n"+
 			"[   _____________________________________________________________________________________________   ]"
 		);
@@ -1847,7 +1972,7 @@ public class ATMSystem {
 				"    ============================================================================================");
 		System.out.println(
 				"    [            ________________________________________________________________              ]");
-		System.out.printf(langOutputs[57][currentLanguange],
+		System.out.printf(langOutputs[62][currentLanguange],
 				saldoRupiah3);
 		System.out.println(
 				"    [            ----------------------------------------------------------------              ]");
@@ -1907,7 +2032,7 @@ public class ATMSystem {
 				accountData[accountLineIndex][1] = confirmedNewPin;
 				inputPin = confirmedNewPin;
 
-				recordAccountHistory(langOutputs[59][currentLanguange], formattedLocalTime(), formattedLocalDate());
+				recordAccountHistory(langOutputs[61][currentLanguange], formattedLocalTime(), formattedLocalDate());
 
 				// Menghapus output yang telah ditampilkan
 				ClearScreen();
@@ -1968,7 +2093,7 @@ public class ATMSystem {
 
 	public static boolean Exit() {
 		displayHeaderExit();
-		System.out.println(langOutputs[58][currentLanguange]);
+		System.out.println(langOutputs[63][currentLanguange]);
 		UserConfirmation();
 		ClearScreen();
 		if (userConfirmation == 'Y' || userConfirmation == 'y') {

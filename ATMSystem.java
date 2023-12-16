@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 import javax.security.auth.callback.LanguageCallback;
 
-public class yoi {
+public class ATMSystem {
 	static Scanner scanner1 = new Scanner(System.in);
 	static Scanner scanner2 = new Scanner(System.in);
 	static Scanner scanner3 = new Scanner(System.in);

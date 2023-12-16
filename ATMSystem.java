@@ -219,15 +219,19 @@ public class ATMSystem {
 		{ "TRANSACTION HISTORY", "RIWAYAT TRANSAKSI  "}, // 43
 		{ "ACCOUNT HISTORY", "RIWAYAT AKUN   "}, // 44 NEW
 		{ "YOUR RECENT TRANSACTION HISTORY", "RIWAYAT TRANSAKSI TERBARU ANDA "}, // 45
-		{ "TIME ", "WAKTU"}, // 46
-		{ " DATE  ", "TANGGAL"}, //47
-		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "}, // 48
-		{ "CASH WITHDRAWAL                    ", "TARIK TUNAI                        " }, // 49
-		{ "CASH DEPOSIT                       ", "SETOR TUNAI                        " }, //50
-		{ "BUY CREDIT TO NUMBER ", "BELI PULSA KE NOMOR "}, //51
-		{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK "},//52
-		{"    [           | Your Balance Amount %s\t\t\t\t |\t       ]\n","    [           | Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//53
-		{"\t-- Are you sure want to exit?","\t-- Apakah anda yakin untuk keluar?"}
+		{ " AMOUNT", "NOMINAL"}, // 46
+		{ "TIME ", "WAKTU"}, // 47
+		{ " DATE  ", "TANGGAL"}, //48
+		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "}, // 49
+		{ "CASH WITHDRAWAL                    ", "TARIK TUNAI                        " }, // 40
+		{ "CASH DEPOSIT                       ", "SETOR TUNAI                        " }, //51
+		{ "BUY CREDIT TO NUMBER ", "BELI PULSA KE NOMOR "}, //52
+		{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK "}, // 53
+		{ "PAY EDUCATION COST ", "BAYAR BIAYA PENDIDIKAN "}, // 53
+		{ "PAY WATER BILL ", "BAYAR TAGIHAN AIR "}, //55
+		{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN "} //56
+		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//57
+		{"Are you sure want to exit?","Apakah anda yakin untuk keluar?"} // 58
 	};
 
 	public static void main(String[] args) {
@@ -589,7 +593,8 @@ public class ATMSystem {
 							ClearScreen();
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[48][currentLanguange]+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", totalTransferRp, formattedTime, formattedDate)));
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[49][currentLanguange]+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", adjustNumCharacter(totalTransferRp), formattedTime, formattedDate)));
+							recordTransactionHistory();
 						} else {
 							displayTransactionOverLimit();
 						}
@@ -724,7 +729,8 @@ public class ATMSystem {
 							System.out.println("[  "+langOutputs[24][currentLanguange]+ userBalanceRupiah);
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[49][currentLanguange], cashWithdrawalRupiah, formattedTime, formattedDate)));
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange], adjustNumCharacter(cashWithdrawalRupiah), formattedTime, formattedDate)));
+							recordTransactionHistory();
 
 							EnterForContinue();
 
@@ -791,7 +797,8 @@ public class ATMSystem {
 					System.out.println("[  "+langOutputs[24][currentLanguange]+userBalanceRupiah);
 
 					// Recording transaction history
-					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange], cashDepositRupiah, formattedTime, formattedDate)));
+					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange], adjustNumCharacter(cashDepositRupiah), formattedTime, formattedDate)));
+					recordTransactionHistory();
 
 					EnterForContinue();
 
@@ -975,8 +982,8 @@ public class ATMSystem {
 						);
 
 						// Pencatatan riwayat transaksi
-						transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange]+nomorTelepon, totalPaymentRp, formattedTime, formattedDate)));
-						// transactionHistory.add("Telah melakukan pembelian pulsa ke nomor "+nomorTelepon+" sebesar "+totalPaymentRp);
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[52][currentLanguange]+nomorTelepon), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						recordTransactionHistory();
 
 						EnterForContinue();
 						ClearScreen();
@@ -1055,7 +1062,8 @@ public class ATMSystem {
 						);
 
 						// Recording transaction history
-						transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[52][currentLanguange]+"("+inputPLN+")", totalPaymentRp, formattedTime, formattedDate)));
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[53][currentLanguange]+"("+inputPLN+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						recordTransactionHistory();
 
 						EnterForContinue();
 						ClearScreen();
@@ -1146,7 +1154,8 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						// transactionHistory.add("Telah melakukan pembayaran tagihan pendidikan sebesar " + totalPaymentRp);
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[54][currentLanguange]+"("+inputVA+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						recordTransactionHistory();
 
 						EnterForContinue();
 						ClearScreen();
@@ -1226,7 +1235,8 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						// transactionHistory.add("Telah melakukan pembayaran tagihan PDAM sebesar " + totalPaymentRp);
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[55][currentLanguange]+"("+inputVA+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						recordTransactionHistory();
 
 						EnterForContinue();
 						ClearScreen();
@@ -1306,7 +1316,8 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						// transactionHistory.add("Telah melakukan pembayaran tagihan BPJS sebesar " + totalPaymentRp);
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[56][currentLanguange]+"("+inputVA+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						recordTransactionHistory();
 
 						EnterForContinue();
 						ClearScreen();
@@ -1404,40 +1415,87 @@ public class ATMSystem {
 			"[                                  "+langOutputs[45][currentLanguange]+"                                  ]\n"+
 			"[                                 _________________________________                                 ]\n"+
 			"[                                                                                                   ]\n"+
-			"[               INFO                                 NOMINAL              "+langOutputs[46][currentLanguange]+"     "+langOutputs[47][currentLanguange]+"         ]"
+			"[               INFO                                 "+langOutputs[46][currentLanguange]+"              "+langOutputs[47][currentLanguange]+"     "+langOutputs[48][currentLanguange]+"         ]"
 		);
 
-		// if (transactionHistory.size() > 10) {
-		// 	transactionHistory.remove(0);
-		// }
+		displayTransactionHistory();
 
-		// for (int i = 0; i < transactionHistory.size(); i++) {
-		// 	System.out.printf("%d. %s%n", (i + 1), transactionHistory.get(i));
-		// }
+		System.out.println("[===================================================================================================]");
+	}
 
+	public static void recordTransactionHistory() {
 		for (int i = transactionHistoryList.size(); i > 10; i-- ) {
 			transactionHistoryList.remove(0);
 		}
+	}
 
+	public static void displayTransactionHistory() {
 		for (int i = 0; i < transactionHistoryList.size(); i++) {
-			// if (transactionHistoryList.get(i).get(0).length() <= 24) {
-			// 	String temp = transactionHistoryList.get(i).get(0) + "\t\t";
-			// 	transactionHistoryList.get(i).set(0, temp);
-			// }
-			// if (transactionHistoryList.get(i).get(1).length() < 14) {
-			// 	String temp = transactionHistoryList.get(i).get(1) + "\t";
-			// 	transactionHistoryList.get(i).set(1, temp);
-			// }
-
-			System.out.printf("[  %d. "+transactionHistoryList.get(i).get(0)+"\t| "+transactionHistoryList.get(i).get(1)+"\t\t| "+transactionHistoryList.get(i).get(2)+"\t| "+transactionHistoryList.get(i).get(3)+"\t    ]\n", (i+1));
+			System.out.printf("[  %d. "+transactionHistoryList.get(i).get(0)+"\t| "+transactionHistoryList.get(i).get(1)+"\t| "+transactionHistoryList.get(i).get(2)+"\t| "+transactionHistoryList.get(i).get(3)+"\t    ]\n", (i+1));
 		}
-		// int i = 1;
-		// for (ArrayList<String> transactionHistoryInfo : transactionHistoryList) {
-		// 	System.out.printf("[  %d. "+transactionHistoryInfo.get(0)+"\t| "+transactionHistoryInfo.get(1)+"\t\t| "+transactionHistoryInfo.get(2)+"\t| "+transactionHistoryInfo.get(3)+"\t    ]\n", i);
-		// 	i++;
-		// }
+	}
 
-		System.out.println("[===================================================================================================]");
+		public static String adjustNumCharacter(String myString) {
+			if (myString.charAt(0) == 'R') {
+				if (myString.length() < 14) {
+					if (myString.length() == 13) {
+						myString = myString + " ";
+					} else if (myString.length() == 12) {
+						myString = myString + "  ";
+					} else if (myString.length() == 11) {
+						myString = myString + "   ";
+					} else if (myString.length() == 10) {
+						myString = myString + "    ";
+					}
+				}
+			} else {
+				if (myString.length() < 35) {
+					if (myString.length() == 34) {
+						myString = myString + " ";
+					} else if (myString.length() == 33) {
+						myString = myString + "  ";
+					} else if (myString.length() == 32) {
+						myString = myString + "   ";
+					} else if (myString.length() == 31) {
+						myString = myString + "    ";
+					} else if (myString.length() == 30) {
+						myString = myString + "     ";
+					} else if (myString.length() == 29) {
+						myString = myString + "      ";
+					} else if (myString.length() == 28) {
+						myString = myString + "       ";
+					} else if (myString.length() == 27) {
+						myString = myString + "         ";
+					} else if (myString.length() == 26) {
+						myString = myString + "          ";
+					} else if (myString.length() == 25) {
+						myString = myString + "           ";
+					} else if (myString.length() == 24) {
+						myString = myString + "            ";
+					} else if (myString.length() == 23) {
+						myString = myString + "             ";
+					} else if (myString.length() == 22) {
+						myString = myString + "              ";
+					} else if (myString.length() == 21) {
+						myString = myString + "               ";
+					} else if (myString.length() == 20) {
+						myString = myString + "                ";
+					} else if (myString.length() == 19) {
+						myString = myString + "                 ";
+					} else if (myString.length() == 18) {
+						myString = myString + "                  ";
+					} else if (myString.length() == 17) {
+						myString = myString + "                   ";
+					} else if (myString.length() == 16) {
+						myString = myString + "                    ";
+					} else if (myString.length() == 15) {
+						myString = myString + "                     ";
+					} else if (myString.length() == 14) {
+						myString = myString + "                      ";
+					}
+				}
+			}
+			return myString;
 	}
 
 	public static void accountHistory() {
@@ -1474,7 +1532,7 @@ public class ATMSystem {
 				"    ============================================================================================");
 		System.out.println(
 				"    [            ________________________________________________________________              ]");
-		System.out.printf(langOutputs[52][currentLanguange],
+		System.out.printf(langOutputs[57][currentLanguange],
 				saldoRupiah3);
 		System.out.println(
 				"    [            ----------------------------------------------------------------              ]");
@@ -1581,7 +1639,7 @@ public class ATMSystem {
 
 	public static boolean Exit() {
 		displayHeaderExit();
-		System.out.println(langOutputs[53][currentLanguange]);
+		System.out.println(langOutputs[58][currentLanguange]);
 		UserConfirmation();
 		ClearScreen();
 		if (userConfirmation == 'Y' || userConfirmation == 'y') {

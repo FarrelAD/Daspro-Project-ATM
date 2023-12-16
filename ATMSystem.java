@@ -738,7 +738,7 @@ public class ATMSystem {
 								recordTransactionHistory();
 							} else {
 								// Kondisi jika nominal transfer melebihi jumlah saldo
-								viewBalanceIsNotEnough();
+								displayTransactionOverLimit();
 							}
 						} else {
 							// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData

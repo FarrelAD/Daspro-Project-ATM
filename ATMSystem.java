@@ -279,8 +279,11 @@ public class ATMSystem {
 			{ "               [      (!) Invalid payment code. Code has been used ! (!)      ]", "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"},//84
 			{"Press 'Y' For yes. press 'T' for No --> ","Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> "},//85
 			{"[  Insert PIN : ","[  Masukkan PIN anda: "},//86
-			{"ENTER FOR CONTINUE --> ","ENTER UNTUK MELANJUTKAN --> "},//
-			
+			{"ENTER FOR CONTINUE --> ","ENTER UNTUK MELANJUTKAN --> "},//87
+			{"\t-- invalid input. Try again ","\t-- Input yang diberikan tidak valid. Silahkan ulangi kembali"},//88
+			{"Value must be more or equals 0.","Nilai harus lebih besar atau sama dengan 0."},//89
+			{"                          [  (!) PIN ONLY CONSIST 4 DIGIT NUMBERS (!) ]","                          [  (!) PIN HANYA TERDIRI DARI 4 DIGIT ANGKA (!) ]"},
+			{"\tINSERT A NEW PIN (4 DIGIT): ","\tMASUKKAN PIN BARU (4 DIGIT): "},
 	};
 
 	public static void main(String[] args) {
@@ -2413,7 +2416,7 @@ public class ATMSystem {
 			System.out.print(prompt);
 
 			while (!scanner3.hasNextInt()) {
-				System.out.println("\t-- Input yang diberikan tidak valid. Silahkan ulangi kembali");
+				System.out.println(langOutputs[88][currentLanguange]);
 				System.out.print(prompt);
 				scanner3.next(); // Hapus input yang tidak valid
 			}
@@ -2421,7 +2424,7 @@ public class ATMSystem {
 			userInput = scanner3.nextInt();
 
 			if (userInput < 0) {
-				System.out.println("Nilai harus lebih besar atau sama dengan 0.");
+				System.out.println(langOutputs[89][currentLanguange]);
 			}
 		} while (userInput < 0);
 
@@ -2436,11 +2439,11 @@ public class ATMSystem {
 				System.out.println(
 						"    ============================================================================================");
 				System.out.println(
-						"                          [  (!) PIN HANYA TERDIRI DARI 4 DIGIT ANGKA (!) ]");
+						langOutputs[90][currentLanguange]);
 				System.out.println(
 						"    ============================================================================================");
 
-				System.out.print("\tMASUKKAN PIN BARU (4 DIGIT): ");
+				System.out.print(	langOutputs[91][currentLanguange]);
 			}
 		} while (!pin.matches("\\d{4}"));
 		return pin;

@@ -27,12 +27,12 @@ public class ATMSystem {
 	// inisialisasi dan deklarasi variabel yang dibutuhkan
 	// array akun di ATM POLINEMA
 	static String[][] accountData = {
-			{ "1234567", "1234", "ATABIK", "BANK POLINEMA", "7000000", "aman" },
-			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "aman" },
-			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "aman" },
-			{ "0000000", "0000", "KARL", "BANK POLINEMA", "900000000", "aman" },
-			{ "1", "1", "RIO", "BANK JOSS", "10000000", "aman" }, // for quick try
-			{ "2", "2", "TAYLOR", "RICH BANK", "22222222", "aman" }, // for quick try
+			{ "1234567", "1234", "ATABIK", "BANK POLINEMA", "7000000", "GOOD", "04-09-2023" },
+			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "GOOD", "14-11-2023" },
+			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "GOOD", "01-01-2001" },
+			{ "0000000", "0000", "KARL", "BANK POLINEMA", "900000000", "GOOD", "05-05-2005" },
+			{ "1", "1", "RIO", "BANK JOSS", "10000000", "GOOD", "29-10-2010" }, // for quick try
+			{ "2", "2", "TAYLOR", "RICH BANK", "22222222", "GOOD", "29-02-2020" } // for quick try
 	};
 
 	// array listrikData menampung ID PLN & tagihan
@@ -94,7 +94,7 @@ public class ATMSystem {
 
 	// 'Riwayat transaksi' features variables
 	static ArrayList<ArrayList<String>> transactionHistoryList = new ArrayList<>();
-	static ArrayList<String> eachTransactionHistory = new ArrayList<>();
+	static ArrayList<ArrayList<String>> accountHistoryList = new ArrayList<>();
 
 	// 'Exit' feature variables
 	static boolean isStopTransaction = false;
@@ -217,8 +217,11 @@ public class ATMSystem {
 		{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK "}, // 53
 		{ "PAY EDUCATION COST ", "BAYAR BIAYA PENDIDIKAN "}, // 53
 		{ "PAY WATER BILL ", "BAYAR TAGIHAN AIR "}, //55
-		{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN "} //56
-		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//57
+		{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN "}, //56
+		{ "YOUR RECENT ACCOUNT HISTORY", " RIWAYAT AKUN TERBARU ANDA "}, //57
+		{ "ACCOUNT CREATED", "AKUN DIBUAT    "}, //58
+		{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN"}, //59
+		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//57 OLD
 		{"Are you sure want to exit?","Apakah anda yakin untuk keluar?"} // 58
 	};
 
@@ -303,7 +306,7 @@ public class ATMSystem {
 
 			isAccountNumberValid = false;
 			if (isAccountFind) {
-				if (accountData[accountLineIndex][5].equals("aman")) {
+				if (accountData[accountLineIndex][5].equals("GOOD")) {
 					isAccountNumberValid = true;
 				}
 			}
@@ -351,7 +354,7 @@ public class ATMSystem {
 					"[    [!]   ________________________________________________________________________________   [!]   ]\n"+
 					"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"+
 					"[===================================================================================================]");
-				accountData[accountLineIndex][5] = "TERBLOKIR";
+				accountData[accountLineIndex][5] = "BLOCKED";
 				EnterForContinue();
 			}
 		} while (tryToLogin || !isAccountFind);
@@ -1423,74 +1426,131 @@ public class ATMSystem {
 		}
 	}
 
-		public static String adjustNumCharHistory(String myString) {
-			if (myString.charAt(0) == 'R') {
-				if (myString.length() < 14) {
-					if (myString.length() == 13) {
-						myString = myString + " ";
-					} else if (myString.length() == 12) {
-						myString = myString + "  ";
-					} else if (myString.length() == 11) {
-						myString = myString + "   ";
-					} else if (myString.length() == 10) {
-						myString = myString + "    ";
-					}
-				}
-			} else {
-				if (myString.length() < 35) {
-					if (myString.length() == 34) {
-						myString = myString + " ";
-					} else if (myString.length() == 33) {
-						myString = myString + "  ";
-					} else if (myString.length() == 32) {
-						myString = myString + "   ";
-					} else if (myString.length() == 31) {
-						myString = myString + "    ";
-					} else if (myString.length() == 30) {
-						myString = myString + "     ";
-					} else if (myString.length() == 29) {
-						myString = myString + "      ";
-					} else if (myString.length() == 28) {
-						myString = myString + "       ";
-					} else if (myString.length() == 27) {
-						myString = myString + "         ";
-					} else if (myString.length() == 26) {
-						myString = myString + "          ";
-					} else if (myString.length() == 25) {
-						myString = myString + "           ";
-					} else if (myString.length() == 24) {
-						myString = myString + "            ";
-					} else if (myString.length() == 23) {
-						myString = myString + "             ";
-					} else if (myString.length() == 22) {
-						myString = myString + "              ";
-					} else if (myString.length() == 21) {
-						myString = myString + "               ";
-					} else if (myString.length() == 20) {
-						myString = myString + "                ";
-					} else if (myString.length() == 19) {
-						myString = myString + "                 ";
-					} else if (myString.length() == 18) {
-						myString = myString + "                  ";
-					} else if (myString.length() == 17) {
-						myString = myString + "                   ";
-					} else if (myString.length() == 16) {
-						myString = myString + "                    ";
-					} else if (myString.length() == 15) {
-						myString = myString + "                     ";
-					} else if (myString.length() == 14) {
-						myString = myString + "                      ";
-					}
+	public static String adjustNumCharHistory(String myString) {
+		if (myString.charAt(0) == 'R') {
+			if (myString.length() < 14) {
+				if (myString.length() == 13) {
+					myString = myString + " ";
+				} else if (myString.length() == 12) {
+					myString = myString + "  ";
+				} else if (myString.length() == 11) {
+					myString = myString + "   ";
+				} else if (myString.length() == 10) {
+					myString = myString + "    ";
 				}
 			}
-			return myString;
+		} else {
+			if (myString.length() < 35) {
+				if (myString.length() == 34) {
+					myString = myString + " ";
+				} else if (myString.length() == 33) {
+					myString = myString + "  ";
+				} else if (myString.length() == 32) {
+					myString = myString + "   ";
+				} else if (myString.length() == 31) {
+					myString = myString + "    ";
+				} else if (myString.length() == 30) {
+					myString = myString + "     ";
+				} else if (myString.length() == 29) {
+					myString = myString + "      ";
+				} else if (myString.length() == 28) {
+					myString = myString + "       ";
+				} else if (myString.length() == 27) {
+					myString = myString + "         ";
+				} else if (myString.length() == 26) {
+					myString = myString + "          ";
+				} else if (myString.length() == 25) {
+					myString = myString + "           ";
+				} else if (myString.length() == 24) {
+					myString = myString + "            ";
+				} else if (myString.length() == 23) {
+					myString = myString + "             ";
+				} else if (myString.length() == 22) {
+					myString = myString + "              ";
+				} else if (myString.length() == 21) {
+					myString = myString + "               ";
+				} else if (myString.length() == 20) {
+					myString = myString + "                ";
+				} else if (myString.length() == 19) {
+					myString = myString + "                 ";
+				} else if (myString.length() == 18) {
+					myString = myString + "                  ";
+				} else if (myString.length() == 17) {
+					myString = myString + "                   ";
+				} else if (myString.length() == 16) {
+					myString = myString + "                    ";
+				} else if (myString.length() == 15) {
+					myString = myString + "                     ";
+				} else if (myString.length() == 14) {
+					myString = myString + "                      ";
+				}
+			}
+		}
+		return myString;
+	}
+
+	public static void displayHeaderAccountHistory() {
+		if (currentLanguange == 0) {
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - ╔═╗╔═╗╔═╗╔═╗╦ ╦╔╗╔╔╦╗  ╦ ╦╦╔═╗╔╦╗╔═╗╦═╗╦ ╦- - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - ╠═╣║  ║  ║ ║║ ║║║║ ║   ╠═╣║╚═╗ ║ ║ ║╠╦╝╚╦╝- - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - ╩ ╩╚═╝╚═╝╚═╝╚═╝╝╚╝ ╩   ╩ ╩╩╚═╝ ╩ ╚═╝╩╚═ ╩ - - - - - - - - - - - - - - -]\n"+
+				"[===================================================================================================]\n"
+			);	
+		} else {
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - - - -╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔═╗╦╔═╦ ╦╔╗╔- - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - -╠╦╝║║║║╠═╣╚╦╝╠═╣ ║   ╠═╣╠╩╗║ ║║║║- - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - -╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩   ╩ ╩╩ ╩╚═╝╝╚╝- - - - - - - - - - - - - - - - -]\n"+
+				"[===================================================================================================]"
+			);
+		}
 	}
 
 	public static void accountHistory() {
+		displayHeaderAccountHistory();
+		String accountStatus = accountData[accountLineIndex][5];
+		if (currentLanguange == 1) {
+			accountStatus = "AMAN";
+		}
 		System.out.println(
 			"[===================================================================================================]\n"+
-			"[===================================================================================================]\n"
+			"[                                     "+langOutputs[57][currentLanguange]+"                                   ]\n"+
+			"[   - "+langOutputs[58][currentLanguange]+"\t: "+accountData[accountLineIndex][6]+"                                                                ]\n"+
+			"[   - STATUS         \t: "+accountStatus+"                                                                      ]\n"+
+			"[   _____________________________________________________________________________________________   ]"
 		);
+
+		displayAccountHistory();
+		System.out.println("[===================================================================================================]");
+	}
+
+	public static void recordAccountHistory(String myInfo, String myTime, String myDate) {
+		accountHistoryList.add(new ArrayList<>(List.of(myInfo, myTime, myDate)));
+	}
+
+	public static void displayAccountHistory() {
+		ArrayList<String> accountHistory = new ArrayList<>();
+		for (int i = 0; i < accountHistoryList.size(); i++) {
+			accountHistory.add(accountHistoryList.get(i).get(0) + " " + accountHistoryList.get(i).get(1) + " " + accountHistoryList.get(i).get(2));
+			// System.out.printf("[   %d. " + accountHistoryList.get(i).get(0) + " " + accountHistoryList.get(i).get(1) + " " + accountHistoryList.get(i).get(2) + "                                              ]\n", (i+1));
+		}
+
+		if (currentLanguange == 0) {
+			for (int i = 0; i < accountHistory.size(); i++) {
+				accountHistory.set(i, accountHistory.get(i) + "        ");
+			}
+		} else {
+			for (int i = 0; i < accountHistory.size(); i++) {
+				accountHistory.set(i, accountHistory.get(i) + " ");
+			}
+		}
+
+		for (int i = 0; i < accountHistory.size(); i++) {
+			System.out.printf("[  %d. %s                                               ]\n", (i+1), accountHistory.get(i));
+		}
 	}
 
 	public static void displayHeaderBalanceInquiry() {
@@ -1553,27 +1613,26 @@ public class ATMSystem {
 	}
 
 	public static void UbahPin() {
+		Scanner scanner7 = new Scanner(System.in);
 		displayHeaderChangePin();
 		String userRekening = accountData[accountLineIndex][0];
-		System.out.print("    Masukkan PIN anda : "); // Input PIN pengguna
-		String inputPin7 = scanner1.nextLine();
-		scanner1.nextLine();
+		System.out.print("[  Masukkan PIN anda : ");
+		String inputPin7 = scanner7.nextLine();
 
 		ClearScreen();
 
 		if (inputPin7.equals(inputPin)) {
-			System.out.println(
-					"    ============================================================================================");
 			System.out.print("    Masukkan PIN baru: ");
-			String inputNewPin = getValidatedPin(scanner1);
+			String inputNewPin = getValidatedPin(scanner7);
 			System.out.print("    Konfirmasi PIN baru: ");
-			String confirmedNewPin = getValidatedPin(scanner1);
+			String confirmedNewPin = getValidatedPin(scanner7);
 			if (inputNewPin.equals(confirmedNewPin)) {
 				int indeksNoRek = 0;
 				accountData[accountLineIndex][1] = confirmedNewPin;
-				// transactionHistory[maxTransactionHistory
-				// - transactionCount] = "Telah melakukan pengubahan pin";
-				// transactionCount--;
+				inputPin = confirmedNewPin;
+
+				recordAccountHistory(langOutputs[59][currentLanguange], formattedLocalTime(), formattedLocalDate());
+
 				// Menghapus output yang telah ditampilkan
 				ClearScreen();
 

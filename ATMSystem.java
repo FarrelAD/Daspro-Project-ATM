@@ -738,6 +738,7 @@ public class ATMSystem {
 								recordTransactionHistory();
 
 							} else {
+								// Kondisi jika nominal transfer melebihi jumlah saldo
 								displayTransactionOverLimit();
 							}
 						} else {

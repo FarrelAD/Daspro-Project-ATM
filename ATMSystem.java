@@ -136,93 +136,116 @@ public class ATMSystem {
 	// Variables for choose languange feature
 	static int currentLanguange = 0;
 	static String[][] langOutputs = {
-		{ "  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI" }, // 0
-		{ "TRANSFER", "TRANSFER" }, // 1
-		{ "CASH WITHDRAWAL", "TARIK TUNAI    " }, // 2
-		{ "CASH DEPOSIT", "SETOR TUNAI " }, // 3
-		{ "PAYMENTS  ", "PEMBAYARAN" }, // 4
-		{ "HISTORY", "RIWAYAT" }, // 5
-		{ "BALANCE INQUIRY", "CEK SALDO      " }, // 6
-		{ "CHANGE PIN", "UBAH PIN  " }, // 7
-		{ "EXIT  ", "KELUAR" }, // 8
-		{ "HELP", "BANTUAN" }, // 9
-		{ "ANOTHER ACTION?", "TINDAKAN LAIN? " }, // 10
-		{ "YES", "YA " }, // 11
-		{ "NO   ", "TIDAK" }, // 12
-		{ "   INVALID INPUT. OPTION NOT AVAILABLE.   ", "INPUT TIDAK VALID. PILIHAN TIDAK TERSEDIA." }, // 13
-		{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR" }, // 14
-		{ "INPUT THE DESTINATION ACCOUNT NUMBER : ", "MASUKKAN NOMOR REKENING TUJUAN : " }, // 15
-		{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
-		{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 17 
-		{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      "}, //18
-		{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 19 
-		{ "NAME                   : ", "NAMA                   : " }, // 20 
-		{ "BANK                   : ", "BANK                   : " }, // 21 
-		{ "TRANSFER AMOUNT        : ", "NOMINAL TRANSFER       : " }, // 22
-		{ "ADMIN FEE              : ", "BIAYA ADMIN            : " }, // 23
-		{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 24
-		{ " [!]  FAILED TRANSACTION. INVALID DESTINATION ACCOUNT  [!] ",
-		  "[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25 
-		{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   "}, // 26 
-		{ "OTHER AMOUNT   ", "NOMINAL LAINNYA"}, //27
-		{"INPUT CASH WITHDRAWAL AMOUNT : Rp","MASUKKAN NOMINAL TARIK TUNAI : Rp"}, //28
-		{"CONFIRM CASH WITHDRAWAL : " ,"KONFIRMASI TARIK TUNAI : " },//29
-		{"INPUT CASH DEPOSIT AMOUNT : Rp ", "MASUKKAN NOMINAL SETOR TUNAI : Rp "}, //30
-		{ "CONFIRM CASH DEPOSIT : ", "KONFIRMASI SETOR TUNAI : "}, // 31
-		{"[===================================================================================================]\n"+
-		 "[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"+
-		 "[===================================================================================================]\n"+
-		 "[                       [1] CREDIT                              [4] PDAM /                          ]\n"+
-		 "[                                                                   WATER BILL                      ]\n"+
-		 "[                                                                                                   ]\n"+
-		 "[                       [2] PLN /                               [5] BPJS /                          ]\n"+
-		 "[                           ELECTRIC BILL                           HEALTH INSURANCE                ]\n"+
-		 "[                                                                                                   ]\n"+
-		 "[                       [3] EDUCATION                           [6] BACK TO THE                     ]\n"+
-		 "[                                                                   MAIN MENU                       ]\n"+
-		 "[                                                                                                   ]\n"+
-		 "[===================================================================================================]",
-	     "[===================================================================================================]\n"+
-		 "[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"+
-	     "[===================================================================================================]\n"+
-		 "[                       [1] PULSA                              [4] PDAM /                           ]\n"+
-		 "[                                                                  TAGIHAN AIR                      ]\n"+
-		 "[                                                                                                   ]\n"+
-         "[                       [2] PLN /                              [5] BPJS /                           ]\n"+
-         "[                           TAGIHAN LISTRIK                        ASURANSI KESEHATAN               ]\n"+
-		 "[                                                                                                   ]\n"+
-		 "[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"+
-		 "[                                                                  MENU UTAMA                       ]\n"+
-		 "[===================================================================================================]"}, //32
-		{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, //33
-		{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, //34
-		{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : "}, // 35 
-		{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp"}, //36
-		{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : "}, // 37 
-		{ "PHONE NUMBER           : ", "NOMOR TELEPON          : "}, // 38
-		{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : "}, // 39
-		{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : "}, // 40
-		{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : "}, //41
-		{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : "}, // 42
-		{ "TRANSACTION HISTORY", "RIWAYAT TRANSAKSI  "}, // 43
-		{ "ACCOUNT HISTORY", "RIWAYAT AKUN   "}, // 44 NEW
-		{ "YOUR RECENT TRANSACTION HISTORY", "RIWAYAT TRANSAKSI TERBARU ANDA "}, // 45
-		{ " AMOUNT", "NOMINAL"}, // 46
-		{ "TIME ", "WAKTU"}, // 47
-		{ " DATE  ", "TANGGAL"}, //48
-		{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING "}, // 49
-		{ "CASH WITHDRAWAL                    ", "TARIK TUNAI                        " }, // 40
-		{ "CASH DEPOSIT                       ", "SETOR TUNAI                        " }, //51
-		{ "BUY CREDIT TO NUMBER ", "BELI PULSA KE NOMOR "}, //52
-		{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK "}, // 53
-		{ "PAY EDUCATION COST ", "BAYAR BIAYA PENDIDIKAN "}, // 53
-		{ "PAY WATER BILL ", "BAYAR TAGIHAN AIR "}, //55
-		{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN "}, //56
-		{ "YOUR RECENT ACCOUNT HISTORY", " RIWAYAT AKUN TERBARU ANDA "}, //57
-		{ "ACCOUNT CREATED", "AKUN DIBUAT    "}, //58
-		{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN"}, //59
-		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//57 OLD
-		{"Are you sure want to exit?","Apakah anda yakin untuk keluar?"} // 58
+			{ "  PLEASE SELECT A MENU BELOW   ", "SILAKAN PILIH MENU DI BAWAH INI" }, // 0
+			{ "TRANSFER", "TRANSFER" }, // 1
+			{ "CASH WITHDRAWAL", "TARIK TUNAI    " }, // 2
+			{ "CASH DEPOSIT", "SETOR TUNAI " }, // 3
+			{ "PAYMENTS  ", "PEMBAYARAN" }, // 4
+			{ "HISTORY", "RIWAYAT" }, // 5
+			{ "BALANCE INQUIRY", "CEK SALDO      " }, // 6
+			{ "CHANGE PIN", "UBAH PIN  " }, // 7
+			{ "EXIT  ", "KELUAR" }, // 8
+			{ "HELP", "BANTUAN" }, // 9
+			{ "ANOTHER ACTION?", "TINDAKAN LAIN? " }, // 10
+			{ "YES", "YA " }, // 11
+			{ "NO   ", "TIDAK" }, // 12
+			{ "   INVALID INPUT. OPTION NOT AVAILABLE.   ", "INPUT TIDAK VALID. PILIHAN TIDAK TERSEDIA." }, // 13
+			{ " PLEASE INPUT CORRECTLY ", "SILAKAN INPUT YANG BENAR" }, // 14
+			{ "INPUT THE DESTINATION ACCOUNT NUMBER : ", "MASUKKAN NOMOR REKENING TUJUAN : " }, // 15
+			{ "INPUT THE TRANSFER AMOUNT : Rp ", "MASUKKAN NOMINAL TRANSFER : Rp " }, // 16
+			{ "DETAIL TRANSACTION", "RINCIAN TRANSAKSI " }, // 17
+			{ "MAKE SURE THE FOLLOWING DATA IS CORRECT", "     PASTIKAN DATA BERIKUT SESUAI      " }, // 18
+			{ "DESTINATION ACCOUNT    : ", "REKENING TUJUAN        : " }, // 19
+			{ "NAME                   : ", "NAMA                   : " }, // 20
+			{ "BANK                   : ", "BANK                   : " }, // 21
+			{ "TRANSFER AMOUNT        : ", "NOMINAL TRANSFER       : " }, // 22
+			{ "ADMIN FEE              : ", "BIAYA ADMIN            : " }, // 23
+			{ "YOUR REMAINING BALANCE : ", "SISA SALDO ANDA        : " }, // 24
+			{ " [!]  FAILED TRANSACTION. INVALID DESTINATION ACCOUNT  [!] ",
+					"[!]  TRANSAKSI GAGAL. NOMOR REKENING TUJUAN TIDAK VALID [!]" }, // 25
+			{ "SELECT THE NOMINAL AMOUNT", "  PILIH JUMLAH NOMINAL   " }, // 26
+			{ "OTHER AMOUNT   ", "NOMINAL LAINNYA" }, // 27
+			{ "INPUT CASH WITHDRAWAL AMOUNT : Rp", "MASUKKAN NOMINAL TARIK TUNAI : Rp" }, // 28
+			{ "CONFIRM CASH WITHDRAWAL : ", "KONFIRMASI TARIK TUNAI : " }, // 29
+			{ "INPUT CASH DEPOSIT AMOUNT : Rp ", "MASUKKAN NOMINAL SETOR TUNAI : Rp " }, // 30
+			{ "CONFIRM CASH DEPOSIT : ", "KONFIRMASI SETOR TUNAI : " }, // 31
+			{ "[===================================================================================================]\n"
+					+
+					"[                              CHOOSE THE PAYMENT TRANSACTION BELOW                                 ]\n"
+					+
+					"[===================================================================================================]\n"
+					+
+					"[                       [1] CREDIT                              [4] PDAM /                          ]\n"
+					+
+					"[                                                                   WATER BILL                      ]\n"
+					+
+					"[                                                                                                   ]\n"
+					+
+					"[                       [2] PLN /                               [5] BPJS /                          ]\n"
+					+
+					"[                           ELECTRIC BILL                           HEALTH INSURANCE                ]\n"
+					+
+					"[                                                                                                   ]\n"
+					+
+					"[                       [3] EDUCATION                           [6] BACK TO THE                     ]\n"
+					+
+					"[                                                                   MAIN MENU                       ]\n"
+					+
+					"[                                                                                                   ]\n"
+					+
+					"[===================================================================================================]",
+					"[===================================================================================================]\n"
+							+
+							"[                            SILAKAN PILIH TRANSAKSI PEMBAYARAN BERIKUT                             ]\n"
+							+
+							"[===================================================================================================]\n"
+							+
+							"[                       [1] PULSA                              [4] PDAM /                           ]\n"
+							+
+							"[                                                                  TAGIHAN AIR                      ]\n"
+							+
+							"[                                                                                                   ]\n"
+							+
+							"[                       [2] PLN /                              [5] BPJS /                           ]\n"
+							+
+							"[                           TAGIHAN LISTRIK                        ASURANSI KESEHATAN               ]\n"
+							+
+							"[                                                                                                   ]\n"
+							+
+							"[                       [3] PENDIDIKAN                         [6] KEMBALI KE                       ]\n"
+							+
+							"[                                                                  MENU UTAMA                       ]\n"
+							+
+							"[===================================================================================================]" }, // 32
+			{ "CHOOSE AN OPERATOR CELLULER", "  PILIH OPERATOR SELULER   " }, // 33
+			{ "THE OPERATOR YOU SELECTED IS INVALID", "OPERATOR YANG ANDA PILIH TIDAK VALID" }, // 34
+			{ "INPUT PHONE NUMBER : ", "MASUKKAN NOMOR TELEPON : " }, // 35
+			{ "INPUT CREDIT AMOUNT : Rp", "MASUKKAN NOMINAL PULSA : Rp" }, // 36
+			{ "CELLULER PROVIDER      : ", "OPERATOR SELULER       : " }, // 37
+			{ "PHONE NUMBER           : ", "NOMOR TELEPON          : " }, // 38
+			{ "CREDIT AMOUNT          : ", "NOMINAL PULSA          : " }, // 39
+			{ "INPUT PAYMENT CODE : ", "MASUKKAN KODE PEMBAYARAN : " }, // 40
+			{ "PAYMENT CODE           : ", "KODE PEMBAYARAN        : " }, // 41
+			{ "AMOUNT OF BILL         : ", "JUMLAH TAGIHAN         : " }, // 42
+			{ "TRANSACTION HISTORY", "RIWAYAT TRANSAKSI  " }, // 43
+			{ "ACCOUNT HISTORY", "RIWAYAT AKUN   " }, // 44 NEW
+			{ "YOUR RECENT TRANSACTION HISTORY", "RIWAYAT TRANSAKSI TERBARU ANDA " }, // 45
+			{ " AMOUNT", "NOMINAL" }, // 46
+			{ "TIME ", "WAKTU" }, // 47
+			{ " DATE  ", "TANGGAL" }, // 48
+			{ "TRANSFER TO ACCOUNT ", "TRANSFER KE REKENING " }, // 49
+			{ "CASH WITHDRAWAL                    ", "TARIK TUNAI                        " }, // 40
+			{ "CASH DEPOSIT                       ", "SETOR TUNAI                        " }, // 51
+			{ "BUY CREDIT TO NUMBER ", "BELI PULSA KE NOMOR " }, // 52
+			{ "PAY ELECTRICITY BILL ", "BAYAR TAGIHAN LISTRIK " }, // 53
+			{ "PAY EDUCATION COST ", "BAYAR BIAYA PENDIDIKAN " }, // 53
+			{ "PAY WATER BILL ", "BAYAR TAGIHAN AIR " }, // 55
+			{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN " }, // 56
+			{ "YOUR RECENT ACCOUNT HISTORY", " RIWAYAT AKUN TERBARU ANDA " }, // 57
+			{ "ACCOUNT CREATED", "AKUN DIBUAT    " }, // 58
+			{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN" }, // 59
+			{ "Your Balance Amount %s\t\t\t\t |\t       ]\n", "Saldo anda sebesar %s\t\t\t\t |\t       ]\n" }, // 57 OLD
+			{ "Are you sure want to exit?", "Apakah anda yakin untuk keluar?" } // 58
 	};
 
 	public static void main(String[] args) {
@@ -394,11 +417,15 @@ public class ATMSystem {
 			// "TERBLOKIR"
 			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
 				System.out.println(
-					"[===================================================================================================]\n"+
-					"[          YOU HAVE INPUT YOUR PIN INCORRECTLY 3 TIMES. SORRY, WE HAVE BLOCKED YOUR ACCOUNT         ]\n"+
-					"[    [!]   ________________________________________________________________________________   [!]   ]\n"+
-					"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"+
-					"[===================================================================================================]");
+						"[===================================================================================================]\n"
+								+
+								"[          YOU HAVE INPUT YOUR PIN INCORRECTLY 3 TIMES. SORRY, WE HAVE BLOCKED YOUR ACCOUNT         ]\n"
+								+
+								"[    [!]   ________________________________________________________________________________   [!]   ]\n"
+								+
+								"[   ANDA TELAH SALAH MEMASUKKAN PIN SEBANYAK 3 KALI. MOHON MAAF, NOMOR REKENING ANDA KAMI BLOKIR    ]\n"
+								+
+								"[===================================================================================================]");
 				accountData[accountLineIndex][5] = "BLOCKED";
 				EnterForContinue();
 			}
@@ -1320,60 +1347,66 @@ public class ATMSystem {
 		}
 
 		if (isPendidikanValid) {
-			String tagihanPendidikanRP = currencyFormat.format(pendidikanData[indexPendidikan][1]);
-			int totalPayment = pendidikanData[indexPendidikan][1] + adminFee;
-			String totalPaymentRp = currencyFormat.format(totalPayment);
-			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                        " + langOutputs[17][currentLanguange]
-							+ "                                         ]\n" +
-							"[                                      ______________________                                       ]\n"
-							+
-							"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-							"[  -- " + langOutputs[42][currentLanguange] + tagihanPendidikanRP + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-							"[===================================================================================================]");
+			if (pendidikanData[indexPendidikan][2] == 1) {
+				String tagihanPendidikanRP = currencyFormat.format(pendidikanData[indexPendidikan][1]);
+				int totalPayment = pendidikanData[indexPendidikan][1] + adminFee;
+				String totalPaymentRp = currencyFormat.format(totalPayment);
+				System.out.println(
+						"[===================================================================================================]\n"
+								+
+								"[                                        " + langOutputs[17][currentLanguange]
+								+ "                                         ]\n" +
+								"[                                      ______________________                                       ]\n"
+								+
+								"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
+								"[  -- " + langOutputs[42][currentLanguange] + tagihanPendidikanRP + "\n" +
+								"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+								"[===================================================================================================]");
 
-			UserConfirmation();
-			ClearScreen();
-			if (userConfirmation == 'Y' || userConfirmation == 'y') {
-				if (PinValidation()) {
-					if (pendidikanData[indexPendidikan][1] < userBalance) {
-						userBalance -= totalPayment;
-						// Formatting output ke Rupiah
-						String saldoRupiah3 = currencyFormat.format(userBalance);
+				UserConfirmation();
+				ClearScreen();
+				if (userConfirmation == 'Y' || userConfirmation == 'y') {
+					if (PinValidation()) {
+						if (pendidikanData[indexPendidikan][1] < userBalance) {
+							userBalance -= totalPayment;
+							pendidikanData[indexPendidikan][2] = 0;
+							// Formatting output ke Rupiah
+							String saldoRupiah3 = currencyFormat.format(userBalance);
 
-						viewTransactionSuccess();
-						System.out.println(
-								"[===================================================================================================]\n"
-										+
-										"[                                        " + langOutputs[17][currentLanguange]
-										+ "                                         ]\n" +
-										"[                                      ______________________                                       ]\n"
-										+
-										"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-										"[  -- " + langOutputs[42][currentLanguange] + tagihanPendidikanRP + "\n" +
-										"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-										"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
-										"[===================================================================================================]");
+							viewTransactionSuccess();
+							System.out.println(
+									"[===================================================================================================]\n"
+											+
+											"[                                        "
+											+ langOutputs[17][currentLanguange]
+											+ "                                         ]\n" +
+											"[                                      ______________________                                       ]\n"
+											+
+											"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
+											"[  -- " + langOutputs[42][currentLanguange] + tagihanPendidikanRP + "\n" +
+											"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+											"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
+											"[===================================================================================================]");
 
-						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(
-								adjustNumCharHistory(langOutputs[54][currentLanguange] + "(" + inputVA + ")"),
-								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
-						recordTransactionHistory();
+							// Recording Transaction History
+							transactionHistoryList.add(new ArrayList<>(List.of(
+									adjustNumCharHistory(langOutputs[54][currentLanguange] + "(" + inputVA + ")"),
+									adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+							recordTransactionHistory();
 
-						EnterForContinue();
-						ClearScreen();
+							EnterForContinue();
+							ClearScreen();
+						} else {
+							viewBalanceIsNotEnough();
+						}
 					} else {
-						viewBalanceIsNotEnough();
+						viewWrongPin();
 					}
 				} else {
-					viewWrongPin();
+					viewTransactionCancelled();
 				}
 			} else {
-				viewTransactionCancelled();
+				viewPaymentCodeAlreadyUSe();
 			}
 		} else {
 			viewPaymentCodeInvalid();
@@ -1753,20 +1786,26 @@ public class ATMSystem {
 	public static void displayHeaderAccountHistory() {
 		if (currentLanguange == 0) {
 			System.out.println(
-				"[===================================================================================================]\n"+
-				"[- - - - - - - - - - - - - - ╔═╗╔═╗╔═╗╔═╗╦ ╦╔╗╔╔╦╗  ╦ ╦╦╔═╗╔╦╗╔═╗╦═╗╦ ╦- - - - - - - - - - - - - - -]\n"+
-				"[- - - - - - - - - - - - - - ╠═╣║  ║  ║ ║║ ║║║║ ║   ╠═╣║╚═╗ ║ ║ ║╠╦╝╚╦╝- - - - - - - - - - - - - - -]\n"+
-				"[- - - - - - - - - - - - - - ╩ ╩╚═╝╚═╝╚═╝╚═╝╝╚╝ ╩   ╩ ╩╩╚═╝ ╩ ╚═╝╩╚═ ╩ - - - - - - - - - - - - - - -]\n"+
-				"[===================================================================================================]\n"
-			);	
+					"[===================================================================================================]\n"
+							+
+							"[- - - - - - - - - - - - - - ╔═╗╔═╗╔═╗╔═╗╦ ╦╔╗╔╔╦╗  ╦ ╦╦╔═╗╔╦╗╔═╗╦═╗╦ ╦- - - - - - - - - - - - - - -]\n"
+							+
+							"[- - - - - - - - - - - - - - ╠═╣║  ║  ║ ║║ ║║║║ ║   ╠═╣║╚═╗ ║ ║ ║╠╦╝╚╦╝- - - - - - - - - - - - - - -]\n"
+							+
+							"[- - - - - - - - - - - - - - ╩ ╩╚═╝╚═╝╚═╝╚═╝╝╚╝ ╩   ╩ ╩╩╚═╝ ╩ ╚═╝╩╚═ ╩ - - - - - - - - - - - - - - -]\n"
+							+
+							"[===================================================================================================]\n");
 		} else {
 			System.out.println(
-				"[===================================================================================================]\n"+
-				"[- - - - - - - - - - - - - - - - -╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔═╗╦╔═╦ ╦╔╗╔- - - - - - - - - - - - - - - - -]\n"+
-				"[- - - - - - - - - - - - - - - - -╠╦╝║║║║╠═╣╚╦╝╠═╣ ║   ╠═╣╠╩╗║ ║║║║- - - - - - - - - - - - - - - - -]\n"+
-				"[- - - - - - - - - - - - - - - - -╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩   ╩ ╩╩ ╩╚═╝╝╚╝- - - - - - - - - - - - - - - - -]\n"+
-				"[===================================================================================================]"
-			);
+					"[===================================================================================================]\n"
+							+
+							"[- - - - - - - - - - - - - - - - -╦═╗╦╦ ╦╔═╗╦ ╦╔═╗╔╦╗  ╔═╗╦╔═╦ ╦╔╗╔- - - - - - - - - - - - - - - - -]\n"
+							+
+							"[- - - - - - - - - - - - - - - - -╠╦╝║║║║╠═╣╚╦╝╠═╣ ║   ╠═╣╠╩╗║ ║║║║- - - - - - - - - - - - - - - - -]\n"
+							+
+							"[- - - - - - - - - - - - - - - - -╩╚═╩╚╩╝╩ ╩ ╩ ╩ ╩ ╩   ╩ ╩╩ ╩╚═╝╝╚╝- - - - - - - - - - - - - - - - -]\n"
+							+
+							"[===================================================================================================]");
 		}
 	}
 
@@ -1777,15 +1816,19 @@ public class ATMSystem {
 			accountStatus = "AMAN";
 		}
 		System.out.println(
-			"[===================================================================================================]\n"+
-			"[                                     "+langOutputs[57][currentLanguange]+"                                   ]\n"+
-			"[   - "+langOutputs[58][currentLanguange]+"\t: "+accountData[accountLineIndex][6]+"                                                                ]\n"+
-			"[   - STATUS         \t: "+accountStatus+"                                                                      ]\n"+
-			"[   _____________________________________________________________________________________________   ]"
-		);
+				"[===================================================================================================]\n"
+						+
+						"[                                     " + langOutputs[57][currentLanguange]
+						+ "                                   ]\n" +
+						"[   - " + langOutputs[58][currentLanguange] + "\t: " + accountData[accountLineIndex][6]
+						+ "                                                                ]\n" +
+						"[   - STATUS         \t: " + accountStatus
+						+ "                                                                      ]\n" +
+						"[   _____________________________________________________________________________________________   ]");
 
 		displayAccountHistory();
-		System.out.println("[===================================================================================================]");
+		System.out.println(
+				"[===================================================================================================]");
 	}
 
 	public static void recordAccountHistory(String myInfo, String myTime, String myDate) {
@@ -1795,8 +1838,11 @@ public class ATMSystem {
 	public static void displayAccountHistory() {
 		ArrayList<String> accountHistory = new ArrayList<>();
 		for (int i = 0; i < accountHistoryList.size(); i++) {
-			accountHistory.add(accountHistoryList.get(i).get(0) + " " + accountHistoryList.get(i).get(1) + " " + accountHistoryList.get(i).get(2));
-			// System.out.printf("[   %d. " + accountHistoryList.get(i).get(0) + " " + accountHistoryList.get(i).get(1) + " " + accountHistoryList.get(i).get(2) + "                                              ]\n", (i+1));
+			accountHistory.add(accountHistoryList.get(i).get(0) + " " + accountHistoryList.get(i).get(1) + " "
+					+ accountHistoryList.get(i).get(2));
+			// System.out.printf("[ %d. " + accountHistoryList.get(i).get(0) + " " +
+			// accountHistoryList.get(i).get(1) + " " + accountHistoryList.get(i).get(2) + "
+			// ]\n", (i+1));
 		}
 
 		if (currentLanguange == 0) {
@@ -1810,7 +1856,8 @@ public class ATMSystem {
 		}
 
 		for (int i = 0; i < accountHistory.size(); i++) {
-			System.out.printf("[  %d. %s                                               ]\n", (i+1), accountHistory.get(i));
+			System.out.printf("[  %d. %s                                               ]\n", (i + 1),
+					accountHistory.get(i));
 		}
 	}
 
@@ -1901,7 +1948,7 @@ public class ATMSystem {
 			String confirmedNewPin = getValidatedPin(scanNewPin);
 
 			ClearScreen();
-			
+
 			if (inputNewPin.equals(confirmedNewPin)) {
 				int indeksNoRek = 0;
 				accountData[accountLineIndex][1] = confirmedNewPin;

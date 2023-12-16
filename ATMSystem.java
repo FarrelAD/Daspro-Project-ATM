@@ -258,40 +258,73 @@ public class ATMSystem {
 	public static void PageMenu() {
 		ClearScreen();
 		System.out.println(
-			"[===================================================================================================]\n"+
-			"[     "+formattedLocalDate()+"                                "+formattedLocalDay()+"                                 "+formattedLocalTime()+"     ]\n"+
-			"[===================================================================================================]\n"+
-			"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]\n"+
-			"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]\n"+
-			"[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]\n"+
-			"[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]\n"+
-			"[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]\n"+
-			"[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]\n"+
-			"[===================================================================================================]\n"+
-			"[                                                                                                   ]\n"+
-			"[                    .@@@@.                       _    _ _____ _     _____ ________  ___ _____      ]\n"+
-			"[                @:=:@@@@@@:=:@                  | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|     ]\n"+
-			"[             @:-:@@@@====@@@@:-:@               | |  | | |__ | |   | /  \\/ | | | .  . || |__       ]\n"+
-			"[          @:-@@@::::::::::::::@@@-:@            | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|      ]\n"+
-			"[        @:-@@::@@@@@@@@@@@@@@@@::@@-:@          \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___      ]\n"+
-			"[      @:-@@::@@@@@ ******** @@@@@::@@-:@         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/      ]\n"+
-			"[    @:-@@@:@@@@: ***++**++*** :@@@:@@@-:@                                                          ]\n"+
-			"[   @:-@@::@@@: ***++- !! -++*** :@@@::@@-:@                                                        ]\n"+
-			"[   @:@@::@@@@ ***++- .||. -++*** @@@@::@@:@            PLEASE INPUT YOUR ACCOUNT NUMBER            ]\n"+
-			"[   @:@@@@@@@@ **+++- .||. -+++** @@@@@@@@:@                      AND YOUR PIN                      ]\n"+
-			"[   @:#@@@@: ***+++=- .||. -=+++*** :@@@@#:@             ________________________________           ]\n"+
-			"[   @:+@@@@ ****++--. +||+ .--++**** @@@@+:@             SILAKAN MASUKKAN NOMOR REKENING            ]\n"+
-			"[   :@:@@@@. ***-++.. +--+ ..++-*** .@@@@:@:                      DAN PIN ANDA                      ]\n"+
-			"[    @:*@@@@@@ ***** *#::#* ***** @@@@@@*:@                                                         ]\n"+
-			"[    @:-@@@@@@ ****  ======  **** @@@@@@-:@                                                         ]\n"+
-			"[     @:-@@@@@. ***####%%####*** . @@@@@-:@                    FOR SAFETY AND COMFORT               ]\n"+
-			"[      @:.@@@@@ ################ @@@@@.:@                PLEASE CHANGE YOUR PIN REGULARLY           ]\n"+
-			"[       @: @@@@@@+:.  ----  .:+@@@@@@ :@                 ________________________________           ]\n"+
-			"[         @:* @@@ =@@@@@@@@@@@= @@@ :@                     DEMI KEAMANAN DAN KENYAMANAN             ]\n"+
-			"[          @*  :*@@@@@@@@@@@@@@*:  *@                         SILAKAN GANTI PIN ANDA                ]\n"+
-			"[              @@@#+-:....:-+#@@@                                 SECARA BERKALA                    ]\n"+
-			"[                                                                                                   ]\n"+
-			"[===================================================================================================]");
+				"[===================================================================================================]\n"
+						+
+						"[     " + formattedLocalDate() + "                                " + formattedLocalDay()
+						+ "                                 " + formattedLocalTime() + "     ]\n" +
+						"[===================================================================================================]\n"
+						+
+						"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]\n"
+						+
+						"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]\n"
+						+
+						"[ ███████║   ██║   ██╔████╔██║    ██████╔╝██║   ██║██║     ██║██╔██╗ ██║█████╗  ██╔████╔██║███████║ ]\n"
+						+
+						"[ ██╔══██║   ██║   ██║╚██╔╝██║    ██╔═══╝ ██║   ██║██║     ██║██║╚██╗██║██╔══╝  ██║╚██╔╝██║██╔══██║ ]\n"
+						+
+						"[ ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ╚██████╔╝███████╗██║██║ ╚████║███████╗██║ ╚═╝ ██║██║  ██║ ]\n"
+						+
+						"[ ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[                    .@@@@.                       _    _ _____ _     _____ ________  ___ _____      ]\n"
+						+
+						"[                @:=:@@@@@@:=:@                  | |  | |  ___| |   /  __ \\  _  |  \\/  ||  ___|     ]\n"
+						+
+						"[             @:-:@@@@====@@@@:-:@               | |  | | |__ | |   | /  \\/ | | | .  . || |__       ]\n"
+						+
+						"[          @:-@@@::::::::::::::@@@-:@            | |/\\| |  __|| |   | |   | | | | |\\/| ||  __|      ]\n"
+						+
+						"[        @:-@@::@@@@@@@@@@@@@@@@::@@-:@          \\  /\\  / |___| |___| \\__/\\ \\_/ / |  | || |___      ]\n"
+						+
+						"[      @:-@@::@@@@@ ******** @@@@@::@@-:@         \\/  \\/\\____/\\_____/\\____/\\___/\\_|  |_/\\____/      ]\n"
+						+
+						"[    @:-@@@:@@@@: ***++**++*** :@@@:@@@-:@                                                          ]\n"
+						+
+						"[   @:-@@::@@@: ***++- !! -++*** :@@@::@@-:@                                                        ]\n"
+						+
+						"[   @:@@::@@@@ ***++- .||. -++*** @@@@::@@:@            PLEASE INPUT YOUR ACCOUNT NUMBER            ]\n"
+						+
+						"[   @:@@@@@@@@ **+++- .||. -+++** @@@@@@@@:@                      AND YOUR PIN                      ]\n"
+						+
+						"[   @:#@@@@: ***+++=- .||. -=+++*** :@@@@#:@             ________________________________           ]\n"
+						+
+						"[   @:+@@@@ ****++--. +||+ .--++**** @@@@+:@             SILAKAN MASUKKAN NOMOR REKENING            ]\n"
+						+
+						"[   :@:@@@@. ***-++.. +--+ ..++-*** .@@@@:@:                      DAN PIN ANDA                      ]\n"
+						+
+						"[    @:*@@@@@@ ***** *#::#* ***** @@@@@@*:@                                                         ]\n"
+						+
+						"[    @:-@@@@@@ ****  ======  **** @@@@@@-:@                                                         ]\n"
+						+
+						"[     @:-@@@@@. ***####%%####*** . @@@@@-:@                    FOR SAFETY AND COMFORT               ]\n"
+						+
+						"[      @:.@@@@@ ################ @@@@@.:@                PLEASE CHANGE YOUR PIN REGULARLY           ]\n"
+						+
+						"[       @: @@@@@@+:.  ----  .:+@@@@@@ :@                 ________________________________           ]\n"
+						+
+						"[         @:* @@@ =@@@@@@@@@@@= @@@ :@                     DEMI KEAMANAN DAN KENYAMANAN             ]\n"
+						+
+						"[          @*  :*@@@@@@@@@@@@@@*:  *@                         SILAKAN GANTI PIN ANDA                ]\n"
+						+
+						"[              @@@#+-:....:-+#@@@                                 SECARA BERKALA                    ]\n"
+						+
+						"[                                                                                                   ]\n"
+						+
+						"[===================================================================================================]");
 	}
 
 	public static boolean Login() {
@@ -696,41 +729,46 @@ public class ATMSystem {
 												+
 												"[===================================================================================================]");
 
-							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[49][currentLanguange]+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", adjustNumCharHistory(totalTransferRp), formattedLocalTime(), formattedLocalDate())));
-							recordTransactionHistory();
+								// Recording transaction history
+								transactionHistoryList.add(new ArrayList<>(List.of(
+										langOutputs[49][currentLanguange] + inputTarget_AccountNumber + " ("
+												+ accountData[indexTargetAccount][2] + ")",
+										adjustNumCharHistory(totalTransferRp), formattedLocalTime(),
+										formattedLocalDate())));
+								recordTransactionHistory();
+							} else {
+								// Kondisi jika nominal transfer melebihi jumlah saldo
+								viewBalanceIsNotEnough();
+							}
 						} else {
-							// Kondisi jika nominal transfer melebihi jumlah saldo
-							viewBalanceIsNotEnough();
+							// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
+							viewWrongPin();
 						}
 					} else {
-						// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
-						viewWrongPin();
+						// Kondisi jika pengguna input 't' atau 'T'
+						viewTransactionCancelled();
 					}
 				} else {
-					// Kondisi jika pengguna input 't' atau 'T'
-					viewTransactionCancelled();
+					// Kondisi jika isTargetAccountValid bernilai FALSE
+					ClearScreen();
+					System.out.println(
+							"[===================================================================================================]\n"
+									+
+									"[                    " + red + langOutputs[25][currentLanguange] + reset
+									+ "                    ]\n" +
+									"[===================================================================================================]");
 				}
 			} else {
-				// Kondisi jika isTargetAccountValid bernilai FALSE
+				// Kondisi jika bankChoice bukan angka 1 atau 2
 				ClearScreen();
 				System.out.println(
 						"[===================================================================================================]\n"
 								+
-								"[                    " + red + langOutputs[25][currentLanguange] + reset
-								+ "                    ]\n" +
+								"[                        " + red + "Pilihan bank tidak valid. Silakan pilih 1 atau 2."
+								+ reset
+								+ "                          ]\n" +
 								"[===================================================================================================]");
 			}
-		} else {
-			// Kondisi jika bankChoice bukan angka 1 atau 2
-			ClearScreen();
-			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                        " + red + "Pilihan bank tidak valid. Silakan pilih 1 atau 2."
-							+ reset
-							+ "                          ]\n" +
-							"[===================================================================================================]");
 		}
 	}
 
@@ -857,7 +895,9 @@ public class ATMSystem {
 							System.out.println("[  " + langOutputs[24][currentLanguange] + userBalanceRupiah);
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange], adjustNumCharHistory(cashWithdrawalRupiah), formattedLocalTime(), formattedLocalDate())));
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange],
+									adjustNumCharHistory(cashWithdrawalRupiah), formattedLocalTime(),
+									formattedLocalDate())));
 							recordTransactionHistory();
 
 							EnterForContinue();
@@ -931,7 +971,8 @@ public class ATMSystem {
 					System.out.println("[  " + langOutputs[24][currentLanguange] + userBalanceRupiah);
 
 					// Recording transaction history
-					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange], adjustNumCharHistory(cashDepositRupiah), formattedLocalTime(), formattedLocalDate())));
+					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange],
+							adjustNumCharHistory(cashDepositRupiah), formattedLocalTime(), formattedLocalDate())));
 					recordTransactionHistory();
 
 					EnterForContinue();
@@ -1139,7 +1180,9 @@ public class ATMSystem {
 										"[===================================================================================================]");
 
 						// Pencatatan riwayat transaksi
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[52][currentLanguange]+nomorTelepon), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+						transactionHistoryList.add(new ArrayList<>(List.of(
+								adjustNumCharHistory(langOutputs[52][currentLanguange] + nomorTelepon),
+								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1226,7 +1269,9 @@ public class ATMSystem {
 										"[===================================================================================================]");
 
 						// Recording transaction history
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[53][currentLanguange]+"("+inputPLN+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+						transactionHistoryList.add(new ArrayList<>(List.of(
+								adjustNumCharHistory(langOutputs[53][currentLanguange] + "(" + inputPLN + ")"),
+								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1328,7 +1373,9 @@ public class ATMSystem {
 										"[===================================================================================================]");
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[54][currentLanguange]+"("+inputVA+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+						transactionHistoryList.add(new ArrayList<>(List.of(
+								adjustNumCharHistory(langOutputs[54][currentLanguange] + "(" + inputVA + ")"),
+								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1416,7 +1463,9 @@ public class ATMSystem {
 										"[===================================================================================================]");
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[55][currentLanguange]+"("+inputVA+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+						transactionHistoryList.add(new ArrayList<>(List.of(
+								adjustNumCharHistory(langOutputs[55][currentLanguange] + "(" + inputVA + ")"),
+								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1504,7 +1553,9 @@ public class ATMSystem {
 										"[===================================================================================================]");
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[56][currentLanguange]+"("+inputVA+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+						transactionHistoryList.add(new ArrayList<>(List.of(
+								adjustNumCharHistory(langOutputs[56][currentLanguange] + "(" + inputVA + ")"),
+								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1648,19 +1699,18 @@ public class ATMSystem {
 					+ transactionHistoryList.get(i).get(3) + "\t    ]\n", (i + 1));
 		}
 	}
-  
+
 	public static String adjustNumCharHistory(String myString) {
-			if (myString.charAt(0) == 'R') {
-				if (myString.length() < 14) {
-					if (myString.length() == 13) {
-						myString = myString + " ";
-					} else if (myString.length() == 12) {
-						myString = myString + "  ";
-					} else if (myString.length() == 11) {
-						myString = myString + "   ";
-					} else if (myString.length() == 10) {
-						myString = myString + "    ";
-					}
+		if (myString.charAt(0) == 'R') {
+			if (myString.length() < 14) {
+				if (myString.length() == 13) {
+					myString = myString + " ";
+				} else if (myString.length() == 12) {
+					myString = myString + "  ";
+				} else if (myString.length() == 11) {
+					myString = myString + "   ";
+				} else if (myString.length() == 10) {
+					myString = myString + "    ";
 				}
 			}
 		} else {
@@ -1955,7 +2005,7 @@ public class ATMSystem {
 	public static String formattedLocalDay() {
 		LocalDate currentDate = LocalDate.now();
 		DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
-    	String formattedDay = currentDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH).toUpperCase();
+		String formattedDay = currentDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH).toUpperCase();
 		return adjustNumCharDay(formattedDay);
 	}
 

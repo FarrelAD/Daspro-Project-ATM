@@ -133,18 +133,6 @@ public class ATMSystem {
 	// 'Validasi PIN' variables
 	static String inputPin;
 
-	// Formatting time and date to the system
-	static LocalDate currentDate = LocalDate.now();
-	static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	static String formattedDate = currentDate.format(dateFormatter);
-
-	static DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
-    static String formattedDay = currentDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH).toUpperCase();
-
-	static LocalTime currentTime = LocalTime.now();
-	static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-	static String formattedTime = currentTime.format(timeFormatter);
-
 	// Variables for choose languange feature
 	static int currentLanguange = 0;
 	static String[][] langOutputs = {
@@ -246,7 +234,7 @@ public class ATMSystem {
 		ClearScreen();
 		System.out.println(
 			"[===================================================================================================]\n"+
-			"[     "+formattedDate+"                                  "+formattedDay+"                                  "+formattedTime+"     ]\n"+
+			"[     "+formattedLocalDate()+"                                "+formattedLocalDay()+"                                 "+formattedLocalTime()+"     ]\n"+
 			"[===================================================================================================]\n"+
 			"[  █████╗ ████████╗███╗   ███╗    ██████╗  ██████╗ ██╗     ██╗███╗   ██╗███████╗███╗   ███╗ █████╗  ]\n"+
 			"[ ██╔══██╗╚══██╔══╝████╗ ████║    ██╔══██╗██╔═══██╗██║     ██║████╗  ██║██╔════╝████╗ ████║██╔══██╗ ]\n"+
@@ -591,7 +579,7 @@ public class ATMSystem {
 							ClearScreen();
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[49][currentLanguange]+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", adjustNumCharacter(totalTransferRp), formattedTime, formattedDate)));
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[49][currentLanguange]+inputTarget_AccountNumber+" ("+accountData[indexTargetAccount][2]+")", adjustNumCharHistory(totalTransferRp), formattedLocalTime(), formattedLocalDate())));
 							recordTransactionHistory();
 						} else {
 							displayTransactionOverLimit();
@@ -727,7 +715,7 @@ public class ATMSystem {
 							System.out.println("[  "+langOutputs[24][currentLanguange]+ userBalanceRupiah);
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange], adjustNumCharacter(cashWithdrawalRupiah), formattedTime, formattedDate)));
+							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[50][currentLanguange], adjustNumCharHistory(cashWithdrawalRupiah), formattedLocalTime(), formattedLocalDate())));
 							recordTransactionHistory();
 
 							EnterForContinue();
@@ -795,7 +783,7 @@ public class ATMSystem {
 					System.out.println("[  "+langOutputs[24][currentLanguange]+userBalanceRupiah);
 
 					// Recording transaction history
-					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange], adjustNumCharacter(cashDepositRupiah), formattedTime, formattedDate)));
+					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange], adjustNumCharHistory(cashDepositRupiah), formattedLocalTime(), formattedLocalDate())));
 					recordTransactionHistory();
 
 					EnterForContinue();
@@ -980,7 +968,7 @@ public class ATMSystem {
 						);
 
 						// Pencatatan riwayat transaksi
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[52][currentLanguange]+nomorTelepon), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[52][currentLanguange]+nomorTelepon), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1060,7 +1048,7 @@ public class ATMSystem {
 						);
 
 						// Recording transaction history
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[53][currentLanguange]+"("+inputPLN+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[53][currentLanguange]+"("+inputPLN+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1152,7 +1140,7 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[54][currentLanguange]+"("+inputVA+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[54][currentLanguange]+"("+inputVA+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1233,7 +1221,7 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[55][currentLanguange]+"("+inputVA+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[55][currentLanguange]+"("+inputVA+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1314,7 +1302,7 @@ public class ATMSystem {
 						);
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharacter(langOutputs[56][currentLanguange]+"("+inputVA+")"), adjustNumCharacter(totalPaymentRp), formattedTime, formattedDate)));
+						transactionHistoryList.add(new ArrayList<>(List.of(adjustNumCharHistory(langOutputs[56][currentLanguange]+"("+inputVA+")"), adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1433,7 +1421,7 @@ public class ATMSystem {
 		}
 	}
 
-		public static String adjustNumCharacter(String myString) {
+		public static String adjustNumCharHistory(String myString) {
 			if (myString.charAt(0) == 'R') {
 				if (myString.length() < 14) {
 					if (myString.length() == 13) {
@@ -1706,6 +1694,38 @@ public class ATMSystem {
 						+ reset);
 		System.out.println(
 				"    ============================================================================================");
+	}
+
+	public static String formattedLocalDate() {
+		LocalDate currentDate = LocalDate.now();
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String formattedDate = currentDate.format(dateFormatter);
+		return formattedDate;
+	}
+
+	public static String formattedLocalDay() {
+		LocalDate currentDate = LocalDate.now();
+		DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
+    	String formattedDay = currentDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH).toUpperCase();
+		return adjustNumCharDay(formattedDay);
+	}
+
+	public static String adjustNumCharDay(String myString) {
+		if (myString.equals("SUNDAY") || myString.equals("MONDAY") || myString.equals("FRIDAY")) {
+			myString = " " + myString + "  ";
+		} else if (myString.equals("TUESDAY")) {
+			myString = " " + myString + " ";
+		} else if (myString.equals("THURSDAY") || myString.equals("SATURDAY")) {
+			myString = myString + " ";
+		}
+		return myString;
+	}
+
+	public static String formattedLocalTime() {
+		LocalTime currentTime = LocalTime.now();
+		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+		String formattedTime = currentTime.format(timeFormatter);
+		return formattedTime;
 	}
 
 	public static void displayTransactionOverLimit() {

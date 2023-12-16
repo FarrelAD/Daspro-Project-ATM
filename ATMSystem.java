@@ -279,6 +279,7 @@ public class ATMSystem {
 			{"                                      [  (!) WRONG PIN (!)  ]","                                      [  (!) PIN SALAH! (!)  ]"},//75
 			{"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSACTION SUCCESS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ", "     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "},//76
 			{"                                 [  (!) CANCELED TRANSACTION (!)  ]","                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]"},//77
+			{"               [  (!) Invalid Payment Code, Please recheck your VA numbers (!)  ]","               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]"},//78
 
 	};
 
@@ -2239,8 +2240,7 @@ public class ATMSystem {
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
-				red + "               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]"
-						+ reset);
+				red + langOutputs[79][currentLanguange]+ reset);
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(

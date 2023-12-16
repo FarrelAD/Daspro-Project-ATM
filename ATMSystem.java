@@ -1821,20 +1821,16 @@ public class ATMSystem {
 
 	public static void UbahPin() {
 		displayHeaderChangePin();
-		String userRekening = accountData[accountLineIndex][0];
-		System.out.print("    Masukkan PIN anda : "); // Input PIN pengguna
-		String inputPin7 = scanner1.nextLine();
-		scanner1.nextLine();
-
 		ClearScreen();
 
-		if (inputPin7.equals(inputPin)) {
+		if (PinValidation()) {
+			Scanner ScanNewPin = new Scanner(System.in);
 			System.out.println(
 					"    ============================================================================================");
 			System.out.print("    Masukkan PIN baru: ");
-			String inputNewPin = getValidatedPin(scanner1);
+			String inputNewPin = getValidatedPin(ScanNewPin);
 			System.out.print("    Konfirmasi PIN baru: ");
-			String confirmedNewPin = getValidatedPin(scanner1);
+			String confirmedNewPin = getValidatedPin(ScanNewPin);
 			if (inputNewPin.equals(confirmedNewPin)) {
 				int indeksNoRek = 0;
 				accountData[accountLineIndex][1] = confirmedNewPin;
@@ -2147,7 +2143,7 @@ public class ATMSystem {
 				System.out.println(
 						"    ============================================================================================");
 
-				System.out.print("MASUKKAN PIN BARU (4 DIGIT): ");
+				System.out.print("\tMASUKKAN PIN BARU (4 DIGIT): ");
 			}
 		} while (!pin.matches("\\d{4}"));
 		return pin;

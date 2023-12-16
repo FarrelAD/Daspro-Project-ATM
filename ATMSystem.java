@@ -634,119 +634,157 @@ public class ATMSystem {
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		System.out.print("[  " + langOutputs[15][currentLanguange]);
-		inputTarget_AccountNumber = scannerTF.nextLine();
+		// Counting admin fee
+		int adminFeeTf = 1500;
+		System.out.println(
+				"[===================================================================================================]\n"
+						+
+						"[                                     PILIH LAYANAN TRANSFER                                        ]\n"
+						+
+						"[===================================================================================================]\n"
+						+
+						"[                    [1] BANK POLINEMA                          [2] ANTAR BANK                      ]\n"
+						+
+						"[===================================================================================================]");
 
-		// Checking destination account availability
-		int indexTargetAccount = 0;
-		isTargetAccountValid = false;
-		for (int i = 0; i < accountData.length; i++) {
-			if ((inputTarget_AccountNumber.equals(accountData[i][0]))
-					&& (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
-				isTargetAccountValid = true;
-				indexTargetAccount = i;
-				break;
+		System.out.print("  =>\t");
+		int bankChoice = scanner1.nextInt();
+		ClearScreen();
+		if (bankChoice == 1 || bankChoice == 2) {
+			System.out.print("[  " + langOutputs[15][currentLanguange]);
+			inputTarget_AccountNumber = scannerTF.nextLine();
+
+			// Checking destination account availability
+			int indexTargetAccount = 0;
+			isTargetAccountValid = false;
+			for (int i = 0; i < accountData.length; i++) {
+				if ((inputTarget_AccountNumber.equals(accountData[i][0]))
+						&& (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
+					isTargetAccountValid = true;
+					indexTargetAccount = i;
+					break;
+				}
 			}
-		}
-		// Kondisi jika isTargetAccountValid true
-		if (isTargetAccountValid) {
+			// Kondisi jika isTargetAccountValid true
+			if (isTargetAccountValid) {
 
-			// Counting admin fee
-			int adminFeeTf = 0;
-			if (!accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
-				adminFeeTf = 1500;
-			}
+				if (bankChoice == 1 && accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
+					adminFeeTf = 0;
+				} else {
+					System.out.println(
+							"[==========================================================================================================]\n"
+									+
+									"[  NOMOR REKENING TUJUAN TIDAK TERDAFTAR DI BANK POLINEMA, ANDA DIKENAKAN BIAYA ADMIN SEBESAR RP 1500,00  ]\n"
+									+
+									"[==========================================================================================================]");
+					adminFeeTf = 1500;
+				}
 
-			String adminFeeTfRp = currencyFormat.format(adminFeeTf);
+				String adminFeeTfRp = currencyFormat.format(adminFeeTf);
 
-			transferAmount = validateNonNegativeIntegerInput("[  " + langOutputs[16][currentLanguange]);
-			ClearScreen();
-			// Konversi nilai output ke rupiah
-			String transferAmountRupiah = currencyFormat.format(transferAmount);
-			int totalTransfer = transferAmount + adminFeeTf;
-			String totalTransferRp = currencyFormat.format(totalTransfer);
-			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                        " + langOutputs[17][currentLanguange]
-							+ "                                         ]\n" +
-							"[                              " + langOutputs[18][currentLanguange]
-							+ "                              ]\n" +
-							"[                              _______________________________________                              ]\n"
-							+
-							"[  -- " + langOutputs[19][currentLanguange] + inputTarget_AccountNumber + "\n" +
-							"[  -- " + langOutputs[20][currentLanguange] + accountData[indexTargetAccount][2] + "\n" +
-							"[  -- " + langOutputs[21][currentLanguange] + accountData[indexTargetAccount][3] + "\n" +
-							"[  -- " + langOutputs[22][currentLanguange] + transferAmountRupiah + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeTfRp + "\n" +
-							"[===================================================================================================]");
+				transferAmount = validateNonNegativeIntegerInput("[  " + langOutputs[16][currentLanguange]);
+				ClearScreen();
+				// Konversi nilai output ke rupiah
+				String transferAmountRupiah = currencyFormat.format(transferAmount);
+				int totalTransfer = transferAmount + adminFeeTf;
+				String totalTransferRp = currencyFormat.format(totalTransfer);
+				System.out.println(
+						"[===================================================================================================]\n"
+								+
+								"[                                        " + langOutputs[17][currentLanguange]
+								+ "                                         ]\n" +
+								"[                              " + langOutputs[18][currentLanguange]
+								+ "                              ]\n" +
+								"[                              _______________________________________                              ]\n"
+								+
+								"[  -- " + langOutputs[19][currentLanguange] + inputTarget_AccountNumber + "\n" +
+								"[  -- " + langOutputs[20][currentLanguange] + accountData[indexTargetAccount][2] + "\n"
+								+
+								"[  -- " + langOutputs[21][currentLanguange] + accountData[indexTargetAccount][3] + "\n"
+								+
+								"[  -- " + langOutputs[22][currentLanguange] + transferAmountRupiah + "\n" +
+								"[  -- " + langOutputs[23][currentLanguange] + adminFeeTfRp + "\n" +
+								"[===================================================================================================]");
 
-			// Konfirmasi persetujuan transaksi
-			UserConfirmation();
-			ClearScreen();
+				// Konfirmasi persetujuan transaksi
+				UserConfirmation();
+				ClearScreen();
 
-			// Konfirmasi transaksi
-			if (userConfirmation == 'y' || userConfirmation == 'Y') {
-				// Pengecekan apakah input PIN sesuai dengan database
-				if (PinValidation()) {
-					if (transferAmount < userBalance) {
-						if (transferAmount <= MAX_AMOUNT_TRANSACTION && transferAmount >= MIN_AMOUNT_TRANSACTION) {
-							userBalance -= (transferAmount + adminFeeTf);
+				// Konfirmasi transaksi
+				if (userConfirmation == 'y' || userConfirmation == 'Y') {
+					// Pengecekan apakah input PIN sesuai dengan database
+					if (PinValidation()) {
+						if (transferAmount < userBalance) {
+							if (transferAmount <= MAX_AMOUNT_TRANSACTION && transferAmount >= MIN_AMOUNT_TRANSACTION) {
+								userBalance -= (transferAmount + adminFeeTf);
 
-							// Formatting penulisan rupiah pada output
-							String userBalanceRupiah = currencyFormat.format(userBalance);
-							viewTransactionSuccess();
-							System.out.println(
-									"[===================================================================================================]\n"
-											+
-											"[                                        "
-											+ langOutputs[17][currentLanguange]
-											+ "                                         ]\n" +
-											"[                                      ______________________                                       ]\n"
-											+
-											"[  -- " + langOutputs[19][currentLanguange] + inputTarget_AccountNumber
-											+ "\n" +
-											"[  -- " + langOutputs[20][currentLanguange]
-											+ accountData[indexTargetAccount][2] + "\n" +
-											"[  -- " + langOutputs[21][currentLanguange]
-											+ accountData[indexTargetAccount][3] + "\n" +
-											"[  -- " + langOutputs[22][currentLanguange] + transferAmountRupiah + "\n" +
-											"[  -- " + langOutputs[23][currentLanguange] + adminFeeTfRp + "\n" +
-											"[  -- " + langOutputs[24][currentLanguange] + userBalanceRupiah + "\n" +
-											"[===================================================================================================]");
+								// Formatting penulisan rupiah pada output
+								String userBalanceRupiah = currencyFormat.format(userBalance);
+								viewTransactionSuccess();
+								System.out.println(
+										"[===================================================================================================]\n"
+												+
+												"[                                        "
+												+ langOutputs[17][currentLanguange]
+												+ "                                         ]\n" +
+												"[                                      ______________________                                       ]\n"
+												+
+												"[  -- " + langOutputs[19][currentLanguange] + inputTarget_AccountNumber
+												+ "\n" +
+												"[  -- " + langOutputs[20][currentLanguange]
+												+ accountData[indexTargetAccount][2] + "\n" +
+												"[  -- " + langOutputs[21][currentLanguange]
+												+ accountData[indexTargetAccount][3] + "\n" +
+												"[  -- " + langOutputs[22][currentLanguange] + transferAmountRupiah
+												+ "\n" +
+												"[  -- " + langOutputs[23][currentLanguange] + adminFeeTfRp + "\n" +
+												"[  -- " + langOutputs[24][currentLanguange] + userBalanceRupiah + "\n"
+												+
+												"[===================================================================================================]");
 
-							EnterForContinue();
-							ClearScreen();
+								EnterForContinue();
+								ClearScreen();
 
-							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(
-									langOutputs[49][currentLanguange] + inputTarget_AccountNumber + " ("
-											+ accountData[indexTargetAccount][2] + ")",
-									adjustNumCharacter(totalTransferRp), formattedTime, formattedDate)));
-							recordTransactionHistory();
+								// Recording transaction history
+								transactionHistoryList.add(new ArrayList<>(List.of(
+										langOutputs[49][currentLanguange] + inputTarget_AccountNumber + " ("
+												+ accountData[indexTargetAccount][2] + ")",
+										adjustNumCharacter(totalTransferRp), formattedTime, formattedDate)));
+								recordTransactionHistory();
+							} else {
+								displayTransactionOverLimit();
+							}
 						} else {
-							displayTransactionOverLimit();
+							// Kondisi jika nominal transfer melebihi jumlah saldo
+							viewBalanceIsNotEnough();
 						}
 					} else {
-						// Kondisi jika nominal transfer melebihi jumlah saldo
-						viewBalanceIsNotEnough();
+						// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
+						viewWrongPin();
 					}
 				} else {
-					// Kondisi jika pengguna input PIN tidak sesuai dengan array accountData
-					viewWrongPin();
+					// Kondisi jika pengguna input 't' atau 'T'
+					viewTransactionCancelled();
 				}
 			} else {
-				// Kondisi jika pengguna input 't' atau 'T'
-				viewTransactionCancelled();
+				// Kondisi jika isTargetAccountValid bernilai FALSE
+				ClearScreen();
+				System.out.println(
+						"[===================================================================================================]\n"
+								+
+								"[                    " + red + langOutputs[25][currentLanguange] + reset
+								+ "                    ]\n" +
+								"[===================================================================================================]");
 			}
 		} else {
-			// Kondisi jika isTargetAccountValid bernilai FALSE
+			// Kondisi jika bankChoice bukan angka 1 atau 2
 			ClearScreen();
 			System.out.println(
 					"[===================================================================================================]\n"
 							+
-							"[                    " + red + langOutputs[25][currentLanguange] + reset
-							+ "                    ]\n" +
+							"[                        " + red + "Pilihan bank tidak valid. Silakan pilih 1 atau 2."
+							+ reset
+							+ "                          ]\n" +
 							"[===================================================================================================]");
 		}
 	}

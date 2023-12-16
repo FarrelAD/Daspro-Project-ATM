@@ -276,7 +276,11 @@ public class ATMSystem {
 			{"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSACTION SUCCESS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ", "     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "},// 81
 			{"                                 [  (!) CANCELED TRANSACTION (!)  ]","                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]"},// 82
 			{"               [  (!) Invalid Payment Code, Please recheck your VA numbers (!)  ]","               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]"},// 83 NEW
-			{ "               [      (!) Invalid payment code. Code has been used ! (!)      ]", "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"}//84
+			{ "               [      (!) Invalid payment code. Code has been used ! (!)      ]", "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"},//84
+			{"Press 'Y' For yes. press 'T' for No --> ","Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> "},//85
+			{"[  Insert PIN : ","[  Masukkan PIN anda: "},//86
+			{"ENTER FOR CONTINUE --> ","ENTER UNTUK MELANJUTKAN --> "},//
+			
 	};
 
 	public static void main(String[] args) {
@@ -2375,14 +2379,14 @@ public class ATMSystem {
 	}
 
 	public static char UserConfirmation() {
-		System.out.print("Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> ");
+		System.out.print(langOutputs[85][currentLanguange]);
 		userConfirmation = scanner2.next().charAt(0);
 		return userConfirmation;
 	}
 
 	public static boolean PinValidation() {
 		Scanner scannerPin = new Scanner(System.in);
-		System.out.print("[  Masukkan PIN anda: ");
+		System.out.print(langOutputs[86][currentLanguange]);
 		inputPin = scannerPin.nextLine();
 		ClearScreen();
 		if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -2393,7 +2397,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print("ENTER UNTUK MELANJUTKAN --> ");
+		System.out.print(langOutputs[87][currentLanguange]);
 		scanner5.nextLine();
 	}
 

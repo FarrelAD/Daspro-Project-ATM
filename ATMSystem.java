@@ -276,6 +276,7 @@ public class ATMSystem {
 			{"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSACTION SUCCESS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ", "     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "},// 81
 			{"                                 [  (!) CANCELED TRANSACTION (!)  ]","                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]"},// 82
 			{"               [  (!) Invalid Payment Code, Please recheck your VA numbers (!)  ]","               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]"},// 83 NEW
+			{ "               [      (!) Invalid payment code. Code has been used ! (!)      ]", "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"}//84
 	};
 
 	public static void main(String[] args) {
@@ -2341,7 +2342,7 @@ public class ATMSystem {
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
-				red + "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"
+				red + langOutputs[84][currentLanguange]
 						+ reset);
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");

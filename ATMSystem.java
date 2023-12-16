@@ -37,30 +37,30 @@ public class ATMSystem {
 
 	// array listrikData menampung ID PLN & tagihan
 	static int[][] listrikData = {
-			{ 123123123, 100000 },
-			{ 123456789, 70000 },
-			{ 333444555, 80000 },
+			{ 123123123, 100000, 1 },
+			{ 123456789, 70000, 1 },
+			{ 333444555, 80000, 1 },
 	};
 
 	// array pendidikanData menampung virtual account (VA) & tagihan
 	static int[][] pendidikanData = {
-			{ 232323, 1000000 },
-			{ 454545, 2500000 },
-			{ 909090, 5000000 },
+			{ 232323, 1000000, 1 },
+			{ 454545, 2500000, 1 },
+			{ 909090, 5000000, 1 },
 	};
 
 	// array tagihan pada pdam menampung virtual account (VA) & tagihan
 	static int[][] tagihanAirData = {
-			{ 232323, 100000 },
-			{ 454545, 250000 },
-			{ 909090, 500000 },
+			{ 232323, 100000, 1 },
+			{ 454545, 250000, 1 },
+			{ 909090, 500000, 1 },
 	};
 
 	// array tagihan pada BPJS menampung virtual accounr (VA) & tagihan
 	static int[][] BPJSdata = {
-			{ 232323, 125000 },
-			{ 454545, 250000 },
-			{ 909090, 500000 },
+			{ 232323, 125000, 1 },
+			{ 454545, 250000, 1 },
+			{ 909090, 500000, 1 },
 	};
 
 	// 'Login' feature variables
@@ -1230,60 +1230,66 @@ public class ATMSystem {
 
 		// Proses perhitungan tagihan listrik PLN
 		if (isListrikValid) {
-			// Formatting output ke Rupiah
-			String tagihanListrikRP = currencyFormat.format(listrikData[indexListrik][1]);
-			int totalPayment = listrikData[indexListrik][1] + adminFee;
-			String totalPaymentRp = currencyFormat.format(totalPayment);
-			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                        " + langOutputs[17][currentLanguange]
-							+ "                                         ]\n" +
-							"[                                      ______________________                                       ]\n"
-							+
-							"[  -- " + langOutputs[41][currentLanguange] + inputPLN + "\n" +
-							"[  -- " + langOutputs[42][currentLanguange] + tagihanListrikRP + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-							"[===================================================================================================]");
+			if (listrikData[indexListrik][2] == 1) {
+				// Formatting output ke Rupiah
+				String tagihanListrikRP = currencyFormat.format(listrikData[indexListrik][1]);
+				int totalPayment = listrikData[indexListrik][1] + adminFee;
+				String totalPaymentRp = currencyFormat.format(totalPayment);
+				System.out.println(
+						"[===================================================================================================]\n"
+								+
+								"[                                        " + langOutputs[17][currentLanguange]
+								+ "                                         ]\n" +
+								"[                                      ______________________                                       ]\n"
+								+
+								"[  -- " + langOutputs[41][currentLanguange] + inputPLN + "\n" +
+								"[  -- " + langOutputs[42][currentLanguange] + tagihanListrikRP + "\n" +
+								"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+								"[===================================================================================================]");
 
-			UserConfirmation();
-			ClearScreen();
-			if (userConfirmation == 'Y' || userConfirmation == 'y') {
-				if (PinValidation()) {
-					if (listrikData[indexListrik][1] < userBalance) {
-						userBalance -= totalPayment;
-						// Formatting saldo pengguna ke Rupiah
-						String saldoRupiah3 = currencyFormat.format(userBalance);
-						viewTransactionSuccess();
-						System.out.println(
-								"[===================================================================================================]\n"
-										+
-										"[                                        " + langOutputs[17][currentLanguange]
-										+ "                                         ]\n" +
-										"[                                      ______________________                                       ]\n"
-										+
-										"[  -- " + langOutputs[41][currentLanguange] + inputPLN + "\n" +
-										"[  -- " + langOutputs[42][currentLanguange] + tagihanListrikRP + "\n" +
-										"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-										"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
-										"[===================================================================================================]");
+				UserConfirmation();
+				ClearScreen();
+				if (userConfirmation == 'Y' || userConfirmation == 'y') {
+					if (PinValidation()) {
+						if (listrikData[indexListrik][1] < userBalance) {
+							userBalance -= totalPayment;
+							listrikData[indexListrik][2] = 0;
+							// Formatting saldo pengguna ke Rupiah
+							String saldoRupiah3 = currencyFormat.format(userBalance);
+							viewTransactionSuccess();
+							System.out.println(
+									"[===================================================================================================]\n"
+											+
+											"[                                        "
+											+ langOutputs[17][currentLanguange]
+											+ "                                         ]\n" +
+											"[                                      ______________________                                       ]\n"
+											+
+											"[  -- " + langOutputs[41][currentLanguange] + inputPLN + "\n" +
+											"[  -- " + langOutputs[42][currentLanguange] + tagihanListrikRP + "\n" +
+											"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+											"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
+											"[===================================================================================================]");
 
-						// Recording transaction history
-						transactionHistoryList.add(new ArrayList<>(List.of(
-								adjustNumCharHistory(langOutputs[53][currentLanguange] + "(" + inputPLN + ")"),
-								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
-						recordTransactionHistory();
+							// Recording transaction history
+							transactionHistoryList.add(new ArrayList<>(List.of(
+									adjustNumCharHistory(langOutputs[53][currentLanguange] + "(" + inputPLN + ")"),
+									adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+							recordTransactionHistory();
 
-						EnterForContinue();
-						ClearScreen();
+							EnterForContinue();
+							ClearScreen();
+						} else {
+							viewBalanceIsNotEnough();
+						}
 					} else {
-						viewBalanceIsNotEnough();
+						viewWrongPin();
 					}
 				} else {
-					viewWrongPin();
+					viewTransactionCancelled();
 				}
 			} else {
-				viewTransactionCancelled();
+				viewPaymentCodeAlreadyUSe();
 			}
 		} else {
 			viewPaymentCodeInvalid();
@@ -1761,6 +1767,7 @@ public class ATMSystem {
 			}
 		}
 		return myString;
+
 	}
 
 	public static void accountHistory() {
@@ -2103,6 +2110,21 @@ public class ATMSystem {
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
 				red + "               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]"
+						+ reset);
+		System.out.println(
+				"    --------------------------------------------------------------------------------------------");
+		System.out.println(
+				"    ============================================================================================");
+	}
+
+	public static void viewPaymentCodeAlreadyUSe() {
+		ClearScreen();
+		System.out.println(
+				"    ============================================================================================");
+		System.out.println(
+				"    --------------------------------------------------------------------------------------------");
+		System.out.println(
+				red + "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"
 						+ reset);
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");

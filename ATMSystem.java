@@ -278,6 +278,7 @@ public class ATMSystem {
 			{"                     [  (!) Transaction failed. Your balance is insufficient (!)  ]","                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]"},//74
 			{"                                      [  (!) WRONG PIN (!)  ]","                                      [  (!) PIN SALAH! (!)  ]"},//75
 			{"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSACTION SUCCESS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ", "     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "},//76
+			{"                                 [  (!) CANCELED TRANSACTION (!)  ]","                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]"},//77
 
 	};
 
@@ -2224,7 +2225,7 @@ public class ATMSystem {
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(
-				red + "                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]" + reset);
+				red + langOutputs[77][currentLanguange] + reset);
 		System.out.println(
 				"    --------------------------------------------------------------------------------------------");
 		System.out.println(

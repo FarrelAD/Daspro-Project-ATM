@@ -1539,60 +1539,66 @@ public class ATMSystem {
 		}
 
 		if (isBpjsValid) {
-			String tagihanBpjsRp = currencyFormat.format(BPJSdata[indexBpjs][1]);
-			int totalPayment = BPJSdata[indexBpjs][1] + adminFee;
-			String totalPaymentRp = currencyFormat.format(totalPayment);
-			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[                                        " + langOutputs[17][currentLanguange]
-							+ "                                         ]\n" +
-							"[                                      ______________________                                       ]\n"
-							+
-							"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-							"[  -- " + langOutputs[42][currentLanguange] + tagihanBpjsRp + "\n" +
-							"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-							"[===================================================================================================]");
+			if (BPJSdata[indexBpjs][2] == 1) {
+				String tagihanBpjsRp = currencyFormat.format(BPJSdata[indexBpjs][1]);
+				int totalPayment = BPJSdata[indexBpjs][1] + adminFee;
+				String totalPaymentRp = currencyFormat.format(totalPayment);
+				System.out.println(
+						"[===================================================================================================]\n"
+								+
+								"[                                        " + langOutputs[17][currentLanguange]
+								+ "                                         ]\n" +
+								"[                                      ______________________                                       ]\n"
+								+
+								"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
+								"[  -- " + langOutputs[42][currentLanguange] + tagihanBpjsRp + "\n" +
+								"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+								"[===================================================================================================]");
 
-			UserConfirmation();
-			ClearScreen();
-			if (userConfirmation == 'Y' || userConfirmation == 'y') {
-				if (PinValidation()) {
-					if (BPJSdata[indexBpjs][1] < userBalance) {
-						userBalance -= totalPayment;
-						// Formatting output ke Rupiah
-						String saldoRupiah3 = currencyFormat.format(userBalance);
-						viewTransactionSuccess();
+				UserConfirmation();
+				ClearScreen();
+				if (userConfirmation == 'Y' || userConfirmation == 'y') {
+					if (PinValidation()) {
+						if (BPJSdata[indexBpjs][1] < userBalance) {
+							userBalance -= totalPayment;
+							BPJSdata[indexBpjs][2] = 0;
+							// Formatting output ke Rupiah
+							String saldoRupiah3 = currencyFormat.format(userBalance);
+							viewTransactionSuccess();
 
-						System.out.println(
-								"[===================================================================================================]\n"
-										+
-										"[                                        " + langOutputs[17][currentLanguange]
-										+ "                                         ]\n" +
-										"[                                      ______________________                                       ]\n"
-										+
-										"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
-										"[  -- " + langOutputs[42][currentLanguange] + tagihanBpjsRp + "\n" +
-										"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
-										"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
-										"[===================================================================================================]");
+							System.out.println(
+									"[===================================================================================================]\n"
+											+
+											"[                                        "
+											+ langOutputs[17][currentLanguange]
+											+ "                                         ]\n" +
+											"[                                      ______________________                                       ]\n"
+											+
+											"[  -- " + langOutputs[41][currentLanguange] + inputVA + "\n" +
+											"[  -- " + langOutputs[42][currentLanguange] + tagihanBpjsRp + "\n" +
+											"[  -- " + langOutputs[23][currentLanguange] + adminFeeRp + "\n" +
+											"[  -- " + langOutputs[24][currentLanguange] + saldoRupiah3 + "\n" +
+											"[===================================================================================================]");
 
-						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(
-								adjustNumCharHistory(langOutputs[56][currentLanguange] + "(" + inputVA + ")"),
-								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
-						recordTransactionHistory();
+							// Recording Transaction History
+							transactionHistoryList.add(new ArrayList<>(List.of(
+									adjustNumCharHistory(langOutputs[56][currentLanguange] + "(" + inputVA + ")"),
+									adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+							recordTransactionHistory();
 
-						EnterForContinue();
-						ClearScreen();
+							EnterForContinue();
+							ClearScreen();
+						} else {
+							viewBalanceIsNotEnough();
+						}
 					} else {
-						viewBalanceIsNotEnough();
+						viewWrongPin();
 					}
 				} else {
-					viewWrongPin();
+					viewTransactionCancelled();
 				}
 			} else {
-				viewTransactionCancelled();
+				viewPaymentCodeAlreadyUSe();
 			}
 		} else {
 			viewPaymentCodeInvalid();

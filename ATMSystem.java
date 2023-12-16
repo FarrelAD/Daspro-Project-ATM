@@ -1827,9 +1827,9 @@ public class ATMSystem {
 			Scanner ScanNewPin = new Scanner(System.in);
 			System.out.println(
 					"    ============================================================================================");
-			System.out.print("    Masukkan PIN baru: ");
+			System.out.print("\tMasukkan PIN baru: ");
 			String inputNewPin = getValidatedPin(ScanNewPin);
-			System.out.print("    Konfirmasi PIN baru: ");
+			System.out.print("\tKonfirmasi PIN baru: ");
 			String confirmedNewPin = getValidatedPin(ScanNewPin);
 			if (inputNewPin.equals(confirmedNewPin)) {
 				int indeksNoRek = 0;

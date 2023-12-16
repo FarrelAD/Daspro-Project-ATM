@@ -218,6 +218,8 @@ public class ATMSystem {
 		{ "PAY EDUCATION COST ", "BAYAR BIAYA PENDIDIKAN "}, // 53
 		{ "PAY WATER BILL ", "BAYAR TAGIHAN AIR "}, //55
 		{ "PAY HEALTH INSURANCE ", "BAYAR ASURANSI KESEHATAN "} //56
+		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//57
+		{"Are you sure want to exit?","Apakah anda yakin untuk keluar?"} // 58
 	};
 
 	public static void main(String[] args) {
@@ -1518,7 +1520,7 @@ public class ATMSystem {
 				"    ============================================================================================");
 		System.out.println(
 				"    [            ________________________________________________________________              ]");
-		System.out.printf("    [           | Saldo anda sebesar %s\t\t\t\t |\t       ]\n",
+		System.out.printf(langOutputs[57][currentLanguange],
 				saldoRupiah3);
 		System.out.println(
 				"    [            ----------------------------------------------------------------              ]");
@@ -1625,7 +1627,7 @@ public class ATMSystem {
 
 	public static boolean Exit() {
 		displayHeaderExit();
-		System.out.println("\t-- Apakah anda yakin untuk keluar?");
+		System.out.println(langOutputs[58][currentLanguange]);
 		UserConfirmation();
 		ClearScreen();
 		if (userConfirmation == 'Y' || userConfirmation == 'y') {

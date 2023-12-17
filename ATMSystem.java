@@ -226,7 +226,7 @@ public class ATMSystem {
 		{ "YOUR RECENT ACCOUNT HISTORY", " RIWAYAT AKUN TERBARU ANDA "}, //59
 		{ "ACCOUNT CREATED", "AKUN DIBUAT    "}, //60
 		{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN"}, //61
-		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"},//62
+		{"Your Balance Amount %s\t\t\t\t |\t       ]\n","Saldo anda sebesar %s\t\t\t\t |\t       ]\n"}, //62
 		{"Are you sure want to exit?","Apakah anda yakin untuk keluar?"}, // 63
 		{ "[                                ADD THE BANK CODE AT THE BEGINNING                                 ]\n"+
 		  "[                                  WHEN INPUT THE ACCOUNT NUMBER                                    ]\n"+
@@ -249,37 +249,38 @@ public class ATMSystem {
 		  "[                                    DESTINATION ACCOUNT NUMBER                                     ]\n", 
 		  "[                                   SILAKAN MASUKKAN TUJUH DIGIT                                    ]\n"+
 		  "[                                       NOMOR REKENING TUJUAN                                       ]\n"}, // 69
-			{"Invalid option, please select number 1 or 2.","Pilihan bank tidak valid. Silakan pilih 1 atau 2."},// 70 NEW
-			{"INSERT YOUR PIN : ","MASUKKAN PIN ANDA : "}, // 71
-			{"INSERT A NEW PIN: ", "MASUKKAN PIN BARU: "}, // 72
-			{"CONFIRM A NEW PIN: ","KONFIRMASI PIN BARU: "}, // 73
-			{"    [!]  PIN CHANGED  [!]     ", "[!]  PIN BERHASIL DIRUBAH  [!]" }, // 74
-			{"[!]  A NEW PIN AND CONFIRM MUST BE THE SAME  [!]", "  [!]  PIN BARU DAN KONFIRMASI TIDAK SAMA  [!]  " }, // 75
-			{" [!]  INCORRECT PIN  [!]  ", "[!]  PIN TIDAK SESUAI  [!]" }, // 76
-			{"                   [  (!) Incorrect input. Double check your input (!) ]\" (!)  ]","                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]"},// 77
-			{"[===================================================================================================]\n"
-						+
-						"[                                 SORRY, INVALID TRANSACTION                                 ]\n"
-						+
-						"[                     TRANSAKSI VALID MUST BE BETWEEN Rp50.000 - Rp5.000.000                      ]\n"
-						+
-						"[===================================================================================================]",
-						"[===================================================================================================]\n"
-						+
-						"[                                 MOHON MAAF, TRANSAKSI TIDAK VALID                                 ]\n"
-						+
-						"[                     TRANSAKSI VALID JIKA NOMINAL Rp50.000 HINGGA Rp5.000.000                      ]\n"
-						+
-						"[===================================================================================================]"},// 78
-			{"                     [  (!) Transaction failed. Your balance is insufficient (!)  ]","                     [  (!) Transaksi gagal. Saldo anda tidak mencukupi (!)  ]"},// 79
-			{"                                      [  (!) WRONG PIN (!)  ]","                                      [  (!) PIN SALAH! (!)  ]"},// 80
-			{"     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSACTION SUCCESS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ", "     ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "},// 81
-			{"                                 [  (!) CANCELED TRANSACTION (!)  ]","                                 [  (!) TRANSAKSI DIBATALKAN (!)  ]"},// 82
-			{"               [  (!) Invalid Payment Code, Please recheck your VA numbers (!)  ]","               [  (!) Kode pembayaran invalid. Silakan input ulang nomor VA anda! (!)  ]"},// 83 NEW
-			{ "               [      (!) Invalid payment code. Code has been used ! (!)      ]", "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"},//84
-			{"Press 'Y' For yes. press 'T' for No --> ","Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> "},//85
-			{"[  Insert PIN : ","[  Masukkan PIN anda: "},//86
-			{"ENTER FOR CONTINUE --> ","ENTER UNTUK MELANJUTKAN --> "},//87
+		{ " "," " }, // 70
+		{ "INSERT YOUR PIN : ","MASUKKAN PIN ANDA : "}, // 71
+		{ "INSERT A NEW PIN: ", "MASUKKAN PIN BARU: "}, // 72
+		{ "CONFIRM A NEW PIN: ","KONFIRMASI PIN BARU: "}, // 73
+		{ "    [!]  PIN CHANGED  [!]     ", "[!]  PIN BERHASIL DIRUBAH  [!]" }, // 74
+		{ "[!]  A NEW PIN AND CONFIRM MUST BE THE SAME  [!]", "  [!]  PIN BARU DAN KONFIRMASI TIDAK SAMA  [!]  " }, // 75
+		{ " [!]  INCORRECT PIN  [!]  ", "[!]  PIN TIDAK SESUAI  [!]" }, // 76
+		{ "    [!]  INCORRECT INPUT. DOUBLE CHECK YOUR INOUT  [!]    ", "[!]  INPUT TIDAK SESUAI. PERIKSA KEMBALI INPUTAN ANDA  [!]" }, // 77
+		{ "[===================================================================================================]\n"+
+		  "[                                 SORRY, INVALID TRANSACTION                                 ]\n"+
+		  "[                     TRANSAKSI VALID MUST BE BETWEEN Rp50.000 - Rp5.000.000                      ]\n"+
+		  "[===================================================================================================]",
+		  "[===================================================================================================]\n"+
+		  "[                                 MOHON MAAF, TRANSAKSI TIDAK VALID                                 ]\n"+
+		  "[                     TRANSAKSI VALID JIKA NOMINAL Rp50.000 HINGGA Rp5.000.000                      ]\n"+
+		  "[===================================================================================================]" }, // 78
+		{ "[!]  TRANSACTION FAILED. YOUR BALANCE IS INSUFFICIENT  [!]", "  [!]  TRANSAKSI GAGAL. SALDO ANDA TIDAK MENCUKUPI  [!]   " }, // 79
+		{ "[!]  WRONG PIN  [!]", "[!]  PIN SALAH [!] " }, // 80
+		{ "[~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSACTION SUCCESS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~]\n", 
+		  "[~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TRANSAKSI BERHASIL~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~]\n" }, // 81
+		{ "[!]  CANCELED TRANSACTION  [!]", "[!]  TRANSAKSI DIBATALKAN  [!]" }, // 82
+		{ "[                             [!]       INVALID PAYMENT CODE       [!]                              ]\n"+
+		  "[                                 PLEASE RECHECK THE PAYMENT CODE                                   ]\n", 
+		  "[                           [!]      KODE PEMBAYARAN TIDAK VALID      [!]                           ]\n"+
+		  "[                                SILAKAN INPUT ULANG KODE PEMBAYARAN                                ]\n" }, // 83 
+		{ "[                                 [!]  INVALID PAYMENT CODE  [!]                                    ]\n"+
+		  "[                                       CODE HAS BEEN USED                                          ]\n",
+		  "[                           [!]      KODE PEMBAYARAN TIDAK VALID      [!]                           ]\n"+
+		  "[                                  KODE PEMBAYARAN TELAH DIGUNAKAN                                  ]\n" }, //84
+		{ "Press 'Y' For yes. press 'T' for No --> ","Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> " }, //85
+		{ "INSERT PIN : ","MASUKKAN PIN : " }, //86
+		{ "ENTER FOR CONTINUE ==> ","ENTER UNTUK MELANJUTKAN ==> " }, //87
 			
 	};
 
@@ -2214,12 +2215,10 @@ public class ATMSystem {
 	public static void defaultCaseMenu() {
 		ClearScreen();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				red + langOutputs[77][currentLanguange]
-						+ reset);
-		System.out.println(
-				"    ============================================================================================");
+			"[===================================================================================================]\n"+
+			"[                    "+langOutputs[77][currentLanguange]+"                     ]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static String formattedLocalDate() {
@@ -2256,93 +2255,61 @@ public class ATMSystem {
 
 	public static void displayTransactionOverLimit() {
 		ClearScreen();
-		System.out.println(
-				langOutputs[78][currentLanguange]);
+		System.out.println(langOutputs[78][currentLanguange]);
 	}
 
 	public static void viewBalanceIsNotEnough() {
 		ClearScreen();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				langOutputs[79][currentLanguange]);
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
+			"[===================================================================================================]\n"+
+			"[                    "+red+langOutputs[79][currentLanguange]+reset+"                     ]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void viewWrongPin() {
 		ClearScreen();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				red + langOutputs[80][currentLanguange]+ reset);
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
+			"[===================================================================================================]\n"+
+			"[                                        "+red+langOutputs[80][currentLanguange]+reset+"                                         ]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void viewTransactionSuccess() {
 		ClearScreen();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				langOutputs[81][currentLanguange]);
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
+			"[===================================================================================================]\n"+
+			langOutputs[81][currentLanguange]+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void viewTransactionCancelled() {
 		ClearScreen();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				red + langOutputs[82][currentLanguange] + reset);
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
+			"[===================================================================================================]\n"+
+			"[                                  "+red+langOutputs[82][currentLanguange]+reset+"                                  ]\n"+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void viewPaymentCodeInvalid() {
 		ClearScreen();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				red + langOutputs[83][currentLanguange]+ reset);
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
+			"[===================================================================================================]\n"+
+			red+langOutputs[83][currentLanguange]+reset+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void viewPaymentCodeAlreadyUSe() {
 		ClearScreen();
 		System.out.println(
-				"    ============================================================================================");
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				red + langOutputs[84][currentLanguange]
-						+ reset);
-		System.out.println(
-				"    --------------------------------------------------------------------------------------------");
-		System.out.println(
-				"    ============================================================================================");
+			"[===================================================================================================]\n"+
+			red+langOutputs[84][currentLanguange]+reset+
+			"[===================================================================================================]"
+		);
 	}
 
 	public static void displayClosing() {
@@ -2377,7 +2344,7 @@ public class ATMSystem {
 
 	public static boolean PinValidation() {
 		Scanner scannerPin = new Scanner(System.in);
-		System.out.print(langOutputs[86][currentLanguange]);
+		System.out.print("[  "+langOutputs[86][currentLanguange]);
 		inputPin = scannerPin.nextLine();
 		ClearScreen();
 		if (inputPin.equals(accountData[accountLineIndex][1])) {
@@ -2388,7 +2355,7 @@ public class ATMSystem {
 	}
 
 	public static void EnterForContinue() {
-		System.out.print(langOutputs[87][currentLanguange]);
+		System.out.print("[  "+langOutputs[87][currentLanguange]);
 		scanner5.nextLine();
 		ClearScreen();
 	}

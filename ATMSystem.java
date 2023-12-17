@@ -250,12 +250,12 @@ public class ATMSystem {
 		  "[                                   SILAKAN MASUKKAN TUJUH DIGIT                                    ]\n"+
 		  "[                                       NOMOR REKENING TUJUAN                                       ]\n"}, // 69
 			{"Invalid option, please select number 1 or 2.","Pilihan bank tidak valid. Silakan pilih 1 atau 2."},// 70 NEW
-			{"[  INSERT YOUR PIN  : ","[  MASUKKAN PIN ANDA : "},// 71
-			{"INSERT A NEW PIN: ", "    MASUKKAN PIN BARU: "},// 72
-			{"CONFIRM A NEW PIN: ","    KONFIRMASI PIN BARU: "},//73
-			{"    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN CHANGED~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~","    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~PIN BERHASIL DIRUBAH~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"},// 74
-			{"                          [  (!) A new PIN and Confirm must be the same (!) ]","                          [  (!) PIN BARU DAN KONFIRMASI TIDAK SAMA (!) ]"},// 75
-			{"                                    [  (!) INCORRECT PIN (!)  ]","                                    [  (!) PIN TIDAK SESUAI (!)  ]"},// 76
+			{"INSERT YOUR PIN : ","MASUKKAN PIN ANDA : "}, // 71
+			{"INSERT A NEW PIN: ", "MASUKKAN PIN BARU: "}, // 72
+			{"CONFIRM A NEW PIN: ","KONFIRMASI PIN BARU: "}, // 73
+			{"    [!]  PIN CHANGED  [!]     ", "[!]  PIN BERHASIL DIRUBAH  [!]" }, // 74
+			{"[!]  A NEW PIN AND CONFIRM MUST BE THE SAME  [!]", "  [!]  PIN BARU DAN KONFIRMASI TIDAK SAMA  [!]  " }, // 75
+			{" [!]  INCORRECT PIN  [!]  ", "[!]  PIN TIDAK SESUAI  [!]" }, // 76
 			{"                   [  (!) Incorrect input. Double check your input (!) ]\" (!)  ]","                   [  (!) Input tidak sesuai. Periksa kembali inputan anda (!)  ]"},// 77
 			{"[===================================================================================================]\n"
 						+
@@ -448,8 +448,6 @@ public class ATMSystem {
 				return false;
 			}
 
-			// If the maximum login attempts are reached and status akun will change to
-			// "TERBLOKIR"
 			if (loginAttempts > MAX_LOGIN_ATTEMPTS) {
 				System.out.println(
 						"[===================================================================================================]\n"
@@ -2075,15 +2073,15 @@ public class ATMSystem {
 		Scanner scanNewPin = new Scanner(System.in);
 		displayHeaderChangePin();
 		String userRekening = accountData[accountLineIndex][0];
-		System.out.print(langOutputs[71][currentLanguange]);
+		System.out.print("[  " + langOutputs[71][currentLanguange]);
 		String inputPin7 = scanNewPin.nextLine();
 
 		ClearScreen();
 
 		if (inputPin7.equals(inputPin)) {
-			System.out.print(langOutputs[72][currentLanguange]);
+			System.out.print("[  " + langOutputs[72][currentLanguange]);
 			String inputNewPin = getValidatedPin(scanNewPin);
-			System.out.print(langOutputs[73][currentLanguange]);
+			System.out.print("[  " + langOutputs[73][currentLanguange]);
 			String confirmedNewPin = getValidatedPin(scanNewPin);
 
 			ClearScreen();
@@ -2095,34 +2093,26 @@ public class ATMSystem {
 
 				recordAccountHistory(langOutputs[61][currentLanguange], formattedLocalTime(), formattedLocalDate());
 
-				// Menghapus output yang telah ditampilkan
 				ClearScreen();
 
 				System.out.println(
-						"    ============================================================================================");
-				System.out.println(
-						"    --------------------------------------------------------------------------------------------");
-				System.out.println(
-						langOutputs[74][currentLanguange]);
-				System.out.println(
-						"    --------------------------------------------------------------------------------------------");
-				System.out.println(
-						"    ============================================================================================");
+					"[===================================================================================================]\n"+
+					"[                                  "+langOutputs[74][currentLanguange]+"                                   ]\n"+
+					"[===================================================================================================]"
+				);
 			} else {
 				System.out.println(
-						"    ============================================================================================");
-				System.out.println(
-						langOutputs[75][currentLanguange]);
-				System.out.println(
-						"    ============================================================================================");
+					"[===================================================================================================]\n"+
+					"[                         "+langOutputs[75][currentLanguange]+"                          ]\n"+
+					"[===================================================================================================]"
+					);
 			}
 		} else {
 			System.out.println(
-					"    ============================================================================================");
-			System.out.println(
-					langOutputs[76][currentLanguange]);
-			System.out.println(
-					"    ============================================================================================");
+				"[===================================================================================================]\n"+
+				"[                                    "+langOutputs[76][currentLanguange]+"                                     ]\n"+
+				"[===================================================================================================]"
+				);
 		}
 	}
 

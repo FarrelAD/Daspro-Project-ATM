@@ -82,6 +82,7 @@ public class ATMSystem {
 
 	// 'Tarik tunai' variables
 	static int cashWithdrawalAmount;
+	static boolean isCashWithdrawalValid = false;
 
 	// Limitations the amount of transactions
 	static final int MAX_AMOUNT_TRANSACTION = 5000000;
@@ -624,8 +625,6 @@ public class ATMSystem {
 
 	public static void Transfer() {
 		displayHeaderTransfer();
-		// Counting admin fee
-		int adminFeeTf = 1500;
 		System.out.println(
 			"[===================================================================================================]\n"+
 			"[                                    "+langOutputs[15][currentLanguange]+"                                    ]\n"+
@@ -918,59 +917,38 @@ public class ATMSystem {
 	public static void displayHeaderCashWithdrawal() {
 		if (currentLanguange == 0) {
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[- - - - - - - - - - - - - - -╔═╗╔═╗╔═╗╦ ╦  ╦ ╦╦╔╦╗╦ ╦╔╦╗╦═╗╔═╗╦ ╦╔═╗╦ - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - -║  ╠═╣╚═╗╠═╣  ║║║║ ║ ╠═╣ ║║╠╦╝╠═╣║║║╠═╣║ - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - -╚═╝╩ ╩╚═╝╩ ╩  ╚╩╝╩ ╩ ╩ ╩═╩╝╩╚═╩ ╩╚╩╝╩ ╩╩═╝ - - - - - - - - - - - - - -]\n"
-							+
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - -╔═╗╔═╗╔═╗╦ ╦  ╦ ╦╦╔╦╗╦ ╦╔╦╗╦═╗╔═╗╦ ╦╔═╗╦ - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - -║  ╠═╣╚═╗╠═╣  ║║║║ ║ ╠═╣ ║║╠╦╝╠═╣║║║╠═╣║ - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - -╚═╝╩ ╩╚═╝╩ ╩  ╚╩╝╩ ╩ ╩ ╩═╩╝╩╚═╩ ╩╚╩╝╩ ╩╩═╝ - - - - - - - - - - - - - -]\n"+
+				"[===================================================================================================]");
 		} else {
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - -╔╦╗╔═╗╦═╗╦╦╔═  ╔╦╗╦ ╦╔╗╔╔═╗╦ - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - ║ ╠═╣╠╦╝║╠╩╗   ║ ║ ║║║║╠═╣║ - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - ╩ ╩ ╩╩╚═╩╩ ╩   ╩ ╚═╝╝╚╝╩ ╩╩ - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - - - - - -╔╦╗╔═╗╦═╗╦╦╔═  ╔╦╗╦ ╦╔╗╔╔═╗╦ - - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - - - - ║ ╠═╣╠╦╝║╠╩╗   ║ ║ ║║║║╠═╣║ - - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - - - - ╩ ╩ ╩╩╚═╩╩ ╩   ╩ ╚═╝╝╚╝╩ ╩╩ - - - - - - - - - - - - - - - - -]\n"+
+				"[===================================================================================================]");
 		}
-
 	}
 
 	public static void TarikTunai() {
 		displayHeaderCashWithdrawal();
-
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[                                     " + langOutputs[28][currentLanguange]
-						+ "                                     ]\n" +
-						"[                                     _________________________                                     ]\n"
-						+
-						"[                       [1] Rp50.000                            [5] Rp500.000                       ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [2] Rp100.000                           [6] Rp750.000                       ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [3] Rp200.000                           [7] Rp1.000.000                     ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[                       [4] Rp300.000                           [8] "
-						+ langOutputs[29][currentLanguange] + "                 ]\n" +
-						"[===================================================================================================]");
-
+			"[===================================================================================================]\n"+
+			"[                                     " + langOutputs[28][currentLanguange]+ "                                     ]\n" +
+			"[                                     _________________________                                     ]\n"+
+			"[                       [1] Rp50.000                            [5] Rp500.000                       ]\n"+
+			"[                                                                                                   ]\n"+
+			"[                       [2] Rp100.000                           [6] Rp750.000                       ]\n"+
+			"[                                                                                                   ]\n"+
+			"[                       [3] Rp200.000                           [7] Rp1.000.000                     ]\n"+
+			"[                                                                                                   ]\n"+
+			"[                       [4] Rp300.000                           [8] "+ langOutputs[29][currentLanguange] + "                 ]\n" +
+			"[===================================================================================================]");
 		System.out.print("[  ==> ");
 		int cashWithdrawalChoice = scanner1.nextInt();
-		boolean isCashWithdrawalValid = false;
+		isCashWithdrawalValid = false;
 		switch (cashWithdrawalChoice) {
 			case 1:
 				cashWithdrawalAmount = 50000;
@@ -1001,17 +979,14 @@ public class ATMSystem {
 				isCashWithdrawalValid = true;
 				break;
 			case 8:
-				// User input cashwithdrawal amount manually
 				cashWithdrawalAmount = validateNonNegativeIntegerInput("[  " + langOutputs[30][currentLanguange]);
 				isCashWithdrawalValid = true;
 				break;
 			default:
 				System.out.println(
-						"[===================================================================================================]\n"
-								+
-								"[                                      [!]  INVALID INPUT  [!]                                      ]\n"
-								+
-								"[===================================================================================================]");
+					"[===================================================================================================]\n"+
+					"[                                      [!]  INVALID INPUT  [!]                                      ]\n"+
+					"[===================================================================================================]");
 				EnterForContinue();
 				isCashWithdrawalValid = false;
 		}
@@ -1030,7 +1005,7 @@ public class ATMSystem {
 			if (userConfirmation == 'y' || userConfirmation == 'Y') {
 				if (PinValidation()) {
 					if (cashWithdrawalAmount < userBalance) {
-						if (cashWithdrawalAmount <= MAX_AMOUNT_TRANSACTION) {
+						if (cashWithdrawalAmount <= MAX_AMOUNT_TRANSACTION && cashWithdrawalAmount >= MIN_AMOUNT_TRANSACTION) {
 							userBalance -= cashWithdrawalAmount;
 							// Conversion of output value to Rupiah
 							String userBalanceRupiah = currencyFormat.format(userBalance);
@@ -2372,7 +2347,7 @@ public class ATMSystem {
 			System.out.print(prompt);
 
 			while (!scanner3.hasNextInt()) {
-				System.out.println("\t-- Input yang diberikan tidak valid. Silahkan ulangi kembali");
+				System.out.println("[  Input yang diberikan tidak valid. Silahkan ulangi kembali");
 				System.out.print(prompt);
 				scanner3.next(); // Hapus input yang tidak valid
 			}
@@ -2380,7 +2355,7 @@ public class ATMSystem {
 			userInput = scanner3.nextInt();
 
 			if (userInput < 0) {
-				System.out.println("Nilai harus lebih besar atau sama dengan 0.");
+				System.out.println("Nilai harus lebih besar atau sama dengan 0");
 			}
 		} while (userInput < 0);
 
@@ -2399,7 +2374,7 @@ public class ATMSystem {
 				System.out.println(
 						"    ============================================================================================");
 
-				System.out.print("\tMASUKKAN PIN BARU (4 DIGIT): ");
+				System.out.print("MASUKKAN PIN BARU (4 DIGIT): ");
 			}
 		} while (!pin.matches("\\d{4}"));
 		return pin;

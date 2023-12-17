@@ -132,7 +132,7 @@ public class ATMSystem {
 
 	// Konfirmasi transaksi ulang features variables
 	static char continueTransaction = 't', userChoice = 't',
-			userConfirmation;
+			userConfirmChar;
 	static boolean isContinueTransaction = false;
 
 	// 'Validasi PIN' variables
@@ -258,7 +258,7 @@ public class ATMSystem {
 		{ "    [!]  PIN CHANGED  [!]     ", "[!]  PIN BERHASIL DIRUBAH  [!]" }, // 74
 		{ "[!]  A NEW PIN AND CONFIRM MUST BE THE SAME  [!]", "  [!]  PIN BARU DAN KONFIRMASI TIDAK SAMA  [!]  " }, // 75
 		{ " [!]  INCORRECT PIN  [!]  ", "[!]  PIN TIDAK SESUAI  [!]" }, // 76
-		{ "    [!]  INCORRECT INPUT. DOUBLE CHECK YOUR INPUT  [!]    ", "[!]  INPUT TIDAK SESUAI. PERIKSA KEMBALI INPUTAN ANDA  [!]" }, // 77
+		{ "CONFIRM TRANSACTION ? ", "KONFIRMASI TRANSAKSI ?" }, // 77
 		{ "[===================================================================================================]\n"+
 		  "[                                    SORRY, INVALID TRANSACTION                                     ]\n"+
 		  "[                      TRANSAKSI VALID MUST BE BETWEEN Rp50.000 - Rp5.000.000                       ]\n"+
@@ -690,11 +690,9 @@ public class ATMSystem {
 				"[  -- " + langOutputs[25][currentLanguange] + adminFeeTfRp + "\n" +
 				"[===================================================================================================]"
 			);
-
-			UserConfirmation();
 			ClearScreen();
 
-			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+			if (UserConfirmation()) {
 				if (PinValidation()) {
 					if (transferAmount < userBalance) {
 						if (transferAmount <= MAX_AMOUNT_TRANSACTION && transferAmount >= MIN_AMOUNT_TRANSACTION) {
@@ -858,10 +856,7 @@ public class ATMSystem {
 				"[===================================================================================================]"
 			);
 
-			UserConfirmation();
-			ClearScreen();
-
-			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+			if (UserConfirmation()) {
 				if (PinValidation()) {
 					if (transferAmount < userBalance) {
 						if (transferAmount <= MAX_AMOUNT_TRANSACTION && transferAmount >= MIN_AMOUNT_TRANSACTION) {
@@ -988,12 +983,11 @@ public class ATMSystem {
 		String cashWithdrawalRupiah = currencyFormat.format(cashWithdrawalAmount);
 
 		if (isCashWithdrawalValid) {
-			System.out.println("[  " + langOutputs[31][currentLanguange] + cashWithdrawalRupiah + " ? ");
+			System.out.println(
+				"[===================================================================================================]\n"+	
+				"[  " + langOutputs[31][currentLanguange] + cashWithdrawalRupiah + " ? ");
 
-			// Transaction confirmation approval
-			UserConfirmation();
-			ClearScreen();
-			if (userConfirmation == 'y' || userConfirmation == 'Y') {
+			if (UserConfirmation()) {
 				if (PinValidation()) {
 					if (cashWithdrawalAmount < userBalance) {
 						if (cashWithdrawalAmount <= MAX_AMOUNT_TRANSACTION && cashWithdrawalAmount >= MIN_AMOUNT_TRANSACTION) {
@@ -1059,13 +1053,11 @@ public class ATMSystem {
 		ClearScreen();
 
 		String cashDepositRupiah = currencyFormat.format(cashDepositAmount);
-		System.out.println("[  " + langOutputs[33][currentLanguange] + cashDepositRupiah + " ? ");
+		System.out.println(
+			"[===================================================================================================]\n"+
+			"[  " + langOutputs[33][currentLanguange] + cashDepositRupiah + " ? ");
 
-		// Transaction confirmation approval
-		UserConfirmation();
-
-		ClearScreen();
-		if (userConfirmation == 'y' || userConfirmation == 'Y') {
+		if (UserConfirmation()) {
 			ClearScreen();
 			if (PinValidation()) {
 				if (cashDepositAmount <= MAX_AMOUNT_TRANSACTION && cashDepositAmount >= MIN_AMOUNT_TRANSACTION) {
@@ -1232,7 +1224,7 @@ public class ATMSystem {
 		} while (!isOperatorValid);
 
 		if (isOperatorValid) {
-			System.out.print("[  " + langOutputs[37][currentLanguange]); // User input nomor telepon
+			System.out.print("[  " + langOutputs[37][currentLanguange]);
 			nomorTelepon = scannerPulsa.nextLine();
 			scanner1.nextLine();
 			nomPulsa = validateNonNegativeIntegerInput("[  " + langOutputs[38][currentLanguange]);
@@ -1256,10 +1248,13 @@ public class ATMSystem {
 							"[  -- " + langOutputs[41][currentLanguange] + nomPulsaRp + "\n" +
 							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
+			
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                      "+langOutputs[77][currentLanguange]+"                                       ]"
+			);
 
-			UserConfirmation();
-			ClearScreen();
-			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+			if (UserConfirmation()) {
 				ClearScreen();
 				if (PinValidation()) {
 					if (nomPulsa < userBalance) {
@@ -1348,10 +1343,13 @@ public class ATMSystem {
 								"[  -- " + langOutputs[44][currentLanguange] + tagihanListrikRP + "\n" +
 								"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 								"[===================================================================================================]");
+				
+				System.out.println(
+					"[===================================================================================================]\n"+
+					"[                                      "+langOutputs[77][currentLanguange]+"                                       ]"
+				);
 
-				UserConfirmation();
-				ClearScreen();
-				if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				if (UserConfirmation()) {
 					if (PinValidation()) {
 						if (listrikData[indexListrik][1] < userBalance) {
 							userBalance -= totalPayment;
@@ -1457,9 +1455,12 @@ public class ATMSystem {
 							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
 
-				UserConfirmation();
-				ClearScreen();
-				if (userConfirmation == 'Y' || userConfirmation == 'y') {
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                      "+langOutputs[77][currentLanguange]+"                                       ]"
+			);
+
+				if (UserConfirmation()) {
 					if (PinValidation()) {
 						if (pendidikanData[indexPendidikan][1] < userBalance) {
 							userBalance -= totalPayment;
@@ -1551,10 +1552,13 @@ public class ATMSystem {
 							"[  -- " + langOutputs[44][currentLanguange] + tagihanPdamRp + "\n" +
 							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
+			
+			System.out.println(
+				"[===================================================================================================]\n"+
+				"[                                      "+langOutputs[77][currentLanguange]+"                                       ]"
+			);
 
-			UserConfirmation();
-			ClearScreen();
-			if (userConfirmation == 'Y' || userConfirmation == 'y') {
+			if (UserConfirmation()) {
 				if (PinValidation()) {
 					if (tagihanAirData[indexPdam][1] < userBalance) {
 						userBalance -= totalPayment;
@@ -1645,9 +1649,12 @@ public class ATMSystem {
 							"[  -- " + langOutputs[25][currentLanguange] + adminFeeRp + "\n" +
 							"[===================================================================================================]");
 
-				UserConfirmation();
-				ClearScreen();
-				if (userConfirmation == 'Y' || userConfirmation == 'y') {
+				System.out.println(
+					"[===================================================================================================]\n"+
+					"[                                      "+langOutputs[77][currentLanguange]+"                                       ]"
+				);
+
+				if (UserConfirmation()) {
 					if (PinValidation()) {
 						if (BPJSdata[indexBpjs][1] < userBalance) {
 							userBalance -= totalPayment;
@@ -2063,9 +2070,7 @@ public class ATMSystem {
 	public static boolean Exit() {
 		displayHeaderExit();
 		System.out.println(langOutputs[63][currentLanguange]);
-		UserConfirmation();
-		ClearScreen();
-		if (userConfirmation == 'Y' || userConfirmation == 'y') {
+		if (UserConfirmation()) {
 			displayClosing();
 			return isStopTransaction = true;
 		} else {
@@ -2251,10 +2256,38 @@ public class ATMSystem {
 						"[====================================================================================================]");
 	}
 
-	public static char UserConfirmation() {
-		System.out.print(langOutputs[85][currentLanguange]);
-		userConfirmation = scanner2.next().charAt(0);
-		return userConfirmation;
+	public static boolean UserConfirmation() {
+		boolean isLoopConfirm = false;
+		boolean isValueTrue = false;
+		do {
+			System.out.print(
+				"[===================================================================================================]\n"+
+				"[                                                                                                   ]\n"+
+				"[  [1] " + langOutputs[11][currentLanguange]+ "                                                                                          ]\n"+
+				"[                                                                                                   ]\n"+
+				"[  [2] " + langOutputs[12][currentLanguange]+ "                                                                                        ]\n"+
+				"[                                                                                                   ]\n"+
+				"[===================================================================================================]\n"+
+				"[  ==> ");
+			userConfirmChar = scanner2.next().charAt(0);
+			ClearScreen();
+			switch (userConfirmChar) {
+				case '1':
+					isValueTrue = true;
+					isLoopConfirm = false;
+					break;
+				case '2':
+					isValueTrue = false;
+					isLoopConfirm = false;
+					break;
+				default:
+					defaultCaseMenu();
+					EnterForContinue();
+					isLoopConfirm = true;
+					break;
+			}
+		} while (isLoopConfirm);
+		return isValueTrue;
 	}
 
 	public static boolean PinValidation() {

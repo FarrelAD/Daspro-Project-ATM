@@ -668,10 +668,11 @@ public class ATMSystem {
 			}
 		}
 
-		if (accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
-			isTargetAccountValid = true;
+		if (accountData[indexTargetAccount][0].equals(inputTarget_AccountNumber)) {
+			if (accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
+				isTargetAccountValid = true;
+			}
 		}
-
 
 		if (isTargetAccountValid) {
 			int adminFeeTf = 0;

@@ -279,7 +279,7 @@ public class ATMSystem {
 			{ "               [      (!) Invalid payment code. Code has been used ! (!)      ]", "               [      (!) Kode pembayaran invalid. Kode ini telah digunakan ! (!)      ]"},//84
 			{"Press 'Y' For yes. press 'T' for No --> ","Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> "},//85
 			{"[  Insert PIN : ","[  Masukkan PIN anda: "},//86
-			{"ENTER FOR CONTINUE --> ","ENTER UNTUK MELANJUTKAN --> "},//
+			{"ENTER FOR CONTINUE --> ","ENTER UNTUK MELANJUTKAN --> "},//87
 			
 	};
 
@@ -653,7 +653,6 @@ public class ATMSystem {
 	}
 
 	public static void transferSameBank() {
-		ClearScreen();
 		System.out.println(
 			"[===================================================================================================]\n"+
 			langOutputs[69][currentLanguange]+
@@ -740,6 +739,7 @@ public class ATMSystem {
 				viewTransactionCancelled();
 			}
 		} else {
+			ClearScreen();
 			System.out.println(
 				"[===================================================================================================]\n"+
 				"[                    " + red + langOutputs[27][currentLanguange] + reset+ "                    ]\n" +
@@ -749,7 +749,6 @@ public class ATMSystem {
 	}
 
 	public static void transferOtherBank() {
-		ClearScreen();
 		Scanner scanTfOtherBank = new Scanner(System.in);
 		System.out.println(
 			"[===================================================================================================]\n"+
@@ -762,6 +761,7 @@ public class ATMSystem {
 		);
 		System.out.print("[  ==> ");
 		userChoiceMenu = scanTfOtherBank.nextInt();
+		ClearScreen();
 		switch (userChoiceMenu) {
 			case 1:
 				displayBankCode();
@@ -775,7 +775,6 @@ public class ATMSystem {
 	}
 
 	public static void displayBankCode() {
-		ClearScreen();
 		System.out.print(
 			"[===================================================================================================]\n"+
 			"[   001 - BANK JOSS                                                                                 ]\n"+
@@ -788,6 +787,7 @@ public class ATMSystem {
 			"[  ==> "
 		);
 		userChoiceMenu = scanner2.nextInt();
+		ClearScreen();
 		if (userChoiceMenu == 1) {
 			transferOtherBank();
 		} else {
@@ -796,7 +796,6 @@ public class ATMSystem {
 	}
 
 	public static void exeTransferOtherBank() {
-		ClearScreen();
 		System.out.println(
 			"[===================================================================================================]\n"+
 			langOutputs[68][currentLanguange]+
@@ -907,6 +906,7 @@ public class ATMSystem {
 				viewTransactionCancelled();
 			}
 		} else {
+			ClearScreen();
 			System.out.println(
 				"[===================================================================================================]\n"+
 				"[                    " + red + langOutputs[27][currentLanguange] + reset+ "                    ]\n" +
@@ -2399,6 +2399,7 @@ public class ATMSystem {
 	public static void EnterForContinue() {
 		System.out.print(langOutputs[87][currentLanguange]);
 		scanner5.nextLine();
+		ClearScreen();
 	}
 
 	public static void ClearScreen() {

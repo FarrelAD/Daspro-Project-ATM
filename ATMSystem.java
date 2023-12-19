@@ -351,7 +351,7 @@ public class ATMSystem {
 						+
 						"[    @:-@@@@@@ ****  ======  **** @@@@@@-:@                                                         ]\n"
 						+
-						"[     @:-@@@@@. ***####%%####*** . @@@@@-:@                    FOR SAFETY AND COMFORT               ]\n"
+						"[     @:-@@@@@. ***####%%####*** .@@@@@-:@                     FOR SAFETY AND COMFORT               ]\n"
 						+
 						"[      @:.@@@@@ ################ @@@@@.:@                PLEASE CHANGE YOUR PIN REGULARLY           ]\n"
 						+
@@ -653,8 +653,10 @@ public class ATMSystem {
 		System.out.print("[  " + langOutputs[17][currentLanguange]);
 		inputTarget_AccountNumber = scannerTF.nextLine();
 
-		int indexTargetAccount = 0;
+		int indexTargetAccount = accountLineIndex;
 		isTargetAccountValid = false;
+		boolean isTryToCheckBank = false;
+
 		for (int i = 0; i < accountData.length; i++) {
 			if ((inputTarget_AccountNumber.equals(accountData[i][0])) && (!inputTarget_AccountNumber.equals(inputUser_AccountNumber))) {
 				indexTargetAccount = i;
@@ -662,9 +664,17 @@ public class ATMSystem {
 			}
 		}
 
-		if (accountData[indexTargetAccount][0].equals(inputTarget_AccountNumber)) {
-			if (accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
-				isTargetAccountValid = true;
+		if (indexTargetAccount == accountLineIndex) {
+			isTryToCheckBank = false;
+		} else {
+			isTryToCheckBank = true;
+		}
+
+		if (isTryToCheckBank) {
+			if (accountData[indexTargetAccount][0].equals(inputTarget_AccountNumber)) {
+				if (accountData[indexTargetAccount][3].equals("BANK POLINEMA")) {
+					isTargetAccountValid = true;
+				}
 			}
 		}
 
@@ -938,6 +948,8 @@ public class ATMSystem {
 			"[===================================================================================================]");
 		System.out.print("[  ==> ");
 		int cashWithdrawalChoice = scanner1.nextInt();
+		ClearScreen();
+
 		isCashWithdrawalValid = false;
 		switch (cashWithdrawalChoice) {
 			case 1:

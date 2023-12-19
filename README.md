@@ -14,7 +14,7 @@
     <li><a href="https://github.com/sukinnamz">Innama Maesa Putri</li>
 </ol>
 
-Leader?? _NO LEADER JUST TOGETHER_
+Leader?? Mr. Farrel
       
 ## About our project
 
@@ -33,10 +33,10 @@ Leader?? _NO LEADER JUST TOGETHER_
 5. Bill payments <i>(Pembayaran tagihan)</i>
 6. PIN change <i>(Ubah PIN)</i>
 7. Transaction history <i>(Riwayat transaksi)</i>
+8. Multi Lenguage
 
 ## System flow
-<p><i>BEWARE!!!</i></p>
-<p><i>This part is under construction</i></p>
+
 
 ## Inside of code
 We've implemented some of the things we've learned about the basics of Java. There are:
@@ -46,7 +46,7 @@ We've implemented some of the things we've learned about the basics of Java. The
 - Function _(soon)_
 
 ## Tools ##
-Not many tools that we use for the project. We only use Java as a language of the program and Microsoft Visual Studio Code as an IDE to making the whole program. 
+many tools that we use for the project. We use Java as a language of the program and Microsoft Visual Studio Code as an IDE to making the whole program. 
 Thanks Java! Thanks VSCode! Without you we can't finish the project.
 <p align="center">
    <img src="https://skillicons.dev/icons?i=java,vscode">

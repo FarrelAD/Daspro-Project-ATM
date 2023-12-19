@@ -20,7 +20,7 @@ Leader?? _NO LEADER JUST TOGETHER_
 
 #### START: 4 September 2023 ####
 
-#### STATUS: ON PROGRESS... (100%) ####
+#### STATUS: SUCCES (100%) ####
 
 <img src="https://media.giphy.com/media/hTZXf0F5qZXUaFTfyY/giphy.gif" width="100" alt="ON PROGRESS GIF" align="left">
 <br><br><br><br>

@@ -283,7 +283,8 @@ public class ATMSystem {
 		{ "Press 'Y' For yes. press 'T' for No --> ","Tekan 'Y' untuk YA. Tekan 'T' untuk TIDAK --> " }, //85
 		{ "INSERT PIN : ","MASUKKAN PIN : " }, //86
 		{ "ENTER FOR CONTINUE ==> ","ENTER UNTUK MELANJUTKAN ==> " }, //87
-			
+		{ "BACK TO THE", "KEMBALI KE "}, // 88
+		{ "MAIN MENU ", "MENU UTAMA" } // 89
 	};
 
 	public static void main(String[] args) {
@@ -623,7 +624,9 @@ public class ATMSystem {
 			"[===================================================================================================]\n"+
 			"[                                    "+langOutputs[15][currentLanguange]+"                                    ]\n"+
 			"[===================================================================================================]\n"+
-			"[                    [1] BANK POLINEMA                          [2] "+langOutputs[16][currentLanguange]+"                    ]\n"+
+			"[                    [1] BANK POLINEMA                          [3] "+langOutputs[88][currentLanguange]+"                     ]\n"+
+			"[                                                                   "+langOutputs[89][currentLanguange]+"                      ]\n"+
+			"[                    [2] "+langOutputs[16][currentLanguange]+"                                                               ]\n"+
 			"[===================================================================================================]");
 
 		System.out.print("[  ==> ");
@@ -633,15 +636,18 @@ public class ATMSystem {
 		switch (bankChoice) {
 			case 1:
 				transferSameBank();	
+				EnterForContinue();
 				break;
 			case 2:
 				transferOtherBank();
+				EnterForContinue();
+				break;
+			case 3: 
+				returnToMainMenu();
 				break;
 			default:
 				defaultCaseMenu();
 		}
-
-		EnterForContinue();
 	}
 
 	public static void transferSameBank() {

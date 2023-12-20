@@ -229,7 +229,7 @@ public class ATMSystem {
 		{ "ACCOUNT CREATED", "AKUN DIBUAT    "}, //60
 		{ "HAVE MADE A PIN CHANGE", "TELAH MELAKUKAN PERUBAHAN PIN"}, //61
 		{ "YOUR BALANCE AMOUNT : ","SALDO ANDA SEBESAR  : "}, //62
-		{ "Are you sure want to exit?","Apakah anda yakin untuk keluar?"}, // 63
+		{ "ARE YOU SURE WANT TO EXIT?     ", "APAKAH ANDA YAKIN UNTUK KELUAR?" }, // 63
 		{ "[                                ADD THE BANK CODE AT THE BEGINNING                                 ]\n"+
 		  "[                                  WHEN INPUT THE ACCOUNT NUMBER                                    ]\n"+
 		  "[                          -----------------------------------------------                          ]\n"+
@@ -284,7 +284,9 @@ public class ATMSystem {
 		{ "INSERT PIN : ","MASUKKAN PIN : " }, //86
 		{ "ENTER FOR CONTINUE ==> ","ENTER UNTUK MELANJUTKAN ==> " }, //87
 		{ "BACK TO THE", "KEMBALI KE "}, // 88
-		{ "MAIN MENU ", "MENU UTAMA" } // 89
+		{ "MAIN MENU ", "MENU UTAMA" }, // 89
+		{ "[~ ~ ~ ~ ~ ~ ~ ~ ~ ~ THANK YOU FOR TRANSACTING! MAY YOUR DAY ALWAYS BE HAPPY :) ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ]\n", 
+		  "[~ ~ ~ ~ ~ ~ ~ ~ ~TERIMA KASIH TELAH BERTRANSAKSI! SEMOGA HARIMU SELALU BAHAGIA :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n" } // 90
 	};
 
 	public static void main(String[] args) {
@@ -2063,32 +2065,24 @@ public class ATMSystem {
 	public static void displayHeaderExit() {
 		if (currentLanguange == 0) {
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - - - ╔═╗═╗ ╦╦╔╦╗ - - - - - - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - - - ║╣ ╔╩╦╝║ ║  - - - - - - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - - - ╚═╝╩ ╚═╩ ╩  - - - - - - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - - - ╔═╗═╗ ╦╦╔╦╗ - - - - - - - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - - - ║╣ ╔╩╦╝║ ║  - - - - - - - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - - - ╚═╝╩ ╚═╩ ╩  - - - - - - - - - - - - - - - - - - - - - -]\n"+
+				"[===================================================================================================]");
 		} else {
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - ╦╔═╔═╗╦  ╦ ╦╔═╗╦═╗ - - - - - - - - - - - - - - - - - - - - ]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - ╠╩╗║╣ ║  ║ ║╠═╣╠╦╝ - - - - - - - - - - - - - - - - - - - - ]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╝╩═╝╚═╝╩ ╩╩╚═ - - - - - - - - - - - - - - - - - - - - ]\n"
-							+
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - ╦╔═╔═╗╦  ╦ ╦╔═╗╦═╗ - - - - - - - - - - - - - - - - - - - - ]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - ╠╩╗║╣ ║  ║ ║╠═╣╠╦╝ - - - - - - - - - - - - - - - - - - - - ]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - ╩ ╩╚═╝╩═╝╚═╝╩ ╩╩╚═ - - - - - - - - - - - - - - - - - - - - ]\n"+
+				"[===================================================================================================]");
 		}
 	}
 
 	public static boolean Exit() {
 		displayHeaderExit();
-		System.out.println(langOutputs[63][currentLanguange]);
+		System.out.println("[  " + langOutputs[63][currentLanguange] + "                                                                  ]");
 		if (UserConfirmation()) {
 			displayClosing();
 			return isStopTransaction = true;
@@ -2254,25 +2248,19 @@ public class ATMSystem {
 	public static void displayClosing() {
 		ClearScreen();
 		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[~ ~ ~ ~ ~ ~ ~ ~ ~ Terimakasih telah bertransaksi! Semoga harimu selalu bahagia :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n"
-						+
-						"[===================================================================================================]\n"
-						+
-						"\n" +
-						"* * * [   This program is made by:                      ] * * * * * * * * * * * * * * * * * * * * * *\n"
-						+
-						"* * * [   The students of State Polytechnic of Malang   ] * * * * * * * * * * * * * * * * * * * * * *\n"
-						+
-						"* * * [   - Atabik Mutawakilalallah                     ] * * * * * * * * * * * * * * * * * * * * * *\n"
-						+
-						"* * * [   - Farrel Augusta Dinata                       ] * * * * * * * * * * * * * * * * * * * * * *\n"
-						+
-						"* * * [   - Innama Maesa Putri                          ] * * * * * * * * * * * * * * * * * * * * * *\n"
-						+
-						"* * * [   \u00A92023\n" +
-						"[====================================================================================================]");
+			"[===================================================================================================]\n"+
+			langOutputs[90][currentLanguange]+
+			"[===================================================================================================]\n"+
+			"\n" +
+			"       -------------------------------------------------  \n"+
+			"      [   This program is made by:                      ] \n"+
+			"      [   The students of State Polytechnic of Malang   ] \n"+
+			"      [   - Atabik Mutawakilalallah                     ] \n"+
+			"      [   - Farrel Augusta Dinata                       ] \n"+
+			"      [   - Innama Maesa Putri                          ] \n"+
+			"      [   @2023                                         ] \n"+
+			"       ------------------------------------------------- "
+			);
 	}
 
 	public static boolean UserConfirmation() {

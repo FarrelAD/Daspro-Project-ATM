@@ -286,7 +286,33 @@ public class ATMSystem {
 		{ "BACK TO THE", "KEMBALI KE "}, // 88
 		{ "MAIN MENU ", "MENU UTAMA" }, // 89
 		{ "[~ ~ ~ ~ ~ ~ ~ ~ ~ ~ THANK YOU FOR TRANSACTING! MAY YOUR DAY ALWAYS BE HAPPY :) ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ]\n", 
-		  "[~ ~ ~ ~ ~ ~ ~ ~ ~TERIMA KASIH TELAH BERTRANSAKSI! SEMOGA HARIMU SELALU BAHAGIA :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n" } // 90
+		  "[~ ~ ~ ~ ~ ~ ~ ~ ~TERIMA KASIH TELAH BERTRANSAKSI! SEMOGA HARIMU SELALU BAHAGIA :) ~ ~ ~ ~ ~ ~ ~ ~ ~]\n" }, // 90
+		{ "[===================================================================================================]\n"+
+		  "[                                INSTRUCTIONS FOR USING POLINEMA ATM                                ]\n"+
+		  "[                                                                                                   ]\n"+
+		  "[  Q: HOW TO MAKE A TRANSACTION?                                                                    ]\n"+
+		  "[  A: YOU CAN SELECT TRANSACTION OPTIONS BY SELECTING THE NUMBER OPTIONS IN THE MENU                ]\n"+
+		  "[                                                                                                   ]\n"+
+		  "[  Q: CAN I TRANSACTION MORE THAN ONE TIME?                                                         ]\n"+
+		  "[  A: OF COURSE. AFTER YOU CONFIRM, THERE WILL BE A NOTIFICATION REGARDING THE TRANSACTION          ]\n"+
+		  "[     CONFIRMATION AGAIN. YOU CAN SELECT THE MENU THAT IS BACK AVAILABLE.                           ]\n"+
+		  "[                                                                                                   ]\n"+
+		  "[  IF THERE ARE OTHER PROBLEMS PLEASE CONTACT CALL CENTER 00112233                                  ]\n"+
+		  "[  WE WILL BE HAPPY TO SERVE YOU                                                                    ]\n"+
+		  "[===================================================================================================]",
+		  "[===================================================================================================]\n"+
+		  "[                                PETUNJUK MENGGUNAKAN ATM POLINEMA                                  ]\n"+
+		  "[                                                                                                   ]\n"+
+		  "[  Q: BAGAIMANA CARA MELAKUKAN TRANSAKSI?                                                           ]\n"+
+		  "[  A: ANDA BISA MEMILIH OPSI TRANSAKSI DENGAN MEMILIH OPSI ANGKA YANG ADA DI MENU                   ]\n"+
+		  "[                                                                                                   ]\n"+
+		  "[  Q: APAKAH SAYA BISA TRANSAKSI LEBIH DARI 1 KALI?                                                 ]\n"+
+		  "[  A: BISA. SETELAH ANDA MELAKUKAN KONFIRMASI, AKAN ADA PEMBERITAHUAN MENGENAI KONFIRMASI           ]\n"+
+		  "[     TRANSAKSI LAGI. ANDA BISA MEMILIH MENU YANG TERSEDIA KEMBALI.                                 ]\n"+
+		  "[                                                                                                   ]\n"+
+		  "[  JIKA ADA KENDALA LAIN SILAKAN HUBUNGI CALL CENTER 00112233                                       ]\n"+
+		  "[  KAMI DENGAN SENANG HATI AKAN MELAYANI ANDA                                                       ]\n"+
+		  "[===================================================================================================]" } // 91
 	};
 
 	public static void main(String[] args) {
@@ -2094,53 +2120,24 @@ public class ATMSystem {
 	public static void displayHeaderHelp() {
 		if (currentLanguange == 0) {
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - - -╦ ╦╔═╗╦  ╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - - -╠═╣║╣ ║  ╠═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - - - -╩ ╩╚═╝╩═╝╩- - - - - - - - - - - - - - - - - - - - - - - ]\n"
-							+
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - - -╦ ╦╔═╗╦  ╔═╗- - - - - - - - - - - - - - - - - - - - - - ]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - - -╠═╣║╣ ║  ╠═╝- - - - - - - - - - - - - - - - - - - - - - ]\n"+
+				"[- - - - - - - - - - - - - - - - - - - - - -╩ ╩╚═╝╩═╝╩- - - - - - - - - - - - - - - - - - - - - - - ]\n"+
+				"[===================================================================================================]");
 		} else {
 			System.out.println(
-					"[===================================================================================================]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - -╔╗ ╔═╗╔╗╔╔╦╗╦ ╦╔═╗╔╗╔- - - - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - -╠╩╗╠═╣║║║ ║ ║ ║╠═╣║║║- - - - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[- - - - - - - - - - - - - - - - - - - -╚═╝╩ ╩╝╚╝ ╩ ╚═╝╩ ╩╝╚╝- - - - - - - - - - - - - - - - - - - -]\n"
-							+
-							"[===================================================================================================]");
+				"[===================================================================================================]\n"+
+				"[- - - - - - - - - - - - - - - - - - - -╔╗ ╔═╗╔╗╔╔╦╗╦ ╦╔═╗╔╗╔- - - - - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - - - - -╠╩╗╠═╣║║║ ║ ║ ║╠═╣║║║- - - - - - - - - - - - - - - - - - - -]\n"+
+				"[- - - - - - - - - - - - - - - - - - - -╚═╝╩ ╩╝╚╝ ╩ ╚═╝╩ ╩╝╚╝- - - - - - - - - - - - - - - - - - - -]\n"+
+				"[===================================================================================================]");
 		}
 	}
 
 	public static void displayHelp() {
 		displayHeaderHelp();
-		System.out.println(
-				"[===================================================================================================]\n"
-						+
-						"[                                PETUNJUK MENGGUNAKAN ATM POLINEMA                                  ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[  Q: Bagaimana cara menggunakannya?                                                                ]\n"
-						+
-						"[  A: Anda bisa memulai program dengan menekan angka yang sesuai dengan menu                        ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[  Q: Apakah saya bisa melakukan transaksi lebih dari 1 kali?                                       ]\n"
-						+
-						"[  A: Bisa. Setelah anda melakukan konfirmasi, akan ada pemberitahuan mengenai konfirmasi transaksi ]\n"
-						+
-						"[     lagi. Anda bisa memilih menu yang tersedia kembali.                                           ]\n"
-						+
-						"[                                                                                                   ]\n"
-						+
-						"[===================================================================================================]");
+		System.out.println(langOutputs[91][currentLanguange]);
 
 		EnterForContinue();
 	}

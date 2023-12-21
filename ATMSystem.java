@@ -12,8 +12,6 @@ import java.util.Locale;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.security.auth.callback.LanguageCallback;
-
 public class ATMSystem {
 	static Scanner scanner1 = new Scanner(System.in);
 	static Scanner scanner2 = new Scanner(System.in);
@@ -29,7 +27,7 @@ public class ATMSystem {
 	// inisialisasi dan deklarasi variabel yang dibutuhkan
 	// array akun di ATM POLINEMA
 	static String[][] accountData = {
-			{ "1234567", "1234", "ATABIK", "BANK POLINEMA", "7000000", "notSECURE", "04-09-2023" },
+			{ "1234567", "1234", "ATABIK", "BANK POLINEMA", "7000000", "SECURE", "04-09-2023" },
 			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "SECURE", "14-11-2023" },
 			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "SECURE", "01-01-2001" },
 			{ "0101010", "0001", "KARL", "BANK POLINEMA", "900000000", "SECURE", "05-05-2005" },
@@ -312,7 +310,9 @@ public class ATMSystem {
 		  "[                                                                                                   ]\n"+
 		  "[  JIKA ADA KENDALA LAIN SILAKAN HUBUNGI CALL CENTER 00112233                                       ]\n"+
 		  "[  KAMI DENGAN SENANG HATI AKAN MELAYANI ANDA                                                       ]\n"+
-		  "[===================================================================================================]" } // 91
+		  "[===================================================================================================]" }, // 91
+		  { "[!] PIN ONLY CONSIST OF 4 DIGIT NUMBERS [!] ", "[!] PIN HANYA TERDIRI DARI 4 DIGIT ANGKA [!]" }, // 92
+		  { "PIN IS STILL THE SAME AS BEFORE ", "PIN MASIH SAMA DENGAN SEBELUMNYA" } // 93
 	};
 
 	public static void main(String[] args) {
@@ -1793,13 +1793,13 @@ public class ATMSystem {
 		displayHeaderAccountHistory();
 		String accountStatus = accountData[accountLineIndex][5];
 		if (currentLanguange == 1) {
-			accountStatus = "AMAN";
+			accountStatus = "AMAN  ";
 		}
 		System.out.println(
 			"[===================================================================================================]\n"+
 			"[                                     "+langOutputs[59][currentLanguange]+"                                   ]\n"+
 			"[   - "+langOutputs[60][currentLanguange]+"\t: "+accountData[accountLineIndex][6]+"                                                                ]\n"+
-			"[   - STATUS         \t: "+accountStatus+"                                                                      ]\n"+
+			"[   - STATUS         \t: "+accountStatus+"                                                                    ]\n"+
 			"[   _____________________________________________________________________________________________   ]"
 		);
 
@@ -1891,13 +1891,9 @@ public class ATMSystem {
 		System.out.print("[  " + langOutputs[71][currentLanguange]);
 		String inputPin7 = scanNewPin.nextLine();
 
-		ClearScreen();
-
 		if (inputPin7.equals(inputPin)) {
-			System.out.print("[  " + langOutputs[72][currentLanguange]);
-			String inputNewPin = getValidatedPin(scanNewPin);
-			System.out.print("[  " + langOutputs[73][currentLanguange]);
-			String confirmedNewPin = getValidatedPin(scanNewPin);
+			String inputNewPin = getValidatedPin(scanNewPin, 1);
+			String confirmedNewPin = getValidatedPin(scanNewPin, 2);
 
 			ClearScreen();
 
@@ -2167,7 +2163,7 @@ public class ATMSystem {
 			while (!scanner3.hasNextInt()) {
 				System.out.println("[  Input yang diberikan tidak valid. Silahkan ulangi kembali");
 				System.out.print(prompt);
-				scanner3.next(); // Hapus input yang tidak valid
+				scanner3.next();
 			}
 
 			userInput = scanner3.nextInt();
@@ -2180,21 +2176,36 @@ public class ATMSystem {
 		return userInput;
 	}
 
-	public static String getValidatedPin(Scanner scanner) {
+	public static String getValidatedPin(Scanner scanner, int x) {
 		String pin;
 		do {
-			pin = scanner.nextLine();
-			if (!pin.matches("\\d{4}")) {
-				System.out.println(
-						"    ============================================================================================");
-				System.out.println(
-						"                          [  (!) PIN HANYA TERDIRI DARI 4 DIGIT ANGKA (!) ]");
-				System.out.println(
-						"    ============================================================================================");
-
-				System.out.print("MASUKKAN PIN BARU (4 DIGIT): ");
+			if (x == 1) {
+				System.out.print("[  " + langOutputs[72][currentLanguange]);
+			} else if (x == 2) {
+				System.out.print("[  " + langOutputs[73][currentLanguange]);
 			}
-		} while (!pin.matches("\\d{4}"));
+
+			pin = scanner.nextLine();
+			if (pin.equals(accountData[accountLineIndex][1])) {
+				ClearScreen();
+				System.out.println(
+					"[===================================================================================================]\n"+
+					"[                                 "+red+langOutputs[93][currentLanguange]+reset+"                                  ]\n"+
+					"[===================================================================================================]"
+				);
+				EnterForContinue();
+			} else {
+				if (!pin.matches("\\d{4}")) {
+					ClearScreen();
+					System.out.println(
+						"[===================================================================================================]\n"+
+						"[                       "+red+langOutputs[92][currentLanguange]+reset+"                      ]\n"+
+						"[===================================================================================================]"
+					);
+					EnterForContinue();
+				}
+			}
+		} while (!pin.matches("\\d{4}") || (pin.equals(accountData[accountLineIndex][1])));
 		return pin;
 	}
 

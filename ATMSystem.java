@@ -312,7 +312,9 @@ public class ATMSystem {
 		  "[  KAMI DENGAN SENANG HATI AKAN MELAYANI ANDA                                                       ]\n"+
 		  "[===================================================================================================]" }, // 91
 		  { "[!] PIN ONLY CONSIST OF 4 DIGIT NUMBERS [!] ", "[!] PIN HANYA TERDIRI DARI 4 DIGIT ANGKA [!]" }, // 92
-		  { "PIN IS STILL THE SAME AS BEFORE ", "PIN MASIH SAMA DENGAN SEBELUMNYA" } // 93
+		  { "PIN IS STILL THE SAME AS BEFORE ", "PIN MASIH SAMA DENGAN SEBELUMNYA" }, // 93
+		  { " [!] THE INPUT PROVIDED IS INVALID. PLEASE REPEAT AGAIN [!]  ", "[!] INPUT YANG DIBERIKAN TIDAK VALID. SILAKAN ULANGI LAGI [!]" }, // 94
+		  { " [!] THE VALUE MUST BE GREATER OR EQUAL TO ZERO [!] ", "[!] NILAI HARUS LEBIH BESAR ATAU SAMA DENGAN NOL [!]" } // 95
 	};
 
 	public static void main(String[] args) {
@@ -2161,7 +2163,11 @@ public class ATMSystem {
 			System.out.print(prompt);
 
 			while (!scanner3.hasNextInt()) {
-				System.out.println("[  Input yang diberikan tidak valid. Silahkan ulangi kembali");
+				System.out.println(
+					"[===================================================================================================]\n"+
+					"[                   "+red+langOutputs[94][currentLanguange]+reset+"                   ]\n"+
+					"[===================================================================================================]"
+				);
 				System.out.print(prompt);
 				scanner3.next();
 			}
@@ -2169,7 +2175,11 @@ public class ATMSystem {
 			userInput = scanner3.nextInt();
 
 			if (userInput < 0) {
-				System.out.println("Nilai harus lebih besar atau sama dengan 0");
+				System.out.println(
+					"[===================================================================================================]\n"+
+					"[                       "+red+langOutputs[95][currentLanguange]+reset+"                        ]\n"+
+					"[===================================================================================================]"
+				);
 			}
 		} while (userInput < 0);
 

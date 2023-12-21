@@ -29,14 +29,14 @@ public class ATMSystem {
 	// inisialisasi dan deklarasi variabel yang dibutuhkan
 	// array akun di ATM POLINEMA
 	static String[][] accountData = {
-			{ "1234567", "1234", "ATABIK", "BANK POLINEMA", "7000000", "GOOD", "04-09-2023" },
-			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "GOOD", "14-11-2023" },
-			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "GOOD", "01-01-2001" },
-			{ "0101010", "0001", "KARL", "BANK POLINEMA", "900000000", "GOOD", "05-05-2005" },
-			{ "1122334", "4321", "PUTRI", "BANK POLINEMA", "23000000", "GOOD", "17-12-2023"},
-			{ "1231231", "1122", "AGUS", "BANK HOKI", "12000000", "GOOD", "14-02-2019"},
-			{ "1", "1", "RIO", "BANK JOSS", "10000000", "GOOD", "29-10-2010" }, // for quick try
-			{ "2", "2", "TAYLOR", "RICH BANK", "22222222", "GOOD", "29-02-2020" } // for quick try
+			{ "1234567", "1234", "ATABIK", "BANK POLINEMA", "7000000", "notSECURE", "04-09-2023" },
+			{ "7654321", "5678", "FARREL", "BANK JOSS", "4000000", "SECURE", "14-11-2023" },
+			{ "7777777", "7777", "INNAMA", "RICH BANK", "10000000", "SECURE", "01-01-2001" },
+			{ "0101010", "0001", "KARL", "BANK POLINEMA", "900000000", "SECURE", "05-05-2005" },
+			{ "1122334", "4321", "PUTRI", "BANK POLINEMA", "23000000", "SECURE", "17-12-2023"},
+			{ "1231231", "1122", "AGUS", "BANK HOKI", "12000000", "SECURE", "14-02-2019"},
+			{ "1", "1", "RIO", "BANK JOSS", "10000000", "SECURE", "29-10-2010" }, // for quick try
+			{ "2", "2", "TAYLOR", "RICH BANK", "22222222", "SECURE", "29-02-2020" } // for quick try
 	};
 
 	// array listrikData menampung ID PLN & tagihan
@@ -396,7 +396,7 @@ public class ATMSystem {
 
 			isAccountNumberValid = false;
 			if (isAccountFind) {
-				if (accountData[accountLineIndex][5].equals("GOOD")) {
+				if (accountData[accountLineIndex][5].equals("SECURE")) {
 					isAccountNumberValid = true;
 				}
 			}

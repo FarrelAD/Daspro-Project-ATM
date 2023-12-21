@@ -13,14 +13,12 @@
     <li><a href="https://github.com/FarrelAD">Farrel Augusta Dinata</li>
     <li><a href="https://github.com/sukinnamz">Innama Maesa Putri</li>
 </ol>
-
-Leader?? Mr. Farrel
       
 ## About our project
 
 #### START: 4 September 2023 ####
 
-#### STATUS: SUCCES (100%) ####
+#### STATUS: FINISH (100%) ####
 
 <img src="https://media.giphy.com/media/hTZXf0F5qZXUaFTfyY/giphy.gif" width="100" alt="ON PROGRESS GIF" align="left">
 <br><br><br><br>
@@ -33,7 +31,8 @@ Leader?? Mr. Farrel
 5. Bill payments <i>(Pembayaran tagihan)</i>
 6. PIN change <i>(Ubah PIN)</i>
 7. Transaction history <i>(Riwayat transaksi)</i>
-8. Multi Lenguage
+8. Help <i>(Bantuan)</i>
+9. Multi language <i>(multi bahasa)</i>
 
 ## System flow
 
@@ -42,8 +41,8 @@ Leader?? Mr. Farrel
 We've implemented some of the things we've learned about the basics of Java. There are:
 - Decision making statements (if... else...; nested if; switch-case)
 - Loop statements (do-while; while; for)
-- Arrays (Multidimensional arrays)
-- Function _(soon)_
+- Arrays (Multidimensional arrays, array list)
+- Function/method
 
 ## Tools ##
 many tools that we use for the project. We use Java as a language of the program and Microsoft Visual Studio Code as an IDE to making the whole program. 

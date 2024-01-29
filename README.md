@@ -17,6 +17,7 @@
 ## About our project
 
 #### START: 4 September 2023 ####
+#### FINISH: 22 December 2023 ####
 
 #### STATUS: FINISH (100%) ####
 
@@ -45,7 +46,7 @@ We've implemented some of the things we've learned about the basics of Java. The
 - Function/method
 
 ## Tools ##
-many tools that we use for the project. We use Java as a language of the program and Microsoft Visual Studio Code as an IDE to making the whole program. 
+Many tools that we use for the project. We use Java as a language of the program and Microsoft Visual Studio Code as an IDE to making the whole program. 
 Thanks Java! Thanks VSCode! Without you we can't finish the project.
 <p align="center">
    <img src="https://skillicons.dev/icons?i=java,vscode">

@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+actor User as "User"
+rectangle ATM {
+    usecase "Authentication" as UC1
+    usecase "Main Menu" as UC2
+    usecase "Transfer" as UC3
+    usecase "Cash Withdrawal" as UC4
+    usecase "Cash Deposit" as UC5
+    usecase "Payments" as UC6
+    usecase "Credit" as UC6a
+    usecase "Electricity" as UC6b
+    usecase "Education" as UC6c
+    usecase "Water" as UC6d
+    usecase "Health Insurance" as UC6e
+    usecase "History" as UC7
+    usecase "Balance Check" as UC8
+    usecase "PIN Change" as UC9
+    usecase "Help" as UC10
+    usecase "Multi-language" as UC11
+    usecase "Exit" as UC12
+
+    User --> UC1
+    UC1 --> UC2
+    UC2 --> UC3
+    UC2 --> UC4
+    UC2 --> UC5
+    UC2 --> UC6
+    UC6 --> UC6a
+    UC6 --> UC6b
+    UC6 --> UC6c
+    UC6 --> UC6d
+    UC6 --> UC6e
+    UC2 --> UC7
+    UC2 --> UC8
+    UC2 --> UC9
+    UC2 --> UC10
+    UC2 --> UC11
+    UC2 --> UC12
+}
+@enduml

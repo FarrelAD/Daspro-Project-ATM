@@ -114,7 +114,7 @@ public class ATMSystem {
 	static boolean isListrikValid = false;
 
 	// 'Pendidikan' feature variables
-	static int indexPendidikan = 0; 
+	static int indexPendidikan = 0;
 	static boolean isPendidikanValid = false;
 
 	// 'PDAM' feature variables
@@ -1358,6 +1358,7 @@ public class ATMSystem {
 				"[- - - - - - - - - - - - - - - - - - -╩  ╚═╝╝╚╝═╩╝╩═╩╝╩╩ ╩╩ ╩╝╚╝ - - - - - - - - - - - - - - - - - -]\n"+
 				"[===================================================================================================]");
 		}
+
 	}
 
 	public static void Pendidikan() {

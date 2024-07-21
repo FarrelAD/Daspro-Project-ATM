@@ -1,0 +1,78 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#logo-polinema {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 1rem;
+}
+
+#hr-header-to-main {
+    border: 0;
+    height: 3px;
+    background-color: black;
+}
+
+main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+#additional-info > header {
+    display: flex;
+    justify-content: start;
+}
+
+#important-icon {
+    width: 1.5rem;
+    margin: 0 1rem;
+}
+
+#account-table {
+    border-collapse: collapse;
+}
+
+#account-table th, 
+#account-table td {
+    border: 1px solid black;
+    padding: .5rem;
+    text-align: left;
+}
+
+#pop-up-warning {
+    display: block;
+    position: fixed;
+    background-color: white;
+    width: 200px;
+    bottom: 0;
+    right: 0;
+    padding: 2rem 3rem 2rem 2rem;
+    border: 2px solid black;
+    margin: 0 2rem 2rem 0;
+}
+
+#x-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-weight: bold;
+    top: 0;
+    right: 0;
+    padding: .5rem 1rem;
+}
+
+#x-btn:hover {
+    cursor: pointer;
+}

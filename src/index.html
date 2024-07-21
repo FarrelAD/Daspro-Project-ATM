@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Demo ATM POLINEMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cjrtnc.leaningtech.com/3.0/cj3loader.js"></script>
+    <link rel="stylesheet" href="./assets/css/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>ATM POLINEMA</h1>
+        <img src="./assets/img/logo-polinema.png" alt="Logo POLINEMA" id="logo-polinema">
+    </header>
+
+    <hr id="hr-header-to-main">
+    
+    <main>
+        <section></section>
+        <section id="output"></section>
+        <section id="additional-info">
+            <header>
+                <h3>Important Info</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" id="important-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                </svg>                  
+            </header>
+            <table id="account-table">
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Name</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1234567</td>
+                        <td>ATABIK</td>
+                        <td>1234</td>
+                    </tr>
+                    <tr>
+                        <td>7654321</td>
+                        <td>5678</td>
+                        <td>FARREL</td>
+                    </tr>
+                    <tr>
+                        <td>7777777</td>
+                        <td>7777</td>
+                        <td>INNAMA</td>
+                    </tr>
+                    <tr>
+                        <td>0101010</td>
+                        <td>0001</td>
+                        <td>KARL</td>
+                    </tr>
+                    <tr>
+                        <td>11223344</td>
+                        <td>4321</td>
+                        <td>PUTRI</td>
+                    </tr>
+                    <tr>
+                        <td>1231231</td>
+                        <td>1122</td>
+                        <td>AGUS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <aside id="pop-up-warning">
+        <i>This is live demo of our ATM program. You can run the program as you wish!</i>
+        <div id="x-btn">
+            <span id="x-text">X</span>
+        </div>
+    </aside>
+    
+    <script src="./assets/js/index.js"></script>
+    <script>
+        const output = document.getElementById('output');
+
+        (async function () {
+            await cheerpjInit();
+            cheerpjCreateDisplay(800, 600, output);
+            await cheerpjRunJar("/app/src/ATMSystem.jar");
+        })();
+    </script>
+</body>
+
+</html>

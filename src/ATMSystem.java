@@ -1,3 +1,4 @@
+package src;
 // Program sistem ATM - Kelompok 4 - TI-1B
 // Fitur yang tersedia: autentifikasi pengguna, transfer, tarik tunai, setor tunai, 
 // pembayaran lain-lain, riwayat transaksi, cek saldo, ubah PIN, dan EXIT
@@ -103,7 +104,8 @@ public class ATMSystem {
 	static boolean isStopTransaction = false;
 
 	// Format nilai uang Indonesia Rupiah (IDR)
-	static NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+	static Locale indonesianLocale = new Locale.Builder().setLanguage("id").setRegion("ID").build();
+	static NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(indonesianLocale);
 
 	// 'Payment' feature variable
 	static int adminFee = 1000;

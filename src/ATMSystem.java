@@ -9,8 +9,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
-import java.util.List;
 import java.util.Scanner;
 
 public class ATMSystem {
@@ -710,7 +710,16 @@ public class ATMSystem {
 							);	
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange] + inputTarget_AccountNumber + " ("+ accountData[indexTargetAccount][2] + ")", adjustNumCharHistory(totalTransferRp), formattedLocalTime(), formattedLocalDate())));
+							ArrayList<String> newData = new ArrayList<>(
+								Arrays.asList(
+									langOutputs[51][currentLanguange] + inputTarget_AccountNumber + 
+									" ("+ accountData[indexTargetAccount][2] + ")", 
+									adjustNumCharHistory(totalTransferRp), 
+									formattedLocalTime(), 
+									formattedLocalDate()
+								)
+							);
+							transactionHistoryList.add(newData);
 							recordTransactionHistory();
 						} else {
 							displayTransactionOverLimit();
@@ -875,7 +884,16 @@ public class ATMSystem {
 							);	
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[51][currentLanguange] + inputTarget_AccountNumber + " ("+ accountData[indexTargetAccount][2] + ")", adjustNumCharHistory(totalTransferRp), formattedLocalTime(), formattedLocalDate())));
+							ArrayList<String> newData = new ArrayList<>(
+								Arrays.asList(
+									langOutputs[51][currentLanguange] + inputTarget_AccountNumber + 
+									" ("+ accountData[indexTargetAccount][2] + ")", 
+									adjustNumCharHistory(totalTransferRp), 
+									formattedLocalTime(), 
+									formattedLocalDate()
+								)
+							);
+							transactionHistoryList.add(newData);
 							recordTransactionHistory();
 						} else {
 							displayTransactionOverLimit();
@@ -996,9 +1014,15 @@ public class ATMSystem {
 							System.out.println("[  " + langOutputs[26][currentLanguange] + userBalanceRupiah);
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[52][currentLanguange],
-									adjustNumCharHistory(cashWithdrawalRupiah), formattedLocalTime(),
-									formattedLocalDate())));
+							ArrayList<String> newData = new ArrayList<>(
+								Arrays.asList(
+									langOutputs[52][currentLanguange],
+									adjustNumCharHistory(cashWithdrawalRupiah), 
+									formattedLocalTime(),
+									formattedLocalDate()
+								)
+							);
+							transactionHistoryList.add(newData);
 							recordTransactionHistory();
 
 							EnterForContinue();
@@ -1060,8 +1084,15 @@ public class ATMSystem {
 					System.out.println("[  " + langOutputs[26][currentLanguange] + userBalanceRupiah);
 
 					// Recording transaction history
-					transactionHistoryList.add(new ArrayList<>(List.of(langOutputs[53][currentLanguange],
-							adjustNumCharHistory(cashDepositRupiah), formattedLocalTime(), formattedLocalDate())));
+					ArrayList<String> newData = new ArrayList<>(
+						Arrays.asList(
+							langOutputs[53][currentLanguange],
+							adjustNumCharHistory(cashDepositRupiah), 
+							formattedLocalTime(), 
+							formattedLocalDate()
+						)
+					);
+					transactionHistoryList.add(newData);
 					recordTransactionHistory();
 
 					EnterForContinue();
@@ -1238,9 +1269,15 @@ public class ATMSystem {
 							"[===================================================================================================]");
 
 						// Pencatatan riwayat transaksi
-						transactionHistoryList.add(new ArrayList<>(List.of(
+						ArrayList<String> newData = new ArrayList<>(
+							Arrays.asList(
 								adjustNumCharHistory(langOutputs[54][currentLanguange] + nomorTelepon),
-								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+								adjustNumCharHistory(totalPaymentRp), 
+								formattedLocalTime(), 
+								formattedLocalDate()
+							)
+						);
+						transactionHistoryList.add(newData);
 						recordTransactionHistory();
 
 						EnterForContinue();
@@ -1321,9 +1358,15 @@ public class ATMSystem {
 								"[===================================================================================================]");
 
 							// Recording transaction history
-							transactionHistoryList.add(new ArrayList<>(List.of(
+							ArrayList<String> newData = new ArrayList<>(
+								Arrays.asList(
 									adjustNumCharHistory(langOutputs[55][currentLanguange] + "(" + inputPLN + ")"),
-									adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+									adjustNumCharHistory(totalPaymentRp), 
+									formattedLocalTime(), 
+									formattedLocalDate()
+								)
+							);
+							transactionHistoryList.add(newData);
 							recordTransactionHistory();
 
 							EnterForContinue();
@@ -1418,9 +1461,15 @@ public class ATMSystem {
 							"[===================================================================================================]");
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(
+						ArrayList<String> newData = new ArrayList<>(
+							Arrays.asList(
 								adjustNumCharHistory(langOutputs[56][currentLanguange] + "(" + inputVA + ")"),
-								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+								adjustNumCharHistory(totalPaymentRp), 
+								formattedLocalTime(), 
+								formattedLocalDate()
+							)
+						);
+						transactionHistoryList.add(newData);
 						recordTransactionHistory();
 
 							EnterForContinue();
@@ -1505,9 +1554,15 @@ public class ATMSystem {
 							"[===================================================================================================]");
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(
+						ArrayList<String> newData = new ArrayList<>(
+							Arrays.asList(
 								adjustNumCharHistory(langOutputs[57][currentLanguange] + "(" + inputVA + ")"),
-								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+								adjustNumCharHistory(totalPaymentRp), 
+								formattedLocalTime(), 
+								formattedLocalDate()
+							)
+						);
+						transactionHistoryList.add(newData);
 						recordTransactionHistory();
 
 							EnterForContinue();
@@ -1592,9 +1647,15 @@ public class ATMSystem {
 							"[===================================================================================================]");
 
 						// Recording Transaction History
-						transactionHistoryList.add(new ArrayList<>(List.of(
+						ArrayList<String> newData = new ArrayList<>(
+							Arrays.asList(
 								adjustNumCharHistory(langOutputs[58][currentLanguange] + "(" + inputVA + ")"),
-								adjustNumCharHistory(totalPaymentRp), formattedLocalTime(), formattedLocalDate())));
+								adjustNumCharHistory(totalPaymentRp), 
+								formattedLocalTime(), 
+								formattedLocalDate()
+							)
+						);
+						transactionHistoryList.add(newData);
 						recordTransactionHistory();
 
 							EnterForContinue();
@@ -1812,7 +1873,12 @@ public class ATMSystem {
 	}
 
 	public static void recordAccountHistory(String myInfo, String myTime, String myDate) {
-		accountHistoryList.add(new ArrayList<>(List.of(myInfo, myTime, myDate)));
+		ArrayList<String> newData = new ArrayList<>(
+			Arrays.asList(
+				myInfo, myTime, myDate
+			)
+		);
+		accountHistoryList.add(newData);
 	}
 
 	public static void displayAccountHistory() {
